@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://mktrqqjkl8ji"]
+
+[ext_resource type="Script" uid="uid://dju6bdtxuh6hj" path="res://scripts/StateMachine.gd" id="1_2hs0m"]
+[ext_resource type="Script" uid="uid://lp3uqcbgvfkd" path="res://scripts/Player.gd" id="1_fjrip"]
+[ext_resource type="Script" uid="uid://hls64ppdic1y" path="res://scripts/Idle.gd" id="2_1jxqw"]
+[ext_resource type="Script" uid="uid://bdvqoe7ugk2n3" path="res://scripts/Walking.gd" id="3_dw050"]
+[ext_resource type="Script" uid="uid://cd3ujkvpt5nkw" path="res://scripts/Running.gd" id="4_b26j0"]
+[ext_resource type="Script" uid="uid://bwcnxgr0wot5l" path="res://scripts/Crouching.gd" id="5_n7ghd"]
+[ext_resource type="Script" uid="uid://cgpt72th8fdeo" path="res://scripts/Jumping.gd" id="6_nvl01"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
+height = 3.5994782
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_fjrip")
+walk_speed = null
+run_speed = null
+crouch_speed = null
+jump_velocity = null
+gravity = null
+friction = null
+air_control = null
+rotate_to_movement = null
+rotation_speed = null
+mouse_sensitivity = null
+camera_x_min = null
+camera_x_max = null
+standing_height = null
+crouching_height = null
+standing_camera_height = null
+crouching_camera_height = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0020918846, 0)
+shape = SubResource("CapsuleShape3D_sh265")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.8, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_4flbx")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraPivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+target_position = Vector3(0, 0, -1.5)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_2hs0m")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("2_1jxqw")
+
+[node name="Walking" type="Node" parent="StateMachine"]
+script = ExtResource("3_dw050")
+
+[node name="Running" type="Node" parent="StateMachine"]
+script = ExtResource("4_b26j0")
+
+[node name="Crouching" type="Node" parent="StateMachine"]
+script = ExtResource("5_n7ghd")
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("6_nvl01")
