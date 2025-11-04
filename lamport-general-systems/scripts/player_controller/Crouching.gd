@@ -1,7 +1,7 @@
 extends State
 
 func enter() -> void:
-	print("Entering Crouching state")
+	#print("Entering Crouching state")
 	player.crouch_down()
 	
 	if player.has_node("AnimationPlayer"):

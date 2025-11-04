@@ -19,14 +19,16 @@ extends CharacterBody3D
 # Collision parameters
 @export var standing_height: float = 2.0
 @export var crouching_height: float = 1.0
-@export var standing_camera_height: float = 1.6  # Normal camera height when standing
-@export var crouching_camera_height: float = 0.9  # Camera height when crouching
+@export var standing_camera_height: float = 1.6 
+@export var crouching_camera_height: float = 0.9 
 
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var camera: Camera3D = $CameraPivot/Camera3D
+
+var mouse_motion: Vector2 = Vector2.ZERO
 
 var is_crouched: bool = false
 var camera_rotation: Vector2 = Vector2.ZERO
@@ -36,19 +38,25 @@ func _ready() -> void:
 	# Capture mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
+	# Enable physics interpolation for smooth movement
+	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
+	
 	# Store initial collision height
 	if collision_shape and collision_shape.shape is CapsuleShape3D:
 		standing_height = collision_shape.shape.height
+		
+		# Position collision shape so bottom is at origin (feet)
+		# Capsule center should be at half its height
+		collision_shape.position.y = standing_height / 2.0
 	
 	# Set camera to standing height
 	if camera_pivot:
 		camera_pivot.position.y = standing_camera_height
-		print("Camera starting at height: ", camera_pivot.position.y)
 
 func _input(event: InputEvent) -> void:
-	# Handle mouse movement for camera
+	# Just store mouse motion, don't rotate yet
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotate_camera(event.relative)
+		mouse_motion += event.relative
 	
 	# Toggle mouse capture with Escape
 	if event.is_action_pressed("ui_cancel"):
@@ -56,14 +64,19 @@ func _input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			
-func _process(delta: float) -> void:
-	# Smoothly lerp camera height when crouching/standing
+
+func _physics_process(delta: float) -> void:
+	# Apply camera rotation in physics process
+	if mouse_motion != Vector2.ZERO:
+		rotate_camera(mouse_motion)
+		mouse_motion = Vector2.ZERO
+	
+	# Camera height lerp
 	if camera_pivot:
-		# Use absolute heights instead of offset
 		var target_height = crouching_camera_height if is_crouched else standing_camera_height
-		
-		camera_pivot.position.y = lerp(camera_pivot.position.y, target_height, 10.0 * delta)
+		var current_pos = camera_pivot.position
+		current_pos.y = lerp(current_pos.y, target_height, 10.0 * delta)
+		camera_pivot.position = current_pos
 		
 func rotate_camera(mouse_delta: Vector2) -> void:
 	# Rotate player left/right
@@ -73,34 +86,35 @@ func rotate_camera(mouse_delta: Vector2) -> void:
 	camera_rotation.x -= mouse_delta.y * mouse_sensitivity
 	camera_rotation.x = clamp(camera_rotation.x, deg_to_rad(camera_x_min), deg_to_rad(camera_x_max))
 	
-	# Apply rotation to camera pivot
+	# Apply rotation using only X axis
 	if camera_pivot:
-		camera_pivot.rotation.x = camera_rotation.x
+		camera_pivot.rotation = Vector3(camera_rotation.x, 0, 0)
 		
 func crouch_down() -> void:
 	if is_crouched:
 		return
 	
-	print("CROUCH_DOWN called - setting is_crouched to TRUE")
 	is_crouched = true
 	
-	# Adjust collision shape - DON'T move it, keep it centered
 	if collision_shape and collision_shape.shape is CapsuleShape3D:
 		var capsule = collision_shape.shape as CapsuleShape3D
 		capsule.height = crouching_height
+		
+		# Keep bottom of capsule at feet (origin)
+		collision_shape.position.y = crouching_height / 2.0
 
 func stand_up() -> void:
 	if not is_crouched:
 		return
 	
-	print("STAND_UP called - setting is_crouched to FALSE")
 	is_crouched = false
 	
-	# Restore collision shape
 	if collision_shape and collision_shape.shape is CapsuleShape3D:
 		var capsule = collision_shape.shape as CapsuleShape3D
 		capsule.height = standing_height
-		# Remove this line: collision_shape.position.y = standing_height / 2.0
+		
+		# Keep bottom of capsule at feet (origin)
+		collision_shape.position.y = standing_height / 2.0
 
 func check_ceiling() -> bool:
 	# Raycast upward to check if there's room to stand

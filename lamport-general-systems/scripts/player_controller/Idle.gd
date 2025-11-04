@@ -1,9 +1,9 @@
 extends State
 
 func enter() -> void:
-	print("Entering Idle state")
-	# Don't force stand_up here - let the crouching state handle it
-	# player.stand_up()  # REMOVED
+	print("=== ENTERED IDLE ===")
+	print("Initial velocity: ", player.velocity)
+	print("Player rotation Y: ", rad_to_deg(player.rotation.y))
 	
 	if player.has_node("AnimationPlayer"):
 		player.get_node("AnimationPlayer").play("idle")
@@ -32,9 +32,15 @@ func physics_update(delta: float) -> void:
 	# Apply gravity and friction
 	if not player.is_on_floor():
 		player.velocity.y -= player.gravity * delta
-	
-	# Apply friction
-	player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
-	player.velocity.z = move_toward(player.velocity.z, 0, player.friction * delta)
-	
+
+	# Apply friction - decelerate while maintaining direction
+	var horizontal_velocity = Vector2(player.velocity.x, player.velocity.z)
+	var speed = horizontal_velocity.length()
+
+	if speed > 0:
+		var new_speed = max(speed - player.friction * delta, 0)
+		horizontal_velocity = horizontal_velocity.normalized() * new_speed
+		player.velocity.x = horizontal_velocity.x
+		player.velocity.z = horizontal_velocity.y
+
 	player.move_and_slide()

@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://5e5rb1tcmojv"]
+
+[ext_resource type="Texture2D" uid="uid://15b1pfbbhf27" path="res://textures/granite.jpeg" id="1_cgifh"]
+
+[resource]
+albedo_texture = ExtResource("1_cgifh")
+uv1_scale = Vector3(100, 100, 100)

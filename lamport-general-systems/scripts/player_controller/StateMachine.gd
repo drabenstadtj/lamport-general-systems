@@ -45,4 +45,4 @@ func transition_to(state_name: String) -> void:
 	
 	current_state = new_state
 	current_state.enter()
-	print("Transitioned to: " + state_name)
+	#print("Transitioned to: " + state_name)

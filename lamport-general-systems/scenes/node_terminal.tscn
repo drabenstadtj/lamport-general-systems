@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://ra21n3rxrlhj"]
+
+[ext_resource type="Script" uid="uid://b6bswq28345v6" path="res://scripts/world/node_terminal.gd" id="1_bxjbm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_o6nj6"]
+
+[node name="NodeTerminal" type="Node3D"]
+script = ExtResource("1_bxjbm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_o6nj6")
+
+[node name="StatusLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5409994)
+light_color = Color(0, 1, 0, 1)
+light_energy = 2.0
+omni_range = 2.0
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.5063789)
+text = "Node 0"

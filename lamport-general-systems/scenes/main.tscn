@@ -1,10 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://btx3xuu8qxu1l"]
+[gd_scene load_steps=10 format=3 uid="uid://btx3xuu8qxu1l"]
 
 [ext_resource type="PackedScene" uid="uid://mktrqqjkl8ji" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://dqhuli5723kdp" path="res://textures/Checkerboard_pattern.svg.png" id="2_0wfyh"]
-[ext_resource type="Script" uid="uid://c2jgg2ioqhmqc" path="res://scripts/bft_network_manager.gd" id="3_jyhfs"]
-[ext_resource type="Script" uid="uid://cwnrdrbeppc7w" path="res://scripts/bft_node.gd" id="4_tbgi4"]
-[ext_resource type="Script" uid="uid://b5ot8j58grixy" path="res://main.gd" id="5_tbgi4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -57,21 +54,3 @@ crouching_height = 0.5
 transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 2.5, -2)
 material_override = SubResource("StandardMaterial3D_sugp2")
 mesh = SubResource("BoxMesh_o5qli")
-
-[node name="NetworkManager" type="Node" parent="."]
-script = ExtResource("3_jyhfs")
-
-[node name="Node1" type="Node" parent="NetworkManager"]
-script = ExtResource("4_tbgi4")
-
-[node name="Node2" type="Node" parent="NetworkManager"]
-script = ExtResource("4_tbgi4")
-
-[node name="Node3" type="Node" parent="NetworkManager"]
-script = ExtResource("4_tbgi4")
-
-[node name="Node4" type="Node" parent="NetworkManager"]
-script = ExtResource("4_tbgi4")
-
-[node name="Main" type="Node" parent="."]
-script = ExtResource("5_tbgi4")

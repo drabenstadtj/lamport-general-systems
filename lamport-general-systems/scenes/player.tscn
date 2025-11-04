@@ -1,31 +1,32 @@
 [gd_scene load_steps=10 format=3 uid="uid://mktrqqjkl8ji"]
 
-[ext_resource type="Script" uid="uid://dju6bdtxuh6hj" path="res://scripts/StateMachine.gd" id="1_2hs0m"]
-[ext_resource type="Script" uid="uid://lp3uqcbgvfkd" path="res://scripts/Player.gd" id="1_fjrip"]
-[ext_resource type="Script" uid="uid://hls64ppdic1y" path="res://scripts/Idle.gd" id="2_1jxqw"]
-[ext_resource type="Script" uid="uid://bdvqoe7ugk2n3" path="res://scripts/Walking.gd" id="3_dw050"]
-[ext_resource type="Script" uid="uid://cd3ujkvpt5nkw" path="res://scripts/Running.gd" id="4_b26j0"]
-[ext_resource type="Script" uid="uid://bwcnxgr0wot5l" path="res://scripts/Crouching.gd" id="5_n7ghd"]
-[ext_resource type="Script" uid="uid://cgpt72th8fdeo" path="res://scripts/Jumping.gd" id="6_nvl01"]
+[ext_resource type="Script" uid="uid://dju6bdtxuh6hj" path="res://scripts/player_controller/StateMachine.gd" id="1_2hs0m"]
+[ext_resource type="Script" uid="uid://lp3uqcbgvfkd" path="res://scripts/player_controller/Player.gd" id="1_fjrip"]
+[ext_resource type="Script" uid="uid://hls64ppdic1y" path="res://scripts/player_controller/Idle.gd" id="2_1jxqw"]
+[ext_resource type="Script" uid="uid://bdvqoe7ugk2n3" path="res://scripts/player_controller/Walking.gd" id="3_dw050"]
+[ext_resource type="Script" uid="uid://cd3ujkvpt5nkw" path="res://scripts/player_controller/Running.gd" id="4_b26j0"]
+[ext_resource type="Script" uid="uid://bwcnxgr0wot5l" path="res://scripts/player_controller/Crouching.gd" id="5_n7ghd"]
+[ext_resource type="Script" uid="uid://cgpt72th8fdeo" path="res://scripts/player_controller/Jumping.gd" id="6_nvl01"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
-height = 3.5994782
+height = 1.9999348
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
+radius = 0.33
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_fjrip")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0020918846, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0021898, 0)
 shape = SubResource("CapsuleShape3D_sh265")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1.8, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_4flbx")
 
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -0.4)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 

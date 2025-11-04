@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://blqjl268on6ia"]
+
+[ext_resource type="Script" uid="uid://ddc8tk13c7sn4" path="res://scripts/world/server_room.gd" id="1_3jdwn"]
+[ext_resource type="Material" uid="uid://5e5rb1tcmojv" path="res://materials/granite.tres" id="2_pb3p6"]
+[ext_resource type="PackedScene" uid="uid://mktrqqjkl8ji" path="res://scenes/player.tscn" id="3_htgxi"]
+[ext_resource type="PackedScene" uid="uid://ra21n3rxrlhj" path="res://scenes/node_terminal.tscn" id="4_te5ow"]
+[ext_resource type="PackedScene" uid="uid://73et73hhv6tp" path="res://scenes/door.tscn" id="5_s8ypp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rxg2q"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sgp6g"]
+size = Vector2(20, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_30clo"]
+font_size = 20
+
+[node name="Root" type="Node3D"]
+script = ExtResource("1_3jdwn")
+f = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="Node3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_rxg2q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+material_override = ExtResource("2_pb3p6")
+mesh = SubResource("PlaneMesh_sgp6g")
+
+[node name="Player" parent="." instance=ExtResource("3_htgxi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+standing_height = 0.9
+crouching_height = 0.5
+
+[node name="Terminal_0" parent="." instance=ExtResource("4_te5ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.5, 0.5, -8.5)
+
+[node name="Terminal_1" parent="." instance=ExtResource("4_te5ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 0.5, -8.5)
+node_id = 1
+
+[node name="Terminal_2" parent="." instance=ExtResource("4_te5ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.5, -8.5)
+node_id = 2
+
+[node name="Terminal_3" parent="." instance=ExtResource("4_te5ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0.5, -8.5)
+node_id = 3
+
+[node name="Terminal_4" parent="." instance=ExtResource("4_te5ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, -8.5)
+node_id = 4
+
+[node name="Terminal_5" parent="." instance=ExtResource("4_te5ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, -8.5)
+node_id = 5
+
+[node name="Terminal_6" parent="." instance=ExtResource("4_te5ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -8.5)
+node_id = 6
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Status"
+label_settings = SubResource("LabelSettings_30clo")
+
+[node name="Door" parent="." instance=ExtResource("5_s8ypp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -8.1)

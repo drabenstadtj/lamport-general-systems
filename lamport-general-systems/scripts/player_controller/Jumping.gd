@@ -3,7 +3,7 @@ extends State
 var was_sprinting: bool = false
 
 func enter() -> void:
-	print("Entering Jumping state")
+	#print("Entering Jumping state")
 	# Don't force stand_up here - player should already be standing to jump
 	
 	# Jump with more force if sprinting

@@ -1,17 +1,17 @@
 extends State
 
 func enter() -> void:
-	print("Entering Walking state")
+	#print("Entering Running state")
 	# Don't force stand_up here - let the crouching state handle it
 	# player.stand_up()  # REMOVED
 	
 	if player.has_node("AnimationPlayer"):
-		player.get_node("AnimationPlayer").play("walk")
+		player.get_node("AnimationPlayer").play("run")
 
 func physics_update(delta: float) -> void:
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	
-	# Check for crouch while moving
+	# Can't crouch while running
 	if Input.is_action_pressed("crouch"):
 		get_parent().transition_to("Crouching")
 		return
@@ -21,9 +21,9 @@ func physics_update(delta: float) -> void:
 		get_parent().transition_to("Idle")
 		return
 	
-	# Check for sprint
-	if Input.is_action_pressed("sprint"):
-		get_parent().transition_to("Running")
+	# Check if stopped sprinting
+	if not Input.is_action_pressed("sprint"):
+		get_parent().transition_to("Walking")
 		return
 	
 	# Check for jump
@@ -34,9 +34,9 @@ func physics_update(delta: float) -> void:
 	# Calculate movement direction relative to player's rotation (for FPS)
 	var direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if direction:
-		player.velocity.x = direction.x * player.walk_speed
-		player.velocity.z = direction.z * player.walk_speed
+	if direction and player.is_on_floor():
+		player.velocity.x = direction.x * player.run_speed
+		player.velocity.z = direction.z * player.run_speed
 	
 	# Apply gravity
 	if not player.is_on_floor():
