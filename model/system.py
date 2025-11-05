@@ -55,7 +55,7 @@ class Node:
         return self.state == NodeState.BYZANTINE
     
     def set_state(self, new_state: NodeState):
-        print(f"Node {self.id}: {self.state.value} → {new_state.value}")
+        print(f"Node {self.id}: {self.state.value} to {new_state.value}")
         self.state = new_state
     
     def __repr__(self):
@@ -71,7 +71,7 @@ class NetworkState:
         self.initialize_nodes()
     
     def initialize_nodes(self):
-        # Create 3f+1 nodes (for f=1, that's 4 nodes)
+        # Create 3f+1 nodes 
         for i in range(3 * self.f + 1):
             # Start some nodes crashed (nodes beyond f start crashed)
             state = NodeState.CRASHED if i > self.f else NodeState.HEALTHY
@@ -157,6 +157,8 @@ class ConsensusEngine:
             }
         
         # Check if commander is healthy
+        # for now it just fails if the commander is not healthy
+        # maybe implement a view change where commander changes to another node
         commander = self.network_state.get_commander()
         if not commander.is_healthy():
             print("FAILED: Commander (Node 0) is not healthy")
