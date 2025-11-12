@@ -90,5 +90,3 @@ transform = Transform3D(-0.11788399, 0, -0.9930274, 0, 1, 0, 0.9930274, 0, -0.11
 
 [node name="server" parent="." instance=ExtResource("7_aord7")]
 transform = Transform3D(-0.11788399, 0, -0.9930274, 0, 1, 0, 0.9930274, 0, -0.11788399, -0.45114207, 1.0651929, -8.655698)
-
-[editable path="monitor"]

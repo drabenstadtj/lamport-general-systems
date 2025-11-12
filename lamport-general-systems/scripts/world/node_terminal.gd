@@ -4,7 +4,7 @@ class_name NodeTerminal
 @export var node_id: int = 0
 
 @onready var status_light = $StatusLight
-@onready var label = $Label3D
+@onready var label = $SubViewport/Label
 
 func _ready():
 	label.text = "Node %d" % node_id
