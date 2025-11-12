@@ -1,10 +1,9 @@
 extends Node
 
 var network_state: NetworkState
-var consensus_engine: ConsensusEngine
+var consensus_engine
 var current_turn: int = 0
 
-# Registry of 3D objects
 var node_terminals: Dictionary = {}
 var door_object = null
 
@@ -12,24 +11,44 @@ var action_handler: PlayerActionHandler
 
 signal turn_completed(turn_info)
 signal game_won(path_type)
+signal consensus_completed(consensus_result)
+
+# Toggle which engine to use
+const USE_ADAPTIVE := true
 
 func _ready():
 	print("GameManager initialized")
+	print("Press R to run consensus for OPEN, T for LOCKED")
+
+func _input(event):
+	# Check for keypress to run consensus at any time
+	if event is InputEventKey and event.pressed:
+		match event.keycode:
+			KEY_MINUS:
+				# Run consensus for OPEN
+				run_consensus_manually(Enums.VoteValue.OPEN)
+			KEY_EQUAL:
+				# Run consensus for LOCKED
+				run_consensus_manually(Enums.VoteValue.LOCKED)
 
 func initialize_game(f_value: int):
 	print("Initializing game with f=%d" % f_value)
 	network_state = NetworkState.new(f_value)
-	consensus_engine = ConsensusEngine.new(network_state)
+
+	if USE_ADAPTIVE:
+		consensus_engine = ConsensusEngineAdaptive.new(network_state)
+	else:
+		consensus_engine = ConsensusEngineClassic.new(network_state)
+
 	action_handler = PlayerActionHandler.new(network_state, consensus_engine)
 	current_turn = 0
-	
-	# Re-link all registered terminals to their nodes
+
 	for node_id in node_terminals:
 		var terminal = node_terminals[node_id]
 		var node = network_state.get_node(node_id)
 		if node:
 			node.link_game_object(terminal)
-	
+
 	print("Game ready!")
 
 func register_node_terminal(node_id: int, terminal):
@@ -46,10 +65,9 @@ func get_game_status() -> Dictionary:
 		"nodes_registered": node_terminals.size()
 	}
 
-# Player action interface
 func player_action(action_type: Enums.ActionType, node_id: int = -1, door_value = null):
-	var result = null
-	
+	var result: Dictionary
+
 	match action_type:
 		Enums.ActionType.REBOOT_NODE:
 			result = action_handler.reboot_node(node_id)
@@ -61,17 +79,20 @@ func player_action(action_type: Enums.ActionType, node_id: int = -1, door_value 
 			result = action_handler.command_door(door_value)
 		Enums.ActionType.EXPLOIT_DOOR:
 			result = action_handler.exploit_door()
-	
-	if result and result.success:
+		_:
+			print("Unknown action")
+			return
+
+	if result and result.get("success", false):
 		execute_turn(result)
 	else:
-		print("Action failed: ", result.message)
+		print("Action failed: %s" % result.get("message", "unknown"))
 
 func execute_turn(action_result: Dictionary):
 	print("\n=== TURN %d ===" % (current_turn + 1))
-	print("Action: ", action_result.message)
-	
-	# Check if this action opened the door (win condition)
+	print("Action: %s" % action_result.get("message", ""))
+
+	# Door win check
 	if action_result.get("door_opened", false):
 		var win_type = action_result.get("win_type", "unknown")
 		if win_type == "restoration":
@@ -80,44 +101,81 @@ func execute_turn(action_result: Dictionary):
 		elif win_type == "sabotage":
 			print("\nSabotage Path - Door forced open via failsafe exploit")
 			game_won.emit("sabotage")
+
+	# NO automatic consensus - removed the automatic consensus logic
+	# User can press keys to run consensus whenever they want
 	
-	# Run consensus round (unless the action was a door command/exploit)
-	var action_type = action_result.get("action_type", "")
-	if action_type != "door":
-		var consensus_result = consensus_engine.run_consensus_round(Enums.VoteValue.OPEN)
-		
-		if door_object:
-			door_object.update_state(consensus_engine.current_door_state)
-		
-		if consensus_result.success:
-			print("Consensus SUCCESS: Door is now %s" % ("OPEN" if consensus_result.agreed_value == Enums.VoteValue.OPEN else "LOCKED"))
-		else:
-			print("Consensus FAILED: %s (Failed rounds: %d/10)" % [consensus_result.reason, consensus_result.get("failed_count", 0)])
-		
-		# Check level transitions
-		network_state.check_level_transitions()
-		
-		# Reset round tracking
-		action_handler.reset_round_tracking()
-		
-		# Emit signal with consensus info
-		var turn_info = {
-			"turn": current_turn,
-			"action_result": action_result,
-			"consensus_result": consensus_result,
-			"current_level": network_state.current_level,
-			"door_state": consensus_engine.current_door_state
-		}
-		turn_completed.emit(turn_info)
-	else:
-		# Door action - no consensus round
-		var turn_info = {
-			"turn": current_turn,
-			"action_result": action_result,
-			"current_level": network_state.current_level,
-			"door_state": consensus_engine.current_door_state
-		}
-		turn_completed.emit(turn_info)
+	# Just update states and complete the turn
+	network_state.check_level_transitions()
+	action_handler.reset_round_tracking()
 	
-	# Increment turn
+	var turn_info = {
+		"turn": current_turn,
+		"action_result": action_result,
+		"current_level": network_state.current_level,
+		"door_state": consensus_engine.current_door_state
+	}
+	turn_completed.emit(turn_info)
+	
 	current_turn += 1
+	print("\nTurn complete. You can perform another action or run consensus (SPACE/R/T).")
+
+# Manual consensus trigger - can be called at ANY time
+func run_consensus_manually(proposal: Enums.VoteValue = Enums.VoteValue.OPEN):
+	print("\n=== MANUAL CONSENSUS TRIGGERED ===")
+	print("Proposing: %s" % ("OPEN" if proposal == Enums.VoteValue.OPEN else "LOCKED"))
+	
+	var consensus_result: Dictionary = consensus_engine.run_consensus_round(proposal)
+
+	if door_object:
+		door_object.update_state(consensus_engine.current_door_state)
+
+	if consensus_result.get("success", false):
+		var agreed = consensus_result.get("agreed_value", Enums.VoteValue.LOCKED)
+		print("Consensus SUCCESS: Door is now %s" % ("OPEN" if agreed == Enums.VoteValue.OPEN else "LOCKED"))
+		
+		# Check if door is open for win condition
+		if agreed == Enums.VoteValue.OPEN:
+			print("\n🎉 CONSENSUS WIN - Door opened through consensus!")
+			game_won.emit("consensus")
+	else:
+		var reason = consensus_result.get("reason", "Unknown")
+		print("Consensus FAILED: %s (Failed rounds: %d/%d)" % [reason, consensus_engine.failed_rounds_count, consensus_engine.failsafe_threshold])
+		
+		# Check failsafe
+		if consensus_engine.failsafe_active:
+			print("⚠️ FAILSAFE IS NOW ACTIVE - Manual override available")
+
+	consensus_completed.emit(consensus_result)
+	print("\nConsensus complete. Continue playing or run another consensus.")
+
+# Additional helper methods for external control
+func get_consensus_state() -> Dictionary:
+	return {
+		"current_door_state": consensus_engine.current_door_state,
+		"failed_rounds": consensus_engine.failed_rounds_count,
+		"failsafe_active": consensus_engine.failsafe_active,
+		"failsafe_threshold": consensus_engine.failsafe_threshold
+	}
+
+func get_network_health() -> Dictionary:
+	var healthy = 0
+	var crashed = 0
+	var byzantine = 0
+	
+	for node in network_state.nodes:
+		if node.is_healthy():
+			healthy += 1
+		elif node.is_crashed():
+			crashed += 1
+		elif node.is_byzantine():
+			byzantine += 1
+	
+	return {
+		"healthy": healthy,
+		"crashed": crashed,
+		"byzantine": byzantine,
+		"total": network_state.nodes.size(),
+		"f": network_state.f,
+		"required_for_consensus": 2 * network_state.f + 1
+	}

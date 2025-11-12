@@ -1,10 +1,6 @@
 extends State
 
-func enter() -> void:
-	print("=== ENTERED IDLE ===")
-	print("Initial velocity: ", player.velocity)
-	print("Player rotation Y: ", rad_to_deg(player.rotation.y))
-	
+func enter() -> void:	
 	if player.has_node("AnimationPlayer"):
 		player.get_node("AnimationPlayer").play("idle")
 

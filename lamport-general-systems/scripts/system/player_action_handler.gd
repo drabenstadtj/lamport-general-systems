@@ -2,10 +2,10 @@ extends RefCounted
 class_name PlayerActionHandler
 
 var network_state: NetworkState
-var consensus_engine: ConsensusEngine
+var consensus_engine # Can be ConsensusEngineAdaptive or ConsensusEngineClassic
 var actions_this_round: Dictionary = {}
 
-func _init(net_state: NetworkState, cons_engine: ConsensusEngine):
+func _init(net_state: NetworkState, cons_engine):
 	network_state = net_state
 	consensus_engine = cons_engine
 	reset_round_tracking()

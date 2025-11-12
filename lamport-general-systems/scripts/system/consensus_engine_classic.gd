@@ -1,5 +1,5 @@
 extends RefCounted
-class_name ConsensusEngine
+class_name ConsensusEngineClassic
 
 var network_state: NetworkState
 var failed_rounds_count: int = 0
