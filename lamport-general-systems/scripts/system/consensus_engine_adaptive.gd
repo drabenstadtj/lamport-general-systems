@@ -156,8 +156,9 @@ func run_consensus_round(commander_proposal: Enums.VoteValue, verbose := true) -
 # OM(m) execution
 # ------------------------
 
+# In ConsensusEngineAdaptive, update _execute_om to log messages:
+
 func _execute_om(command_value: Enums.VoteValue, m: int, verbose: bool) -> Dictionary:
-	# reset round logs
 	pre_prepare_messages.clear()
 	prepare_messages.clear()
 	commit_messages.clear()
@@ -166,48 +167,59 @@ func _execute_om(command_value: Enums.VoteValue, m: int, verbose: bool) -> Dicti
 	var commander = network_state.get_commander()
 	if verbose:
 		print("Phase PRE-PREPARE: commander broadcasts %s" % _vstr(command_value))
+	
 	for node in network_state.nodes:
 		if node.is_crashed():
 			continue
 		var received := command_value
-		# Byzantine commander may equivocate; here we choose consistent value for simplicity
-		# flip per-recipient if you want equivocation:
-		# if commander.is_byzantine(): received = (randf() > 0.5 ? Enums.VoteValue.OPEN : Enums.VoteValue.LOCKED)
 		var msg = BFTMessage.new(BFTMessage.MessageType.PRE_PREPARE, commander.id, node.id, received, current_round)
 		pre_prepare_messages.append(msg)
+		
+		# Log the message exchange
+		commander.log_send("PRE-PREP", node.id, received)
+		node.log_receive("PRE-PREP", commander.id, received)
 
-	# Relay rounds (m times): each node rebroadcasts what it believes commander said
+	# Relay rounds (m times)
 	for r in range(m):
 		_relay_round(verbose)
 
 	# Local decisions per node
-	# Each non-crashed node forms a decision from its view (commander + unique senders)
-	# Then each node "reports" a vote to the commander: healthy truthful, byzantine inverted
-	var reported: Dictionary = {} # node_id -> Enums.VoteValue
+	var reported: Dictionary = {}
 	for node in network_state.nodes:
 		if node.is_crashed():
 			continue
-		var decision = _node_decision(node.id)  # Can be Enums.VoteValue or null
+		var decision = _node_decision(node.id)
 		if decision == null:
 			continue
+		
+		# Log the decision
+		node.log_decision(decision)
+		
 		var report = decision
 		if node.is_byzantine():
 			report = Enums.VoteValue.LOCKED if decision == Enums.VoteValue.OPEN else Enums.VoteValue.OPEN
+		
+		# Log the vote cast
+		node.log_vote(report)
 		reported[node.id] = report
 
-	# For UI parity, synthesize COMMIT messages once per sender
+	# For UI parity, synthesize COMMIT messages
 	for sender_id in reported.keys():
 		var v: Enums.VoteValue = reported[sender_id]
+		var sender = network_state.get_node(sender_id)
 		for receiver in network_state.nodes:
 			if receiver.is_crashed():
 				continue
 			commit_messages.append(BFTMessage.new(BFTMessage.MessageType.COMMIT, sender_id, receiver.id, v, current_round))
+			
+			# Log commit messages
+			sender.log_send("COMMIT", receiver.id, v)
+			receiver.log_receive("COMMIT", sender_id, v)
 
-	return reported  # {node_id: VoteValue}
+	return reported
 
 func _relay_round(verbose: bool) -> void:
-	# Prepare broadcasts for this relay step
-	var to_send: Dictionary = {} # sender_id -> value
+	var to_send: Dictionary = {}
 	for node in network_state.nodes:
 		if node.is_crashed():
 			continue
@@ -216,12 +228,12 @@ func _relay_round(verbose: bool) -> void:
 			continue
 		var out_val = received
 		if node.is_byzantine():
-			# byzantine relays the opposite of the commander value it saw
 			out_val = Enums.VoteValue.LOCKED if received == Enums.VoteValue.OPEN else Enums.VoteValue.OPEN
 		to_send[node.id] = out_val
 
-	# Deliver broadcasts to everyone (no topology assumed; add link checks here if you model links)
+	# Deliver broadcasts
 	for sender_id in to_send.keys():
+		var sender = network_state.get_node(sender_id)
 		for recv in network_state.nodes:
 			if recv.is_crashed():
 				continue
@@ -229,8 +241,11 @@ func _relay_round(verbose: bool) -> void:
 				continue
 			var v: Enums.VoteValue = to_send[sender_id]
 			prepare_messages.append(BFTMessage.new(BFTMessage.MessageType.PREPARE, sender_id, recv.id, v, current_round))
+			
+			# Log prepare messages
+			sender.log_send("PREPARE", recv.id, v)
+			recv.log_receive("PREPARE", sender_id, v)
 
-	# Optional summary
 	if verbose:
 		var open_count := 0
 		var lock_count := 0

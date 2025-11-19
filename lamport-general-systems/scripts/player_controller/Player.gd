@@ -8,13 +8,13 @@ extends CharacterBody3D
 @export var gravity: float = 9.8
 @export var friction: float = 10.0
 @export var air_control: float = 3.0
-@export var rotate_to_movement: bool = false  # False for first-person
+@export var rotate_to_movement: bool = false
 @export var rotation_speed: float = 10.0
 
 # Camera parameters
 @export var mouse_sensitivity: float = 0.003
-@export var camera_x_min: float = -89.0  # Look down limit
-@export var camera_x_max: float = 89.0   # Look up limit
+@export var camera_x_min: float = -89.0
+@export var camera_x_max: float = 89.0
 
 # Collision parameters
 @export var standing_height: float = 2.0
@@ -22,71 +22,112 @@ extends CharacterBody3D
 @export var standing_camera_height: float = 1.6 
 @export var crouching_camera_height: float = 0.9 
 
+# Terminal viewing parameters
+@export var view_transition_speed: float = 5.0
+@export var interaction_range: float = 3.0
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var camera: Camera3D = $CameraPivot/Camera3D
 
+var interaction_raycast: RayCast3D
 var mouse_motion: Vector2 = Vector2.ZERO
-
 var is_crouched: bool = false
 var camera_rotation: Vector2 = Vector2.ZERO
-var initial_camera_height: float = 0.0
+
+# Terminal viewing state
+var is_viewing_terminal: bool = false
+var current_terminal: NodeTerminal = null
+var original_camera_transform: Transform3D
+var original_pivot_transform: Transform3D
+var target_camera_position: Vector3
+var stored_velocity: Vector3 = Vector3.ZERO
+var returning_from_view: bool = false
+var return_timer: float = 0.0
 
 func _ready() -> void:
-	# Capture mouse
+	add_to_group("player")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
-	# Enable physics interpolation for smooth movement
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
 	
-	# Store initial collision height
 	if collision_shape and collision_shape.shape is CapsuleShape3D:
 		standing_height = collision_shape.shape.height
-		
-		# Position collision shape so bottom is at origin (feet)
-		# Capsule center should be at half its height
 		collision_shape.position.y = standing_height / 2.0
 	
-	# Set camera to standing height
 	if camera_pivot:
 		camera_pivot.position.y = standing_camera_height
+	
+	# Setup interaction raycast
+	interaction_raycast = RayCast3D.new()
+	camera.add_child(interaction_raycast)
+	interaction_raycast.target_position = Vector3(0, 0, -interaction_range)
+	interaction_raycast.enabled = true
+	interaction_raycast.collide_with_areas = false
+	interaction_raycast.collide_with_bodies = true
 
 func _input(event: InputEvent) -> void:
-	# Just store mouse motion, don't rotate yet
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		mouse_motion += event.relative
+		if not is_viewing_terminal:
+			mouse_motion += event.relative
 	
-	# Toggle mouse capture with Escape
+	if event.is_action_pressed("interact"):
+		if is_viewing_terminal and current_terminal:
+			stop_viewing_terminal()
+		else:
+			try_interact()
+	
 	if event.is_action_pressed("ui_cancel"):
-		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		if is_viewing_terminal:
+			stop_viewing_terminal()
+		elif Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta: float) -> void:
-	# Apply camera rotation in physics process
+	if is_viewing_terminal:
+		handle_viewing_mode(delta)
+	else:
+		handle_normal_mode(delta)
+
+func handle_normal_mode(delta: float) -> void:
 	if mouse_motion != Vector2.ZERO:
 		rotate_camera(mouse_motion)
 		mouse_motion = Vector2.ZERO
 	
-	# Camera height lerp
 	if camera_pivot:
 		var target_height = crouching_camera_height if is_crouched else standing_camera_height
 		var current_pos = camera_pivot.position
 		current_pos.y = lerp(current_pos.y, target_height, 10.0 * delta)
 		camera_pivot.position = current_pos
-		
-func rotate_camera(mouse_delta: Vector2) -> void:
-	# Rotate player left/right
-	rotation.y -= mouse_delta.x * mouse_sensitivity
+
+func handle_viewing_mode(delta: float) -> void:
+	if not current_terminal:
+		return
 	
-	# Rotate camera up/down
+	# Smoothly interpolate camera to viewing position
+	camera.global_position = camera.global_position.lerp(
+		target_camera_position, 
+		view_transition_speed * delta
+	)
+	
+	var look_at_pos = current_terminal.get_look_at_position()
+	var current_transform = camera.global_transform
+	var target_transform = current_transform.looking_at(look_at_pos, Vector3.UP)
+	camera.global_transform = current_transform.interpolate_with(
+		target_transform,
+		view_transition_speed * delta
+	)
+	
+	velocity = Vector3.ZERO
+
+	
+func rotate_camera(mouse_delta: Vector2) -> void:
+	rotation.y -= mouse_delta.x * mouse_sensitivity
 	camera_rotation.x -= mouse_delta.y * mouse_sensitivity
 	camera_rotation.x = clamp(camera_rotation.x, deg_to_rad(camera_x_min), deg_to_rad(camera_x_max))
 	
-	# Apply rotation using only X axis
 	if camera_pivot:
 		camera_pivot.rotation = Vector3(camera_rotation.x, 0, 0)
 		
@@ -99,8 +140,6 @@ func crouch_down() -> void:
 	if collision_shape and collision_shape.shape is CapsuleShape3D:
 		var capsule = collision_shape.shape as CapsuleShape3D
 		capsule.height = crouching_height
-		
-		# Keep bottom of capsule at feet (origin)
 		collision_shape.position.y = crouching_height / 2.0
 
 func stand_up() -> void:
@@ -112,12 +151,9 @@ func stand_up() -> void:
 	if collision_shape and collision_shape.shape is CapsuleShape3D:
 		var capsule = collision_shape.shape as CapsuleShape3D
 		capsule.height = standing_height
-		
-		# Keep bottom of capsule at feet (origin)
 		collision_shape.position.y = standing_height / 2.0
 
 func check_ceiling() -> bool:
-	# Raycast upward to check if there's room to stand
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(
 		global_position + Vector3.UP * crouching_height / 2.0,
@@ -130,3 +166,71 @@ func check_ceiling() -> bool:
 
 func get_input_direction() -> Vector2:
 	return Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+
+# ═══════════════════════════════════════════
+# Terminal Interaction Functions
+# ═══════════════════════════════════════════
+
+func try_interact() -> void:
+	if not interaction_raycast or not interaction_raycast.is_colliding():
+		return
+	
+	var collider = interaction_raycast.get_collider()
+	if not collider:
+		return
+	
+	var terminal: NodeTerminal = null
+	if collider is NodeTerminal:
+		terminal = collider
+	elif collider.get_parent() is NodeTerminal:
+		terminal = collider.get_parent()
+	
+	if terminal:
+		terminal.interact(self)
+
+func start_viewing_terminal(terminal: NodeTerminal) -> void:
+	is_viewing_terminal = true
+	current_terminal = terminal
+	
+	original_camera_transform = camera.global_transform
+	original_pivot_transform = camera_pivot.transform
+	stored_velocity = velocity
+	
+	target_camera_position = terminal.get_camera_position()
+	
+	if state_machine:
+		state_machine.set_physics_process(false)
+
+
+func stop_viewing_terminal() -> void:
+	if not is_viewing_terminal:
+		return
+	
+	is_viewing_terminal = false
+	
+	if current_terminal:
+		current_terminal.stop_viewing(self)
+	
+	if state_machine:
+		state_machine.set_physics_process(true)
+	
+	# Smoothly return camera (or just snap it)
+	camera.transform = Transform3D()
+	
+	current_terminal = null
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func get_looking_at_terminal() -> NodeTerminal:
+	if not interaction_raycast or not interaction_raycast.is_colliding():
+		return null
+	
+	var collider = interaction_raycast.get_collider()
+	if not collider:
+		return null
+	
+	if collider is NodeTerminal:
+		return collider
+	elif collider.get_parent() is NodeTerminal:
+		return collider.get_parent()
+	
+	return null

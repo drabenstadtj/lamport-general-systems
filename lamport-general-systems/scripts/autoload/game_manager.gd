@@ -18,7 +18,6 @@ const USE_ADAPTIVE := true
 
 func _ready():
 	print("GameManager initialized")
-	print("Press R to run consensus for OPEN, T for LOCKED")
 
 func _input(event):
 	# Check for keypress to run consensus at any time
@@ -120,10 +119,14 @@ func execute_turn(action_result: Dictionary):
 	current_turn += 1
 	print("\nTurn complete. You can perform another action or run consensus (SPACE/R/T).")
 
-# Manual consensus trigger - can be called at ANY time
+# Manual consensus trigger
 func run_consensus_manually(proposal: Enums.VoteValue = Enums.VoteValue.OPEN):
 	print("\n=== MANUAL CONSENSUS TRIGGERED ===")
 	print("Proposing: %s" % ("OPEN" if proposal == Enums.VoteValue.OPEN else "LOCKED"))
+	
+	# Log consensus start on all nodes
+	for terminal in node_terminals.values():
+		terminal.add_log("═══ CONSENSUS START ═══")
 	
 	var consensus_result: Dictionary = consensus_engine.run_consensus_round(proposal)
 
@@ -134,20 +137,26 @@ func run_consensus_manually(proposal: Enums.VoteValue = Enums.VoteValue.OPEN):
 		var agreed = consensus_result.get("agreed_value", Enums.VoteValue.LOCKED)
 		print("Consensus SUCCESS: Door is now %s" % ("OPEN" if agreed == Enums.VoteValue.OPEN else "LOCKED"))
 		
-		# Check if door is open for win condition
+		# Log success on all nodes
+		for terminal in node_terminals.values():
+			terminal.add_log("✓ CONSENSUS OK")
+		
 		if agreed == Enums.VoteValue.OPEN:
-			print("\n🎉 CONSENSUS WIN - Door opened through consensus!")
+			print("\nDoor opened through consensus")
 			game_won.emit("consensus")
 	else:
 		var reason = consensus_result.get("reason", "Unknown")
-		print("Consensus FAILED: %s (Failed rounds: %d/%d)" % [reason, consensus_engine.failed_rounds_count, consensus_engine.failsafe_threshold])
+		print("Consensus FAILED: %s" % reason)
 		
-		# Check failsafe
+		# Log failure on all nodes
+		for terminal in node_terminals.values():
+			terminal.add_log("✗ CONSENSUS FAIL")
+		
 		if consensus_engine.failsafe_active:
-			print("⚠️ FAILSAFE IS NOW ACTIVE - Manual override available")
+			print("⚠️ FAILSAFE IS NOW ACTIVE")
 
 	consensus_completed.emit(consensus_result)
-	print("\nConsensus complete. Continue playing or run another consensus.")
+	print("\nConsensus complete.")
 
 # Additional helper methods for external control
 func get_consensus_state() -> Dictionary:

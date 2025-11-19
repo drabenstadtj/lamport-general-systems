@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://c73wppnxi3eq7"]
+[gd_scene load_steps=18 format=4 uid="uid://c73wppnxi3eq7"]
 
 [ext_resource type="Script" uid="uid://b6bswq28345v6" path="res://scripts/world/node_terminal.gd" id="1_fht0t"]
 [ext_resource type="Texture2D" uid="uid://bfhpondxmy3ek" path="res://models/server_atlas.png" id="2_txsdt"]
@@ -136,21 +136,22 @@ resource_local_to_scene = true
 size = Vector2(1.6, 0.9)
 
 [sub_resource type="LabelSettings" id="LabelSettings_f14e2"]
-font_size = 72
+font_size = 36
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_txsdt"]
+size = Vector3(1, 0.8, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_um1k5"]
+size = Vector3(0.6, 0.6, 0.6)
 
 [node name="NodeTerminal" type="Node3D"]
 script = ExtResource("1_fht0t")
+camera_offset = Vector3(0, 0.5, 0.25)
 
 [node name="StatusLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18392292, 0.041862004, 0.2814632)
 light_color = Color(0, 1, 0, 1)
 omni_range = 0.0067845904
-
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37512028, 0.03702712)
-visible = false
-text = "Node 0"
-font_size = 12
 
 [node name="server" type="Node3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
@@ -188,3 +189,16 @@ offset_bottom = 23.0
 size_flags_vertical = 1
 text = "Node"
 label_settings = SubResource("LabelSettings_f14e2")
+
+[node name="InteractionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099999994, 0.3)
+shape = SubResource("BoxShape3D_txsdt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19999999, 0)
+shape = SubResource("BoxShape3D_um1k5")

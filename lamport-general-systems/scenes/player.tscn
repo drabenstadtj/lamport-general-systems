@@ -32,7 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -0.4)
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraPivot/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
-target_position = Vector3(0, 0, -1.5)
+target_position = Vector3(0, 0, -3)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_2hs0m")

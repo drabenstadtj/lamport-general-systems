@@ -60,6 +60,6 @@ func _input(event):
 			KEY_O:
 				print("\n>>> Player commanding door OPEN")
 				GameManager.player_action(Enums.ActionType.COMMAND_DOOR, -1, Enums.VoteValue.OPEN)
-			KEY_E:
-				print("\n>>> Player exploiting door")
-				GameManager.player_action(Enums.ActionType.EXPLOIT_DOOR)
+			#KEY_E:
+				#print("\n>>> Player exploiting door")
+				#GameManager.player_action(Enums.ActionType.EXPLOIT_DOOR)
