@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=4 uid="uid://c73wppnxi3eq7"]
+[gd_scene load_steps=19 format=4 uid="uid://c73wppnxi3eq7"]
 
 [ext_resource type="Script" uid="uid://b6bswq28345v6" path="res://scripts/world/node_terminal.gd" id="1_fht0t"]
 [ext_resource type="Texture2D" uid="uid://bfhpondxmy3ek" path="res://models/server_atlas.png" id="2_txsdt"]
+[ext_resource type="FontFile" uid="uid://bybp1qvr1ka0e" path="res://fonts/color_basic.fnt" id="3_um1k5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrc0s"]
 resource_name = "Material.001"
@@ -127,16 +128,16 @@ viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txsdt"]
 resource_local_to_scene = true
+shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_txsdt")
-emission_enabled = true
-emission = Color(0.14500064, 0.14500064, 0.14500064, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_bl038"]
 resource_local_to_scene = true
 size = Vector2(1.6, 0.9)
 
 [sub_resource type="LabelSettings" id="LabelSettings_f14e2"]
-font_size = 36
+font = ExtResource("3_um1k5")
+font_size = 64
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_txsdt"]
 size = Vector3(1, 0.8, 1)
@@ -175,20 +176,44 @@ mesh = SubResource("ArrayMesh_xa5cg")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.29716864, 0.10252405, 0, -0.04111927, 0.7409405, 0, 0.34964293, 0.021016084)
+transform = Transform3D(0.317, 0, 0, 0, 0.3140082, 0.10841781, 0, -0.04344936, 0.78353465, 0, 0.34964293, 0.021016084)
 material_override = SubResource("StandardMaterial3D_txsdt")
 mesh = SubResource("QuadMesh_bl038")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D"]
+transform = Transform3D(3.1545742, 0, 0, 0, 3.1545742, -1.1920929e-07, 0, 4.4703484e-08, 1.2642225, 0, 0, 0)
+light_energy = 0.1
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true
 size = Vector2i(1600, 900)
 
-[node name="Label" type="Label" parent="SubViewport"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Label" type="Label" parent="SubViewport/MarginContainer"]
+layout_mode = 2
 size_flags_vertical = 1
-text = "Node"
+text = "NODE"
 label_settings = SubResource("LabelSettings_f14e2")
+autowrap_mode = 2
 
 [node name="InteractionArea" type="Area3D" parent="."]
 

@@ -7,6 +7,7 @@ extends CharacterBody3D
 @export var jump_velocity: float = 4.5
 @export var gravity: float = 9.8
 @export var friction: float = 10.0
+@export var acceleration: float = 8.0
 @export var air_control: float = 3.0
 @export var rotate_to_movement: bool = false
 @export var rotation_speed: float = 10.0
@@ -16,11 +17,16 @@ extends CharacterBody3D
 @export var camera_x_min: float = -89.0
 @export var camera_x_max: float = 89.0
 
-# Collision parameters
-@export var standing_height: float = 2.0
-@export var crouching_height: float = 1.0
-@export var standing_camera_height: float = 1.6 
-@export var crouching_camera_height: float = 0.9 
+# Collision parameters (for 1.75m tall player)
+@export var standing_height: float = 1.75  # Will be read from editor collision shape
+@export var crouching_height: float = 0.75  # Low enough to fit under 0.8m table
+@export var standing_camera_height: float = 1.55  # Eye level (~88% of height)
+@export var crouching_camera_height: float = 0.6  # Eye level when crouched (below 0.75/2 = 0.375 top)
+@export var crouch_shrinks_radius: bool = true  # Make player narrower when crouching
+@export var crouching_radius_scale: float = 0.7  # 70% of normal width when crouched
+
+# Store original capsule dimensions
+var original_capsule_radius: float = 0.5
 
 # Terminal viewing parameters
 @export var view_transition_speed: float = 5.0
@@ -51,8 +57,12 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
 	
+	# Make the collision shape unique so we don't modify the original resource
 	if collision_shape and collision_shape.shape is CapsuleShape3D:
-		standing_height = collision_shape.shape.height
+		collision_shape.shape = collision_shape.shape.duplicate()
+		var capsule = collision_shape.shape as CapsuleShape3D
+		standing_height = capsule.height  # Get standing height from editor (should be 1.75)
+		original_capsule_radius = capsule.radius  # Store the original radius
 		collision_shape.position.y = standing_height / 2.0
 	
 	if camera_pivot:
@@ -140,7 +150,16 @@ func crouch_down() -> void:
 	if collision_shape and collision_shape.shape is CapsuleShape3D:
 		var capsule = collision_shape.shape as CapsuleShape3D
 		capsule.height = crouching_height
+		
+		# Optionally shrink radius to fit through tighter spaces
+		if crouch_shrinks_radius:
+			capsule.radius = original_capsule_radius * crouching_radius_scale
+		else:
+			capsule.radius = original_capsule_radius
+			
 		collision_shape.position.y = crouching_height / 2.0
+		
+		print("DEBUG Crouch - Height: ", capsule.height, " Radius: ", capsule.radius, " Top at: ", collision_shape.position.y + capsule.height / 2.0)
 
 func stand_up() -> void:
 	if not is_crouched:
@@ -151,7 +170,10 @@ func stand_up() -> void:
 	if collision_shape and collision_shape.shape is CapsuleShape3D:
 		var capsule = collision_shape.shape as CapsuleShape3D
 		capsule.height = standing_height
+		capsule.radius = original_capsule_radius
 		collision_shape.position.y = standing_height / 2.0
+		
+		print("DEBUG Stand - Collision top should be at: ", collision_shape.position.y + capsule.height / 2.0)
 
 func check_ceiling() -> bool:
 	var space_state = get_world_3d().direct_space_state

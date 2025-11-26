@@ -9,24 +9,26 @@
 [ext_resource type="Script" uid="uid://cgpt72th8fdeo" path="res://scripts/player_controller/Jumping.gd" id="6_nvl01"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
-height = 1.9999348
+radius = 0.38134766
+height = 1.7509602
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
 radius = 0.33
+height = 1.75
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_fjrip")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0021898, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.87770253, 0)
 shape = SubResource("CapsuleShape3D_sh265")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8762841, 0)
 mesh = SubResource("CapsuleMesh_4flbx")
 
 [node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -0.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4456512, -0.1711413)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 

@@ -1,23 +1,21 @@
 extends State
 
-func enter() -> void:	
+func enter() -> void:
+	#print("Entering Idle state")
 	if player.has_node("AnimationPlayer"):
 		player.get_node("AnimationPlayer").play("idle")
 
 func physics_update(delta: float) -> void:
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	
+	# Check for movement
+	if input_dir.length() > 0.1:
+		get_parent().transition_to("Walking")
+		return
+	
 	# Check for crouch
 	if Input.is_action_pressed("crouch"):
 		get_parent().transition_to("Crouching")
-		return
-	
-	# Check for movement
-	if input_dir.length() > 0.1:
-		if Input.is_action_pressed("sprint"):
-			get_parent().transition_to("Running")
-		else:
-			get_parent().transition_to("Walking")
 		return
 	
 	# Check for jump
@@ -25,18 +23,13 @@ func physics_update(delta: float) -> void:
 		get_parent().transition_to("Jumping")
 		return
 	
-	# Apply gravity and friction
+	# FIXED: Apply friction to stop sliding
+	if player.is_on_floor():
+		player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
+		player.velocity.z = move_toward(player.velocity.z, 0, player.friction * delta)
+	
+	# Apply gravity
 	if not player.is_on_floor():
 		player.velocity.y -= player.gravity * delta
-
-	# Apply friction - decelerate while maintaining direction
-	var horizontal_velocity = Vector2(player.velocity.x, player.velocity.z)
-	var speed = horizontal_velocity.length()
-
-	if speed > 0:
-		var new_speed = max(speed - player.friction * delta, 0)
-		horizontal_velocity = horizontal_velocity.normalized() * new_speed
-		player.velocity.x = horizontal_velocity.x
-		player.velocity.z = horizontal_velocity.y
-
+	
 	player.move_and_slide()

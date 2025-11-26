@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://bybp1qvr1ka0e"
+path="res://.godot/imported/color_basic.fnt-9e3798a608bd9d81589cfe255283b3ee.fontdata"
+
+[deps]
+
+source_file="res://fonts/color_basic.fnt"
+dest_files=["res://.godot/imported/color_basic.fnt-9e3798a608bd9d81589cfe255283b3ee.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

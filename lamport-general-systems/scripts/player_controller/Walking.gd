@@ -35,8 +35,14 @@ func physics_update(delta: float) -> void:
 	var direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction and player.is_on_floor():
-		player.velocity.x = direction.x * player.walk_speed
-		player.velocity.z = direction.z * player.walk_speed
+		# FIXED: Use lerp for acceleration instead of direct assignment
+		var target_velocity = direction * player.walk_speed
+		player.velocity.x = lerp(player.velocity.x, target_velocity.x, player.acceleration * delta)
+		player.velocity.z = lerp(player.velocity.z, target_velocity.z, player.acceleration * delta)
+	else:
+		# FIXED: Apply friction when no input
+		player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
+		player.velocity.z = move_toward(player.velocity.z, 0, player.friction * delta)
 	
 	# Apply gravity
 	if not player.is_on_floor():

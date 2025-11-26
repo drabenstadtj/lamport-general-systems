@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var status_label = $CanvasLayer/StatusLabel
+@onready var status_label = $SubViewportContainer/SubViewport/CanvasLayer/StatusLabel
 @export var f: int
 
 func _ready():

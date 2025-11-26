@@ -8,7 +8,7 @@ func enter() -> void:
 		player.get_node("AnimationPlayer").play("crouch_idle")
 
 func exit() -> void:
-	# Only stand up if there's room - but let the player script handle the flag
+	# Only stand up if there's room
 	if not player.check_ceiling():
 		player.stand_up()
 
@@ -23,7 +23,8 @@ func physics_update(delta: float) -> void:
 				get_parent().transition_to("Walking")
 			else:
 				get_parent().transition_to("Idle")
-		return
+			return
+		# FIXED: If there's a ceiling, stay crouched but DON'T return - continue processing movement
 	
 	# Can't jump while crouching
 	# But can move while crouched
@@ -35,8 +36,10 @@ func physics_update(delta: float) -> void:
 		var direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
 		if direction:
-			player.velocity.x = direction.x * player.crouch_speed
-			player.velocity.z = direction.z * player.crouch_speed
+			# FIXED: Use lerp for smooth acceleration like in Walking state
+			var target_velocity = direction * player.crouch_speed
+			player.velocity.x = lerp(player.velocity.x, target_velocity.x, player.acceleration * delta)
+			player.velocity.z = lerp(player.velocity.z, target_velocity.z, player.acceleration * delta)
 	else:
 		# Standing still while crouched
 		if player.has_node("AnimationPlayer"):

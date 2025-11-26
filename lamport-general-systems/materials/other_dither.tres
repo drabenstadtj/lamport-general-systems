@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dc0y0o8r6ulhp"]
+
+[ext_resource type="Shader" uid="uid://dqm2msc7fov6c" path="res://materials/dither.gdshader" id="1_bb0f2"]
+[ext_resource type="Texture2D" uid="uid://b6kyvc5rqca8h" path="res://textures/apollo-8x.png" id="2_5f27l"]
+[ext_resource type="Texture2D" uid="uid://dlcg2hm2iheqf" path="res://textures/bayer16tile2.png" id="3_t607n"]
+
+[resource]
+shader = ExtResource("1_bb0f2")
+shader_parameter/u_dither_tex = ExtResource("3_t607n")
+shader_parameter/u_color_tex = ExtResource("2_5f27l")
+shader_parameter/u_bit_depth = 32
+shader_parameter/u_contrast = 1.0
+shader_parameter/u_offset = 1.17
+shader_parameter/u_dither_size = 1

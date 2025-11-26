@@ -7,7 +7,7 @@ class_name NodeTerminal
 @export var look_at_offset: Vector3 = Vector3(0, 0.4, 0)  
 
 @onready var status_light = $StatusLight
-@onready var label = $SubViewport/Label
+@onready var label = $SubViewport/MarginContainer/Label
 @onready var interaction_area: Area3D = $InteractionArea
 @onready var collision_body: StaticBody3D = $StaticBody3D
 
@@ -80,7 +80,7 @@ func update_display():
 	if GameManager.network_state:
 		var node = GameManager.network_state.get_node(node_id)
 		if node and node.is_crashed():
-			label.text = "node%d@consensus:~$ tail -f /var/log/bft.log\n[FATAL] Node status: CRASHED\n----------------------------------------\n[FATAL] Connection lost\n[FATAL] Log daemon stopped" % node_id
+			label.text = ("node%d@consensus:~$ tail -f /var/log/bft.log\n[FATAL] Node status: CRASHED\n----------------------------------------\n[FATAL] Connection lost\n[FATAL] Log daemon stopped" % node_id).to_upper()
 			return
 	
 	var display_text = "node%d@consensus:~$ tail -f /var/log/bft.log\n" % node_id
@@ -106,7 +106,7 @@ func update_display():
 		for entry in log_entries:
 			display_text += entry + "\n"
 	
-	label.text = display_text
+	label.text = display_text.to_upper()
 
 func update_visuals():
 	if not GameManager.network_state:
