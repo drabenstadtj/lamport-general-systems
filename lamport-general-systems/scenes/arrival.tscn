@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=3 uid="uid://8t3rpuvlgj8o"]
+
+[ext_resource type="Material" uid="uid://7k6lwyfq03yc" path="res://materials/road.tres" id="1_uxjsv"]
+[ext_resource type="Material" uid="uid://ddbfv5mm34qrp" path="res://materials/fence.tres" id="2_6n8fd"]
+[ext_resource type="Material" uid="uid://bovtd5iup63fc" path="res://materials/ground.tres" id="3_rlvb7"]
+[ext_resource type="PackedScene" uid="uid://mktrqqjkl8ji" path="res://scenes/player.tscn" id="4_6n8fd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6n8fd"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_rlvb7"]
+sky_material = SubResource("ProceduralSkyMaterial_6n8fd")
+
+[sub_resource type="Environment" id="Environment_3pdg3"]
+background_mode = 2
+sky = SubResource("Sky_rlvb7")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sdp5v"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6n8fd"]
+
+[node name="Arrival" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3pdg3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="Road" type="Node3D" parent="Geometry"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry/Road"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.5, 0, -2.5)
+material_override = ExtResource("1_uxjsv")
+size = Vector3(10, 0.1, 5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Geometry/Road"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.5, 0, -12.5)
+material_override = ExtResource("1_uxjsv")
+size = Vector3(10, 0.1, 5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Geometry/Road"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.5, 0, -33)
+material_override = ExtResource("1_uxjsv")
+size = Vector3(31, 0.1, 69)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Geometry/Road"]
+material_override = ExtResource("1_uxjsv")
+size = Vector3(20, 0.1, 5)
+
+[node name="Security_Checkpoint" type="Node3D" parent="Geometry"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry/Security_Checkpoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.5, 1.5, -5.5)
+size = Vector3(4, 4, 4)
+
+[node name="Facility" type="Node3D" parent="Geometry"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry/Facility"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 2, -58.5)
+size = Vector3(10, 5, 10)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Geometry/Facility"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 13.5, -117.5)
+size = Vector3(155, 28, 108)
+
+[node name="Fence" type="Node3D" parent="Geometry"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry/Fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 2, -5.4995)
+material_override = ExtResource("2_6n8fd")
+size = Vector3(91, 5, 0.001)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Geometry/Fence"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61, 2, -5.4995)
+material_override = ExtResource("2_6n8fd")
+size = Vector3(91, 5, 0.001)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Geometry/Fence"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -106.5, 2, -50.9995)
+material_override = ExtResource("2_6n8fd")
+size = Vector3(91, 5, 0.001)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Geometry/Fence"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -98, 2, -96.4995)
+material_override = ExtResource("2_6n8fd")
+size = Vector3(17, 5, 0.001)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Geometry/Fence"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 73.5, 2, -96.4995)
+material_override = ExtResource("2_6n8fd")
+size = Vector3(16, 5, 0.001)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Geometry/Fence"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 81.5, 2, -50.9995)
+material_override = ExtResource("2_6n8fd")
+size = Vector3(91, 5, 0.001)
+
+[node name="Ground" type="Node3D" parent="Geometry"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry/Ground"]
+material_override = ExtResource("3_rlvb7")
+mesh = SubResource("PlaneMesh_sdp5v")
+surface_material_override/0 = ExtResource("3_rlvb7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geometry/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Ground/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_6n8fd")
+
+[node name="Player" parent="." instance=ExtResource("4_6n8fd")]

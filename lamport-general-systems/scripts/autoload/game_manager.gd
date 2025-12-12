@@ -1,7 +1,6 @@
 extends Node
 
-var network_state: NetworkState
-var consensus_engine
+var network_manager: NetworkManager
 var current_turn: int = 0
 
 var node_terminals: Dictionary = {}
@@ -12,9 +11,6 @@ var action_handler: PlayerActionHandler
 signal turn_completed(turn_info)
 signal game_won(path_type)
 signal consensus_completed(consensus_result)
-
-# Toggle which engine to use
-const USE_ADAPTIVE := true
 
 func _ready():
 	print("GameManager initialized")
@@ -32,19 +28,19 @@ func _input(event):
 
 func initialize_game(f_value: int):
 	print("Initializing game with f=%d" % f_value)
-	network_state = NetworkState.new(f_value)
+	network_manager = NetworkManager.new(f_value)
 
-	if USE_ADAPTIVE:
-		consensus_engine = ConsensusEngineAdaptive.new(network_state)
-	else:
-		consensus_engine = ConsensusEngineClassic.new(network_state)
+	# Connect network manager signals
+	network_manager.consensus_achieved.connect(_on_consensus_achieved)
+	network_manager.consensus_failed.connect(_on_consensus_failed)
 
-	action_handler = PlayerActionHandler.new(network_state, consensus_engine)
+	action_handler = PlayerActionHandler.new(network_manager)
 	current_turn = 0
 
+	# Link node terminals to nodes
 	for node_id in node_terminals:
 		var terminal = node_terminals[node_id]
-		var node = network_state.get_node(node_id)
+		var node = network_manager.get_node(node_id)
 		if node:
 			node.link_game_object(terminal)
 
@@ -103,19 +99,19 @@ func execute_turn(action_result: Dictionary):
 
 	# NO automatic consensus - removed the automatic consensus logic
 	# User can press keys to run consensus whenever they want
-	
+
 	# Just update states and complete the turn
-	network_state.check_level_transitions()
+	network_manager.check_level_transitions()
 	action_handler.reset_round_tracking()
-	
+
 	var turn_info = {
 		"turn": current_turn,
 		"action_result": action_result,
-		"current_level": network_state.current_level,
-		"door_state": consensus_engine.current_door_state
+		"current_level": network_manager.current_level,
+		"door_state": network_manager.current_door_state
 	}
 	turn_completed.emit(turn_info)
-	
+
 	current_turn += 1
 	print("\nTurn complete. You can perform another action or run consensus (SPACE/R/T).")
 
@@ -123,36 +119,36 @@ func execute_turn(action_result: Dictionary):
 func run_consensus_manually(proposal: Enums.VoteValue = Enums.VoteValue.OPEN):
 	print("\n=== MANUAL CONSENSUS TRIGGERED ===")
 	print("Proposing: %s" % ("OPEN" if proposal == Enums.VoteValue.OPEN else "LOCKED"))
-	
+
 	# Log consensus start on all nodes
 	for terminal in node_terminals.values():
 		terminal.add_log("═══ CONSENSUS START ═══")
-	
-	var consensus_result: Dictionary = consensus_engine.run_consensus_round(proposal)
+
+	var consensus_result: Dictionary = await network_manager.run_consensus_round(proposal)
 
 	if door_object:
-		door_object.update_state(consensus_engine.current_door_state)
+		door_object.update_state(network_manager.current_door_state)
 
 	if consensus_result.get("success", false):
 		var agreed = consensus_result.get("agreed_value", Enums.VoteValue.LOCKED)
 		print("Consensus SUCCESS: Door is now %s" % ("OPEN" if agreed == Enums.VoteValue.OPEN else "LOCKED"))
-		
+
 		# Log success on all nodes
 		for terminal in node_terminals.values():
 			terminal.add_log("✓ CONSENSUS OK")
-		
+
 		if agreed == Enums.VoteValue.OPEN:
 			print("\nDoor opened through consensus")
 			game_won.emit("consensus")
 	else:
 		var reason = consensus_result.get("reason", "Unknown")
 		print("Consensus FAILED: %s" % reason)
-		
+
 		# Log failure on all nodes
 		for terminal in node_terminals.values():
 			terminal.add_log("✗ CONSENSUS FAIL")
-		
-		if consensus_engine.failsafe_active:
+
+		if network_manager.failsafe_active:
 			print("⚠️ FAILSAFE IS NOW ACTIVE")
 
 	consensus_completed.emit(consensus_result)
@@ -161,30 +157,37 @@ func run_consensus_manually(proposal: Enums.VoteValue = Enums.VoteValue.OPEN):
 # Additional helper methods for external control
 func get_consensus_state() -> Dictionary:
 	return {
-		"current_door_state": consensus_engine.current_door_state,
-		"failed_rounds": consensus_engine.failed_rounds_count,
-		"failsafe_active": consensus_engine.failsafe_active,
-		"failsafe_threshold": consensus_engine.failsafe_threshold
+		"current_door_state": network_manager.current_door_state,
+		"failed_rounds": network_manager.failed_rounds_count,
+		"failsafe_active": network_manager.failsafe_active,
+		"failsafe_threshold": network_manager.failsafe_threshold
 	}
 
 func get_network_health() -> Dictionary:
 	var healthy = 0
 	var crashed = 0
 	var byzantine = 0
-	
-	for node in network_state.nodes:
+
+	for node in network_manager.nodes:
 		if node.is_healthy():
 			healthy += 1
 		elif node.is_crashed():
 			crashed += 1
 		elif node.is_byzantine():
 			byzantine += 1
-	
+
 	return {
 		"healthy": healthy,
 		"crashed": crashed,
 		"byzantine": byzantine,
-		"total": network_state.nodes.size(),
-		"f": network_state.f,
-		"required_for_consensus": 2 * network_state.f + 1
+		"total": network_manager.nodes.size(),
+		"f": network_manager.f,
+		"required_for_consensus": 2 * network_manager.f + 1
 	}
+
+# Signal handlers
+func _on_consensus_achieved(value: Enums.VoteValue):
+	print("GameManager: Consensus achieved signal received: %s" % ("OPEN" if value == Enums.VoteValue.OPEN else "LOCKED"))
+
+func _on_consensus_failed(reason: String):
+	print("GameManager: Consensus failed signal received: %s" % reason)

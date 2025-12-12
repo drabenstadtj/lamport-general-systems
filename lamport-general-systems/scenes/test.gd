@@ -24,20 +24,22 @@ func _on_turn_completed(turn_info):
 	update_status()
 
 func _on_game_won(path_type):
-	status_label.text = "🎉 VICTORY: %s path!" % path_type.to_upper()
+	status_label.text = "VICTORY: %s path!" % path_type.to_upper()
 	status_label.add_theme_color_override("font_color", Color.GOLD)
 
 func update_status():
 	var status = GameManager.get_game_status()
-	var level_name = ["", "MAINTENANCE", "NORMAL", "DEFENSIVE"][GameManager.network_state.current_level]
-	var door_state = "OPEN" if GameManager.consensus_engine.current_door_state == Enums.VoteValue.OPEN else "LOCKED"
-	
+	var consensus_state = GameManager.get_consensus_state()
+	var health = GameManager.get_network_health()
+	var level_name = ["", "MAINTENANCE", "NORMAL", "DEFENSIVE"][GameManager.network_manager.current_level]
+	var door_state = "OPEN" if consensus_state.current_door_state == Enums.VoteValue.OPEN else "LOCKED"
+
 	status_label.text = "Turn: %d | Level: %s | Door: %s | Healthy: %d | Crashed: %d | Byzantine: %d | Failed: %d/10" % [
 		status.turn,
 		level_name,
 		door_state,
-		GameManager.network_state.count_healthy_nodes(),
-		GameManager.network_state.count_crashed_nodes(),
-		GameManager.network_state.count_byzantine_nodes(),
-		GameManager.consensus_engine.failed_rounds_count
+		health.healthy,
+		health.crashed,
+		health.byzantine,
+		consensus_state.failed_rounds
 	]

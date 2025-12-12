@@ -58,8 +58,8 @@ func get_look_at_position() -> Vector3:
 # ═══════════════════════════════════════════
 
 func add_log(message: String):
-	if GameManager.network_state:
-		var node = GameManager.network_state.get_node(node_id)
+	if GameManager.network_manager:
+		var node = GameManager.network_manager.get_node(node_id)
 		if node and node.is_crashed():
 			return
 	
@@ -77,16 +77,16 @@ func clear_logs():
 	update_display()
 
 func update_display():
-	if GameManager.network_state:
-		var node = GameManager.network_state.get_node(node_id)
+	if GameManager.network_manager:
+		var node = GameManager.network_manager.get_node(node_id)
 		if node and node.is_crashed():
 			label.text = ("node%d@consensus:~$ tail -f /var/log/bft.log\n[FATAL] Node status: CRASHED\n----------------------------------------\n[FATAL] Connection lost\n[FATAL] Log daemon stopped" % node_id).to_upper()
 			return
-	
+
 	var display_text = "node%d@consensus:~$ tail -f /var/log/bft.log\n" % node_id
-	
-	if GameManager.network_state:
-		var node = GameManager.network_state.get_node(node_id)
+
+	if GameManager.network_manager:
+		var node = GameManager.network_manager.get_node(node_id)
 		if node:
 			var state_str = ""
 			match node.state:
@@ -109,10 +109,10 @@ func update_display():
 	label.text = display_text.to_upper()
 
 func update_visuals():
-	if not GameManager.network_state:
+	if not GameManager.network_manager:
 		return
-	
-	var node = GameManager.network_state.get_node(node_id)
+
+	var node = GameManager.network_manager.get_node(node_id)
 	if not node:
 		return
 	
@@ -140,8 +140,8 @@ func update_visuals():
 # ═══════════════════════════════════════════
 
 func _on_message_sent(msg_type: String, target_id: int, value):
-	if GameManager.network_state:
-		var node = GameManager.network_state.get_node(node_id)
+	if GameManager.network_manager:
+		var node = GameManager.network_manager.get_node(node_id)
 		if node and node.is_crashed():
 			return
 	
@@ -151,8 +151,8 @@ func _on_message_sent(msg_type: String, target_id: int, value):
 	add_log("[DEBUG] send %s to=node%d%s" % [msg_type.to_lower(), target_id, val_str])
 
 func _on_message_received(msg_type: String, from_id: int, value):
-	if GameManager.network_state:
-		var node = GameManager.network_state.get_node(node_id)
+	if GameManager.network_manager:
+		var node = GameManager.network_manager.get_node(node_id)
 		if node and node.is_crashed():
 			return
 	
@@ -170,16 +170,16 @@ func _on_state_changed(old_state: Enums.NodeState, new_state: Enums.NodeState):
 	update_visuals()
 
 func _on_vote_cast(vote_value: Enums.VoteValue):
-	if GameManager.network_state:
-		var node = GameManager.network_state.get_node(node_id)
+	if GameManager.network_manager:
+		var node = GameManager.network_manager.get_node(node_id)
 		if node and node.is_crashed():
 			return
 	
 	add_log("[INFO] voting: %s" % ("OPEN" if vote_value == Enums.VoteValue.OPEN else "LOCKED"))
 
 func _on_decision_made(decision: Enums.VoteValue):
-	if GameManager.network_state:
-		var node = GameManager.network_state.get_node(node_id)
+	if GameManager.network_manager:
+		var node = GameManager.network_manager.get_node(node_id)
 		if node and node.is_crashed():
 			return
 	

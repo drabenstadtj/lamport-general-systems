@@ -66,13 +66,13 @@ func close_door():
 	status_label.modulate = Color.RED
 
 func can_command() -> bool:
-	return GameManager.network_state.current_level == Enums.SecurityLevel.MAINTENANCE
+	return GameManager.network_manager.current_level == Enums.SecurityLevel.MAINTENANCE
 
 func can_exploit() -> bool:
-	return GameManager.consensus_engine.failsafe_active
+	return GameManager.network_manager.failsafe_active
 
 func get_status_text() -> String:
-	var level_name = ["", "MAINTENANCE", "NORMAL", "DEFENSIVE"][GameManager.network_state.current_level]
+	var level_name = ["", "MAINTENANCE", "NORMAL", "DEFENSIVE"][GameManager.network_manager.current_level]
 	var state = "OPEN" if is_open else "LOCKED"
 	
 	var status = "Door: %s | Level: %s" % [state, level_name]

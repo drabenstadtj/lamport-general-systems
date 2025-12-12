@@ -1,17 +1,15 @@
 extends RefCounted
 class_name PlayerActionHandler
 
-var network_state: NetworkState
-var consensus_engine # Can be ConsensusEngineAdaptive or ConsensusEngineClassic
+var network_manager: NetworkManager
 var actions_this_round: Dictionary = {}
 
-func _init(net_state: NetworkState, cons_engine):
-	network_state = net_state
-	consensus_engine = cons_engine
+func _init(net_manager: NetworkManager):
+	network_manager = net_manager
 	reset_round_tracking()
 
 func reboot_node(node_id: int) -> Dictionary:
-	var node = network_state.get_node(node_id)
+	var node = network_manager.get_node(node_id)
 	
 	if not node:
 		return {
@@ -38,7 +36,7 @@ func reboot_node(node_id: int) -> Dictionary:
 	}
 
 func crash_node(node_id: int) -> Dictionary:
-	var node = network_state.get_node(node_id)
+	var node = network_manager.get_node(node_id)
 	
 	if not node:
 		return {
@@ -72,7 +70,7 @@ func crash_node(node_id: int) -> Dictionary:
 	}
 
 func corrupt_node(node_id: int) -> Dictionary:
-	var node = network_state.get_node(node_id)
+	var node = network_manager.get_node(node_id)
 	
 	if not node:
 		return {
@@ -106,34 +104,38 @@ func corrupt_node(node_id: int) -> Dictionary:
 	}
 
 func command_door(value: Enums.VoteValue) -> Dictionary:
-	if network_state.current_level != Enums.SecurityLevel.MAINTENANCE:
+	if network_manager.current_level != Enums.SecurityLevel.MAINTENANCE:
 		return {
 			"success": false,
 			"message": "Must be at Maintenance level to command door",
 			"attack_detected": false
 		}
-	
-	consensus_engine.current_door_state = value
+
+	network_manager.current_door_state = value
 	var value_str = "OPEN" if value == Enums.VoteValue.OPEN else "LOCKED"
 	
-	return {
+	var result = {
 		"success": true,
 		"message": "Door commanded to %s" % value_str,
 		"attack_detected": false,
 		"action_type": "door",  # Mark as door action
-		"door_opened": value == Enums.VoteValue.OPEN,
-		"win_type": "restoration" if value == Enums.VoteValue.OPEN else null
+		"door_opened": value == Enums.VoteValue.OPEN
 	}
 
+	if value == Enums.VoteValue.OPEN:
+		result["win_type"] = "restoration"
+
+	return result
+
 func exploit_door() -> Dictionary:
-	if not consensus_engine.failsafe_active:
+	if not network_manager.failsafe_active:
 		return {
 			"success": false,
 			"message": "Failsafe not active - cannot exploit door",
 			"attack_detected": false
 		}
-	
-	consensus_engine.current_door_state = Enums.VoteValue.OPEN
+
+	network_manager.current_door_state = Enums.VoteValue.OPEN
 	
 	return {
 		"success": true,
@@ -147,32 +149,39 @@ func exploit_door() -> Dictionary:
 func detect_attack() -> bool:
 	var crash_count = actions_this_round.get("crashes", []).size()
 	var corrupt_count = actions_this_round.get("corrupts", []).size()
-	var total_byzantine = network_state.count_byzantine_nodes()
-	
+	var total_byzantine = _count_byzantine_nodes()
+
 	# Check attack patterns (for n=3f+1)
 	if crash_count >= 2:
 		print("ATTACK DETECTED: 2+ crashes in one round")
 		return true
-	
+
 	if corrupt_count >= 2:
 		print("ATTACK DETECTED: 2+ corruptions in one round")
 		return true
-	
+
 	# With f=1, can tolerate 1 Byzantine, so 2+ is attack
-	if total_byzantine > network_state.f:
-		print("ATTACK DETECTED: %d Byzantine nodes (max tolerable: %d)" % [total_byzantine, network_state.f])
+	if total_byzantine > network_manager.f:
+		print("ATTACK DETECTED: %d Byzantine nodes (max tolerable: %d)" % [total_byzantine, network_manager.f])
 		return true
-	
+
 	# Check if commander was targeted
-	var commander = network_state.get_commander()
+	var commander = network_manager.get_commander()
 	if not commander.is_healthy():
 		var commander_crashed = actions_this_round.get("crashes", []).has(0)
 		var commander_corrupted = actions_this_round.get("corrupts", []).has(0)
 		if commander_crashed or commander_corrupted:
 			print("ATTACK DETECTED: Commander node targeted")
 			return true
-	
+
 	return false
+
+func _count_byzantine_nodes() -> int:
+	var count = 0
+	for node in network_manager.nodes:
+		if node.is_byzantine():
+			count += 1
+	return count
 
 func reset_round_tracking():
 	actions_this_round = {
