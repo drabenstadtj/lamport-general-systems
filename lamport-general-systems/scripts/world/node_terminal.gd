@@ -6,13 +6,35 @@ class_name ControlTerminal
 @onready var camera_position_marker: Node3D = $CameraPosition
 @onready var camera_lookat_marker: Node3D = $CameraLookAt
 
+@export var node_id: int = -1  # Which node this terminal controls
+
 var player_nearby: bool = false
 var is_being_viewed: bool = false
+var linked_node_terminal: NodeTerminal = null
 
 func _ready():
 	if interaction_area:
 		interaction_area.body_entered.connect(_on_player_entered)
 		interaction_area.body_exited.connect(_on_player_exited)
+
+	# Wait a frame for GameManager to initialize
+	await get_tree().process_frame
+
+	# Link to the NodeTerminal for this node_id
+	if node_id >= 0:
+		linked_node_terminal = GameManager.get_node_terminal(node_id)
+		if linked_node_terminal:
+			print("ControlTerminal linked to Node %d" % node_id)
+			# Connect signals from NodeTerminal to update our terminal UI
+			linked_node_terminal.log_added.connect(_on_log_added)
+			linked_node_terminal.state_changed.connect(_on_state_changed)
+
+			# Display welcome message
+			if terminal:
+				terminal.print_to_terminal("=== Connected to Node %d ===" % node_id)
+				terminal.print_to_terminal("Type 'help' for available commands")
+		else:
+			push_warning("ControlTerminal: Could not find NodeTerminal for node %d" % node_id)
 
 func _on_player_entered(body):
 	if body.is_in_group("player"):
@@ -97,3 +119,27 @@ func _input(event):
 							var node_terminal = GameManager.get_node_terminal(target_node_id)
 							if node_terminal:
 								node_terminal.clear_logs()
+
+# ═══════════════════════════════════════════
+# Signal Handlers from NodeTerminal
+# ═══════════════════════════════════════════
+
+func _on_log_added(message: String):
+	"""Called when the linked NodeTerminal adds a log entry."""
+	if terminal:
+		# Display the log in the terminal UI
+		terminal.print_to_terminal(message)
+
+func _on_state_changed(new_state: Enums.NodeState):
+	"""Called when the linked node changes state."""
+	if terminal:
+		var state_name = ""
+		match new_state:
+			Enums.NodeState.HEALTHY:
+				state_name = "[color=green]HEALTHY[/color]"
+			Enums.NodeState.CRASHED:
+				state_name = "[color=red]CRASHED[/color]"
+			Enums.NodeState.BYZANTINE:
+				state_name = "[color=yellow]BYZANTINE[/color]"
+
+		terminal.print_to_terminal(">>> Node state changed to: %s" % state_name)

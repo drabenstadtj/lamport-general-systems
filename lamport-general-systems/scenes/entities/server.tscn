@@ -50,7 +50,7 @@ size = Vector3(0.01, 0.01, 0.01)
 albedo_color = Color(0.58178747, 0.5785416, 0.24100375, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vdapf"]
-size = Vector3(0.03, 0.04857666, 0.040581055)
+size = Vector3(0.03, 0.1417842, 0.4813851)
 
 [node name="Server" type="Node3D"]
 script = ExtResource("1_vdapf")
@@ -62,15 +62,16 @@ skeleton = NodePath("")
 
 [node name="StatusLight" type="OmniLight3D" parent="."]
 transform = Transform3D(0.9999071, 0, 0.0136306, 0, 1, 0, -0.0136306, 0, 0.9999071, 0.28551865, 0.0429755, -0.18428615)
-light_energy = 0.5
+light_energy = 0.05
+omni_range = 0.010238006
 
 [node name="PowerButton" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28523076, -0.024388064, -0.18400009)
 mesh = SubResource("BoxMesh_vdapf")
 surface_material_override/0 = SubResource("StandardMaterial3D_vdapf")
 
-[node name="PowerbuttonArea" type="Area3D" parent="PowerButton"]
+[node name="PowerButtonArea" type="Area3D" parent="PowerButton"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PowerButton/PowerbuttonArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009474307, 0.00317749, 0.00075927377)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PowerButton/PowerButtonArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009474307, 0.02786827, 0.18320918)
 shape = SubResource("BoxShape3D_vdapf")

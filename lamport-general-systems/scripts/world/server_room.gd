@@ -1,13 +1,27 @@
 extends Node3D
 
 @onready var status_label = $SubViewportContainer/SubViewport/CanvasLayer/StatusLabel
-@export var f: int
+@export var f: int = 1
+@export var num_nodes: int = 7
+
+# NodeTerminals will be created for each server
+var node_terminals: Array[NodeTerminal] = []
 
 func _ready():
+	# Create NodeTerminals first
+	create_node_terminals()
+
+	# Initialize the game with BFT network
 	GameManager.initialize_game(f)
+
+	# Refresh visuals after network is initialized
 	refresh_all_terminals()
+
+	# Connect signals
 	GameManager.turn_completed.connect(_on_turn_completed)
 	GameManager.game_won.connect(_on_game_won)
+	GameManager.consensus_completed.connect(_on_consensus_completed)
+
 	update_status()
 
 	print("\n=== CONTROLS ===")
@@ -15,10 +29,23 @@ func _ready():
 	print("  R = Reboot node")
 	print("  C = Crash node")
 	print("  X = Corrupt node")
+	print("\nConsensus actions:")
+	print("  - (minus) = Run consensus for OPEN")
+	print("  = (equals) = Run consensus for LOCKED")
 	print("\nDoor actions:")
 	print("  O = Command door OPEN (requires Maintenance level)")
 	print("  E = Exploit door (requires failsafe active)")
 	print("================\n")
+
+func create_node_terminals():
+	"""Create NodeTerminal instances for each node in the network."""
+	for i in range(num_nodes):
+		var terminal = NodeTerminal.new()
+		terminal.node_id = i
+		terminal.name = "NodeTerminal%d" % i
+		add_child(terminal)
+		node_terminals.append(terminal)
+		print("Created NodeTerminal for node %d" % i)
 
 func refresh_all_terminals():
 	for terminal in GameManager.node_terminals.values():
@@ -26,6 +53,11 @@ func refresh_all_terminals():
 
 func _on_turn_completed(_turn_info):
 	update_status()
+	refresh_all_terminals()
+
+func _on_consensus_completed(_consensus_result):
+	update_status()
+	refresh_all_terminals()
 
 func _on_game_won(path_type):
 	status_label.text = "VICTORY: %s path!" % path_type.to_upper()

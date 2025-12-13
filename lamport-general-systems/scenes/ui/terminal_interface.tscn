@@ -15,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 script = ExtResource("1_3r4ot")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -47,6 +48,8 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_hxhhp")
 bbcode_enabled = true
+scroll_active = false
+scroll_following = true
 
 [node name="InputContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

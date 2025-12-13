@@ -175,7 +175,7 @@ func get_network_health() -> Dictionary:
 	var healthy = 0
 	var crashed = 0
 	var byzantine = 0
-	
+
 	for node in network_state.nodes:
 		if node.is_healthy():
 			healthy += 1
@@ -183,7 +183,7 @@ func get_network_health() -> Dictionary:
 			crashed += 1
 		elif node.is_byzantine():
 			byzantine += 1
-	
+
 	return {
 		"healthy": healthy,
 		"crashed": crashed,
@@ -192,3 +192,6 @@ func get_network_health() -> Dictionary:
 		"f": network_state.f,
 		"required_for_consensus": 2 * network_state.f + 1
 	}
+
+func get_node_terminal(node_id: int) -> NodeTerminal:
+	return node_terminals.get(node_id)

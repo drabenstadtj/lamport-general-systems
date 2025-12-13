@@ -36,6 +36,7 @@ var original_capsule_radius: float = 0.5
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var camera: Camera3D = $CameraPivot/Camera3D
+@onready var interaction_prompt: Label = $InteractionPromptLayer/InteractionPrompt
 
 var interaction_raycast: RayCast3D
 var mouse_motion: Vector2 = Vector2.ZERO
@@ -44,7 +45,7 @@ var camera_rotation: Vector2 = Vector2.ZERO
 
 # Terminal viewing state
 var is_viewing_terminal: bool = false
-var current_terminal: NodeTerminal = null
+var current_terminal: ControlTerminal = null
 var original_camera_transform: Transform3D
 var original_pivot_transform: Transform3D
 var target_camera_position: Vector3
@@ -56,7 +57,7 @@ func _ready() -> void:
 	add_to_group("player")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
-	
+
 	# Make the collision shape unique so we don't modify the original resource
 	if collision_shape and collision_shape.shape is CapsuleShape3D:
 		collision_shape.shape = collision_shape.shape.duplicate()
@@ -64,18 +65,21 @@ func _ready() -> void:
 		standing_height = capsule.height  # Get standing height from editor (should be 1.75)
 		original_capsule_radius = capsule.radius  # Store the original radius
 		collision_shape.position.y = standing_height / 2.0
-	
+
 	if camera_pivot:
 		camera_pivot.position.y = standing_camera_height
-	
+
 	# Setup interaction raycast
 	interaction_raycast = RayCast3D.new()
 	camera.add_child(interaction_raycast)
 	interaction_raycast.target_position = Vector3(0, 0, -interaction_range)
 	interaction_raycast.enabled = true
-	interaction_raycast.collide_with_areas = false
+	interaction_raycast.collide_with_areas = true
 	interaction_raycast.collide_with_bodies = true
 
+	# Hide interaction prompt initially
+	if interaction_prompt:
+		interaction_prompt.visible = false
 func _input(event: InputEvent) -> void:
 	# Check for Escape to exit terminal
 	if event.is_action_pressed("ui_cancel"):
@@ -88,11 +92,13 @@ func _input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		return
 	
-	# Forward keyboard input to terminal when viewing
+	# Forward keyboard input to terminal when viewing (but NOT mouse events)
 	if is_viewing_terminal and current_terminal and current_terminal.terminal:
 		if event is InputEventKey:
 			current_terminal.terminal._input(event)
 			return
+		# Let mouse events pass through to the UI for scrolling
+		# Don't consume mouse wheel or mouse button events
 	
 	if event.is_action_pressed("interact"):
 		if is_viewing_terminal and current_terminal:
@@ -116,12 +122,15 @@ func handle_normal_mode(delta: float) -> void:
 	if mouse_motion != Vector2.ZERO:
 		rotate_camera(mouse_motion)
 		mouse_motion = Vector2.ZERO
-	
+
 	if camera_pivot:
 		var target_height = crouching_camera_height if is_crouched else standing_camera_height
 		var current_pos = camera_pivot.position
 		current_pos.y = lerp(current_pos.y, target_height, 10.0 * delta)
 		camera_pivot.position = current_pos
+
+	# Update interaction prompt
+	update_interaction_prompt()
 
 func handle_viewing_mode(delta: float) -> void:
 	if not current_terminal:
@@ -170,7 +179,6 @@ func crouch_down() -> void:
 			
 		collision_shape.position.y = crouching_height / 2.0
 		
-		print("DEBUG Crouch - Height: ", capsule.height, " Radius: ", capsule.radius, " Top at: ", collision_shape.position.y + capsule.height / 2.0)
 
 func stand_up() -> void:
 	if not is_crouched:
@@ -184,7 +192,6 @@ func stand_up() -> void:
 		capsule.radius = original_capsule_radius
 		collision_shape.position.y = standing_height / 2.0
 		
-		print("DEBUG Stand - Collision top should be at: ", collision_shape.position.y + capsule.height / 2.0)
 
 func check_ceiling() -> bool:
 	var space_state = get_world_3d().direct_space_state
@@ -207,21 +214,30 @@ func get_input_direction() -> Vector2:
 func try_interact() -> void:
 	if not interaction_raycast or not interaction_raycast.is_colliding():
 		return
-	
+
 	var collider = interaction_raycast.get_collider()
 	if not collider:
 		return
-	
-	var terminal: NodeTerminal = null
-	if collider is NodeTerminal:
+
+	# Check for ControlTerminal
+	var terminal: ControlTerminal = null
+	if collider is ControlTerminal:
 		terminal = collider
-	elif collider.get_parent() is NodeTerminal:
+	elif collider.get_parent() is ControlTerminal:
 		terminal = collider.get_parent()
-	
+
 	if terminal:
 		terminal.interact(self)
+		return
 
-func start_viewing_terminal(terminal: NodeTerminal) -> void:
+	# Check for ServerBox power button (Area3D with server_box meta)
+	if collider.has_meta("server_box"):
+		var server_box = collider.get_meta("server_box")
+		if server_box and server_box.has_method("interact"):
+			server_box.interact(self)
+		return
+
+func start_viewing_terminal(terminal: ControlTerminal) -> void:
 	is_viewing_terminal = true
 	current_terminal = terminal
 	
@@ -253,17 +269,62 @@ func stop_viewing_terminal() -> void:
 	current_terminal = null
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func get_looking_at_terminal() -> NodeTerminal:
+func get_looking_at_terminal() -> ControlTerminal:
 	if not interaction_raycast or not interaction_raycast.is_colliding():
 		return null
-	
+
 	var collider = interaction_raycast.get_collider()
 	if not collider:
 		return null
-	
-	if collider is NodeTerminal:
+
+	if collider is ControlTerminal:
 		return collider
-	elif collider.get_parent() is NodeTerminal:
+	elif collider.get_parent() is ControlTerminal:
 		return collider.get_parent()
-	
+
 	return null
+
+# ═══════════════════════════════════════════
+# Interaction Prompt UI
+# ═══════════════════════════════════════════
+
+func update_interaction_prompt() -> void:
+	"""Check what the player is looking at and show appropriate prompt."""
+	if not interaction_raycast or not interaction_prompt:
+		return
+
+	if is_viewing_terminal:
+		interaction_prompt.visible = false
+		return
+
+	if not interaction_raycast.is_colliding():
+		interaction_prompt.visible = false
+		return
+
+	var collider = interaction_raycast.get_collider()
+	if not collider:
+		interaction_prompt.visible = false
+		return
+
+	var prompt_text = ""
+
+	# Check for ControlTerminal
+	var terminal: ControlTerminal = null
+	if collider is ControlTerminal:
+		terminal = collider
+	elif collider.get_parent() is ControlTerminal:
+		terminal = collider.get_parent()
+
+	if terminal:
+		prompt_text = "[E] Access Terminal"
+	elif collider.has_meta("server_box"):
+		# ServerBox power button
+		var server_box = collider.get_meta("server_box")
+		if server_box and server_box.has_method("get_interaction_prompt"):
+			prompt_text = server_box.get_interaction_prompt()
+
+	if prompt_text != "":
+		interaction_prompt.text = prompt_text
+		interaction_prompt.visible = true
+	else:
+		interaction_prompt.visible = false

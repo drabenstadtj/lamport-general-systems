@@ -120,7 +120,6 @@ metadata/_custom_type_script = "uid://cagmayj2a35ro"
 
 [node name="Root" type="Node3D"]
 script = ExtResource("1_7njyc")
-f = 1
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_kmcb5")

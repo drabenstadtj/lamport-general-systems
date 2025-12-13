@@ -48,10 +48,22 @@ func _ready():
 	setup_file_system()
 	update_prompt()
 	
+	# Enable scrolling
+	output_label.scroll_following = true
+	
 	input_field.grab_focus()
 	print_to_terminal("Terminal ready. Type 'help' for commands.")
 	input_field.text_submitted.connect(_on_command_entered)
 	input_field.gui_input.connect(_on_input_field_gui_input)
+
+# Add this new function
+func _on_output_gui_input(event: InputEvent):
+	if event is InputEventMouseButton:
+		if event.pressed:
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				output_label.scroll_vertical -= 30
+			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				output_label.scroll_vertical += 30
 
 func setup_file_system():
 	root_directory = FileNode.new("root", true)
@@ -133,6 +145,14 @@ func _input(event):
 		elif event.keycode == KEY_DOWN:
 			navigate_history(-1)
 			get_viewport().set_input_as_handled()
+		elif event.keycode == KEY_PAGEUP:
+			output_label.scroll_vertical -= 100
+			get_viewport().set_input_as_handled()
+			return
+		elif event.keycode == KEY_PAGEDOWN:
+			output_label.scroll_vertical += 100
+			get_viewport().set_input_as_handled()
+			return
 		elif event.unicode != 0 and event.unicode < 128:
 			# Add regular character
 			var character = char(event.unicode)
@@ -204,6 +224,14 @@ func process_command(command: String):
 			cmd_tail(args)
 		"help":
 			cmd_help()
+		"status":
+			cmd_status()
+		"network":
+			cmd_network()
+		"consensus":
+			cmd_consensus(args)
+		"logs":
+			cmd_logs(args)
 		_:
 			print_to_terminal("Command not found: " + cmd)
 
@@ -213,12 +241,20 @@ func process_command(command: String):
 
 func cmd_help():
 	print_to_terminal("Available commands:")
+	print_to_terminal("")
+	print_to_terminal("[color=cyan]File System:[/color]")
 	print_to_terminal("  ls         - list files and directories")
 	print_to_terminal("  cd <dir>   - change directory")
 	print_to_terminal("  pwd        - print working directory")
 	print_to_terminal("  cat <file> - display file contents")
 	print_to_terminal("  tail <file> - display last 10 lines of file")
-	print_to_terminal("  tail -n <num> <file> - display last N lines")
+	print_to_terminal("")
+	print_to_terminal("[color=cyan]BFT Network:[/color]")
+	print_to_terminal("  status     - show network and door status")
+	print_to_terminal("  network    - list all nodes and their states")
+	print_to_terminal("  consensus <OPEN|LOCKED> - trigger consensus round")
+	print_to_terminal("  logs <node_id> - show logs for a specific node")
+	print_to_terminal("")
 	print_to_terminal("  help       - show this message")
 
 func cmd_ls():
@@ -463,3 +499,87 @@ func update_prompt():
 
 func print_to_terminal(text: String):
 	output_label.text += text + "\n"
+
+# ============================================================================
+# BFT SYSTEM COMMANDS
+# ============================================================================
+
+func cmd_status():
+	"""Show current node and network status."""
+	if not GameManager.network_state:
+		print_to_terminal("ERROR: Game not initialized")
+		return
+
+	var health = GameManager.get_network_health()
+	var consensus = GameManager.get_consensus_state()
+
+	print_to_terminal("=== NETWORK STATUS ===")
+	print_to_terminal("Nodes: %d total (%d healthy, %d crashed, %d byzantine)" % [
+		health["total"], health["healthy"], health["crashed"], health["byzantine"]
+	])
+	print_to_terminal("F-value: %d (requires %d for consensus)" % [health["f"], health["required_for_consensus"]])
+	print_to_terminal("")
+	print_to_terminal("=== DOOR STATUS ===")
+	var door_state = "OPEN" if consensus["current_door_state"] == Enums.VoteValue.OPEN else "LOCKED"
+	print_to_terminal("State: %s" % door_state)
+	print_to_terminal("Failed rounds: %d/%d" % [consensus["failed_rounds"], consensus["failsafe_threshold"]])
+	print_to_terminal("Failsafe active: %s" % ("YES" if consensus["failsafe_active"] else "NO"))
+
+func cmd_network():
+	"""Show detailed network information for all nodes."""
+	if not GameManager.network_state:
+		print_to_terminal("ERROR: Game not initialized")
+		return
+
+	print_to_terminal("=== NETWORK NODES ===")
+	for node in GameManager.network_state.nodes:
+		var state_str = ""
+		match node.state:
+			Enums.NodeState.HEALTHY:
+				state_str = "[color=green]HEALTHY[/color]"
+			Enums.NodeState.CRASHED:
+				state_str = "[color=red]CRASHED[/color]"
+			Enums.NodeState.BYZANTINE:
+				state_str = "[color=yellow]BYZANTINE[/color]"
+
+		print_to_terminal("Node %d: %s" % [node.id, state_str])
+
+func cmd_consensus(args: Array):
+	"""Trigger a consensus round."""
+	if args.size() == 0:
+		print_to_terminal("Usage: consensus <OPEN|LOCKED>")
+		return
+
+	var proposal_str = args[0].to_upper()
+	var proposal = Enums.VoteValue.LOCKED
+
+	if proposal_str == "OPEN":
+		proposal = Enums.VoteValue.OPEN
+	elif proposal_str == "LOCKED":
+		proposal = Enums.VoteValue.LOCKED
+	else:
+		print_to_terminal("Invalid vote value. Use OPEN or LOCKED")
+		return
+
+	print_to_terminal("Initiating consensus for: %s" % proposal_str)
+	GameManager.run_consensus_manually(proposal)
+
+func cmd_logs(args: Array):
+	"""Show logs for a specific node."""
+	if args.size() == 0:
+		print_to_terminal("Usage: logs <node_id>")
+		return
+
+	var node_id = args[0].to_int()
+	var terminal = GameManager.get_node_terminal(node_id)
+
+	if not terminal:
+		print_to_terminal("ERROR: Node %d not found" % node_id)
+		return
+
+	print_to_terminal("=== LOGS FOR NODE %d ===" % node_id)
+	if terminal.log_entries.is_empty():
+		print_to_terminal("(no logs)")
+	else:
+		for log in terminal.log_entries:
+			print_to_terminal(log)

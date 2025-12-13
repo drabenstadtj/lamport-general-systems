@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ojh7elx57l2h"]
+
+[ext_resource type="FontFile" uid="uid://dyv5x8xc2ul2f" path="res://fonts/Px437_IBM_XGA-AI_12x20.ttf" id="1_4h2t3"]
+
+[resource]
+font = ExtResource("1_4h2t3")
+font_size = 24
+font_color = Color(1, 0.6901961, 0, 1)
+outline_color = Color(0, 0, 0, 1)

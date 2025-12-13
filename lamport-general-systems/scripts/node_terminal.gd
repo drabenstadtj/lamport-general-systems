@@ -49,6 +49,10 @@ func update_state():
 		current_state = new_state
 		state_changed.emit(new_state)
 
+func update_visuals():
+	"""Called by BFTNode when state changes. Triggers state_changed signal for connected visual components."""
+	update_state()
+
 # ═══════════════════════════════════════════
 # Signal Handlers (from BFTNode)
 # ═══════════════════════════════════════════
