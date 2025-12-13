@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://e1semmybo3ha"]
+
+[ext_resource type="PackedScene" uid="uid://uh7xbffgqjgr" path="res://models/light.glb" id="1_24oxn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5dtqe"]
+albedo_color = Color(1, 0.95686275, 0.8980392, 1)
+emission_enabled = true
+emission = Color(1, 0.95686275, 0.8980392, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2y26w"]
+top_radius = 0.025
+bottom_radius = 0.025
+height = 1.2
+
+[node name="Light" type="Node3D"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08851862, 0)
+light_color = Color(1, 0.95686275, 0.8980392, 1)
+light_energy = 0.5
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08851862, -0.4)
+light_color = Color(1, 0.95686275, 0.8980392, 1)
+light_energy = 0.5
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08851862, 0.4)
+light_color = Color(1, 0.95686275, 0.8980392, 1)
+light_energy = 0.5
+
+[node name="light" parent="." instance=ExtResource("1_24oxn")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.05295384, 0, 0)
+material_override = SubResource("StandardMaterial3D_5dtqe")
+mesh = SubResource("CylinderMesh_2y26w")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.047046185, 0, 0)
+material_override = SubResource("StandardMaterial3D_5dtqe")
+mesh = SubResource("CylinderMesh_2y26w")
+skeleton = NodePath("../..")

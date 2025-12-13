@@ -3,20 +3,19 @@ class_name NodeTerminal
 
 @export var node_id: int = 0
 @export var max_log_lines: int = 10
-@export var camera_offset: Vector3 = Vector3(0, -.1, .25)
-@export var look_at_offset: Vector3 = Vector3(0, 0.4, 0)  
 
 @onready var status_light = $StatusLight
-@onready var label = $SubViewport/MarginContainer/Label
+@onready var terminal = $SubViewport/Terminal
 @onready var interaction_area: Area3D = $InteractionArea
 @onready var collision_body: StaticBody3D = $StaticBody3D
+@onready var camera_position_marker: Node3D = $CameraPosition
+@onready var camera_lookat_marker: Node3D = $CameraLookAt
 
 var log_entries: Array[String] = []
 var player_nearby: bool = false
 var is_being_viewed: bool = false
 
 func _ready():
-	label.text = "Node %d" % node_id
 	GameManager.register_node_terminal(node_id, self)
 	
 	if interaction_area:
@@ -43,15 +42,29 @@ func interact(player):
 func start_viewing(player):
 	is_being_viewed = true
 	player.start_viewing_terminal(self)
+	
+	# Enable terminal input when viewing
+	if terminal:
+		terminal.accept_input = true
 
 func stop_viewing(player):
 	is_being_viewed = false
+	
+	# Disable terminal input when not viewing
+	if terminal:
+		terminal.accept_input = false
 
 func get_camera_position() -> Vector3:
-	return global_position + global_transform.basis * camera_offset
-	
+	if camera_position_marker:
+		return camera_position_marker.global_position
+	# Fallback if no marker exists
+	return global_position + Vector3(0, 0.5, 0.25)
+
 func get_look_at_position() -> Vector3:
-	return global_position + global_transform.basis * look_at_offset
+	if camera_lookat_marker:
+		return camera_lookat_marker.global_position
+	# Fallback if no marker exists
+	return global_position + Vector3(0, 0.47, 0)
 
 # ═══════════════════════════════════════════
 # Logging System
@@ -65,75 +78,52 @@ func add_log(message: String):
 	
 	var time = Time.get_ticks_msec() / 1000.0
 	var timestamp = "%6.2f" % time
-	log_entries.append("%s %s" % [timestamp, message])
+	var log_message = "[%s] %s" % [timestamp, message]
 	
+	# Add to local array for compatibility
+	log_entries.append(log_message)
 	if log_entries.size() > max_log_lines:
 		log_entries.pop_front()
 	
-	update_display()
+	# Pipe to terminal's system.log file
+	if terminal:
+		var current_log = terminal.get_file_content("system.log")
+		if current_log != "":
+			current_log += "\n"
+		terminal.set_file_content("system.log", current_log + log_message)
 
 func clear_logs():
 	log_entries.clear()
 	update_display()
 
 func update_display():
-	if GameManager.network_state:
-		var node = GameManager.network_state.get_node(node_id)
-		if node and node.is_crashed():
-			label.text = ("node%d@consensus:~$ tail -f /var/log/bft.log\n[FATAL] Node status: CRASHED\n----------------------------------------\n[FATAL] Connection lost\n[FATAL] Log daemon stopped" % node_id).to_upper()
-			return
-	
-	var display_text = "node%d@consensus:~$ tail -f /var/log/bft.log\n" % node_id
-	
-	if GameManager.network_state:
-		var node = GameManager.network_state.get_node(node_id)
-		if node:
-			var state_str = ""
-			match node.state:
-				Enums.NodeState.HEALTHY:
-					state_str = "[INFO] Node status: ACTIVE"
-				Enums.NodeState.CRASHED:
-					state_str = "[FATAL] Node status: CRASHED"
-				Enums.NodeState.BYZANTINE:
-					state_str = "[WARN] Node status: COMPROMISED"
-			display_text += state_str + "\n"
-	
-	display_text += "----------------------------------------\n"
-	
-	if log_entries.is_empty():
-		display_text += "[INFO] Awaiting network activity...\n"
-	else:
-		for entry in log_entries:
-			display_text += entry + "\n"
-	
-	label.text = display_text.to_upper()
+	# Display is now handled by the terminal interface
+	# This function is kept for compatibility but does nothing
+	pass
 
 func update_visuals():
 	if not GameManager.network_state:
 		return
-	
+
 	var node = GameManager.network_state.get_node(node_id)
 	if not node:
 		return
-	
+
 	match node.state:
 		Enums.NodeState.HEALTHY:
-			status_light.light_color = Color.GREEN
-			status_light.light_energy = 5.0
-			label.modulate = Color.WHITE
-		
+			if status_light:
+				status_light.light_color = Color.GREEN
+				status_light.light_energy = 5.0
+
 		Enums.NodeState.CRASHED:
-			status_light.light_color = Color.BLACK
-			status_light.light_energy = 0.0
-			label.modulate = Color.DARK_GRAY
-			update_display()
-		
+			if status_light:
+				status_light.light_color = Color.BLACK
+				status_light.light_energy = 0.0
+
 		Enums.NodeState.BYZANTINE:
-			status_light.light_color = Color.RED
-			status_light.light_energy = 5.0
-			label.modulate = Color(1, 0.5, 0.5)
-	
-	update_display()
+			if status_light:
+				status_light.light_color = Color.RED
+				status_light.light_energy = 5.0
 
 # ═══════════════════════════════════════════
 # Signal Handlers (from BFTNode)

@@ -77,23 +77,34 @@ func _ready() -> void:
 	interaction_raycast.collide_with_bodies = true
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		if not is_viewing_terminal:
-			mouse_motion += event.relative
-	
-	if event.is_action_pressed("interact"):
-		if is_viewing_terminal and current_terminal:
-			stop_viewing_terminal()
-		else:
-			try_interact()
-	
+	# Check for Escape to exit terminal
 	if event.is_action_pressed("ui_cancel"):
 		if is_viewing_terminal:
 			stop_viewing_terminal()
+			return
 		elif Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		return
+	
+	# Forward keyboard input to terminal when viewing
+	if is_viewing_terminal and current_terminal and current_terminal.terminal:
+		if event is InputEventKey:
+			current_terminal.terminal._input(event)
+			return
+	
+	if event.is_action_pressed("interact"):
+		if is_viewing_terminal and current_terminal:
+			# Don't exit here, just ignore
+			return
+		else:
+			try_interact()
+			return
+	
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		if not is_viewing_terminal:
+			mouse_motion += event.relative
 
 func _physics_process(delta: float) -> void:
 	if is_viewing_terminal:

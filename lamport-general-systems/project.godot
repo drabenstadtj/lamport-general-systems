@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Lamport General Systems"
-run/main_scene="uid://btx3xuu8qxu1l"
+run/main_scene="uid://bvxuen1j6vry7"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

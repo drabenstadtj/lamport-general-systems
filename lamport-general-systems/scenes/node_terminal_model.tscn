@@ -176,13 +176,9 @@ mesh = SubResource("ArrayMesh_xa5cg")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.317, 0, 0, 0, 0.3140082, 0.10841781, 0, -0.04344936, 0.78353465, 0, 0.34964293, 0.021016084)
+transform = Transform3D(0.317, 0, 0, 0, 0.3140082, 0.10841782, 0, -0.04344937, 0.7835346, 0, 0.34964293, 0.021016084)
 material_override = SubResource("StandardMaterial3D_txsdt")
 mesh = SubResource("QuadMesh_bl038")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D"]
-transform = Transform3D(3.1545742, 0, 0, 0, 3.1545742, -1.1920929e-07, 0, 4.4703484e-08, 1.2642225, 0, 0, 0)
-light_energy = 0.1
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true

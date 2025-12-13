@@ -121,13 +121,17 @@ func execute_turn(action_result: Dictionary):
 
 # Manual consensus trigger
 func run_consensus_manually(proposal: Enums.VoteValue = Enums.VoteValue.OPEN):
+	if not consensus_engine:
+		print("ERROR: Game not initialized. Cannot run consensus.")
+		return
+
 	print("\n=== MANUAL CONSENSUS TRIGGERED ===")
 	print("Proposing: %s" % ("OPEN" if proposal == Enums.VoteValue.OPEN else "LOCKED"))
-	
+
 	# Log consensus start on all nodes
 	for terminal in node_terminals.values():
 		terminal.add_log("═══ CONSENSUS START ═══")
-	
+
 	var consensus_result: Dictionary = consensus_engine.run_consensus_round(proposal)
 
 	if door_object:
