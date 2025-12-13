@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://8t3rpuvlgj8o"]
+[gd_scene load_steps=14 format=3 uid="uid://8t3rpuvlgj8o"]
 
 [ext_resource type="Material" uid="uid://7k6lwyfq03yc" path="res://materials/road.tres" id="1_uxjsv"]
-[ext_resource type="Material" path="res://materials/fence.tres" id="2_6n8fd"]
 [ext_resource type="Material" uid="uid://bovtd5iup63fc" path="res://materials/ground.tres" id="3_rlvb7"]
 [ext_resource type="PackedScene" uid="uid://mktrqqjkl8ji" path="res://scenes/entities/player.tscn" id="4_6n8fd"]
 [ext_resource type="PackedScene" uid="uid://bsbotn1u8iul0" path="res://models/car.glb" id="5_3pdg3"]
@@ -103,32 +102,26 @@ size = Vector3(69, 1.6, 86)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Geometry/Fence"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 2, -5.4995)
-material_override = ExtResource("2_6n8fd")
 size = Vector3(91, 5, 0.001)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Geometry/Fence"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61, 2, -5.4995)
-material_override = ExtResource("2_6n8fd")
 size = Vector3(91, 5, 0.001)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Geometry/Fence"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -106.5, 2, -50.9995)
-material_override = ExtResource("2_6n8fd")
 size = Vector3(91, 5, 0.001)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Geometry/Fence"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -98, 2, -96.4995)
-material_override = ExtResource("2_6n8fd")
 size = Vector3(17, 5, 0.001)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Geometry/Fence"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 73.5, 2, -96.4995)
-material_override = ExtResource("2_6n8fd")
 size = Vector3(16, 5, 0.001)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Geometry/Fence"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 81.5, 2, -50.9995)
-material_override = ExtResource("2_6n8fd")
 size = Vector3(91, 5, 0.001)
 
 [node name="Ground" type="Node3D" parent="Geometry"]

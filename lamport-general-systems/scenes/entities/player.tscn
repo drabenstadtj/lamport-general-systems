@@ -31,6 +31,7 @@ mesh = SubResource("CapsuleMesh_4flbx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4456512, -0.1711413)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+fov = 80.0
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraPivot/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)

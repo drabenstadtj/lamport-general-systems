@@ -32,6 +32,9 @@ class FileNode:
 var root_directory: FileNode
 var current_directory: FileNode
 var accept_input: bool = true
+var command_history: Array[String] = []
+var history_index: int = -1   
+
 
 @onready var output_label = $MarginContainer/VBoxContainer/OutputLabel
 @onready var input_field = $MarginContainer/VBoxContainer/InputContainer/InputField
@@ -75,11 +78,11 @@ func setup_file_system():
 	var log_file = FileNode.new("system.log", false)
 
 	log_file.content = """        __.,,-------.._
-     ,'"   _      _   "`.
-    /.__, ._  -=- _"`    Y
+	 ,'"   _      _   "`.
+	/.__, ._  -=- _"`    Y
    (.____.-.`      ""`   j
-    VvvvvvV`.Y,.    _.,-'       ,     ,     ,
-        Y    ||,   '"\\         ,/    ,/    ./
+	VvvvvvV`.Y,.    _.,-'       ,     ,     ,
+		Y    ||,   '"\\         ,/    ,/    ./
         |   ,'  ,     `-..,'_,'/___,'/   ,'/   ,
    ..  ,;,,',-'"\\,'  ,  .     '     ' ""' '--,/    .. ..
  ,'. `.`---'     `, /  , Y -=-    ,'   ,   ,. .`-..||_|| ..
@@ -87,13 +90,13 @@ ff\\\\`. `._        /f ,'j j , ,' ,   , f ,  \\=\\ Y   || ||`||_..
 l` \\` `.`."`-..,-' j  /./ /, , / , / /l \\   \\=\\l   || `' || ||...
  `  `   `-._ `-.,-/ ,' /`"/-/-/-/-"'''"`.`.  `'.\\--`'--..`'_`' || ,
             "`-_,',  ,'  f    ,   /      `._    ``._     ,  `-.`'//         ,
-          ,-"'' _.,-'    l_,-'_,,'          "`-._ . "`. /|     `.'\\ ,       |
-        ,',.,-'"          \\=) ,`-.         ,    `-'._`.V |       \\ // .. . /j
-        |f\\\\               `._ )-."`.     /|         `.| |        `.`-||-\\/
-        l` \\`                 "`._   "`--' j          j' j          `-`---'
-         `  `                     "`_,-','/       ,-'"  /
-                                 ,'",__,-'       /,, ,-'
-                                 Vvv'            VVv'"""
+		  ,-"'' _.,-'    l_,-'_,,'          "`-._ . "`. /|     `.'\\ ,       |
+		,',.,-'"          \\=) ,`-.         ,    `-'._`.V |       \\ // .. . /j
+		|f\\\\               `._ )-."`.     /|         `.| |        `.`-||-\\/
+		l` \\`                 "`._   "`--' j          j' j          `-`---'
+		 `  `                     "`_,-','/       ,-'"  /
+								 ,'",__,-'       /,, ,-'
+								 Vvv'            VVv'"""
 
 	user.add_child(log_file)
 	
@@ -111,7 +114,7 @@ func _input(event):
 	if not accept_input:
 		return
 	
-	if event is InputEventKey and event.pressed and not event.echo:
+	if event is InputEventKey and event.pressed:  
 		# Handle special keys
 		if event.keycode == KEY_ENTER:
 			_on_command_entered(input_field.text)
@@ -123,6 +126,12 @@ func _input(event):
 			get_viewport().set_input_as_handled()
 		elif event.keycode == KEY_TAB:
 			handle_tab_complete()
+			get_viewport().set_input_as_handled()
+		elif event.keycode == KEY_UP:
+			navigate_history(1)
+			get_viewport().set_input_as_handled()
+		elif event.keycode == KEY_DOWN:
+			navigate_history(-1)
 			get_viewport().set_input_as_handled()
 		elif event.unicode != 0 and event.unicode < 128:
 			# Add regular character
@@ -141,6 +150,10 @@ func _on_command_entered(text: String):
 	if text.strip_edges() == "":
 		return
 	
+	# Add to history
+	command_history.append(text)
+	history_index = -1  # Reset history navigation
+	
 	print_to_terminal("$ " + text)
 	process_command(text)
 	
@@ -148,6 +161,22 @@ func _on_command_entered(text: String):
 	input_field.text = ""
 	await get_tree().process_frame
 	input_field.grab_focus()
+
+func navigate_history(direction: int):
+	if command_history.is_empty():
+		return
+	
+	history_index += direction
+	history_index = clamp(history_index, -1, command_history.size() - 1)
+	
+	if history_index == -1:
+		input_field.text = ""
+	else:
+		# Access history in reverse order (most recent first)
+		var actual_index = command_history.size() - 1 - history_index
+		input_field.text = command_history[actual_index]
+	
+	input_field.caret_column = input_field.text.length()
 
 # ============================================================================
 # COMMAND PROCESSING
