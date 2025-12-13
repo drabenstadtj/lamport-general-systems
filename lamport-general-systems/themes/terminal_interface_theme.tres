@@ -76,12 +76,13 @@ content_margin_bottom = 0.0
 
 [resource]
 default_font = ExtResource("1_351tr")
+Label/colors/font_color = Color(1, 0.6901961, 0, 1)
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_351tr")
 LineEdit/colors/caret_color = Color(0.95, 0.95, 0.95, 1)
 LineEdit/colors/clear_button_color = Color(0.875, 0.875, 0.875, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
-LineEdit/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+LineEdit/colors/font_color = Color(1, 0.6901961, 0, 1)
 LineEdit/colors/font_outline_color = Color(0, 0, 0, 1)
 LineEdit/colors/font_placeholder_color = Color(0.875, 0.875, 0.875, 0.6)
 LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
@@ -96,7 +97,7 @@ LineEdit/icons/clear = SubResource("DPITexture_juvgi")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_hxhhp")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_hvq3v")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_hw21x")
-RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/default_color = Color(1, 0.6901961, 0, 1)
 RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
 RichTextLabel/colors/font_selected_color = Color(0, 0, 0, 0)
 RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0)

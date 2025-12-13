@@ -31,7 +31,7 @@ class FileNode:
 
 var root_directory: FileNode
 var current_directory: FileNode
-var accept_input: bool = false
+var accept_input: bool = true
 
 @onready var output_label = $MarginContainer/VBoxContainer/OutputLabel
 @onready var input_field = $MarginContainer/VBoxContainer/InputContainer/InputField
@@ -69,15 +69,36 @@ func setup_file_system():
 	
 	# Add some files with content
 	var readme = FileNode.new("readme.txt", false)
-	readme.content = "Welcome to the terminal!\nThis is a test file.\nI am under the water. Please help me. 😂"
+	readme.content = "Welcome to the terminal!\nThis is a test file.\nI am under the water. Please help me."
 	user.add_child(readme)
 	
 	var log_file = FileNode.new("system.log", false)
-	log_file.content = "[2024-12-12 10:23:45] System initialized\n[2024-12-12 10:23:46] Loading modules\n[2024-12-12 10:23:47] All systems operational\n[2024-12-12 10:23:48] User logged in\n[2024-12-12 10:23:49] Ready"
+
+	log_file.content = """        __.,,-------.._
+     ,'"   _      _   "`.
+    /.__, ._  -=- _"`    Y
+   (.____.-.`      ""`   j
+    VvvvvvV`.Y,.    _.,-'       ,     ,     ,
+        Y    ||,   '"\\         ,/    ,/    ./
+        |   ,'  ,     `-..,'_,'/___,'/   ,'/   ,
+   ..  ,;,,',-'"\\,'  ,  .     '     ' ""' '--,/    .. ..
+ ,'. `.`---'     `, /  , Y -=-    ,'   ,   ,. .`-..||_|| ..
+ff\\\\`. `._        /f ,'j j , ,' ,   , f ,  \\=\\ Y   || ||`||_..
+l` \\` `.`."`-..,-' j  /./ /, , / , / /l \\   \\=\\l   || `' || ||...
+ `  `   `-._ `-.,-/ ,' /`"/-/-/-/-"'''"`.`.  `'.\\--`'--..`'_`' || ,
+            "`-_,',  ,'  f    ,   /      `._    ``._     ,  `-.`'//         ,
+          ,-"'' _.,-'    l_,-'_,,'          "`-._ . "`. /|     `.'\\ ,       |
+        ,',.,-'"          \\=) ,`-.         ,    `-'._`.V |       \\ // .. . /j
+        |f\\\\               `._ )-."`.     /|         `.| |        `.`-||-\\/
+        l` \\`                 "`._   "`--' j          j' j          `-`---'
+         `  `                     "`_,-','/       ,-'"  /
+                                 ,'",__,-'       /,, ,-'
+                                 Vvv'            VVv'"""
+
 	user.add_child(log_file)
 	
 	var notes = FileNode.new("notes.txt", false)
-	notes.content = "TODO:\n- Implement more commands\n- Add color themes\n- Create save system"
+	notes.content = "TODO:\n- Implement more commands\n- Add color themes\n"
 	documents.add_child(notes)
 	
 	current_directory = user
@@ -186,7 +207,7 @@ func cmd_cd(args: Array):
 		print_to_terminal("cd: missing directory argument")
 		return
 	
-	var target_name = args[0]
+	var target_name = args[0].trim_suffix("/")  # Add this line to strip trailing /
 	
 	# Handle going back
 	if target_name == "..":
