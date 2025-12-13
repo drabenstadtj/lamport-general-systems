@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://ddc8tk13c7sn4" path="res://scripts/world/server_room.gd" id="1_x0nbk"]
 [ext_resource type="Material" uid="uid://5e5rb1tcmojv" path="res://materials/granite.tres" id="2_7qwwc"]
-[ext_resource type="PackedScene" uid="uid://mktrqqjkl8ji" path="res://scenes/player.tscn" id="3_aord7"]
-[ext_resource type="PackedScene" uid="uid://ra21n3rxrlhj" path="res://scenes/node_terminal.tscn" id="4_nui3k"]
-[ext_resource type="PackedScene" uid="uid://73et73hhv6tp" path="res://scenes/door.tscn" id="5_xti4o"]
+[ext_resource type="PackedScene" uid="uid://mktrqqjkl8ji" path="res://scenes/entities/player.tscn" id="3_aord7"]
+[ext_resource type="PackedScene" uid="uid://ra21n3rxrlhj" path="res://scenes/entities/node_terminal.tscn" id="4_nui3k"]
+[ext_resource type="PackedScene" uid="uid://73et73hhv6tp" path="res://scenes/entities/door.tscn" id="5_xti4o"]
 [ext_resource type="PackedScene" uid="uid://cl3p43sqjgti1" path="res://models/monitor.glb" id="6_7qwwc"]
 [ext_resource type="PackedScene" uid="uid://dluc1nbj2udkg" path="res://models/server.glb" id="7_aord7"]
 

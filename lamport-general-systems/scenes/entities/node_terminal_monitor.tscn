@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=4 uid="uid://jdkff4xr6n18"]
 
 [ext_resource type="Script" uid="uid://b6bswq28345v6" path="res://scripts/world/node_terminal.gd" id="1_crvuy"]
-[ext_resource type="PackedScene" uid="uid://bcswvwub7jveh" path="res://scenes/terminal_interface.tscn" id="3_aiyww"]
+[ext_resource type="PackedScene" uid="uid://bcswvwub7jveh" path="res://scenes/ui/terminal_interface.tscn" id="3_aiyww"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1hjy"]
 resource_name = "Material"

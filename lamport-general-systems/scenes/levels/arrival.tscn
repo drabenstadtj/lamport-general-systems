@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://7k6lwyfq03yc" path="res://materials/road.tres" id="1_uxjsv"]
 [ext_resource type="Material" path="res://materials/fence.tres" id="2_6n8fd"]
 [ext_resource type="Material" uid="uid://bovtd5iup63fc" path="res://materials/ground.tres" id="3_rlvb7"]
-[ext_resource type="PackedScene" uid="uid://mktrqqjkl8ji" path="res://scenes/player.tscn" id="4_6n8fd"]
+[ext_resource type="PackedScene" uid="uid://mktrqqjkl8ji" path="res://scenes/entities/player.tscn" id="4_6n8fd"]
 [ext_resource type="PackedScene" uid="uid://bsbotn1u8iul0" path="res://models/car.glb" id="5_3pdg3"]
 [ext_resource type="PackedScene" uid="uid://bmsmgwhprqqs7" path="res://models/curb.glb" id="6_la8oj"]
 [ext_resource type="PackedScene" uid="uid://cdejcqp6ulf5b" path="res://models/streetlight.glb" id="7_la8oj"]
