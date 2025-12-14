@@ -97,7 +97,7 @@ resource_local_to_scene = true
 size = Vector2(1.6, 0.9)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_txsdt"]
-size = Vector3(1, 0.8, 1)
+size = Vector3(1.4325562, 0.8, 1.2768555)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_um1k5"]
 size = Vector3(0.6, 0.6, 0.6)
@@ -132,7 +132,7 @@ size = Vector2i(1600, 900)
 [node name="InteractionArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099999994, 0.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.36902738)
 shape = SubResource("BoxShape3D_txsdt")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -143,10 +143,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19999999, 0)
 shape = SubResource("BoxShape3D_um1k5")
 
 [node name="CameraPosition" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21598305, 0.22428885)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21423794, 0.2220903)
 
 [node name="CameraLookAt" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18139802, 0.026986629)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18733709, 0.026986629)
 
 [node name="mouse" parent="." instance=ExtResource("3_a4p20")]
 transform = Transform3D(0.994271, 0, 0.10688881, 0, 1, 0, -0.10688881, 0, 0.994271, 0.32155138, -0.08073971, 0.31042767)

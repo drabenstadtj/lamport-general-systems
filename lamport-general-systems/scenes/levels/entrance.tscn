@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://x357klpx8kqu"]
+[gd_scene load_steps=32 format=3 uid="uid://x357klpx8kqu"]
 
 [ext_resource type="Script" uid="uid://b2h4sdg7or8na" path="res://scripts/world/network_initializer.gd" id="1_3k2xl"]
 [ext_resource type="PackedScene" uid="uid://mktrqqjkl8ji" path="res://scenes/entities/player.tscn" id="1_kwwjj"]
 [ext_resource type="PackedScene" uid="uid://d2ithuld1kquu" path="res://models/desk.glb" id="2_ba6v0"]
+[ext_resource type="LabelSettings" uid="uid://ojh7elx57l2h" path="res://themes/interaction_prompt_settings.tres" id="2_h4rli"]
 [ext_resource type="Shader" uid="uid://c0fo0khedih0i" path="res://materials/jacks_dither.gdshader" id="2_jlypu"]
 [ext_resource type="Texture2D" uid="uid://dlcg2hm2iheqf" path="res://textures/bayer16tile2.png" id="3_h4rli"]
 [ext_resource type="PackedScene" uid="uid://chr40ris0qykm" path="res://scenes/entities/server_rack.tscn" id="4_ieioc"]
@@ -10,7 +11,9 @@
 [ext_resource type="Script" uid="uid://cagmayj2a35ro" path="res://scripts/server_slot_config.gd" id="5_70rxx"]
 [ext_resource type="PackedScene" uid="uid://e1semmybo3ha" path="res://scenes/entities/light.tscn" id="5_gm1gp"]
 [ext_resource type="PackedScene" uid="uid://m6dhcvfigwyh" path="res://scenes/entities/server.tscn" id="6_70rxx"]
+[ext_resource type="Material" uid="uid://5e5rb1tcmojv" path="res://materials/granite.tres" id="6_b5yo3"]
 [ext_resource type="PackedScene" uid="uid://bjq0g7s2ax3wx" path="res://scenes/entities/control_terminal.tscn" id="7_xyvr4"]
+[ext_resource type="Texture2D" uid="uid://btpsi6c3u6ivh" path="res://materials/logo3.1.2.png" id="9_ea3t6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b5yo3"]
 shader = ExtResource("2_jlypu")
@@ -47,6 +50,12 @@ data = PackedVector3Array(-0.4994998, 0.00049996376, 3, -0.5, 0.00049996376, 3, 
 albedo_color = Color(0.4110297, 0.24947599, 0.09303399, 1)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_kwwjj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_itykv"]
+albedo_texture = ExtResource("9_ea3t6")
+
+[sub_resource type="QuadMesh" id="QuadMesh_b5yo3"]
+size = Vector2(2, 2)
 
 [sub_resource type="Resource" id="Resource_xyvr4"]
 script = ExtResource("5_70rxx")
@@ -85,6 +94,26 @@ metadata/_custom_type_script = "uid://cagmayj2a35ro"
 script = ExtResource("1_3k2xl")
 num_nodes = 4
 
+[node name="InteractionPromptLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="InteractionPrompt" type="Label" parent="InteractionPromptLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -173.0
+offset_top = -280.0
+offset_right = 173.0
+offset_bottom = -230.99988
+grow_horizontal = 2
+grow_vertical = 0
+text = "Testing Text"
+label_settings = ExtResource("2_h4rli")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_b5yo3")
 anchors_preset = 15
@@ -110,7 +139,7 @@ environment = SubResource("Environment_j8c1m")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Geometry/Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.00049996376, -1.5)
-material_override = SubResource("StandardMaterial3D_j8c1m")
+material_override = ExtResource("6_b5yo3")
 size = Vector3(8, 0.001, 9)
 
 [node name="CSGBox3D16" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Geometry/Room"]
@@ -222,6 +251,11 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.59
 
 [node name="Light5" parent="SubViewportContainer/SubViewport/Geometry/Furniture/Lighting" instance=ExtResource("5_gm1gp")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.3999999, 0, -4.4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Geometry"]
+transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 3.7, 1.4, 2.9810617)
+material_override = SubResource("StandardMaterial3D_itykv")
+mesh = SubResource("QuadMesh_b5yo3")
 
 [node name="Door" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_7uin6")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.5020247, 0, 0)

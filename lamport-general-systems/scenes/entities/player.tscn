@@ -58,8 +58,11 @@ script = ExtResource("5_n7ghd")
 script = ExtResource("6_nvl01")
 
 [node name="InteractionPromptLayer" type="CanvasLayer" parent="."]
+layer = 100
+visible = false
 
 [node name="InteractionPrompt" type="Label" parent="InteractionPromptLayer"]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

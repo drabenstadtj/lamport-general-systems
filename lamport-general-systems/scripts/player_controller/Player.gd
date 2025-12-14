@@ -36,7 +36,7 @@ var original_capsule_radius: float = 0.5
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var camera: Camera3D = $CameraPivot/Camera3D
-@onready var interaction_prompt: Label = $InteractionPromptLayer/InteractionPrompt
+@onready var interaction_prompt: Label = null  # Reference to UI in root scene
 
 var interaction_raycast: RayCast3D
 var mouse_motion: Vector2 = Vector2.ZERO
@@ -77,9 +77,18 @@ func _ready() -> void:
 	interaction_raycast.collide_with_areas = true
 	interaction_raycast.collide_with_bodies = true
 
-	# Hide interaction prompt initially
-	if interaction_prompt:
-		interaction_prompt.visible = false
+	# Find interaction prompt in root scene
+	var root = get_tree().root
+	var prompt_layer = root.find_child("InteractionPromptLayer", true, false)
+	if prompt_layer:
+		interaction_prompt = prompt_layer.find_child("InteractionPrompt", true, false)
+		if interaction_prompt:
+			interaction_prompt.visible = false
+			print("Player: Found interaction prompt in root scene")
+		else:
+			print("Player: WARNING - InteractionPrompt label not found")
+	else:
+		print("Player: WARNING - InteractionPromptLayer not found in root scene")
 func _input(event: InputEvent) -> void:
 	# Check for Escape to exit terminal
 	if event.is_action_pressed("ui_cancel"):
@@ -240,13 +249,17 @@ func try_interact() -> void:
 func start_viewing_terminal(terminal: ControlTerminal) -> void:
 	is_viewing_terminal = true
 	current_terminal = terminal
-	
+
+	# Hide interaction prompt immediately
+	if interaction_prompt:
+		interaction_prompt.visible = false
+
 	original_camera_transform = camera.global_transform
 	original_pivot_transform = camera_pivot.transform
 	stored_velocity = velocity
-	
+
 	target_camera_position = terminal.get_camera_position()
-	
+
 	if state_machine:
 		state_machine.set_physics_process(false)
 
@@ -316,6 +329,14 @@ func update_interaction_prompt() -> void:
 		terminal = collider.get_parent()
 
 	if terminal:
+		# Don't show prompt if terminal is already being viewed
+		if terminal.is_being_viewed:
+			interaction_prompt.visible = false
+			return
+		# Only show prompt if player is actually in range (inside InteractionArea)
+		if not terminal.player_nearby:
+			interaction_prompt.visible = false
+			return
 		prompt_text = "[E] Access Terminal"
 	elif collider.has_meta("server_box"):
 		# ServerBox power button

@@ -130,16 +130,29 @@ func _on_log_added(message: String):
 		# Display the log in the terminal UI
 		terminal.print_to_terminal(message)
 
+		# Also write to consensus.log file
+		terminal.append_to_file("consensus.log", message)
+
 func _on_state_changed(new_state: Enums.NodeState):
 	"""Called when the linked node changes state."""
 	if terminal:
 		var state_name = ""
+		var plain_state_name = ""
 		match new_state:
 			Enums.NodeState.HEALTHY:
 				state_name = "[color=green]HEALTHY[/color]"
+				plain_state_name = "HEALTHY"
 			Enums.NodeState.CRASHED:
 				state_name = "[color=red]CRASHED[/color]"
+				plain_state_name = "CRASHED"
 			Enums.NodeState.BYZANTINE:
 				state_name = "[color=yellow]BYZANTINE[/color]"
+				plain_state_name = "BYZANTINE"
 
-		terminal.print_to_terminal(">>> Node state changed to: %s" % state_name)
+		var message = ">>> Node state changed to: %s" % state_name
+		terminal.print_to_terminal(message)
+
+		# Write to consensus.log without color tags
+		var time = Time.get_ticks_msec() / 1000.0
+		var timestamp = "%6.2f" % time
+		terminal.append_to_file("consensus.log", "[%s] >>> Node state changed to: %s" % [timestamp, plain_state_name])

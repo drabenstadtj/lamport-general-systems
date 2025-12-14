@@ -115,7 +115,12 @@ l` \\` `.`."`-..,-' j  /./ /, , / , / /l \\   \\=\\l   || `' || ||...
 	var notes = FileNode.new("notes.txt", false)
 	notes.content = "TODO:\n- Implement more commands\n- Add color themes\n"
 	documents.add_child(notes)
-	
+
+	# Create consensus log file
+	var consensus_log = FileNode.new("consensus.log", false)
+	consensus_log.content = "=== Consensus Log ===\nNode logs will appear here during consensus rounds.\n"
+	user.add_child(consensus_log)
+
 	current_directory = user
 
 # ============================================================================
@@ -230,8 +235,6 @@ func process_command(command: String):
 			cmd_network()
 		"consensus":
 			cmd_consensus(args)
-		"logs":
-			cmd_logs(args)
 		_:
 			print_to_terminal("Command not found: " + cmd)
 
@@ -253,7 +256,6 @@ func cmd_help():
 	print_to_terminal("  status     - show network and door status")
 	print_to_terminal("  network    - list all nodes and their states")
 	print_to_terminal("  consensus <OPEN|LOCKED> - trigger consensus round")
-	print_to_terminal("  logs <node_id> - show logs for a specific node")
 	print_to_terminal("")
 	print_to_terminal("  help       - show this message")
 
@@ -490,6 +492,17 @@ func set_file_content(path: String, new_content: String) -> bool:
 		return true
 	return false
 
+func append_to_file(path: String, line: String) -> bool:
+	"""Append a line to a file in the filesystem."""
+	var file = get_file_by_path(path)
+	if file != null and not file.is_directory:
+		# Add newline if content doesn't end with one
+		if file.content != "" and not file.content.ends_with("\n"):
+			file.content += "\n"
+		file.content += line + "\n"
+		return true
+	return false
+
 # ============================================================================
 # UI UTILITIES
 # ============================================================================
@@ -563,23 +576,3 @@ func cmd_consensus(args: Array):
 
 	print_to_terminal("Initiating consensus for: %s" % proposal_str)
 	GameManager.run_consensus_manually(proposal)
-
-func cmd_logs(args: Array):
-	"""Show logs for a specific node."""
-	if args.size() == 0:
-		print_to_terminal("Usage: logs <node_id>")
-		return
-
-	var node_id = args[0].to_int()
-	var terminal = GameManager.get_node_terminal(node_id)
-
-	if not terminal:
-		print_to_terminal("ERROR: Node %d not found" % node_id)
-		return
-
-	print_to_terminal("=== LOGS FOR NODE %d ===" % node_id)
-	if terminal.log_entries.is_empty():
-		print_to_terminal("(no logs)")
-	else:
-		for log in terminal.log_entries:
-			print_to_terminal(log)
