@@ -1,3 +1,4 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+/lamport-general-systems/scripts/world/node_terminal.gd
