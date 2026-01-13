@@ -1,8 +1,6 @@
 extends Control
 
-# ============================================================================
 # FILE SYSTEM CLASS
-# ============================================================================
 
 class FileNode:
 	var name: String
@@ -25,9 +23,7 @@ class FileNode:
 				return child
 		return null
 
-# ============================================================================
 # VARIABLES
-# ============================================================================
 
 var root_directory: FileNode
 var current_directory: FileNode
@@ -40,9 +36,7 @@ var history_index: int = -1
 @onready var input_field = $MarginContainer/VBoxContainer/InputContainer/InputField
 @onready var prompt_label = $MarginContainer/VBoxContainer/InputContainer/PromptLabel
 
-# ============================================================================
 # INITIALIZATION
-# ============================================================================
 
 func _ready():
 	setup_file_system()
@@ -123,9 +117,7 @@ l` \\` `.`."`-..,-' j  /./ /, , / , / /l \\   \\=\\l   || `' || ||...
 
 	current_directory = user
 
-# ============================================================================
 # INPUT HANDLING
-# ============================================================================
 
 func _input(event):
 	if not accept_input:
@@ -203,9 +195,7 @@ func navigate_history(direction: int):
 	
 	input_field.caret_column = input_field.text.length()
 
-# ============================================================================
 # COMMAND PROCESSING
-# ============================================================================
 
 func process_command(command: String):
 	var parts = command.split(" ", false)
@@ -238,9 +228,7 @@ func process_command(command: String):
 		_:
 			print_to_terminal("Command not found: " + cmd)
 
-# ============================================================================
 # COMMAND IMPLEMENTATIONS
-# ============================================================================
 
 func cmd_help():
 	print_to_terminal("Available commands:")
@@ -441,9 +429,7 @@ func autocomplete_filename(partial: String, arg_index: int):
 	elif matches.size() > 1:
 		print_to_terminal(", ".join(matches))
 
-# ============================================================================
 # PATH RESOLUTION UTILITIES
-# ============================================================================
 
 func resolve_absolute_path(path: String) -> FileNode:
 	var clean_path = path.trim_prefix("/")
@@ -475,9 +461,7 @@ func get_file_by_path(path: String) -> FileNode:
 	
 	return current_directory.get_child_by_name(path)
 
-# ============================================================================
 # PUBLIC API (for other scripts)
-# ============================================================================
 
 func get_file_content(path: String) -> String:
 	var file = get_file_by_path(path)
@@ -503,9 +487,7 @@ func append_to_file(path: String, line: String) -> bool:
 		return true
 	return false
 
-# ============================================================================
 # UI UTILITIES
-# ============================================================================
 
 func update_prompt():
 	prompt_label.text = "user@terminal:~$ "
@@ -513,9 +495,7 @@ func update_prompt():
 func print_to_terminal(text: String):
 	output_label.text += text + "\n"
 
-# ============================================================================
 # BFT SYSTEM COMMANDS
-# ============================================================================
 
 func cmd_status():
 	"""Show current node and network status."""
