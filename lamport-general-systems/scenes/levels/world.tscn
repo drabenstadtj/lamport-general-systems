@@ -1,0 +1,128 @@
+[gd_scene load_steps=22 format=3 uid="uid://c4e8uihm4jkha"]
+
+[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/prefabs/player/player.tscn" id="1_7k8c1"]
+[ext_resource type="PackedScene" uid="uid://dr4rbdoq34kgr" path="res://scenes/prefabs/environment/door_interactable.tscn" id="2_lfyvx"]
+[ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/prefabs/environment/desk.tscn" id="3_lfyvx"]
+[ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/prefabs/network/terminal.tscn" id="4_0lift"]
+[ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/prefabs/network/server_rack.tscn" id="5_7xgas"]
+[ext_resource type="Script" uid="uid://b5dbyeybyr3m6" path="res://scripts/hardware/server_slot_config.gd" id="6_gy5pc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnsk1"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_rwgxs"]
+sky_material = SubResource("ProceduralSkyMaterial_nnsk1")
+
+[sub_resource type="Environment" id="Environment_4wyf3"]
+background_mode = 2
+sky = SubResource("Sky_rwgxs")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_nnsk1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rwgxs"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4wyf3"]
+width = 2000
+height = 2000
+noise = SubResource("FastNoiseLite_rwgxs")
+color_ramp = SubResource("Gradient_nnsk1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwgxs"]
+albedo_color = Color(0.40196836, 0.40196842, 0.40196836, 1)
+normal_enabled = true
+normal_scale = 0.3
+normal_texture = SubResource("NoiseTexture2D_4wyf3")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4wyf3"]
+size = Vector2(100, 100)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_nnsk1"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_rwgxs"]
+size = Vector3(10, 1, 4)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rwgxs"]
+data = PackedVector3Array(0, 0.5, 2, 5, -0.5, 2, -5, -0.5, 2, 0, 0.5, -2, -5, -0.5, -2, 5, -0.5, -2, 0, 0.5, 2, 0, 0.5, -2, 5, -0.5, 2, 0, 0.5, -2, 5, -0.5, -2, 5, -0.5, 2, 0, 0.5, -2, 0, 0.5, 2, -5, -0.5, -2, 0, 0.5, 2, -5, -0.5, 2, -5, -0.5, -2, -5, -0.5, 2, 5, -0.5, 2, -5, -0.5, -2, 5, -0.5, 2, 5, -0.5, -2, -5, -0.5, -2)
+
+[sub_resource type="PrismMesh" id="PrismMesh_4wyf3"]
+size = Vector3(10, 2, 4)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4wyf3"]
+data = PackedVector3Array(0, 1, 2, 5, -1, 2, -5, -1, 2, 0, 1, -2, -5, -1, -2, 5, -1, -2, 0, 1, 2, 0, 1, -2, 5, -1, 2, 0, 1, -2, 5, -1, -2, 5, -1, 2, 0, 1, -2, 0, 1, 2, -5, -1, -2, 0, 1, 2, -5, -1, 2, -5, -1, -2, -5, -1, 2, 5, -1, 2, -5, -1, -2, 5, -1, 2, 5, -1, -2, -5, -1, -2)
+
+[sub_resource type="Resource" id="Resource_0lift"]
+script = ExtResource("6_gy5pc")
+is_active_node = true
+node_id = 0
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_dp8al"]
+script = ExtResource("6_gy5pc")
+is_active_node = true
+node_id = 1
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4wyf3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+layers = 3
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_7k8c1")]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Ground" type="Node3D" parent="Environment"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Ground"]
+material_override = SubResource("StandardMaterial3D_rwgxs")
+mesh = SubResource("PlaneMesh_4wyf3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_nnsk1")
+
+[node name="Door" parent="Environment" instance=ExtResource("2_lfyvx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3000001, -2.9)
+
+[node name="Course" type="Node3D" parent="Environment"]
+
+[node name="Slope1" type="MeshInstance3D" parent="Environment/Course"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.5, 0)
+mesh = SubResource("PrismMesh_rwgxs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Course/Slope1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Course/Slope1/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_rwgxs")
+
+[node name="Slope2" type="MeshInstance3D" parent="Environment/Course"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 4)
+mesh = SubResource("PrismMesh_4wyf3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Course/Slope2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Course/Slope2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4wyf3")
+
+[node name="Desk0" parent="Environment" instance=ExtResource("3_lfyvx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.7728715, 1.3000001)
+
+[node name="Desk1" parent="Environment" instance=ExtResource("3_lfyvx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.7728715, -1.1)
+
+[node name="Terminal" parent="Environment/Desk1" instance=ExtResource("4_0lift")]
+transform = Transform3D(-0.1736482, 0, 0.9848077, 0, 1, 0, -0.9848077, 0, -0.1736482, -0.18665051, 0.100000024, 0)
+node_id = 0
+
+[node name="ServerRack" parent="." instance=ExtResource("5_7xgas")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.050440907, 3)
+server_configs = Array[ExtResource("6_gy5pc")]([SubResource("Resource_0lift"), SubResource("Resource_dp8al")])

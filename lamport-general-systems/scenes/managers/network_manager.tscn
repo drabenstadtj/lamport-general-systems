@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://tkf1ooq6b5sb"]
+
+[ext_resource type="Script" uid="uid://bb50fpm7g7d37" path="res://scripts/network/network_manager.gd" id="1_daels"]
+
+[node name="NetworkManager" type="Node"]
+script = ExtResource("1_daels")

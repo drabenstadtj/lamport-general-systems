@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4dsyw224bvxd"]
-
-[ext_resource type="Script" uid="uid://dxhmadldun422" path="res://genpalette.gd" id="1_gqxuv"]
-
-[node name="Node3D" type="Node3D"]
-script = ExtResource("1_gqxuv")
