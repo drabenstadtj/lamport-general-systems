@@ -1,0 +1,162 @@
+[gd_scene load_steps=18 format=3 uid="uid://dn3r4frxp2jh7"]
+
+[ext_resource type="Texture2D" uid="uid://btau5u2ro3u8a" path="res://textures/carpet_gray.JPG" id="1_yjjn1"]
+[ext_resource type="Texture2D" uid="uid://d3i3b6twi62dn" path="res://textures/wall_beige.jpg" id="2_bdnxh"]
+[ext_resource type="Texture2D" uid="uid://32dnexkxfn2p" path="res://textures/dropceiling.jpg" id="2_msxrg"]
+[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/prefabs/player/player.tscn" id="2_qg7s5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iag8j"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_0sd55"]
+sky_material = SubResource("ProceduralSkyMaterial_iag8j")
+
+[sub_resource type="Environment" id="Environment_yjjn1"]
+background_mode = 2
+sky = SubResource("Sky_0sd55")
+ambient_light_sky_contribution = 0.2
+ambient_light_energy = 0.2
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_iag8j"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yjjn1"]
+frequency = 0.3472
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qg7s5"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_yjjn1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjjn1"]
+albedo_texture = ExtResource("1_yjjn1")
+normal_enabled = true
+normal_scale = 0.09
+normal_texture = SubResource("NoiseTexture2D_qg7s5")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_msxrg"]
+material = SubResource("StandardMaterial3D_yjjn1")
+size = Vector2(8, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y87cy"]
+albedo_texture = ExtResource("2_msxrg")
+normal_scale = 0.02
+normal_texture = SubResource("NoiseTexture2D_qg7s5")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_annih"]
+material = SubResource("StandardMaterial3D_y87cy")
+size = Vector2(8, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdnxh"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.05
+
+[sub_resource type="QuadMesh" id="QuadMesh_msxrg"]
+material = SubResource("StandardMaterial3D_bdnxh")
+size = Vector2(0.98, 0.98)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msxrg"]
+albedo_texture = ExtResource("2_bdnxh")
+uv1_triplanar = true
+texture_filter = 0
+
+[node name="Demo" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yjjn1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+visible = false
+shadow_enabled = true
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Ground" type="Node3D" parent="Environment"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_iag8j")
+
+[node name="Geometry" type="Node3D" parent="Environment"]
+
+[node name="EntryRoom" type="Node3D" parent="Environment/Geometry"]
+
+[node name="Floor" type="Node3D" parent="Environment/Geometry/EntryRoom"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Floor"]
+mesh = SubResource("PlaneMesh_msxrg")
+
+[node name="Ceiling" type="Node3D" parent="Environment/Geometry/EntryRoom"]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 3.2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
+mesh = SubResource("PlaneMesh_annih")
+
+[node name="Light0" type="Node3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.0029997826, 1.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light0"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 1, 0, -1, -4.371138e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_msxrg")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light0"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0.205, 0)
+light_color = Color(0.92941177, 1, 0.96862745, 1)
+omni_range = 10.0
+
+[node name="Light1" type="Node3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.0029997826, 1.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light1"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 1, 0, -1, -4.371138e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_msxrg")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light1"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0.205, 0)
+light_color = Color(0.92941177, 1, 0.96862745, 1)
+omni_range = 10.0
+
+[node name="Light2" type="Node3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.0030002594, -1.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light2"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 1, 0, -1, -4.371138e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_msxrg")
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light2"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0.205, 0)
+light_color = Color(0.92941177, 1, 0.96862745, 1)
+omni_range = 10.0
+
+[node name="Light3" type="Node3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.0030002594, -1.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light3"]
+transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 1, 0, -1, -4.371138e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_msxrg")
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light3"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0.205, 0)
+light_color = Color(0.92941177, 1, 0.96862745, 1)
+omni_range = 10.0
+
+[node name="Walls" type="Node3D" parent="Environment/Geometry/EntryRoom"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/EntryRoom/Walls"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/Walls/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5999999, -3.5762787e-07)
+flip_faces = true
+size = Vector3(8, 3.4, 6)
+material = SubResource("StandardMaterial3D_msxrg")
+
+[node name="Player" parent="." instance=ExtResource("2_qg7s5")]
