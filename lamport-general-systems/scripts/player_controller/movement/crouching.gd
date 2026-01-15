@@ -2,10 +2,9 @@ extends State
 
 var anim_tree: AnimationTree
 var playback: AnimationNodeStateMachinePlayback
-var blend_position: Vector2 = Vector2.ZERO  # <-- ADD THIS
+var blend_position: Vector2 = Vector2.ZERO  
 
 func enter() -> void:
-	#print("Entering Crouching state")
 	player.crouch_down()
 	
 	if player.has_node("AnimationTree"):
@@ -15,7 +14,7 @@ func enter() -> void:
 	elif player.has_node("AnimationPlayer"):
 		player.get_node("AnimationPlayer").play("AnimationLibrary_Godot/Crouch_Idle")
 	
-	blend_position = Vector2.ZERO  # <-- ADD THIS
+	blend_position = Vector2.ZERO
 
 func exit() -> void:
 	if not player.check_ceiling():
@@ -33,11 +32,10 @@ func physics_update(delta: float) -> void:
 				get_parent().transition_to("Idle")
 			return
 	
-	# Update crouch animation with SMOOTHING
 	if anim_tree:
 		var target_blend = Vector2(input_dir.x, -input_dir.y)
-		# SMOOTH the blend position instead of setting directly
-		blend_position = blend_position.lerp(target_blend, 8.0 * delta)  # <-- CHANGE THIS LINE
+		# Smooth the blend position instead of setting directly
+		blend_position = blend_position.lerp(target_blend, 8.0 * delta)  
 		anim_tree.set("parameters/Crouching/blend_position", blend_position)
 	
 	# Handle movement

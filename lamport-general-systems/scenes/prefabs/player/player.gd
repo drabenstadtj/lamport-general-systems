@@ -38,7 +38,8 @@ extends CharacterBody3D
 @export var crouching_height: float = 0.75
 @export var crouch_shrinks_radius: bool = true
 @export var crouching_radius_scale: float = 0.7
-
+@export var sprint_grows_radius: bool = true
+@export var sprinting_radius_scale: float = 1.2
 var original_capsule_radius: float = 0.5
 
 @onready var state_machine: StateMachine = $StateMachine
@@ -356,6 +357,10 @@ func toggle_mouse_mode() -> void:
 
 func set_sprinting(sprinting: bool) -> void:
 	is_sprinting = sprinting
+	if sprinting:
+		grow_collision_radius()
+	else:
+		restore_collision_radius()
 
 func set_walking(walking: bool) -> void:
 	is_walking = walking
@@ -388,6 +393,22 @@ func stand_up() -> void:
 		capsule.height = standing_height
 		capsule.radius = original_capsule_radius
 		collision_shape.position.y = standing_height / 2.0
+
+func grow_collision_radius() -> void:
+	if not sprint_grows_radius:
+		return
+	
+	if collision_shape and collision_shape.shape is CapsuleShape3D:
+		var capsule = collision_shape.shape as CapsuleShape3D
+		capsule.radius = original_capsule_radius * sprinting_radius_scale
+
+func restore_collision_radius() -> void:
+	if collision_shape and collision_shape.shape is CapsuleShape3D:
+		var capsule = collision_shape.shape as CapsuleShape3D
+		if is_crouched and crouch_shrinks_radius:
+			capsule.radius = original_capsule_radius * crouching_radius_scale
+		else:
+			capsule.radius = original_capsule_radius
 
 func check_ceiling() -> bool:
 	var space_state = get_world_3d().direct_space_state
