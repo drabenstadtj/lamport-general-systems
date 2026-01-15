@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0qscqamxbx2b"]
+
+[ext_resource type="Script" uid="uid://nlvobqo8ucdd" path="res://scenes/prefabs/environment/sticky_note.gd" id="1_acemp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1raf2"]
+albedo_color = Color(1, 0.92156863, 0.6313726, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ik7w2"]
+material = SubResource("StandardMaterial3D_1raf2")
+size = Vector2(0.1, 0.1)
+
+[node name="StickyNote0" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_ik7w2")
+script = ExtResource("1_acemp")
