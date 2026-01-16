@@ -1,4 +1,4 @@
-@tool # This makes it update in the editor
+@tool
 extends MeshInstance3D
 
 @export var base_color: Color = Color(1.0, 1.0, 0.7):
@@ -20,6 +20,7 @@ extends MeshInstance3D
 	set(value):
 		note_size = value
 		update_mesh()
+		update_material()
 
 var shader_material: ShaderMaterial
 
@@ -29,8 +30,7 @@ func _ready():
 	update_material()
 
 func setup_mesh():
-	if mesh == null:
-		mesh = QuadMesh.new()
+	mesh = QuadMesh.new()
 	update_mesh()
 
 func update_mesh():
@@ -41,7 +41,7 @@ func setup_material():
 	var shader = load("res://resources/shaders/sticky_note.gdshader")
 	shader_material = ShaderMaterial.new()
 	shader_material.shader = shader
-	set_surface_override_material(0, shader_material)
+	material_override = shader_material
 
 func update_material():
 	if shader_material == null:
@@ -50,3 +50,19 @@ func update_material():
 	shader_material.set_shader_parameter("base_color", base_color)
 	shader_material.set_shader_parameter("text_decal", text_texture)
 	shader_material.set_shader_parameter("roughness_value", roughness)
+	
+	# Calculate aspect ratio correction to fit the note
+	if text_texture != null:
+		var tex_size = text_texture.get_size()
+		var tex_aspect = tex_size.x / tex_size.y
+		var quad_aspect = note_size.x / note_size.y
+		
+		var decal_scale = Vector2(1.0, 1.0)  
+		if tex_aspect > quad_aspect:
+			decal_scale.x = 1.0
+			decal_scale.y = quad_aspect / tex_aspect
+		else:
+			decal_scale.x = tex_aspect / quad_aspect
+			decal_scale.y = 1.0
+		
+		shader_material.set_shader_parameter("decal_scale", decal_scale)

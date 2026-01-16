@@ -1,4 +1,3 @@
-# power_button_interactable.gd
 extends Interactable
 class_name PowerButtonInteractable
 
@@ -23,8 +22,11 @@ func _on_interact(_player):
 		HUD.show_interaction_prompt(get_prompt())
 
 func _update_prompt():
-	if not server:
+	if not server or not server.is_active:
 		enabled = false
+		# Hide prompt immediately if this was the current interactable
+		if HUD:
+			HUD.hide_interaction_prompt()
 		return
 	
 	enabled = true

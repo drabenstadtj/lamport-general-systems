@@ -1,9 +1,32 @@
-[gd_scene load_steps=18 format=3 uid="uid://dn3r4frxp2jh7"]
+[gd_scene load_steps=64 format=3 uid="uid://dn3r4frxp2jh7"]
 
-[ext_resource type="Texture2D" uid="uid://btau5u2ro3u8a" path="res://textures/carpet_gray.JPG" id="1_yjjn1"]
-[ext_resource type="Texture2D" uid="uid://d3i3b6twi62dn" path="res://textures/wall_beige.jpg" id="2_bdnxh"]
-[ext_resource type="Texture2D" uid="uid://32dnexkxfn2p" path="res://textures/dropceiling.jpg" id="2_msxrg"]
+[ext_resource type="Material" uid="uid://12uta5da55h4" path="res://resources/materials/carpet_gray.tres" id="1_msxrg"]
+[ext_resource type="Material" uid="uid://dtq47vyyxhf5e" path="res://resources/materials/dropceiling.tres" id="2_msxrg"]
 [ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/prefabs/player/player.tscn" id="2_qg7s5"]
+[ext_resource type="Material" uid="uid://bih45r5gkqxtw" path="res://resources/materials/wall_beige.tres" id="3_msxrg"]
+[ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/prefabs/environment/dropceiling_light.tscn" id="3_y87cy"]
+[ext_resource type="Material" uid="uid://qicm7tcw3gqr" path="res://resources/materials/glass.tres" id="5_annih"]
+[ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/prefabs/environment/desk.tscn" id="5_msxrg"]
+[ext_resource type="PackedScene" uid="uid://d0qscqamxbx2b" path="res://scenes/prefabs/environment/sticky_note.tscn" id="6_s1pth"]
+[ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://resources/shaders/sticky_note.gdshader" id="7_7futf"]
+[ext_resource type="Texture2D" uid="uid://c1lokk4d6cc2t" path="res://textures/props/sticky_notes/sticky_test.png" id="8_pkgf1"]
+[ext_resource type="Texture2D" uid="uid://c6ao6vertpl60" path="res://textures/props/sticky_notes/logo3.png" id="8_w01ly"]
+[ext_resource type="Texture2D" uid="uid://64tpefe6dpx4" path="res://textures/props/sticky_notes/node2_crashing.png" id="9_cnq2v"]
+[ext_resource type="Texture2D" uid="uid://0dhorow2vmfo" path="res://textures/props/sticky_notes/security_office_label.png" id="9_dpkri"]
+[ext_resource type="PackedScene" uid="uid://36xplm2mhker" path="res://scenes/prefabs/environment/door.tscn" id="10_pkgf1"]
+[ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/prefabs/network/server_rack.tscn" id="11_7futf"]
+[ext_resource type="Script" uid="uid://b5dbyeybyr3m6" path="res://scripts/hardware/server_slot_config.gd" id="12_qc6mj"]
+[ext_resource type="Texture2D" uid="uid://vo2d8wb3g6s3" path="res://textures/props/sticky_notes/auth_pers_only.png" id="13_bdxja"]
+[ext_resource type="Texture2D" uid="uid://cvei6307hu83" path="res://textures/props/sticky_notes/byz_gen_prob.png" id="14_fcj2s"]
+[ext_resource type="Texture2D" uid="uid://d2mofhhoqtx3r" path="res://textures/props/sticky_notes/door_override.png" id="15_oxwlp"]
+[ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/prefabs/network/terminal.tscn" id="16_dwe0t"]
+[ext_resource type="Script" uid="uid://dw2txcbbbtijv" path="res://scenes/levels/demo_manager.gd" id="17_6u2t8"]
+[ext_resource type="Texture2D" uid="uid://bsbji6yt0jofr" path="res://textures/props/sticky_notes/node1_powered_down.png" id="17_s7bt4"]
+[ext_resource type="Texture2D" uid="uid://de8i8uxjin553" path="res://textures/props/sticky_notes/node0.png" id="18_vx4r5"]
+[ext_resource type="Texture2D" uid="uid://cqjesgulnu2y4" path="res://textures/props/sticky_notes/node1.png" id="19_cnq2v"]
+[ext_resource type="PackedScene" uid="uid://hdxokx00t3dj" path="res://scenes/managers/network_config.tscn" id="19_yyk5i"]
+[ext_resource type="Texture2D" uid="uid://1nkcwgb68lbu" path="res://textures/props/sticky_notes/node2.png" id="20_s7bt4"]
+[ext_resource type="Texture2D" uid="uid://cg7pbxd5xhbn4" path="res://textures/props/sticky_notes/node3.png" id="21_jifuf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iag8j"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -20,52 +43,182 @@ ambient_light_energy = 0.2
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_iag8j"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_yjjn1"]
-frequency = 0.3472
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qg7s5"]
-width = 1024
-height = 1024
-noise = SubResource("FastNoiseLite_yjjn1")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjjn1"]
-albedo_texture = ExtResource("1_yjjn1")
-normal_enabled = true
-normal_scale = 0.09
-normal_texture = SubResource("NoiseTexture2D_qg7s5")
-uv1_triplanar = true
-texture_filter = 0
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_msxrg"]
-material = SubResource("StandardMaterial3D_yjjn1")
-size = Vector2(8, 6)
+material = ExtResource("1_msxrg")
+size = Vector2(10, 6)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y87cy"]
-albedo_texture = ExtResource("2_msxrg")
-normal_scale = 0.02
-normal_texture = SubResource("NoiseTexture2D_qg7s5")
-uv1_triplanar = true
-texture_filter = 0
+[sub_resource type="PlaneMesh" id="PlaneMesh_w01ly"]
+material = ExtResource("2_msxrg")
+size = Vector2(10, 6)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_annih"]
-material = SubResource("StandardMaterial3D_y87cy")
-size = Vector2(8, 6)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bdxja"]
+data = PackedVector3Array(-4, -0.10000014, -3.0000005, -4, 1.1920929e-07, -1.1, -4, 2.1, -1.1, -4, -0.10000014, -3.0000005, -4, -0.10000014, 2.9999995, -4, 1.1920929e-07, -1.1, -4, -0.10000014, -3.0000005, 6, -0.10000014, -3.0000005, -4, -0.10000014, 2.9999995, -4, -0.10000014, -3.0000005, -4, 3.3, -3.0000005, 6, -0.10000014, -3.0000005, -4, -0.10000014, 2.9999995, -4, 1.1920929e-07, 1.1, -4, 1.1920929e-07, -1.1, -4, -0.10000014, 2.9999995, -1.11651, 1.1920929e-07, 2.9999995, -1.11651, 2.1, 2.9999995, -4, -0.10000014, 2.9999995, -4, 3.3, 2.9999995, -4, 1.1920929e-07, 1.1, -4, -0.10000014, 2.9999995, 6, -0.10000014, 2.9999995, -1.11651, 1.1920929e-07, 2.9999995, -4, -0.10000014, -3.0000005, -4, 2.1, -1.1, -4, 3.3, -3.0000005, -4, 3.3, -3.0000005, -4, 2.1, -1.1, -4, 2.1, 1.1, -4, 3.3, 2.9999995, -4, 2.1, 1.1, -4, 1.1920929e-07, 1.1, -4, -0.10000014, 2.9999995, -1.11651, 2.1, 2.9999995, -4, 3.3, 2.9999995, -4, 3.3, -3.0000005, -4, 2.1, 1.1, -4, 3.3, 2.9999995, -4, 3.3, -3.0000005, -4, 3.3, 2.9999995, 6, 3.3, 2.9999995, -4, 3.3, 2.9999995, -1.11651, 2.1, 2.9999995, 6, 3.3, 2.9999995, -4, -0.10000014, 2.9999995, 6, -0.10000014, -3.0000005, 6, -0.10000014, 2.9999995, 6, -0.10000014, 2.9999995, 1.08349, 1.1920929e-07, 2.9999995, -1.11651, 1.1920929e-07, 2.9999995, 6, -0.10000014, -3.0000005, 6, 3.3, 2.9999995, 6, -0.10000014, 2.9999995, 6, -0.10000014, 2.9999995, 6, 3.3, 2.9999995, 1.08349, 1.1920929e-07, 2.9999995, -4, 3.3, -3.0000005, 6, 3.3, -3.0000005, 6, -0.10000014, -3.0000005, -4, 3.3, -3.0000005, 6, 3.3, 2.9999995, 6, 3.3, -3.0000005, 6, -0.10000014, -3.0000005, 6, 3.3, -3.0000005, 6, 3.3, 2.9999995, 6, 3.3, 2.9999995, 1.08349, 2.1, 2.9999995, 1.08349, 1.1920929e-07, 2.9999995, 6, 3.3, 2.9999995, -1.11651, 2.1, 2.9999995, 1.08349, 2.1, 2.9999995, -3.985874, 1.1920929e-07, -1.1, -3.985874, 1.1920929e-07, 1.1, -4, 1.1920929e-07, -1.1, -3.985874, 1.1920929e-07, -1.1, -4, 1.1920929e-07, -1.1, -4, 2.1, -1.1, -3.985874, 1.1920929e-07, -1.1, -4, 2.1, -1.1, -3.985874, 2.1, -1.1, -3.985874, 1.1920929e-07, -1.1, -3.985874, 2.1, -1.1, -3.985874, 2.1, 1.1, -3.985874, 1.1920929e-07, 1.1, -4, 1.1920929e-07, 1.1, -4, 1.1920929e-07, -1.1, -3.985874, 1.1920929e-07, -1.1, -3.985874, 2.1, 1.1, -3.985874, 1.1920929e-07, 1.1, -3.985874, 1.1920929e-07, 1.1, -3.985874, 2.1, 1.1, -4, 1.1920929e-07, 1.1, -3.985874, 2.1, 1.1, -4, 2.1, 1.1, -4, 1.1920929e-07, 1.1, -3.985874, 2.1, -1.1, -4, 2.1, -1.1, -4, 2.1, 1.1, -3.985874, 2.1, -1.1, -4, 2.1, 1.1, -3.985874, 2.1, 1.1, -1.11651, 1.1920929e-07, 2.9831727, 1.08349, 1.1920929e-07, 2.9831727, -1.11651, 1.1920929e-07, 2.9999995, -1.11651, 1.1920929e-07, 2.9831727, -1.11651, 1.1920929e-07, 2.9999995, -1.11651, 2.1, 2.9999995, 1.08349, 1.1920929e-07, 2.9831727, 1.08349, 1.1920929e-07, 2.9999995, -1.11651, 1.1920929e-07, 2.9999995, -1.11651, 1.1920929e-07, 2.9831727, 1.08349, 2.1, 2.9831727, 1.08349, 1.1920929e-07, 2.9831727, -1.11651, 1.1920929e-07, 2.9831727, -1.11651, 2.1, 2.9999995, -1.11651, 2.1, 2.9831727, -1.11651, 1.1920929e-07, 2.9831727, -1.11651, 2.1, 2.9831727, 1.08349, 2.1, 2.9831727, -1.11651, 2.1, 2.9831727, -1.11651, 2.1, 2.9999995, 1.08349, 2.1, 2.9999995, -1.11651, 2.1, 2.9831727, 1.08349, 2.1, 2.9999995, 1.08349, 2.1, 2.9831727, 1.08349, 1.1920929e-07, 2.9831727, 1.08349, 2.1, 2.9831727, 1.08349, 1.1920929e-07, 2.9999995, 1.08349, 2.1, 2.9831727, 1.08349, 2.1, 2.9999995, 1.08349, 1.1920929e-07, 2.9999995)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdnxh"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 2.05
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s7bt4"]
+render_priority = 0
+shader = ExtResource("7_7futf")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/text_decal = ExtResource("8_w01ly")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(0.9322717, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_msxrg"]
-material = SubResource("StandardMaterial3D_bdnxh")
-size = Vector2(0.98, 0.98)
+[sub_resource type="QuadMesh" id="QuadMesh_jifuf"]
+size = Vector2(3.28, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msxrg"]
-albedo_texture = ExtResource("2_bdnxh")
-uv1_triplanar = true
-texture_filter = 0
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_w01ly"]
+data = PackedVector3Array(2.9, 1, -1.4, 2.9, 1, -1.3999999, 2.9, 1, 1.8000001, 2.9, 1, -1.3999999, 2.9, 1, -0.5999998, 2.9, 1, 1.8000001, 2.9, 0, -1.4, 3.1, 0, -1.4, 2.9, 1, -1.4, 2.9, 1, -1.4, 3.1, 1, -1.4, 2.9, 1, -1.3999999, 2.9, 0, -1.4, 2.9, 1, -1.4, 2.9, 0, 3, 2.9, 1, -1.4, 2.9, 1, 1.8000001, 2.9, 0, 3, 2.9, 0, 3, 2.9, 1, 1.8000001, 2.9, 1, 3, 2.9, 0, -1.4, 2.9, 0, 3, 3.1, 0, -1.4, 2.9, 0, 3, 2.9, 1, 3, 3.1, 1, 3, 3.1, 1, 1.8000001, 2.9, 1, 1.8000001, 2.9, 1, -0.5999998, 2.9, 1, -1.4, 3.1, 0, -1.4, 3.1, 1, -1.4, 2.9, 1, -1.3999999, 3.1, 1, -1.4, 3.1, 1, -1.3999999, 3.1, 1, -1.4, 3.1, 0, -1.4, 3.1, 1, -0.5999998, 3.1, 1, -0.5999998, 3.1, 0, -1.4, 3.1, 1, 1.8000001, 3.1, 1, -1.4, 3.1, 1, -0.5999998, 3.1, 1, -1.3999999, 2.9, 0, 3, 3.1, 0, 3, 3.1, 0, -1.4, 2.9, 0, 3, 3.1, 1, 3, 3.1, 0, 3, 3.1, 1, 1.8000001, 2.9, 1, -0.5999998, 3.1, 1, -0.5999998, 3.1, 0, -1.4, 3.1, 1, 3, 3.1, 1, 1.8000001, 3.1, 0, -1.4, 3.1, 0, 3, 3.1, 1, 3, 2.9, 2.1999998, 3, 2.9, 1, 3, 2.9, 1, 1.8000001, 2.9, 2.1999998, 1.8000001, 2.9, 1, 1.8000001, 3.1, 1, 1.8000001, 2.9, 2.1999998, 1.8000001, 2.9, 2.1999998, 3, 2.9, 1, 1.8000001, 2.9, 2.1999998, 3, 3.1, 2.1999998, 3, 2.9, 1, 3, 2.9, 2.1999998, 1.8000001, 3.1, 2.1999998, 3, 2.9, 2.1999998, 3, 3.1, 2.1999998, 3, 3.1, 1, 3, 2.9, 1, 3, 3.1, 2.1999998, 1.8000001, 3.1, 1, 1.8000001, 3.1, 1, 3, 2.9, 2.1999998, 1.8000001, 3.1, 1, 1.8000001, 3.1, 2.1999998, 1.8000001, 2.9, 2.1999998, 1.8000001, 3.1, 2.1999998, 1.8000001, 3.1, 2.1999998, 3, 3.1, 2.1999998, 1.8000001, 3.1, 1, 3, 3.1, 2.1999998, 3, 2.9, 2.1999998, -0.5999998, 2.9, 1, -0.5999998, 2.9, 1, -1.3999999, 2.9, 2.1999998, -1.3999999, 2.9, 1, -1.3999999, 3.1, 1, -1.3999999, 2.9, 2.1999998, -1.3999999, 2.9, 2.1999998, -0.5999998, 2.9, 1, -1.3999999, 2.9, 2.1999998, -0.5999998, 3.1, 2.1999998, -0.5999998, 2.9, 1, -0.5999998, 2.9, 2.1999998, -1.3999999, 3.1, 2.1999998, -0.5999998, 2.9, 2.1999998, -0.5999998, 3.1, 2.1999998, -0.5999998, 3.1, 1, -0.5999998, 2.9, 1, -0.5999998, 3.1, 2.1999998, -1.3999999, 3.1, 1, -1.3999999, 3.1, 1, -0.5999998, 2.9, 2.1999998, -1.3999999, 3.1, 1, -1.3999999, 3.1, 2.1999998, -1.3999999, 2.9, 2.1999998, -1.3999999, 3.1, 2.1999998, -1.3999999, 3.1, 2.1999998, -0.5999998, 3.1, 2.1999998, -1.3999999, 3.1, 1, -0.5999998, 3.1, 2.1999998, -0.5999998, 2.9, -2.3841858e-07, -3.052622, 2.9, 2.1999998, -3.052622, 2.9, -2.3841858e-07, -2.752622, 2.9, -2.3841858e-07, -2.752622, 2.9, 2.1999998, -3.052622, 2.9, 2.1999998, -2.752622, 2.9, -2.3841858e-07, -3.052622, 2.9, -2.3841858e-07, -2.752622, 3.1, -2.3841858e-07, -3.052622, 2.9, -2.3841858e-07, -3.052622, 3.1, -2.3841858e-07, -3.052622, 2.9, 2.1999998, -3.052622, 2.9, -2.3841858e-07, -2.752622, 2.9, 2.1999998, -2.752622, 3.1, 2.1999998, -2.752622, 2.9, 2.1999998, -3.052622, 3.1, 2.1999998, -2.752622, 2.9, 2.1999998, -2.752622, 2.9, -2.3841858e-07, -2.752622, 3.1, -2.3841858e-07, -2.752622, 3.1, -2.3841858e-07, -3.052622, 2.9, -2.3841858e-07, -2.752622, 3.1, 2.1999998, -2.752622, 3.1, -2.3841858e-07, -2.752622, 2.9, 2.1999998, -3.052622, 3.1, -2.3841858e-07, -3.052622, 3.1, 2.1999998, -3.052622, 3.1, -2.3841858e-07, -3.052622, 3.1, -2.3841858e-07, -2.752622, 3.1, 2.1999998, -2.752622, 3.1, -2.3841858e-07, -3.052622, 3.1, 2.1999998, -2.752622, 3.1, 2.1999998, -3.052622, 2.9, 2.1999998, -3.052622, 3.1, 2.1999998, -3.052622, 3.1, 2.1999998, -2.752622, 2.9, 2.2, -2.9999998, 2.9, 3.3, -2.9999998, 2.9, 2.2, 3.0000002, 2.9, 2.2, -2.9999998, 2.9, 2.2, 3.0000002, 3.1, 2.2, -2.9999998, 2.9, 2.2, -2.9999998, 3.1, 2.2, -2.9999998, 2.9, 3.3, -2.9999998, 2.9, 3.3, -2.9999998, 2.9, 3.3, 3.0000002, 2.9, 2.2, 3.0000002, 2.9, 3.3, -2.9999998, 3.1, 3.3, 3.0000002, 2.9, 3.3, 3.0000002, 2.9, 2.2, 3.0000002, 2.9, 3.3, 3.0000002, 3.1, 3.3, 3.0000002, 2.9, 3.3, -2.9999998, 3.1, 2.2, -2.9999998, 3.1, 3.3, -2.9999998, 2.9, 3.3, -2.9999998, 3.1, 3.3, -2.9999998, 3.1, 3.3, 3.0000002, 3.1, 2.2, -2.9999998, 3.1, 3.3, 3.0000002, 3.1, 3.3, -2.9999998, 2.9, 2.2, 3.0000002, 3.1, 2.2, 3.0000002, 3.1, 2.2, -2.9999998, 2.9, 2.2, 3.0000002, 3.1, 3.3, 3.0000002, 3.1, 2.2, 3.0000002, 3.1, 2.2, -2.9999998, 3.1, 2.2, 3.0000002, 3.1, 3.3, 3.0000002)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ewbg4"]
+render_priority = 0
+shader = ExtResource("7_7futf")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/text_decal = ExtResource("9_cnq2v")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_tqei0"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdxja"]
+render_priority = 0
+shader = ExtResource("7_7futf")
+shader_parameter/base_color = Color(1, 0.39215687, 0, 1)
+shader_parameter/text_decal = ExtResource("8_pkgf1")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_prc7k"]
+render_priority = 0
+shader = ExtResource("7_7futf")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/text_decal = ExtResource("9_dpkri")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(0.72727275, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_23njw"]
+size = Vector2(0.275, 0.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_joyyg"]
+render_priority = 0
+shader = ExtResource("7_7futf")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/text_decal = ExtResource("13_bdxja")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(0.9649123, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_dcw3b"]
+size = Vector2(0.285, 0.275)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_150yn"]
+render_priority = 0
+shader = ExtResource("7_7futf")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/text_decal = ExtResource("14_fcj2s")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 0.941792)
+
+[sub_resource type="QuadMesh" id="QuadMesh_vyhv0"]
+size = Vector2(0.283, 0.435)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hfkr4"]
+render_priority = 0
+shader = ExtResource("7_7futf")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/text_decal = ExtResource("15_oxwlp")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 0.9781085)
+
+[sub_resource type="QuadMesh" id="QuadMesh_8wy75"]
+size = Vector2(0.21, 0.279)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lec6t"]
+render_priority = 0
+shader = ExtResource("7_7futf")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/text_decal = ExtResource("17_s7bt4")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 0.58903086)
+
+[sub_resource type="QuadMesh" id="QuadMesh_lvral"]
+size = Vector2(0.239, 0.299)
+
+[sub_resource type="Resource" id="Resource_pkgf1"]
+script = ExtResource("12_qc6mj")
+slot_index = 2
+is_active_node = true
+node_id = 0
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_dpkri"]
+script = ExtResource("12_qc6mj")
+slot_index = 3
+is_active_node = true
+node_id = 1
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_w01ly"]
+script = ExtResource("12_qc6mj")
+slot_index = 4
+is_active_node = true
+node_id = 2
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_bdxja"]
+script = ExtResource("12_qc6mj")
+slot_index = 7
+is_active_node = true
+node_id = 3
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_6u2t8"]
+script = ExtResource("12_qc6mj")
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmum2"]
+render_priority = 0
+shader = ExtResource("7_7futf")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/text_decal = ExtResource("18_vx4r5")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_4pbvs"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_llnp7"]
+render_priority = 0
+shader = ExtResource("7_7futf")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/text_decal = ExtResource("19_cnq2v")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ea7rt"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_no53j"]
+render_priority = 0
+shader = ExtResource("7_7futf")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/text_decal = ExtResource("20_s7bt4")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_60ll8"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_niqx4"]
+render_priority = 0
+shader = ExtResource("7_7futf")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/text_decal = ExtResource("21_jifuf")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_t0572"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_iag8j"]
 
 [node name="Demo" type="Node3D"]
 
@@ -73,18 +226,11 @@ texture_filter = 0
 environment = SubResource("Environment_yjjn1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(0.5732233, 0.81694186, -0.06341323, 0.35355344, -0.1767767, 0.91855866, 0.7391989, -0.5489591, -0.39016506, 0, 5.6000004, 0)
 visible = false
 shadow_enabled = true
 
 [node name="Environment" type="Node3D" parent="."]
-
-[node name="Ground" type="Node3D" parent="Environment"]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/StaticBody3D"]
-shape = SubResource("WorldBoundaryShape3D_iag8j")
 
 [node name="Geometry" type="Node3D" parent="Environment"]
 
@@ -93,70 +239,368 @@ shape = SubResource("WorldBoundaryShape3D_iag8j")
 [node name="Floor" type="Node3D" parent="Environment/Geometry/EntryRoom"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 mesh = SubResource("PlaneMesh_msxrg")
 
 [node name="Ceiling" type="Node3D" parent="Environment/Geometry/EntryRoom"]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 3.2, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
-mesh = SubResource("PlaneMesh_annih")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("PlaneMesh_w01ly")
 
-[node name="Light0" type="Node3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 1, -0.0938468, -8.204353e-09)
+mesh = SubResource("PlaneMesh_w01ly")
+
+[node name="Light0" parent="Environment/Geometry/EntryRoom/Ceiling" instance=ExtResource("3_y87cy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.0029997826, 1.5)
+light_energy = 0.5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light0"]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 1, 0, -1, -4.371138e-08, 0, 0, 0)
-mesh = SubResource("QuadMesh_msxrg")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light0"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0.205, 0)
-light_color = Color(0.92941177, 1, 0.96862745, 1)
-omni_range = 10.0
-
-[node name="Light1" type="Node3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.0029997826, 1.5)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light1"]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 1, 0, -1, -4.371138e-08, 0, 0, 0)
-mesh = SubResource("QuadMesh_msxrg")
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light1"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0.205, 0)
-light_color = Color(0.92941177, 1, 0.96862745, 1)
-omni_range = 10.0
-
-[node name="Light2" type="Node3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.0030002594, -1.5)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light2"]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 1, 0, -1, -4.371138e-08, 0, 0, 0)
-mesh = SubResource("QuadMesh_msxrg")
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light2"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0.205, 0)
-light_color = Color(0.92941177, 1, 0.96862745, 1)
-omni_range = 10.0
-
-[node name="Light3" type="Node3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
+[node name="Light1" parent="Environment/Geometry/EntryRoom/Ceiling" instance=ExtResource("3_y87cy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.0030002594, -1.5)
+light_energy = 0.5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light3"]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 1, 0, -1, -4.371138e-08, 0, 0, 0)
-mesh = SubResource("QuadMesh_msxrg")
+[node name="Light2" parent="Environment/Geometry/EntryRoom/Ceiling" instance=ExtResource("3_y87cy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.0030002594, -1.5)
+light_energy = 0.5
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="Environment/Geometry/EntryRoom/Ceiling/Light3"]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0.205, 0)
-light_color = Color(0.92941177, 1, 0.96862745, 1)
-omni_range = 10.0
+[node name="Light3" parent="Environment/Geometry/EntryRoom/Ceiling" instance=ExtResource("3_y87cy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.0029997826, 1.5)
+light_energy = 0.5
 
 [node name="Walls" type="Node3D" parent="Environment/Geometry/EntryRoom"]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/EntryRoom/Walls"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/Walls/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5999999, -3.5762787e-07)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5999999, -3.5762787e-07)
 flip_faces = true
-size = Vector3(8, 3.4, 6)
-material = SubResource("StandardMaterial3D_msxrg")
+size = Vector3(10, 3.4, 6)
+material = ExtResource("3_msxrg")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/Walls/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0027013, 1.0500001, 0)
+operation = 2
+size = Vector3(0.03365478, 2.1, 2.2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/Walls/CSGCombiner3D"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.01651001, 1.0500001, 3)
+operation = 2
+size = Vector3(0.03365478, 2.1, 2.2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Geometry/EntryRoom/Walls"]
+
+[node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="Environment/Geometry/EntryRoom/Walls/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_bdxja")
+
+[node name="GlassDoor" type="Node3D" parent="Environment/Geometry/EntryRoom"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/EntryRoom/GlassDoor"]
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9999998, 2.1000001, 0)
+size = Vector3(0.25, 0.1, 2.2)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9999998, -0.04667247, 0)
+size = Vector3(0.25, 0.1, 2.2)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0249996, 2, -0.024938941)
+size = Vector3(0.1, 0.1, 2.1501222)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0249996, 0, -0.027880788)
+size = Vector3(0.1, 0.1, 2.1442385)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9999998, 0.90000004, 1.1)
+size = Vector3(0.25, 2.5, 0.1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9999998, 0.90000004, -1.1)
+size = Vector3(0.25, 2.5, 0.1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0249996, 0.95, 0.051)
+size = Vector3(0.1, 2, 0.1)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0249996, 0.95, -0.051)
+size = Vector3(0.1, 2, 0.1)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0250006, 0.9500001, 1)
+size = Vector3(0.1, 2, 0.1)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0250006, 0.9500001, -1)
+size = Vector3(0.1, 2, 0.1)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0250006, 1.0000001, -5.9604645e-08)
+size = Vector3(0.01, 1.9, 1.9)
+material = ExtResource("5_annih")
+
+[node name="FacilityDoor" type="Node3D" parent="Environment/Geometry/EntryRoom"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/EntryRoom/FacilityDoor"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 3)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1000001, 0)
+size = Vector3(0.25, 0.1, 2.2)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.073138, 2.225293, -0.012939318)
+size = Vector3(0.25, 0.15058593, 2.4764647)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04667247, 0)
+size = Vector3(0.25, 0.1, 2.2)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000095, 2, -0.024938941)
+size = Vector3(0.1, 0.1, 2.1501222)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000095, 0, -0.027880788)
+size = Vector3(0.1, 0.1, 2.1442385)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90000004, 1.1)
+size = Vector3(0.25, 2.5, 0.1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90000004, -1.1)
+size = Vector3(0.25, 2.5, 0.1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000095, 0.95, 0.051)
+size = Vector3(0.1, 2, 0.1)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000095, 0.95, -0.051)
+size = Vector3(0.1, 2, 0.1)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000572, 0.9500001, 1)
+size = Vector3(0.1, 2, 0.1)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000572, 0.9500001, -1)
+size = Vector3(0.1, 2, 0.1)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000572, 1.0000001, -5.9604645e-08)
+size = Vector3(0.01, 1.9, 1.9)
+material = ExtResource("5_annih")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+transform = Transform3D(1, 4.371139e-08, 4.371139e-08, -4.371139e-08, -4.371139e-08, 1, 4.371139e-08, -1, -4.3711385e-08, 0, 2.3, -0.012500167)
+radius = 0.2
+height = 2.4750001
+
+[node name="Props" type="Node3D" parent="Environment/Geometry/EntryRoom"]
+
+[node name="StickyNote0" parent="Environment/Geometry/EntryRoom/Props" instance=ExtResource("6_s1pth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.7, -2.9303522)
+material_override = SubResource("ShaderMaterial_s7bt4")
+mesh = SubResource("QuadMesh_jifuf")
+skeleton = NodePath("../..")
+base_color = Color(1, 1, 1, 1)
+text_texture = ExtResource("8_w01ly")
+note_size = Vector2(3.28, 1)
+
+[node name="SecurityOffice" type="Node3D" parent="Environment/Geometry"]
+
+[node name="Walls" type="Node3D" parent="Environment/Geometry/SecurityOffice"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/SecurityOffice/Walls"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.8000001)
+size = Vector3(0.2, 1, 4.4)
+material = ExtResource("3_msxrg")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5999999, 2.4)
+size = Vector3(0.2, 1.2, 1.2)
+material = ExtResource("3_msxrg")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5999999, -0.9999998)
+size = Vector3(0.2, 1.2, 0.8)
+material = ExtResource("3_msxrg")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.0999998, -2.902622)
+size = Vector3(0.2, 2.2, 0.3)
+material = ExtResource("3_msxrg")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.75, 2.9802322e-07)
+size = Vector3(0.2, 1.1, 6)
+material = ExtResource("3_msxrg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Geometry/SecurityOffice/Walls"]
+
+[node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="Environment/Geometry/SecurityOffice/Walls/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_w01ly")
+
+[node name="Ledge" type="Node3D" parent="Environment/Geometry/SecurityOffice/Walls"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/Ledge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999998, 0.9515634, 0.6)
+size = Vector3(0.4, 0.1, 2.6000001)
+
+[node name="DoorMolding" type="Node3D" parent="Environment/Geometry/SecurityOffice/Walls"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/SecurityOffice/Walls/DoorMolding"]
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/DoorMolding/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999998, 2.248898, -2.1000001)
+size = Vector3(0.25, 0.1, 1.2)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/DoorMolding/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999998, 1.1488978, -2.7493503)
+size = Vector3(0.25, 2.3, 0.1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/DoorMolding/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999998, 1.1488978, -1.4511218)
+size = Vector3(0.25, 2.3, 0.1)
+
+[node name="Window" type="Node3D" parent="Environment/Geometry/SecurityOffice"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/SecurityOffice/Window"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Window/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.7, 0.6)
+size = Vector3(0.01, 1.4, 2.4)
+material = ExtResource("5_annih")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Geometry/SecurityOffice/Window/CSGCombiner3D/CSGBox3D"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.025000095, -0.70000005, 0)
+operation = 2
+radius = 0.3
+height = 0.15
+sides = 16
+
+[node name="Light0" parent="Environment/Geometry/SecurityOffice" instance=ExtResource("3_y87cy")]
+transform = Transform3D(-1, -8.940697e-08, 0, 8.940697e-08, -1, 0, 0, 0, 1, 4.5, 3.1984384, 1.5)
+light_energy = 0.25
+
+[node name="Light1" parent="Environment/Geometry/SecurityOffice" instance=ExtResource("3_y87cy")]
+transform = Transform3D(-1, -8.940697e-08, 0, 8.940697e-08, -1, 0, 0, 0, 1, 4.5, 3.1984384, -1.5000002)
+light_energy = 0.25
+
+[node name="Props" type="Node3D" parent="Environment/Geometry/SecurityOffice"]
+
+[node name="StickyNote0" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("6_s1pth")]
+transform = Transform3D(-0.029550858, -0.33358452, 0.942257, 0.11393536, 0.93540055, 0.33473045, -0.9930486, 0.117247924, 0.010365173, 3.461563, 0.86881185, 0.79999995)
+material_override = SubResource("ShaderMaterial_ewbg4")
+mesh = SubResource("QuadMesh_tqei0")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_bdxja")
+text_texture = ExtResource("9_cnq2v")
+
+[node name="StickyNote2" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("6_s1pth")]
+transform = Transform3D(0.026176993, 0, -0.9996573, 0, 0.99999994, 0, 0.9996573, 0, 0.026176993, 2.8910677, 1.5429302, -1.0162332)
+material_override = SubResource("ShaderMaterial_prc7k")
+mesh = SubResource("QuadMesh_23njw")
+skeleton = NodePath("")
+base_color = Color(1, 1, 1, 1)
+text_texture = ExtResource("9_dpkri")
+note_size = Vector2(0.275, 0.2)
+
+[node name="Desk" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("5_msxrg")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.6, 0.77171713, 1.0999999)
+
+[node name="Desk2" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("5_msxrg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.0595927, 0.77171713, 2.5)
+
+[node name="Door" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("10_pkgf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9900806, 1.0999504, -2.079081)
+
+[node name="StickyNote0" parent="Environment/Geometry/SecurityOffice/Props/Door" instance=ExtResource("6_s1pth")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.09579539, 0.16638398, 1.0651842)
+material_override = SubResource("ShaderMaterial_joyyg")
+mesh = SubResource("QuadMesh_dcw3b")
+base_color = Color(1, 1, 1, 1)
+text_texture = ExtResource("13_bdxja")
+note_size = Vector2(0.285, 0.275)
+
+[node name="StickyNote1" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("6_s1pth")]
+transform = Transform3D(0.258819, -0.9659258, -4.222196e-08, 0, -4.371139e-08, 1, -0.9659258, -0.258819, -1.1313338e-08, 3.7, 0.7938087, 1.5840203)
+material_override = SubResource("ShaderMaterial_150yn")
+mesh = SubResource("QuadMesh_vyhv0")
+base_color = Color(1, 1, 1, 1)
+text_texture = ExtResource("14_fcj2s")
+note_size = Vector2(0.283, 0.435)
+
+[node name="StickyNote3" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("6_s1pth")]
+transform = Transform3D(0.10981625, -1.2552053, -5.486676e-08, 0, -5.5076345e-08, 1.2599999, -1.2552053, -0.10981625, -4.800219e-09, 3.8707411, 0.8, 0.4)
+material_override = SubResource("ShaderMaterial_hfkr4")
+mesh = SubResource("QuadMesh_8wy75")
+base_color = Color(1, 1, 1, 1)
+text_texture = ExtResource("15_oxwlp")
+note_size = Vector2(0.21, 0.279)
+
+[node name="StickyNote4" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("6_s1pth")]
+transform = Transform3D(-0.9659258, 0.25881913, 1.1313344e-08, 0, -4.371139e-08, 1, 0.25881913, 0.9659258, 4.222196e-08, 4.8, 0.79999995, 2.2363296)
+material_override = SubResource("ShaderMaterial_lec6t")
+mesh = SubResource("QuadMesh_lvral")
+base_color = Color(1, 1, 1, 1)
+text_texture = ExtResource("17_s7bt4")
+note_size = Vector2(0.239, 0.299)
+
+[node name="Network" type="Node3D" parent="Environment/Geometry/SecurityOffice"]
+
+[node name="ServerRack" parent="Environment/Geometry/SecurityOffice/Network" instance=ExtResource("11_7futf")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.5, 0.1, 2.4)
+server_configs = Array[ExtResource("12_qc6mj")]([SubResource("Resource_pkgf1"), SubResource("Resource_dpkri"), SubResource("Resource_w01ly"), SubResource("Resource_bdxja"), SubResource("Resource_6u2t8")])
+
+[node name="StickyNote0" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" instance=ExtResource("6_s1pth")]
+transform = Transform3D(0.087155804, 3.737493e-09, 0.9961947, -0.0851785, 0.99633783, 0.0074521545, -0.9925465, -0.08550387, 0.08683662, 0.29999995, 1.4779817, -0.3216052)
+material_override = SubResource("ShaderMaterial_wmum2")
+mesh = SubResource("QuadMesh_4pbvs")
+text_texture = ExtResource("18_vx4r5")
+
+[node name="StickyNote1" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" instance=ExtResource("6_s1pth")]
+transform = Transform3D(0.09668139, -0.13789977, 0.98571616, -0.062163234, 0.98758554, 0.14425842, -0.9933724, -0.07522238, 0.08690887, 0.29999995, 0.9048171, -0.3216052)
+material_override = SubResource("ShaderMaterial_llnp7")
+mesh = SubResource("QuadMesh_ea7rt")
+text_texture = ExtResource("19_cnq2v")
+
+[node name="StickyNote2" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" instance=ExtResource("6_s1pth")]
+transform = Transform3D(0.09668139, -0.13789977, 0.98571616, 0.14840916, 0.98128176, 0.122723095, -0.9841889, 0.13442425, 0.11533729, 0.30650306, 0.74525833, -0.3216052)
+material_override = SubResource("ShaderMaterial_no53j")
+mesh = SubResource("QuadMesh_60ll8")
+text_texture = ExtResource("20_s7bt4")
+
+[node name="StickyNote3" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" instance=ExtResource("6_s1pth")]
+transform = Transform3D(0.0966814, -0.13789977, 0.98571616, -0.0023413897, 0.9903214, 0.13877368, -0.9953128, -0.015724784, 0.09542279, 0.30650306, 0.5732225, -0.3216052)
+material_override = SubResource("ShaderMaterial_niqx4")
+mesh = SubResource("QuadMesh_t0572")
+text_texture = ExtResource("21_jifuf")
+
+[node name="Terminal" parent="Environment/Geometry/SecurityOffice/Network" instance=ExtResource("16_dwe0t")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.4, 0.8769578, 1)
+
+[node name="Terminal2" parent="Environment/Geometry/SecurityOffice/Network" instance=ExtResource("16_dwe0t")]
+transform = Transform3D(-0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, -0.9659258, 4.4, 0.8769578, 2.7)
+
+[node name="Ground" type="Node3D" parent="Environment/Geometry"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Geometry/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Geometry/Ground/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_iag8j")
 
 [node name="Player" parent="." instance=ExtResource("2_qg7s5")]
+
+[node name="DemoManager" type="Node3D" parent="."]
+script = ExtResource("17_6u2t8")
+
+[node name="NetworkConfig" parent="." instance=ExtResource("19_yyk5i")]

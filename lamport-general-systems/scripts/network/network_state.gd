@@ -7,21 +7,29 @@ var f: int  # Fault tolerance parameter
 var security_lockdown: bool = false
 var defense_timer: int = 0
 
-func _init(f_value: int):
+func _init(f_value: int, num_total_nodes: int = -1):
 	f = f_value
 	current_level = Enums.SecurityLevel.NORMAL
-	initialize_nodes()
+	
+	# Calculate node count
+	var node_count = num_total_nodes if num_total_nodes > 0 else (3 * f + 1)
+	initialize_nodes(node_count)
 
-func initialize_nodes():
-	# Create 2f+1 nodes (for f=1, that's 3 nodes)
-	for i in range(3 * f + 1):
+func initialize_nodes(count: int):
+	var min_required = 3 * f + 1
+	
+	for i in range(count):
 		var node = NetworkNode.new(i)
-		# Start some crashed for puzzle (nodes beyond f start crashed)
-		if i > f:
+		
+		if i >= min_required:
 			node.state = Enums.NodeState.CRASHED
+		else:
+			node.state = Enums.NodeState.HEALTHY
+		
 		nodes.append(node)
-	print("Created %d nodes (f=%d)" % [nodes.size(), f])
-
+	
+	print("Created %d nodes (f=%d, healthy=%d, crashed=%d)" % [nodes.size(), f, min_required, max(0, nodes.size() - min_required)])
+	
 func get_node(node_id: int) -> NetworkNode:
 	if node_id >= 0 and node_id < nodes.size():
 		return nodes[node_id]

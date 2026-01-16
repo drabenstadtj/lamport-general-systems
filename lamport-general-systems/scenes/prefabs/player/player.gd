@@ -20,6 +20,7 @@ extends CharacterBody3D
 # FOV parameters
 @export var default_fov: float = 75.0
 @export var sprint_fov: float = 85.0
+@export var zoom_fov: float = 40.0
 @export var fov_transition_speed: float = 8.0
 
 # Terminal viewing
@@ -40,7 +41,7 @@ extends CharacterBody3D
 @export var crouching_radius_scale: float = 0.7
 @export var sprint_grows_radius: bool = true
 @export var sprinting_radius_scale: float = 1.2
-var original_capsule_radius: float = 0.5
+var original_capsule_radius: float = 0.41
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var collision_shape: CollisionShape3D = $CollisionShape
@@ -57,6 +58,7 @@ var original_capsule_radius: float = 0.5
 var mouse_motion: Vector2 = Vector2.ZERO
 var is_crouched: bool = false
 var is_sprinting: bool = false
+var is_zooming: bool = false 
 var is_walking: bool = false
 var camera_rotation: Vector2 = Vector2.ZERO
 
@@ -71,6 +73,9 @@ var target_peek_rotation: Vector2 = Vector2.ZERO  # Where peek wants to snap to
 var last_mouse_velocity: Vector2 = Vector2.ZERO
 var is_peeking_over: bool = false
 var peek_over_amount: float = 0.0 
+
+# Tutorial Tracking
+var has_moved: bool = false
 
 func _ready() -> void:
 	add_to_group("player")
@@ -147,6 +152,14 @@ func _input(event: InputEvent) -> void:
 		toggle_mouse_mode()
 		return
 	
+	if event.is_action_pressed("zoom"):
+		is_zooming = true
+		var tutorial_mgr = get_tree().get_first_node_in_group("tutorial_manager")
+		if tutorial_mgr:
+			tutorial_mgr.complete_step(tutorial_mgr.TutorialStep.ZOOM)
+	if event.is_action_released("zoom"):
+		is_zooming = false
+	
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		mouse_motion += event.relative
 	
@@ -213,6 +226,13 @@ func _physics_process(delta: float) -> void:
 	# Update walking state
 	var input_dir = get_input_direction()
 	is_walking = input_dir.length() > 0.1 and is_on_floor()
+	
+	# Tutorial: Check if player has moved
+	if not has_moved and velocity.length() > 0.5:
+		has_moved = true
+		var tutorial_mgr = get_tree().get_first_node_in_group("tutorial_manager")
+		if tutorial_mgr:
+			tutorial_mgr.complete_step(tutorial_mgr.TutorialStep.MOVE_AROUND)
 
 	# Camera position transitions
 	if camera_pivot:
@@ -233,7 +253,13 @@ func _physics_process(delta: float) -> void:
 	
 	# FOV transitions
 	if camera:
-		var target_fov = sprint_fov if is_sprinting else default_fov
+		var target_fov: float
+		if is_zooming:
+			target_fov = zoom_fov
+		elif is_sprinting:
+			target_fov = sprint_fov
+		else:
+			target_fov = default_fov
 		camera.fov = lerp(camera.fov, target_fov, fov_transition_speed * delta)
 
 func handle_terminal_camera(delta: float) -> void:
@@ -329,9 +355,21 @@ func start_viewing_terminal(terminal: Terminal) -> void:
 	
 	peek_rotation = Vector2.ZERO
 	target_peek_rotation = Vector2.ZERO
-	peek_over_amount = 0.0  # Reset smooth amount
+	peek_over_amount = 0.0
+	
+	if state_machine:
+		state_machine.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	# Hide interaction prompt
+	HUD.hide_interaction_prompt()
+	HUD.show_control_prompt("[ESC] Exit Terminal")
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	# Tutorial: Notify terminal interaction
+	var tutorial_mgr = get_tree().get_first_node_in_group("tutorial_manager")
+	if tutorial_mgr:
+		tutorial_mgr.complete_step(tutorial_mgr.TutorialStep.INTERACT_WITH_TERMINAL)
 
 func exit_terminal() -> void:
 	if viewing_terminal:
@@ -342,8 +380,14 @@ func exit_terminal() -> void:
 	peek_rotation = Vector2.ZERO
 	peek_over_amount = 0.0
 	
+	# Re-enable state machine
+	if state_machine:
+		state_machine.process_mode = Node.PROCESS_MODE_INHERIT
+	
 	if camera:
 		camera.transform = Transform3D()
+	
+	HUD.hide_control_prompt()
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
