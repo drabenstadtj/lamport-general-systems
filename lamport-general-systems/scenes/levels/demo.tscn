@@ -146,28 +146,28 @@ size = Vector2(0.239, 0.299)
 script = ExtResource("12_qc6mj")
 slot_index = 2
 is_active_node = true
-node_id = 0
+node_id = 3
 metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
 
 [sub_resource type="Resource" id="Resource_dpkri"]
 script = ExtResource("12_qc6mj")
 slot_index = 3
 is_active_node = true
-node_id = 1
+node_id = 2
 metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
 
 [sub_resource type="Resource" id="Resource_w01ly"]
 script = ExtResource("12_qc6mj")
 slot_index = 4
 is_active_node = true
-node_id = 2
+node_id = 1
 metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
 
 [sub_resource type="Resource" id="Resource_bdxja"]
 script = ExtResource("12_qc6mj")
 slot_index = 7
 is_active_node = true
-node_id = 3
+node_id = 0
 metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
 
 [sub_resource type="Resource" id="Resource_6u2t8"]
@@ -604,3 +604,5 @@ shape = SubResource("WorldBoundaryShape3D_iag8j")
 script = ExtResource("17_6u2t8")
 
 [node name="NetworkConfig" parent="." instance=ExtResource("19_yyk5i")]
+initially_crashed_nodes = Array[int]([1])
+initially_powered_off_nodes = Array[int]([2])

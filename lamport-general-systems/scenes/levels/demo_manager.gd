@@ -27,7 +27,7 @@ func _ready():
 	
 	# Connect to NetworkManager signals
 	if NetworkManager:
-		NetworkManager.node_state_changed.connect(_on_node_state_changed)
+		NetworkManager.security_level_changed.connect(_on_security_level_changed)
 	
 	start_tutorial()
 
@@ -77,22 +77,13 @@ func show_step_hint(text: String):
 	if HUD:
 		HUD.show_tutorial_hint(text)
 
-# Check if both nodes 0 and 1 are healthy
-func _on_node_state_changed(node_id: int, old_state: Enums.NodeState, new_state: Enums.NodeState):
+func _on_security_level_changed(old_level: Enums.SecurityLevel, new_level: Enums.SecurityLevel):
 	if current_step != TutorialStep.POWER_ON_SERVERS:
 		return
 	
-	# Only track nodes 0 and 1
-	if node_id != 0 and node_id != 1:
-		return
+	print("[Tutorial] Security level changed: %s -> %s" % [Enums.SecurityLevel.keys()[old_level], Enums.SecurityLevel.keys()[new_level]])
 	
-	# Update the tracked state
-	servers_healthy[node_id] = (new_state == Enums.NodeState.HEALTHY)
-	
-	print("Server %d state changed to %s (healthy=%s)" % [node_id, Enums.NodeState.keys()[new_state], servers_healthy[node_id]])
-	print("Current healthy status - Server 0: %s, Server 1: %s" % [servers_healthy[0], servers_healthy[1]])
-	
-	# Check if BOTH are healthy
-	if servers_healthy[0] and servers_healthy[1]:
-		print("Both servers are healthy! Completing tutorial...")
+	# Complete tutorial when reaching MAINTENANCE level (level 1)
+	if new_level == Enums.SecurityLevel.MAINTENANCE:
+		print("[Tutorial] Reached MAINTENANCE level! Completing tutorial...")
 		complete_step(TutorialStep.POWER_ON_SERVERS)

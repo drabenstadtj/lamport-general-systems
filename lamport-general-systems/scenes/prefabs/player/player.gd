@@ -211,6 +211,23 @@ func snap_to_nearest_zone(direction: float) -> void:
 	# Keep vertical rotation the same
 	target_peek_rotation.y = peek_rotation.y
 
+func _process(delta: float) -> void:
+	# Camera Control
+	if player_mode == PlayerMode.FREE and mouse_motion != Vector2.ZERO:
+		rotate_camera(mouse_motion)
+		mouse_motion = Vector2.ZERO
+	
+	# FOV Transitions
+	if camera:
+		var target_fov: float
+		if is_zooming:
+			target_fov = zoom_fov
+		elif is_sprinting:
+			target_fov = sprint_fov
+		else:
+			target_fov = default_fov
+		camera.fov = lerp(camera.fov, target_fov, fov_transition_speed * delta)
+
 func _physics_process(delta: float) -> void:
 	# Handle camera for terminal viewing
 	if player_mode == PlayerMode.VIEWING_TERMINAL:
@@ -218,11 +235,6 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector3.ZERO
 		return
 	
-	# Free mode physics
-	if mouse_motion != Vector2.ZERO:
-		rotate_camera(mouse_motion)
-		mouse_motion = Vector2.ZERO
-
 	# Update walking state
 	var input_dir = get_input_direction()
 	is_walking = input_dir.length() > 0.1 and is_on_floor()
@@ -251,17 +263,6 @@ func _physics_process(delta: float) -> void:
 		
 		camera_pivot.position = camera_pivot.position.lerp(target_pos, 10.0 * delta)
 	
-	# FOV transitions
-	if camera:
-		var target_fov: float
-		if is_zooming:
-			target_fov = zoom_fov
-		elif is_sprinting:
-			target_fov = sprint_fov
-		else:
-			target_fov = default_fov
-		camera.fov = lerp(camera.fov, target_fov, fov_transition_speed * delta)
-
 func handle_terminal_camera(delta: float) -> void:
 	if not viewing_terminal or not camera:
 		return

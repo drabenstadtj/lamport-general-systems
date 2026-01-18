@@ -8,7 +8,6 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
-		print("PLAYER DETECTED!")
 		# Apply force to door
 		var push_dir = (door_body.global_position - body.global_position).normalized()
 		door_body.apply_central_impulse(push_dir * push_force)

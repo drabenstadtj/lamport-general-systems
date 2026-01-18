@@ -14,6 +14,11 @@ signal node_state_changed(node_id: int, old_state: Enums.NodeState, new_state: E
 signal consensus_completed(result: Dictionary)
 signal turn_completed(turn_number: int)
 signal game_won(win_type: String)
+signal network_initialized
+signal security_level_changed(old_level: Enums.SecurityLevel, new_level: Enums.SecurityLevel)
+signal all_nodes_ready
+
+
 
 func _ready():
 	add_to_group("network_manager")
@@ -37,30 +42,26 @@ func initialize_network():
 	_initialized = true
 	var physical_node_ids = discover_physical_servers()
 	
-	# Calculate minimum required nodes for BFT
 	var min_required = 3 * f_value + 1
+	num_nodes = max(min_required, physical_node_ids.size())
 	
-	# Determine total nodes needed (remove 'var' to use the class variable)
-	num_nodes = max(min_required, physical_node_ids.size())  # Changed this line
-	
-	# Validate we have enough
 	if physical_node_ids.size() < min_required:
 		push_error("NetworkManager: Not enough physical servers! Found %d, need at least %d (for f=%d)" % [physical_node_ids.size(), min_required, f_value])
 		return
 	
 	print("NetworkManager: Initializing network (f=%d, nodes=%d, physical=%d)" % [f_value, num_nodes, physical_node_ids.size()])
 	
-	# Create the BFT network with enough nodes
+	# Create the BFT network
 	network_state = NetworkState.new(f_value, num_nodes)
 	consensus_engine = ConsensusEngineAdaptive.new(network_state)
 	
-	# Verify all physical servers have corresponding logical nodes
 	for node_id in physical_node_ids:
 		if node_id >= num_nodes:
 			push_warning("NetworkManager: Physical server has node_id %d but only %d logical nodes exist!" % [node_id, num_nodes])
 	
 	current_turn = 0
-	print("NetworkManager: Ready!")
+	print("NetworkManager: Network initialized.")
+	network_initialized.emit()
 
 func discover_physical_servers() -> Array[int]:
 	"""Scan the scene for all Server nodes and collect their node_ids."""
@@ -89,39 +90,103 @@ func discover_physical_servers() -> Array[int]:
 # Direct Node Actions (called by terminals or physical interactions)
 
 func crash_node(node_id: int) -> bool:
+	print("[NetworkManager] crash_node(%d) called" % node_id)
 	var node = network_state.get_node(node_id)
 	
-	if not node or node.is_crashed():
+	if not node:
+		print("[NetworkManager] crash_node(%d) FAILED: Node not found" % node_id)
 		return false
 	
+	if node.is_crashed():
+		print("[NetworkManager] crash_node(%d) FAILED: Node already crashed (state=%s)" % [node_id, Enums.NodeState.keys()[node.state]])
+		return false
+	
+	var old_state = node.state
 	node.set_state(Enums.NodeState.CRASHED)
-	node_state_changed.emit(node_id, Enums.NodeState.HEALTHY, Enums.NodeState.CRASHED)
+	print("[NetworkManager] crash_node(%d) SUCCESS: %s -> CRASHED" % [node_id, Enums.NodeState.keys()[old_state]])
+	node_state_changed.emit(node_id, old_state, Enums.NodeState.CRASHED)
 	_advance_turn()
 	return true
 
 func reboot_node(node_id: int) -> bool:
+	print("[NetworkManager] reboot_node(%d) called" % node_id)
 	var node = network_state.get_node(node_id)
 	
-	if not node or not node.is_crashed():
+	if not node:
+		print("[NetworkManager] reboot_node(%d) FAILED: Node not found" % node_id)
 		return false
 	
+	if not node.is_crashed():
+		print("[NetworkManager] reboot_node(%d) FAILED: Node not crashed (state=%s)" % [node_id, Enums.NodeState.keys()[node.state]])
+		return false
+	
+	var old_state = node.state
 	node.set_state(Enums.NodeState.HEALTHY)
-	node_state_changed.emit(node_id, Enums.NodeState.CRASHED, Enums.NodeState.HEALTHY)
+	print("[NetworkManager] reboot_node(%d) SUCCESS: %s -> HEALTHY" % [node_id, Enums.NodeState.keys()[old_state]])
+	node_state_changed.emit(node_id, old_state, Enums.NodeState.HEALTHY)
 	_advance_turn()
 	return true
 
 func corrupt_node(node_id: int) -> bool:
+	print("[NetworkManager] corrupt_node(%d) called" % node_id)
 	var node = network_state.get_node(node_id)
 	
-	if not node or not node.is_healthy():
+	if not node:
+		print("[NetworkManager] corrupt_node(%d) FAILED: Node not found" % node_id)
 		return false
 	
+	if not node.is_healthy():
+		print("[NetworkManager] corrupt_node(%d) FAILED: Node not healthy (state=%s)" % [node_id, Enums.NodeState.keys()[node.state]])
+		return false
+	
+	var old_state = node.state
 	node.set_state(Enums.NodeState.BYZANTINE)
-	node_state_changed.emit(node_id, Enums.NodeState.HEALTHY, Enums.NodeState.BYZANTINE)
+	print("[NetworkManager] corrupt_node(%d) SUCCESS: %s -> BYZANTINE" % [node_id, Enums.NodeState.keys()[old_state]])
+	node_state_changed.emit(node_id, old_state, Enums.NodeState.BYZANTINE)
 	_advance_turn()
 	return true
 
+func power_off_node(node_id: int) -> bool:
+	print("[NetworkManager] power_off_node(%d) called" % node_id)
+	var node = network_state.get_node(node_id)
+	
+	if not node:
+		print("[NetworkManager] power_off_node(%d) FAILED: Node not found" % node_id)
+		return false
+	
+	if node.is_powered_down():
+		print("[NetworkManager] power_off_node(%d) FAILED: Node already powered down" % node_id)
+		return false
+	
+	if node.is_byzantine():
+		print("[NetworkManager] power_off_node(%d) FAILED: Cannot power off byzantine node" % node_id)
+		return false
+	
+	var old_state = node.state
+	node.set_state(Enums.NodeState.POWERED_DOWN)
+	print("[NetworkManager] power_off_node(%d) SUCCESS: %s -> POWERED_DOWN" % [node_id, Enums.NodeState.keys()[old_state]])
+	node_state_changed.emit(node_id, old_state, Enums.NodeState.POWERED_DOWN)
+	_advance_turn()
+	return true
 
+func power_on_node(node_id: int) -> bool:
+	print("[NetworkManager] power_on_node(%d) called" % node_id)
+	var node = network_state.get_node(node_id)
+	
+	if not node:
+		print("[NetworkManager] power_on_node(%d) FAILED: Node not found" % node_id)
+		return false
+	
+	if not node.is_powered_down():
+		print("[NetworkManager] power_on_node(%d) FAILED: Node not powered down (state=%s)" % [node_id, Enums.NodeState.keys()[node.state]])
+		return false
+	
+	var old_state = node.state
+	node.set_state(Enums.NodeState.HEALTHY)
+	print("[NetworkManager] power_on_node(%d) SUCCESS: %s -> HEALTHY" % [node_id, Enums.NodeState.keys()[old_state]])
+	node_state_changed.emit(node_id, old_state, Enums.NodeState.HEALTHY)
+	_advance_turn()
+	return true
 
 # Consensus
 
@@ -141,10 +206,18 @@ func run_consensus(proposal: Enums.VoteValue) -> Dictionary:
 # Internal
 
 func _advance_turn():
+	var old_level = network_state.current_level
 	network_state.check_level_transitions()
+	var new_level = network_state.current_level
+	
+	# Emit signal if level changed
+	if old_level != new_level:
+		print("[NetworkManager] Security level changed: %s -> %s" % [Enums.SecurityLevel.keys()[old_level], Enums.SecurityLevel.keys()[new_level]])
+		security_level_changed.emit(old_level, new_level)
+	
 	current_turn += 1
 	turn_completed.emit(current_turn)
-
+	
 # Query Interface
 
 func get_network_node(node_id: int) -> NetworkNode:
