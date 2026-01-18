@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b23xito26d7cc"]
+[gd_scene load_steps=4 format=3 uid="uid://b23xito26d7cc"]
 
 [ext_resource type="Script" uid="uid://bbi6x4cftlwky" path="res://scripts/ui/hud.gd" id="1_ahhtf"]
+[ext_resource type="Script" uid="uid://c0sd6sxg4r0ld" path="res://scenes/prefabs/ui/fps_counter.gd" id="2_6077d"]
+[ext_resource type="LabelSettings" uid="uid://ojh7elx57l2h" path="res://themes/interaction_prompt_settings.tres" id="2_lmobo"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ahhtf")
@@ -17,6 +19,7 @@ offset_right = 20.0
 offset_bottom = 111.5
 grow_horizontal = 2
 grow_vertical = 2
+label_settings = ExtResource("2_lmobo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -32,3 +35,43 @@ offset_right = 2.0
 offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+script = ExtResource("2_6077d")
+
+[node name="DemoPrompt" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -280.0
+offset_right = 20.0
+offset_bottom = -257.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = ExtResource("2_lmobo")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 40
+
+[node name="ControlPrompt" type="Label" parent="MarginContainer"]
+layout_mode = 2
+label_settings = ExtResource("2_lmobo")

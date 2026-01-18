@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=4 uid="uid://djmhrpo53lrks"]
+[gd_scene load_steps=15 format=4 uid="uid://djmhrpo53lrks"]
 
 [ext_resource type="Texture2D" uid="uid://2nvtrpgq7ump" path="res://textures/props/serverrack_atlas.png" id="1_h3oph"]
 [ext_resource type="Script" uid="uid://pdqemlb5tat6" path="res://scripts/hardware/server_rack.gd" id="1_peprk"]
 [ext_resource type="PackedScene" uid="uid://chuie6g4h2ufa" path="res://scenes/prefabs/network/server.tscn" id="3_5xx3q"]
+[ext_resource type="Script" uid="uid://dv3rl8j1gdob7" path="res://scripts/hardware/server_rack_slot_label.gd" id="4_6xhkf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxxuc"]
 resource_name = "Metal"
@@ -134,26 +135,80 @@ shape = SubResource("BoxShape3D_hqp1r")
 [node name="Slot0" type="Marker3D" parent="Slots"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10294175, 0)
 
+[node name="Label3D" type="Label3D" parent="Slots/Slot0"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.175, 0, 0)
+text = "Slot 0"
+font_size = 16
+script = ExtResource("4_6xhkf")
+
 [node name="Slot1" type="Marker3D" parent="Slots"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30294174, 0)
+
+[node name="Label3D" type="Label3D" parent="Slots/Slot1"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.175, 0, 0)
+text = "Slot 1"
+font_size = 16
+script = ExtResource("4_6xhkf")
 
 [node name="Slot2" type="Marker3D" parent="Slots"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5029417, 0)
 
+[node name="Label3D" type="Label3D" parent="Slots/Slot2"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.175, 0, 0)
+text = "Slot 2"
+font_size = 16
+script = ExtResource("4_6xhkf")
+
 [node name="Slot3" type="Marker3D" parent="Slots"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7029417, 0)
+
+[node name="Label3D" type="Label3D" parent="Slots/Slot3"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.175, 0, 0)
+text = "Slot 3"
+font_size = 16
+script = ExtResource("4_6xhkf")
 
 [node name="Slot4" type="Marker3D" parent="Slots"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9029417, 0)
 
+[node name="Label3D" type="Label3D" parent="Slots/Slot4"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.175, 0, 0)
+text = "Slot 4"
+font_size = 16
+script = ExtResource("4_6xhkf")
+
 [node name="Slot5" type="Marker3D" parent="Slots"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1029418, 0)
+
+[node name="Label3D" type="Label3D" parent="Slots/Slot5"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.175, 0, 0)
+text = "Slot 5"
+font_size = 16
+script = ExtResource("4_6xhkf")
 
 [node name="Slot6" type="Marker3D" parent="Slots"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3029418, 0)
 
+[node name="Label3D" type="Label3D" parent="Slots/Slot6"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.175, 0, 0)
+text = "Slot 6"
+font_size = 16
+script = ExtResource("4_6xhkf")
+
 [node name="Slot7" type="Marker3D" parent="Slots"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5029418, 0)
 
+[node name="Label3D" type="Label3D" parent="Slots/Slot7"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.175, 0, 0)
+text = "Slot 7"
+font_size = 16
+script = ExtResource("4_6xhkf")
+
 [node name="Slot8" type="Marker3D" parent="Slots"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7029419, 0)
+
+[node name="Label3D" type="Label3D" parent="Slots/Slot8"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.175, 0, 0)
+text = "Slot 8"
+font_size = 16
+script = ExtResource("4_6xhkf")

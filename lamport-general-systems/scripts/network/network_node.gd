@@ -26,6 +26,15 @@ func is_crashed() -> bool:
 func is_byzantine() -> bool:
 	return state == Enums.NodeState.BYZANTINE
 
+func is_powered_down() -> bool:
+	return state == Enums.NodeState.POWERED_DOWN
+
+func is_operational() -> bool:
+	return state == Enums.NodeState.HEALTHY or state == Enums.NodeState.BYZANTINE
+
+func is_offline() -> bool:
+	return state == Enums.NodeState.POWERED_DOWN or state == Enums.NodeState.CRASHED
+
 # State Modification
 
 func set_state(new_state: Enums.NodeState):

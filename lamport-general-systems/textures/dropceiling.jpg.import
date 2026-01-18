@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ngifayv0qf5a"
-path.s3tc="res://.godot/imported/wood00.JPG-f092f4fe9e0c76ea05bfbeeda0f89bac.s3tc.ctex"
+uid="uid://32dnexkxfn2p"
+path.s3tc="res://.godot/imported/dropceiling.jpg-b125935156a72f90c9e1f43619e6e8a5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/imports/wood00.JPG"
-dest_files=["res://.godot/imported/wood00.JPG-f092f4fe9e0c76ea05bfbeeda0f89bac.s3tc.ctex"]
+source_file="res://textures/dropceiling.jpg"
+dest_files=["res://.godot/imported/dropceiling.jpg-b125935156a72f90c9e1f43619e6e8a5.s3tc.ctex"]
 
 [params]
 
