@@ -30,11 +30,11 @@ func _ready():
 	update_material()
 
 func setup_mesh():
-	mesh = QuadMesh.new()
+	mesh = PlaneMesh.new()
 	update_mesh()
 
 func update_mesh():
-	if mesh is QuadMesh:
+	if mesh is PlaneMesh:
 		mesh.size = note_size
 
 func setup_material():

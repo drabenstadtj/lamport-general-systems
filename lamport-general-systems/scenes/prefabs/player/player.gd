@@ -17,9 +17,11 @@ extends CharacterBody3D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var interaction_detector = $CameraPivot/Camera3D/InteractionRaycast
 @onready var terminal_viewer: TerminalViewer = $TerminalViewer
+@onready var item_viewer: ItemViewer = $ItemViewer
 @onready var collision_manager: CollisionManager = $CollisionManager
 @onready var camera_controller: CameraController = $CameraController
 @onready var viewing_item_pos: Node3D = $CameraPivot/Camera3D/ItemViewPosition
+
 
 # Movement State
 var is_crouched: bool = false
@@ -45,7 +47,9 @@ func _input(event: InputEvent) -> void:
 	# Let terminal viewer handle input first if active
 	if terminal_viewer and terminal_viewer.handle_input(event):
 		return
-	
+	if item_viewer and item_viewer.handle_input(event):
+		return
+		
 	_handle_free_input(event)
 
 
@@ -61,10 +65,11 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	# Skip movement if terminal viewing is active
-	if terminal_viewer and terminal_viewer.is_viewing:
+	#if (terminal_viewer and terminal_viewer.is_viewing) or (item_viewer and item_viewer.is_viewing):
+	if (terminal_viewer and terminal_viewer.is_viewing):
 		velocity = Vector3.ZERO
 		return
-	
+
 	_update_movement_state()
 
 
@@ -80,6 +85,9 @@ func _connect_signals() -> void:
 	if terminal_viewer:
 		terminal_viewer.viewing_started.connect(_on_terminal_viewing_started)
 		terminal_viewer.viewing_ended.connect(_on_terminal_viewing_ended)
+	if item_viewer:
+		item_viewer.viewing_started.connect(_on_item_viewing_started)
+		item_viewer.viewing_ended.connect(_on_item_viewing_ended)
 
 
 # INPUT HANDLING
@@ -125,6 +133,20 @@ func _on_terminal_viewing_ended() -> void:
 		camera_controller.reset_transform()
 
 
+# ITEM VIEWING
+
+func _on_item_viewing_started() -> void:
+	#if camera_controller:
+		#camera_controller.lock_camera()
+	pass
+
+
+func _on_item_viewing_ended() -> void:
+	#if camera_controller:
+		#camera_controller.unlock_camera()
+	pass
+
+
 # MOVEMENT
 
 func _update_movement_state() -> void:
@@ -137,7 +159,8 @@ func _update_movement_state() -> void:
 
 
 func get_input_direction() -> Vector2:
-	if terminal_viewer and terminal_viewer.is_viewing:
+	#if (terminal_viewer and terminal_viewer.is_viewing) or (item_viewer and item_viewer.is_viewing):
+	if (terminal_viewer and terminal_viewer.is_viewing):
 		return Vector2.ZERO
 	return Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 

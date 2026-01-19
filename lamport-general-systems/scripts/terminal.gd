@@ -2,7 +2,7 @@ extends Node3D
 class_name Terminal
 
 @onready var terminal_ui = $SubViewport/TerminalUI
-@onready var interactable: Interactable = $StaticBody3D/Interactable 
+@onready var interactable: Interactable = $Area3D/Interactable 
 @onready var camera_position_marker: Node3D = $CameraPosition
 @onready var camera_lookat_marker: Node3D = $CameraLookAt
 
