@@ -41,22 +41,25 @@ func _on_interacted(player):
 		start_viewing(player)
 
 func start_viewing(player):
+	print("set being viewed to true")
 	is_being_viewed = true
 	player.start_viewing_terminal(self)
 	
 	if terminal_ui:
 		terminal_ui.accept_input = true
 	
-	if interactable:
-		interactable.prompt_text = "Press %s to exit Terminal"
+	#if interactable:
+		#interactable.prompt_text = "Press %s to exit Terminal"
 
 func stop_viewing(_player):
+	print("set being viewed to false")
 	is_being_viewed = false
 	
 	if terminal_ui:
 		terminal_ui.accept_input = false
 	
 	if interactable:
+		print("setting prompt to use")
 		interactable.prompt_text = "Press %s to use Terminal"
 
 func get_camera_position() -> Vector3:

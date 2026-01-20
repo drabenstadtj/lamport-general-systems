@@ -165,11 +165,11 @@ func handle_input(event: InputEvent) -> bool:
 		return true
 	
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 			current_distance -= scroll_speed
 			current_distance = clamp(current_distance, min_distance, max_distance)
 			return true
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			current_distance += scroll_speed
 			current_distance = clamp(current_distance, min_distance, max_distance)
 			return true

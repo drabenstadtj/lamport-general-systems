@@ -129,13 +129,15 @@ func start_viewing_terminal(terminal: Terminal) -> void:
 func _on_terminal_viewing_started() -> void:
 	if camera_controller:
 		camera_controller.lock_camera()
-
+	if interaction_detector:
+		interaction_detector.enabled = false
 
 func _on_terminal_viewing_ended() -> void:
 	if camera_controller:
 		camera_controller.unlock_camera()
 		camera_controller.reset_transform()
-
+	if interaction_detector:
+		interaction_detector.enabled = true
 
 # ITEM VIEWING
 
