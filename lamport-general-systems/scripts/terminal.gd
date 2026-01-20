@@ -2,7 +2,7 @@ extends Node3D
 class_name Terminal
 
 @onready var terminal_ui = $SubViewport/TerminalUI
-@onready var interactable: Interactable = $StaticBody3D/Interactable 
+@onready var interactable: Interactable = $Area3D/Interactable 
 @onready var camera_position_marker: Node3D = $CameraPosition
 @onready var camera_lookat_marker: Node3D = $CameraLookAt
 
@@ -41,22 +41,25 @@ func _on_interacted(player):
 		start_viewing(player)
 
 func start_viewing(player):
+	print("set being viewed to true")
 	is_being_viewed = true
 	player.start_viewing_terminal(self)
 	
 	if terminal_ui:
 		terminal_ui.accept_input = true
 	
-	if interactable:
-		interactable.prompt_text = "Press %s to exit Terminal"
+	#if interactable:
+		#interactable.prompt_text = "Press %s to exit Terminal"
 
 func stop_viewing(_player):
+	print("set being viewed to false")
 	is_being_viewed = false
 	
 	if terminal_ui:
 		terminal_ui.accept_input = false
 	
 	if interactable:
+		print("setting prompt to use")
 		interactable.prompt_text = "Press %s to use Terminal"
 
 func get_camera_position() -> Vector3:

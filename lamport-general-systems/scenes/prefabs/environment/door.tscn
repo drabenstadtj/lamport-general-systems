@@ -70,6 +70,8 @@ mesh = SubResource("ArrayMesh_en5qi")
 skeleton = NodePath("")
 
 [node name="Area3D" type="Area3D" parent="RigidBody3D"]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_5yqb5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/Area3D"]

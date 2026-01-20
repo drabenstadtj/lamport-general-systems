@@ -6,7 +6,7 @@ var current_interactable = null
 func _ready():
 	target_position = Vector3(0, 0, -raycast_length)
 	enabled = true
-	collide_with_areas = false
+	collide_with_areas = true
 	collide_with_bodies = true
 	
 func _physics_process(_delta):

@@ -65,12 +65,17 @@ func physics_update(delta: float) -> void:
 	if player.is_on_floor() and player.velocity.y <= 0 and not has_landed:
 		has_landed = true
 		
-		var tween = create_tween()
-		var start_pos = player.camera_pivot.position
-		var dip_pos = start_pos + Vector3(0, -0.5, -0.2)  # Down and forward
-
-		tween.tween_property(player.camera_pivot, "position", dip_pos, 0.2).set_ease(Tween.EASE_OUT)
-		tween.tween_property(player.camera_pivot, "position", start_pos, 0.2).set_ease(Tween.EASE_IN_OUT)
+		# Get camera pivot through CameraController
+		var camera_controller = player.get_node_or_null("CameraController")
+		if camera_controller:
+			var camera_pivot = player.get_node_or_null("CameraPivot")
+			if camera_pivot:
+				var tween = create_tween()
+				var start_pos = camera_pivot.position
+				var dip_pos = start_pos + Vector3(0, -0.5, -0.2)  # Down and forward
+				tween.tween_property(camera_pivot, "position", dip_pos, 0.2).set_ease(Tween.EASE_OUT)
+				tween.tween_property(camera_pivot, "position", start_pos, 0.2).set_ease(Tween.EASE_IN_OUT)
+		
 		# Play landing animation
 		if anim_tree:
 			var jumping_playback = anim_tree.get("parameters/Jumping/playback")
