@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=3 format=3 uid="uid://dhgsmwu0eng06"]
+
+[ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_c8dc7"]
+[ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_o1n8o"]
+
+[resource]
+script = ExtResource("1_o1n8o")
+fgd_name = "lamport-general-systems"
+base_fgd_files = Array[Resource]([ExtResource("1_c8dc7")])
+metadata/_custom_type_script = "uid://drlmgulwbjwqu"
