@@ -29,6 +29,10 @@ window/size/mode=3
 window/size/borderless=true
 window/vsync/vsync_mode=0
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")
+
 [global_group]
 
 player=""
