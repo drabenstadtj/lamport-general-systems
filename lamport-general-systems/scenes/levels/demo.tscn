@@ -34,12 +34,12 @@
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Sky" id="Sky_0sd55"]
+[sub_resource type="Sky" id="Sky_ewbg4"]
 sky_material = SubResource("ProceduralSkyMaterial_iag8j")
 
 [sub_resource type="Environment" id="Environment_yjjn1"]
 background_mode = 2
-sky = SubResource("Sky_0sd55")
+sky = SubResource("Sky_ewbg4")
 ambient_light_sky_contribution = 0.2
 ambient_light_energy = 0.2
 tonemap_mode = 2
@@ -257,19 +257,19 @@ transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 1, -
 mesh = SubResource("PlaneMesh_w01ly")
 
 [node name="Light0" parent="Environment/Geometry/EntryRoom/Ceiling" instance=ExtResource("3_y87cy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.0029997826, 1.5)
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -2.5, 0.0029997826, 1.5)
 light_energy = 0.5
 
 [node name="Light1" parent="Environment/Geometry/EntryRoom/Ceiling" instance=ExtResource("3_y87cy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.0030002594, -1.5)
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -2.5, 0.0030002594, -1.5)
 light_energy = 0.5
 
 [node name="Light2" parent="Environment/Geometry/EntryRoom/Ceiling" instance=ExtResource("3_y87cy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.0030002594, -1.5)
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 1.5, 0.0030002594, -1.5)
 light_energy = 0.5
 
 [node name="Light3" parent="Environment/Geometry/EntryRoom/Ceiling" instance=ExtResource("3_y87cy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.0029997826, 1.5)
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 1.5, 0.0029997826, 1.5)
 light_energy = 0.5
 
 [node name="Walls" type="Node3D" parent="Environment/Geometry/EntryRoom"]
@@ -491,12 +491,10 @@ height = 0.15
 sides = 16
 
 [node name="Light0" parent="Environment/Geometry/SecurityOffice" instance=ExtResource("3_y87cy")]
-transform = Transform3D(-1, -8.940697e-08, 0, 8.940697e-08, -1, 0, 0, 0, 1, 4.5, 3.1984384, 1.5)
-light_energy = 0.25
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 3.1967597, 1.5)
 
 [node name="Light1" parent="Environment/Geometry/SecurityOffice" instance=ExtResource("3_y87cy")]
-transform = Transform3D(-1, -8.940697e-08, 0, 8.940697e-08, -1, 0, 0, 0, 1, 4.5, 3.1984384, -1.5000002)
-light_energy = 0.25
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 3.1967597, -1.5000002)
 
 [node name="Props" type="Node3D" parent="Environment/Geometry/SecurityOffice"]
 

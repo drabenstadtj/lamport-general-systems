@@ -9,9 +9,6 @@ func _ready() -> void:
 	animation_player.play("ArrivalCutscene")
 
 func _on_animation_finished(anim_name: String) -> void:
-	var player = car.get_node_or_null("Player")
-	if player:
-		# Get the root node of the scene tree
-		var root = get_tree().root
-		# Reparent the player to the root node
-		player.reparent(root)
+	get_tree().change_scene_to_file("res://scenes/levels/demo.tscn")
+	
+	

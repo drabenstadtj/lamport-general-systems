@@ -13,6 +13,11 @@ extends CharacterBody3D
 @export var rotation_speed: float = 10.0
 #endregion
 
+
+#region Debugging
+@export var is_body_visible: bool = true
+#endregion
+
 # Node References
 @onready var state_machine: StateMachine = $StateMachine
 @onready var interaction_detector = $CameraPivot/Camera3D/InteractionRaycast
@@ -21,7 +26,7 @@ extends CharacterBody3D
 @onready var collision_manager: CollisionManager = $CollisionManager
 @onready var camera_controller: CameraController = $CameraController
 @onready var viewing_item_pos: Node3D = $CameraPivot/Camera3D/ItemViewPosition
-
+@onready var body_mesh: MeshInstance3D = $PlayerMesh
 
 # Movement State
 var is_crouched: bool = false
@@ -38,6 +43,8 @@ func _ready() -> void:
 	add_to_group("player")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
+	
+	body_mesh.visible = is_body_visible
 	
 	_setup_animation()
 	_connect_signals()

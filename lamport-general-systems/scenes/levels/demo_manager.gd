@@ -14,7 +14,9 @@ enum TutorialStep {
 
 var current_step: TutorialStep = TutorialStep.NONE
 var completed_steps: Array[TutorialStep] = []
+
 @export var step_delay: float = 0.5  # Delay between steps
+@export var final_message_duration: float = 2.0  # How long to show "Demo Complete!"
 
 # Track server states
 var servers_healthy: Dictionary = {
@@ -52,7 +54,9 @@ func complete_step(step: TutorialStep):
 		
 		# Fade out current hint, wait, then show next
 		if HUD:
-			HUD.hide_tutorial_hint()
+			var tween = HUD.hide_tutorial_hint()
+			if tween:
+				await tween.finished
 		
 		await get_tree().create_timer(step_delay).timeout
 		advance_to_next_step()
@@ -70,8 +74,16 @@ func advance_to_next_step():
 			show_step_hint("Power on both Server 1 and Server 2")
 		TutorialStep.POWER_ON_SERVERS:
 			current_step = TutorialStep.COMPLETE
-			show_step_hint("Demo Complete!")  
-			tutorial_completed.emit()
+			complete_tutorial()
+
+func complete_tutorial():
+	tutorial_completed.emit()
+	
+	if HUD:
+		# Show final message, wait for fade in + display + fade out
+		await HUD.show_final_tutorial_hint("Demo Complete!", final_message_duration)
+	
+	get_tree().change_scene_to_file("res://scenes/levels/base_level.tscn")
 
 func show_step_hint(text: String):
 	if HUD:
