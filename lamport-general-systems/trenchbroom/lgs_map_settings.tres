@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FuncGodotMapSettings" load_steps=5 format=3 uid="uid://bpisdf0bouswg"]
+
+[ext_resource type="Material" uid="uid://cvex6toty8yn7" path="res://addons/func_godot/textures/default_material.tres" id="1_llt6x"]
+[ext_resource type="Resource" uid="uid://dhgsmwu0eng06" path="res://trenchbroom/lgs_fgd.tres" id="2_llt6x"]
+[ext_resource type="Script" uid="uid://38q6k0ctahjn" path="res://addons/func_godot/src/map/func_godot_map_settings.gd" id="3_feq21"]
+[ext_resource type="Script" uid="uid://cij36hpqc46c" path="res://addons/func_godot/src/import/quake_wad_file.gd" id="4_iohb8"]
+
+[resource]
+script = ExtResource("3_feq21")
+entity_fgd = ExtResource("2_llt6x")
+base_texture_dir = "res://trenchbroom/textures"
+metadata/_custom_type_script = "uid://38q6k0ctahjn"

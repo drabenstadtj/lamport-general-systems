@@ -6,7 +6,7 @@ extends Node3D
 		light_color = value
 		update_light()
 
-@export var light_energy: float = .5:
+@export var light_energy: float = .25:
 	set(value):
 		light_energy = value
 		update_light()

@@ -13,13 +13,13 @@ size = Vector2(0.98, 0.98)
 
 [node name="Light0" type="Node3D"]
 script = ExtResource("1_h5std")
-light_energy = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371138e-08, 1, 0, -1, -4.371138e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.01, 0)
 mesh = SubResource("QuadMesh_msxrg")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0.205, 0)
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, -0.112694666, 0)
 light_color = Color(0.941, 1, 0.824, 1)
+light_energy = 0.25
 omni_range = 10.0

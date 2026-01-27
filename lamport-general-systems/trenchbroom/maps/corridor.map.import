@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://tc6w5g2g42d5"
+path="res://.godot/imported/corridor.map-5ac8652d202cf1819d298131e957aef8.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/corridor.map"
+dest_files=["res://.godot/imported/corridor.map-5ac8652d202cf1819d298131e957aef8.tres"]
+
+[params]
+

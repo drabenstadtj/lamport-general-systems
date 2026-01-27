@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://mb12coxhsrs8"]
+
+[ext_resource type="Texture2D" uid="uid://ctxd3qjti78ud" path="res://trenchbroom/textures/dropceiling_test.png" id="1_im4yv"]
+
+[resource]
+albedo_texture = ExtResource("1_im4yv")
+metallic_specular = 0.0
+texture_filter = 2

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bli85pejemy78"]
+
+[ext_resource type="Texture2D" uid="uid://dyf4j3hpbybb2" path="res://trenchbroom/textures/wall_beige.png" id="1_qvugf"]
+
+[resource]
+albedo_texture = ExtResource("1_qvugf")
+metallic_specular = 0.0
+texture_filter = 2
