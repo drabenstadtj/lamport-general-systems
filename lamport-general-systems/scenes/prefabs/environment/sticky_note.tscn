@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0qscqamxbx2b"]
+
+[ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://resources/shaders/sticky_note.gdshader" id="1_1raf2"]
+[ext_resource type="Script" uid="uid://nlvobqo8ucdd" path="res://scenes/prefabs/environment/sticky_note.gd" id="1_acemp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1raf2"]
+render_priority = 0
+shader = ExtResource("1_1raf2")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1raf2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ik7w2"]
+render_priority = 0
+shader = ExtResource("1_1raf2")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[node name="StickyNote0" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 2.2351742e-08, -1, 0, 1, 2.2351742e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_1raf2")
+mesh = SubResource("PlaneMesh_1raf2")
+surface_material_override/0 = SubResource("ShaderMaterial_ik7w2")
+script = ExtResource("1_acemp")

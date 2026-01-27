@@ -14,12 +14,12 @@ var receiver_id: int
 var proposed_value: Enums.VoteValue
 var round_number: int
 
-func _init(msg_type: MessageType, sender: int, receiver: int, value: Enums.VoteValue, round: int):
+func _init(msg_type: MessageType, sender: int, receiver: int, value: Enums.VoteValue, round_num: int):
 	type = msg_type
 	sender_id = sender
 	receiver_id = receiver
 	proposed_value = value
-	round_number = round
+	round_number = round_num
 
 func get_description() -> String:
 	var type_name = ["PRE_PREPARE", "PREPARE", "COMMIT"][type]

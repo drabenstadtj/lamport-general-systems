@@ -2,7 +2,7 @@ extends Node3D
 class_name Terminal
 
 @onready var terminal_ui = $SubViewport/TerminalUI
-@onready var interactable: Interactable = $StaticBody3D/Interactable 
+@onready var interactable: Interactable = $Area3D/Interactable 
 @onready var camera_position_marker: Node3D = $CameraPosition
 @onready var camera_lookat_marker: Node3D = $CameraLookAt
 
@@ -41,22 +41,25 @@ func _on_interacted(player):
 		start_viewing(player)
 
 func start_viewing(player):
+	print("set being viewed to true")
 	is_being_viewed = true
 	player.start_viewing_terminal(self)
 	
 	if terminal_ui:
 		terminal_ui.accept_input = true
 	
-	if interactable:
-		interactable.prompt_text = "Press %s to exit Terminal"
+	#if interactable:
+		#interactable.prompt_text = "Press %s to exit Terminal"
 
-func stop_viewing(player):
+func stop_viewing(_player):
+	print("set being viewed to false")
 	is_being_viewed = false
 	
 	if terminal_ui:
 		terminal_ui.accept_input = false
 	
 	if interactable:
+		print("setting prompt to use")
 		interactable.prompt_text = "Press %s to use Terminal"
 
 func get_camera_position() -> Vector3:
@@ -71,7 +74,7 @@ func get_look_at_position() -> Vector3:
 
 # NetworkNode signal handlers
 
-func _on_node_state_changed(old_state: Enums.NodeState, new_state: Enums.NodeState):
+func _on_node_state_changed(_old_state: Enums.NodeState, new_state: Enums.NodeState):
 	var state_name = _get_state_name(new_state, true)
 	var plain_state_name = _get_state_name(new_state, false)
 	
@@ -83,13 +86,13 @@ func _on_node_state_changed(old_state: Enums.NodeState, new_state: Enums.NodeSta
 		var timestamp = "%6.2f" % time
 		terminal_ui.append_to_file("consensus.log", "[%s] >>> Node state changed to: %s" % [timestamp, plain_state_name])
 
-func _on_message_sent(msg_type: String, target_id: int, value):
+func _on_message_sent(msg_type: String, target_id: int, _value):
 	if terminal_ui:
 		var message = "→ Sent %s to Node %d" % [msg_type, target_id]
 		terminal_ui.print_to_terminal(message)
 		terminal_ui.append_to_file("consensus.log", message)
 
-func _on_message_received(msg_type: String, from_id: int, value):
+func _on_message_received(msg_type: String, from_id: int, _value):
 	if terminal_ui:
 		var message = "← Received %s from Node %d" % [msg_type, from_id]
 		terminal_ui.print_to_terminal(message)

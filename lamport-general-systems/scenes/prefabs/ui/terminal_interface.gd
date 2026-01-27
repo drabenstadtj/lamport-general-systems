@@ -213,6 +213,8 @@ func process_command(command: String):
 			cmd_network()
 		"consensus":
 			cmd_consensus(args)
+		"connect":
+			cmd_connect(args)
 		
 		_:
 			print_to_terminal("Command not found: " + cmd)
@@ -239,6 +241,7 @@ func cmd_help():
 	print_to_terminal("")
 	print_to_terminal("[color=cyan]Network:[/color]")
 	print_to_terminal("  network      - list all nodes and states")
+	print_to_terminal("  connect <id> - connect to a different node")
 	print_to_terminal("  consensus <OPEN|LOCKED> - trigger consensus")
 
 func cmd_ls():
@@ -266,8 +269,11 @@ func cmd_cd(args: Array):
 	if target_name == ".":
 		return
 	
+	# Declare 'target' once at the top of the function
+	var target: FileNode = null
+	
 	if target_name.begins_with("/"):
-		var target = resolve_absolute_path(target_name)
+		target = resolve_absolute_path(target_name)
 		if target == null:
 			print_to_terminal("cd: " + target_name + ": No such directory")
 			return
@@ -277,7 +283,7 @@ func cmd_cd(args: Array):
 		current_directory = target
 		return
 	
-	var target = current_directory.get_child_by_name(target_name)
+	target = current_directory.get_child_by_name(target_name)
 	
 	if target == null:
 		print_to_terminal("cd: " + target_name + ": No such directory")
@@ -395,6 +401,30 @@ func cmd_status():
 	print_to_terminal("=== NODE %d STATUS ===" % controlled_node_id)
 	print_to_terminal("State: %s" % state_str)
 
+func cmd_connect(args: Array):
+	if args.size() == 0:
+		print_to_terminal("Usage: connect <node_id>")
+		print_to_terminal("Example: connect 2")
+		return
+		
+	if not network_manager:
+		print_to_terminal("ERROR: Network not initialized")
+		return
+	
+	# Convert string argument to int
+	var target_node_id = int(args[0])
+	
+	# Check if target node exists
+	var node = network_manager.get_network_node(target_node_id)
+	if not node:
+		print_to_terminal("ERROR: Node %d not found" % target_node_id)
+		return
+	
+	# Switch to new node
+	controlled_node_id = target_node_id
+	update_prompt()
+	print_to_terminal("=== Connected to Node %d ===" % target_node_id)
+
 # NETWORK COMMANDS
 
 func cmd_network():
@@ -507,7 +537,7 @@ func handle_tab_complete():
 
 func autocomplete_command(partial: String):
 	var commands = ["ls", "cd", "pwd", "help", "cat", "tail", "clear", 
-					"reboot", "crash", "corrupt", "status", "network", "consensus"]
+					"reboot", "crash", "corrupt", "status", "network", "consensus", "connect"]
 	var matches = []
 	
 	for cmd in commands:
@@ -520,7 +550,7 @@ func autocomplete_command(partial: String):
 	elif matches.size() > 1:
 		print_to_terminal("Possible commands: " + ", ".join(matches))
 
-func autocomplete_filename(partial: String, arg_index: int):
+func autocomplete_filename(partial: String, _arg_index: int):
 	var matches = []
 	var search_dir = current_directory
 	var prefix = ""

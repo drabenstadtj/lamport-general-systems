@@ -2,6 +2,7 @@ extends Node
 
 enum NodeState {
 	HEALTHY,
+	POWERED_DOWN,
 	CRASHED,
 	BYZANTINE
 }
@@ -22,5 +23,7 @@ enum ActionType {
 	CRASH_NODE,
 	CORRUPT_NODE,
 	COMMAND_DOOR,
-	EXPLOIT_DOOR
+	EXPLOIT_DOOR,
+	POWER_ON_NODE,
+	POWER_OFF_NODE
 }
