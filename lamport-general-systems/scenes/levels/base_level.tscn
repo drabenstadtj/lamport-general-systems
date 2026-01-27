@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://3mtbxfhulw7m"]
+[gd_scene load_steps=69 format=4 uid="uid://3mtbxfhulw7m"]
 
 [ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/prefabs/player/player.tscn" id="1_md458"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="2_wwrw0"]
@@ -19,6 +19,22 @@
 [ext_resource type="PackedScene" uid="uid://3gw4tnt1amn3" path="res://scenes/prefabs/environment/breakroom_chair.tscn" id="14_vtnee"]
 [ext_resource type="Texture2D" uid="uid://c28tf7lsjqb4s" path="res://textures/decals/tidy_breakroom.png" id="15_ovmjf"]
 [ext_resource type="PackedScene" uid="uid://c6skd4yrxw10d" path="res://models/coffee pot.glb" id="19_mwefk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwefk"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_jua6e"]
+sky_material = SubResource("ProceduralSkyMaterial_mwefk")
+
+[sub_resource type="Environment" id="Environment_vtnee"]
+background_mode = 2
+sky = SubResource("Sky_jua6e")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.17588872, 0.19474867, 0.22409517, 1)
+fog_density = 0.1211
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8xgc"]
 albedo_texture = ExtResource("4_o1chu")
@@ -230,14 +246,16 @@ size = Vector3(1, 3.3128662, 4.446289)
 
 [node name="BaseLevel" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vtnee")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.5148197, 0.796526, -0.3170281, 0.29343134, 0.18374477, 0.9381556, 0.8055176, -0.576007, -0.1391303, 0, 5.6000004, 0)
 visible = false
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_md458")]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, -0.5, 0)
-is_body_visible = false
+transform = Transform3D(0.022381544, 0, 0.8997216, 0, 0.9, 0, -0.8997216, 0, 0.022381544, 9.107207, -0.5, 0)
 
 [node name="FuncGodotMap" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -651,4 +669,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8561646, -0.06689453)
 shape = SubResource("BoxShape3D_575cj")
 
 [node name="coffee pot" parent="." instance=ExtResource("19_mwefk")]
-transform = Transform3D(0.30699116, 0, 0.95171237, 0, 1, 0, -0.95171237, 0, 0.30699116, 9.469776, 0.5955041, -7.5845294)
+transform = Transform3D(0.30699116, 0, 0.95171237, 0, 1, 0, -0.95171237, 0, 0.30699116, 9.469776, 0.5792244, -7.5845294)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.999418, 0.6050519, -5.2670924e-08)
+text = "Entry Room"
