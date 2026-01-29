@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Lamport General Systems"
 run/main_scene="uid://dovm16uxv36vy"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -32,6 +36,14 @@ window/vsync/vsync_mode=0
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://scenes/": "red",
+"res://scripts/": "orange",
+"res://trenchbroom/": "yellow"
+}
 
 [global_group]
 
