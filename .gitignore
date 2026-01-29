@@ -15,3 +15,12 @@ export_credentials.cfg
 data_*/
 mono_crash.*.json
 lamport-general-systems/builds
+
+# Blender backup files
+*.blend1
+
+# Godot temp files
+*.tmp
+
+# TrenchBroom autosaves
+lamport-general-systems/trenchbroom/maps/autosave/

@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=4 uid="uid://nb348stosqva"]
 
-[ext_resource type="Script" uid="uid://cgpqpva4kccqp" path="res://scripts/terminal.gd" id="1_1kxmp"]
+[ext_resource type="Script" uid="uid://cgpqpva4kccqp" path="res://scripts/interaction/terminal.gd" id="1_1kxmp"]
 [ext_resource type="Script" uid="uid://dji5ee5pfuvra" path="res://scripts/interaction/interactable.gd" id="2_a25ei"]
 [ext_resource type="PackedScene" uid="uid://fg0f8cmehy67" path="res://scenes/prefabs/ui/terminal_interface.tscn" id="2_hqx8d"]
 

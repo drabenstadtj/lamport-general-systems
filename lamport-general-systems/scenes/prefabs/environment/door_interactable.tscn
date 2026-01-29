@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dr4rbdoq34kgr"]
 
-[ext_resource type="Script" uid="uid://beb6han7ex6vx" path="res://scenes/prefabs/environment/door_interactable.gd" id="1_oiya1"]
+[ext_resource type="Script" uid="uid://beb6han7ex6vx" path="res://scripts/interaction/door_interactable.gd" id="1_oiya1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3aalw"]
 size = Vector3(1, 2.5, 0.1)

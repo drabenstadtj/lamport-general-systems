@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d0ugpb8wvak62"]
 
-[ext_resource type="Script" uid="uid://b5ipplnrw3g7e" path="res://scenes/prefabs/environment/dropceiling_light.gd" id="1_h5std"]
+[ext_resource type="Script" uid="uid://b5ipplnrw3g7e" path="res://scripts/environment/dropceiling_light.gd" id="1_h5std"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdnxh"]
 emission_enabled = true

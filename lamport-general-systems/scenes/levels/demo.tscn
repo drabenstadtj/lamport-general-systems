@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cvei6307hu83" path="res://textures/props/sticky_notes/byz_gen_prob.png" id="14_fcj2s"]
 [ext_resource type="Texture2D" uid="uid://d2mofhhoqtx3r" path="res://textures/props/sticky_notes/door_override.png" id="15_oxwlp"]
 [ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/prefabs/network/terminal.tscn" id="16_dwe0t"]
-[ext_resource type="Script" uid="uid://dw2txcbbbtijv" path="res://scenes/levels/demo_manager.gd" id="17_6u2t8"]
+[ext_resource type="Script" uid="uid://dw2txcbbbtijv" path="res://scripts/levels/demo_manager.gd" id="17_6u2t8"]
 [ext_resource type="Texture2D" uid="uid://bsbji6yt0jofr" path="res://textures/props/sticky_notes/node1_powered_down.png" id="17_s7bt4"]
 [ext_resource type="Texture2D" uid="uid://de8i8uxjin553" path="res://textures/props/sticky_notes/node0.png" id="18_vx4r5"]
 [ext_resource type="Texture2D" uid="uid://cqjesgulnu2y4" path="res://textures/props/sticky_notes/node1.png" id="19_cnq2v"]

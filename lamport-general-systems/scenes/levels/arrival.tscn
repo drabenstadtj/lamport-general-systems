@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=4 uid="uid://dovm16uxv36vy"]
 
 [ext_resource type="PackedScene" uid="uid://fewocnssgvr8" path="res://models/props/car.glb" id="1_fekg2"]
-[ext_resource type="Script" uid="uid://mj7n1dpfkvad" path="res://scenes/levels/arrival_cutscene_manager.gd" id="1_l0hne"]
+[ext_resource type="Script" uid="uid://mj7n1dpfkvad" path="res://scripts/levels/arrival_cutscene_manager.gd" id="1_l0hne"]
 [ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/prefabs/player/player.tscn" id="2_l0hne"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l0hne"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d0qscqamxbx2b"]
 
 [ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://resources/shaders/sticky_note.gdshader" id="1_1raf2"]
-[ext_resource type="Script" uid="uid://nlvobqo8ucdd" path="res://scenes/prefabs/environment/sticky_note.gd" id="1_acemp"]
+[ext_resource type="Script" uid="uid://nlvobqo8ucdd" path="res://scripts/environment/sticky_note.gd" id="1_acemp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1raf2"]
 render_priority = 0
