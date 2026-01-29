@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brhybx51atq4r"
-path.s3tc="res://.godot/imported/molding.png-e0776e37f411f0cc8228d4a7b665d597.s3tc.ctex"
+uid="uid://nxrs7cdwu2ir"
+path.s3tc="res://.godot/imported/door_exterior_Metal_09-128x128.png-1847fe89a06527b34e7228b5667c6809.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "96be3e581c5b041e97933fbb3ea706ac"
+}
 
 [deps]
 
-source_file="res://textures/molding.png"
-dest_files=["res://.godot/imported/molding.png-e0776e37f411f0cc8228d4a7b665d597.s3tc.ctex"]
+source_file="res://models/door_exterior_Metal_09-128x128.png"
+dest_files=["res://.godot/imported/door_exterior_Metal_09-128x128.png-1847fe89a06527b34e7228b5667c6809.s3tc.ctex"]
 
 [params]
 

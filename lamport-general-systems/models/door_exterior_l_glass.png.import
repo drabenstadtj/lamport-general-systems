@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brhybx51atq4r"
-path.s3tc="res://.godot/imported/molding.png-e0776e37f411f0cc8228d4a7b665d597.s3tc.ctex"
+uid="uid://dmaoapl22rvtn"
+path.s3tc="res://.godot/imported/door_exterior_l_glass.png-656edf24dbe68c4a62e8c07fff1503cd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "bbed62a26212473ce495f772bee8ad56"
+}
 
 [deps]
 
-source_file="res://textures/molding.png"
-dest_files=["res://.godot/imported/molding.png-e0776e37f411f0cc8228d4a7b665d597.s3tc.ctex"]
+source_file="res://models/door_exterior_l_glass.png"
+dest_files=["res://.godot/imported/door_exterior_l_glass.png-656edf24dbe68c4a62e8c07fff1503cd.s3tc.ctex"]
 
 [params]
 

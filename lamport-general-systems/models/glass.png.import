@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brhybx51atq4r"
-path.s3tc="res://.godot/imported/molding.png-e0776e37f411f0cc8228d4a7b665d597.s3tc.ctex"
+uid="uid://cpm3u4e2w2h8h"
+path.s3tc="res://.godot/imported/glass.png-e3b7cbbb6ff2e8d903d61fbdedc56ff5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/molding.png"
-dest_files=["res://.godot/imported/molding.png-e0776e37f411f0cc8228d4a7b665d597.s3tc.ctex"]
+source_file="res://models/glass.png"
+dest_files=["res://.godot/imported/glass.png-e3b7cbbb6ff2e8d903d61fbdedc56ff5.s3tc.ctex"]
 
 [params]
 
