@@ -1,6 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 .nomedia
+/android/
 
 # Godot-specific ignores
 .import/
@@ -14,7 +15,7 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
-lamport-general-systems/builds
+builds/
 
 # Blender backup files
 *.blend1
@@ -23,4 +24,4 @@ lamport-general-systems/builds
 *.tmp
 
 # TrenchBroom autosaves
-lamport-general-systems/trenchbroom/maps/autosave/
+trenchbroom/maps/autosave/
