@@ -80,7 +80,9 @@ func setup_file_system():
 	
 	# Add files
 	var readme = FileNode.new("readme.txt", false)
-	readme.content = "Welcome to the terminal!\nThis is a test file."
+	readme.content = "> Welcome to my profile!
+> I develop games and software.
+> Currently: Implementing Lamport General Systems in Godot"
 	user.add_child(readme)
 	
 	var log_file = FileNode.new("system.log", false)

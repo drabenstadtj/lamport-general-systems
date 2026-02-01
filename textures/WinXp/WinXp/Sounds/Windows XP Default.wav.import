@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://8d0mtjqehqmi"
+path="res://.godot/imported/Windows XP Default.wav-29d3fd0f383c6462b022c65be8577e80.sample"
+
+[deps]
+
+source_file="res://textures/WinXp/WinXp/Sounds/Windows XP Default.wav"
+dest_files=["res://.godot/imported/Windows XP Default.wav-29d3fd0f383c6462b022c65be8577e80.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

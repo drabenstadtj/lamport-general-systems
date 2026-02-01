@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 HUD="*res://scenes/prefabs/ui/hud.tscn"
 Enums="*res://scripts/core/enums.gd"
 NetworkManager="*res://scenes/managers/network_manager.tscn"
+AudioManager="*uid://bcfgrl3i7inof"
 
 [display]
 
@@ -110,6 +111,7 @@ close={
 [physics]
 
 common/physics_ticks_per_second=100
+3d/physics_engine="Jolt Physics"
 
 [rendering]
 
