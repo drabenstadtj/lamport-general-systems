@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://brlcdcsqcvqvm"
+path="res://.godot/imported/Windows XP Logon Sound.wav-5af8043dd57e49633465f658ac9d07ec.sample"
+
+[deps]
+
+source_file="res://assets/textures/screens/terminal/WinXp/Sounds/Windows XP Logon Sound.wav"
+dest_files=["res://.godot/imported/Windows XP Logon Sound.wav-5af8043dd57e49633465f658ac9d07ec.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

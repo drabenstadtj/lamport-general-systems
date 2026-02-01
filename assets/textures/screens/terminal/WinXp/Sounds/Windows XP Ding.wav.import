@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b7oaemoevnp55"
+path="res://.godot/imported/Windows XP Ding.wav-dbf1031dec21bec9f8ec5762bc00b6d9.sample"
+
+[deps]
+
+source_file="res://assets/textures/screens/terminal/WinXp/Sounds/Windows XP Ding.wav"
+dest_files=["res://.godot/imported/Windows XP Ding.wav-dbf1031dec21bec9f8ec5762bc00b6d9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

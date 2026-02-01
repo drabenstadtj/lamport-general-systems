@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://3mtbxfhulw7m"]
 
-[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/prefabs/player/player.tscn" id="1_md458"]
+[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/characters/player/player.tscn" id="1_md458"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="2_wwrw0"]
 [ext_resource type="Resource" uid="uid://bpisdf0bouswg" path="res://trenchbroom/lgs_map_settings.tres" id="3_wwrw0"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="4_o1chu"]
@@ -8,33 +8,32 @@
 [ext_resource type="Material" uid="uid://lgiysotwuq1y" path="res://trenchbroom/textures/dropceiling.tres" id="6_h4ce7"]
 [ext_resource type="Material" uid="uid://bli85pejemy78" path="res://trenchbroom/textures/wall_beige.tres" id="7_43bxi"]
 [ext_resource type="Material" uid="uid://cfk32c516r4hf" path="res://trenchbroom/textures/molding.tres" id="8_575cj"]
-[ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/prefabs/environment/dropceiling_light.tscn" id="8_j7gcg"]
-[ext_resource type="PackedScene" uid="uid://7vpoc5wnvxy" path="res://scenes/prefabs/environment/cabinet.tscn" id="10_j8xgc"]
-[ext_resource type="Texture2D" uid="uid://dh8ucww82r80a" path="res://textures/demo_display/slide_04.png" id="10_yo52i"]
-[ext_resource type="PackedScene" uid="uid://cwhitdnvlglgs" path="res://scenes/prefabs/environment/fridge.tscn" id="11_ovmjf"]
-[ext_resource type="PackedScene" uid="uid://c3qsr33trla1l" path="res://models/props/breakroom_table.glb" id="12_1vfnp"]
-[ext_resource type="PackedScene" uid="uid://d2wbfdd5ib87k" path="res://scenes/prefabs/environment/trashbin.tscn" id="12_mwefk"]
-[ext_resource type="PackedScene" uid="uid://d361g2crf7p2o" path="res://models/props/breakroom_chair.glb" id="13_bd4s6"]
-[ext_resource type="PackedScene" uid="uid://bjf24jrck2chl" path="res://scenes/prefabs/environment/breakroom_table.tscn" id="13_jua6e"]
-[ext_resource type="Texture2D" uid="uid://cjrwilggph514" path="res://textures/decals/body_drag_blood.png" id="14_1vfnp"]
-[ext_resource type="PackedScene" uid="uid://3gw4tnt1amn3" path="res://scenes/prefabs/environment/breakroom_chair.tscn" id="14_vtnee"]
-[ext_resource type="Texture2D" uid="uid://c28tf7lsjqb4s" path="res://textures/decals/tidy_breakroom.png" id="15_ovmjf"]
-[ext_resource type="PackedScene" uid="uid://c6skd4yrxw10d" path="res://models/coffee pot.glb" id="19_mwefk"]
-[ext_resource type="PackedScene" uid="uid://c2xm0bar6so53" path="res://models/demo_display.glb" id="20_jua6e"]
-[ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/prefabs/environment/desk.tscn" id="21_8ohfs"]
-[ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/prefabs/network/terminal.tscn" id="22_r6qow"]
-[ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/prefabs/network/server_rack.tscn" id="23_1hcxj"]
-[ext_resource type="PackedScene" uid="uid://djyuuo18io657" path="res://scenes/prefabs/environment/demo_display.tscn" id="25_1d07b"]
-[ext_resource type="PackedScene" uid="uid://ck1yppmi46sda" path="res://models/stanchionpair.glb" id="25_1hcxj"]
-[ext_resource type="Texture2D" uid="uid://cv04qn2dnat6g" path="res://textures/demo_display/slide_01.png" id="26_nq73e"]
-[ext_resource type="Texture2D" uid="uid://cjb0gvxpeapu1" path="res://textures/demo_display/slide_02.png" id="27_nq73e"]
-[ext_resource type="Texture2D" uid="uid://cr5j8l50hstky" path="res://textures/demo_display/slide_03.png" id="28_64olr"]
-[ext_resource type="Texture2D" uid="uid://dxg8vm26dpiex" path="res://textures/demo_display/slide_05.png" id="30_vcyb2"]
-[ext_resource type="Texture2D" uid="uid://dvq0fc8q3snif" path="res://textures/demo_display/slide_06.png" id="31_gkgjl"]
-[ext_resource type="PackedScene" uid="uid://d0qscqamxbx2b" path="res://scenes/prefabs/environment/sticky_note.tscn" id="32_ii06k"]
-[ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://resources/shaders/sticky_note.gdshader" id="33_pseyb"]
+[ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/props/dropceiling_light.tscn" id="8_j7gcg"]
+[ext_resource type="PackedScene" uid="uid://7vpoc5wnvxy" path="res://scenes/props/cabinet.tscn" id="10_j8xgc"]
+[ext_resource type="Texture2D" uid="uid://dh8ucww82r80a" path="res://assets/textures/screens/demo_slides/slide_04.png" id="10_yo52i"]
+[ext_resource type="PackedScene" uid="uid://cwhitdnvlglgs" path="res://scenes/props/fridge.tscn" id="11_ovmjf"]
+[ext_resource type="PackedScene" uid="uid://c3qsr33trla1l" path="res://assets/models/props/breakroom_table.glb" id="12_1vfnp"]
+[ext_resource type="PackedScene" uid="uid://d2wbfdd5ib87k" path="res://scenes/props/trashbin.tscn" id="12_mwefk"]
+[ext_resource type="PackedScene" uid="uid://d361g2crf7p2o" path="res://assets/models/props/breakroom_chair.glb" id="13_bd4s6"]
+[ext_resource type="PackedScene" uid="uid://bjf24jrck2chl" path="res://scenes/props/breakroom_table.tscn" id="13_jua6e"]
+[ext_resource type="Texture2D" uid="uid://cjrwilggph514" path="res://assets/textures/decals/body_drag_blood.png" id="14_1vfnp"]
+[ext_resource type="PackedScene" uid="uid://3gw4tnt1amn3" path="res://scenes/props/breakroom_chair.tscn" id="14_vtnee"]
+[ext_resource type="Texture2D" uid="uid://c28tf7lsjqb4s" path="res://assets/textures/decals/tidy_breakroom.png" id="15_ovmjf"]
+[ext_resource type="PackedScene" uid="uid://c6skd4yrxw10d" path="res://assets/models/props/coffee pot.glb" id="19_mwefk"]
+[ext_resource type="PackedScene" uid="uid://c2xm0bar6so53" path="res://assets/models/props/demo_display.glb" id="20_jua6e"]
+[ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/props/desk.tscn" id="21_8ohfs"]
+[ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="22_r6qow"]
+[ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/props/network/server_rack.tscn" id="23_1hcxj"]
+[ext_resource type="PackedScene" uid="uid://j35gjs44jema" path="res://scenes/props/demo_display.tscn" id="25_1d07b"]
+[ext_resource type="PackedScene" uid="uid://ck1yppmi46sda" path="res://assets/models/props/stanchionpair.glb" id="25_1hcxj"]
+[ext_resource type="Texture2D" uid="uid://cv04qn2dnat6g" path="res://assets/textures/screens/demo_slides/slide_01.png" id="26_nq73e"]
+[ext_resource type="Texture2D" uid="uid://cjb0gvxpeapu1" path="res://assets/textures/screens/demo_slides/slide_02.png" id="27_nq73e"]
+[ext_resource type="Texture2D" uid="uid://cr5j8l50hstky" path="res://assets/textures/screens/demo_slides/slide_03.png" id="28_64olr"]
+[ext_resource type="Texture2D" uid="uid://dxg8vm26dpiex" path="res://assets/textures/screens/demo_slides/slide_05.png" id="30_vcyb2"]
+[ext_resource type="Texture2D" uid="uid://dvq0fc8q3snif" path="res://assets/textures/screens/demo_slides/slide_06.png" id="31_gkgjl"]
+[ext_resource type="PackedScene" uid="uid://b5688h6fdndwu" path="res://scenes/props/sticky_note.tscn" id="32_ii06k"]
 [ext_resource type="Texture2D" uid="uid://b8la1iojgb6hl" path="res://logos/logo3.png" id="34_bqltn"]
-[ext_resource type="Texture2D" uid="uid://0usddfgyqqv5" path="res://textures/demo_display/slide_08.png" id="35_pseyb"]
+[ext_resource type="Texture2D" uid="uid://0usddfgyqqv5" path="res://assets/textures/screens/demo_slides/slide_08.png" id="35_pseyb"]
 
 [sub_resource type="Environment" id="Environment_1hcxj"]
 
@@ -246,15 +245,9 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_575cj"]
 size = Vector3(1, 3.3128662, 4.446289)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pseyb"]
-render_priority = 0
-shader = ExtResource("33_pseyb")
-shader_parameter/base_color = Color(1, 1, 1, 0)
-shader_parameter/text_decal = ExtResource("34_bqltn")
-shader_parameter/roughness_value = 0.8
-shader_parameter/decal_scale = Vector2(0.97880507, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ii06k"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_bqltn"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_pseyb"]
 size = Vector2(10.45, 3.345)
 
 [node name="BaseLevel" type="Node3D" unique_id=66007950]
@@ -728,52 +721,52 @@ transform = Transform3D(0.30699116, 0, 0.95171237, 0, 1, 0, -0.95171237, 0, 0.30
 
 [node name="Props" type="Node3D" parent="Barricade" unique_id=1103045174]
 
-[node name="breakroom_table" parent="Barricade/Props" unique_id=907684813 instance=ExtResource("12_1vfnp")]
+[node name="breakroom_table" parent="Barricade/Props" unique_id=2066964788 instance=ExtResource("12_1vfnp")]
 transform = Transform3D(0.20064864, -0.95000297, 0.23923779, 0.97954726, 0.19830996, -0.03406563, -0.015080784, 0.24117993, 0.97036326, -2.8690872, 0.36444658, 1.0263519)
 
-[node name="breakroom_table2" parent="Barricade/Props" unique_id=1493833222 instance=ExtResource("12_1vfnp")]
+[node name="breakroom_table2" parent="Barricade/Props" unique_id=206648552 instance=ExtResource("12_1vfnp")]
 transform = Transform3D(0.4041307, -0.7854368, -0.46879366, 0.9008695, 0.25298104, 0.35275313, -0.15846935, -0.5648803, 0.8098135, -2.951521, 0.42529815, -0.6531497)
 
-[node name="breakroom_table3" parent="Barricade/Props" unique_id=1472967109 instance=ExtResource("12_1vfnp")]
+[node name="breakroom_table3" parent="Barricade/Props" unique_id=898042078 instance=ExtResource("12_1vfnp")]
 transform = Transform3D(-0.30544445, 0.95123905, -0.042989798, 0.9427188, 0.29573295, -0.15434927, -0.13410956, -0.08767243, -0.9870808, -1.8366728, 0.381643, -0.23192179)
 
-[node name="breakroom_chair" parent="Barricade/Props" unique_id=343983507 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair" parent="Barricade/Props" unique_id=1259710255 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(0.81180847, 0, -0.5839238, 0, 1, 0, 0.5839238, 0, 0.81180847, -2.2382834, -0.11605677, 1.3025477)
 
-[node name="breakroom_chair10" parent="Barricade/Props" unique_id=2030864107 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair10" parent="Barricade/Props" unique_id=685942193 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(0.8484917, 0, 0.52920866, 0, 1, 0, -0.52920866, 0, 0.8484917, -1.9041578, -0.11605677, 0.83802474)
 
-[node name="breakroom_chair11" parent="Barricade/Props" unique_id=2097739469 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair11" parent="Barricade/Props" unique_id=1814217640 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(0.8484917, 0, 0.52920866, 0, 1, 0, -0.52920866, 0, 0.8484917, -1.7220746, -0.11605677, 1.6179738)
 
-[node name="breakroom_chair12" parent="Barricade/Props" unique_id=872940739 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair12" parent="Barricade/Props" unique_id=1090467810 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(-0.8455873, 0.07014407, 0.5292087, -0.08266913, -0.996577, 3.7252903e-09, 0.52739716, -0.04374922, 0.8484918, -2.3442175, 0.3059189, 1.549424)
 
-[node name="breakroom_chair2" parent="Barricade/Props" unique_id=771493062 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair2" parent="Barricade/Props" unique_id=156738305 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(-0.018771857, 0.2552951, 0.96668094, 0.99973255, 0.01784983, 0.014699671, -0.013502363, 0.9666984, -0.2555619, -2.949551, -0.11605677, 0.10993594)
 
-[node name="breakroom_chair4" parent="Barricade/Props" unique_id=1002994813 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair4" parent="Barricade/Props" unique_id=314087124 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(0.794923, -0.32511702, 0.5122464, 0.35412303, 0.93419224, 0.043379933, -0.49264014, 0.14691451, 0.8577424, -2.542899, -0.10987307, 0.0024290904)
 
-[node name="breakroom_chair5" parent="Barricade/Props" unique_id=1227106388 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair5" parent="Barricade/Props" unique_id=184182391 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(0.8061696, -0.32511702, -0.49435773, 0.19257873, 0.93419224, -0.30033052, 0.5594677, 0.14691451, 0.81572807, -2.9236166, -0.1421144, -0.6350725)
 
-[node name="breakroom_chair6" parent="Barricade/Props" unique_id=388460201 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair6" parent="Barricade/Props" unique_id=325510225 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(0.8061696, -0.32511702, -0.49435773, 0.19257873, 0.93419224, -0.30033052, 0.5594677, 0.14691451, 0.81572807, -3.1089032, 0.3902884, -0.5513449)
 
-[node name="breakroom_chair7" parent="Barricade/Props" unique_id=970670481 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair7" parent="Barricade/Props" unique_id=1833020612 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(0.8061696, 0.05167024, -0.5894242, 0.19257876, 0.9190246, 0.34395832, 0.5594677, -0.39079928, 0.7309392, -2.1704047, -0.10283105, 0.43750107)
 
-[node name="breakroom_chair8" parent="Barricade/Props" unique_id=1846999315 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair8" parent="Barricade/Props" unique_id=675605323 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(0.8061696, 0.05167024, -0.5894242, 0.19257876, 0.9190246, 0.34395832, 0.5594677, -0.39079928, 0.7309392, -2.0690908, -0.00707449, -1.1212513)
 
-[node name="breakroom_chair3" parent="Barricade/Props" unique_id=639432027 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair3" parent="Barricade/Props" unique_id=78852070 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(-0.25592133, -0.0056753904, 0.96668094, 0.03336285, 0.99933517, 0.014699668, -0.9661216, 0.03601321, -0.25556192, -2.774989, -0.116310865, 0.7702151)
 
-[node name="breakroom_chair9" parent="Barricade/Props" unique_id=597916833 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair9" parent="Barricade/Props" unique_id=1842493139 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(0.9530639, 0, 0.30276915, 0, 1, 0, -0.30276915, 0, 0.9530639, -1.8541673, -0.07847664, -1.5943755)
 
-[node name="breakroom_chair13" parent="Barricade/Props" unique_id=1934037358 instance=ExtResource("13_bd4s6")]
+[node name="breakroom_chair13" parent="Barricade/Props" unique_id=699483361 instance=ExtResource("13_bd4s6")]
 transform = Transform3D(-0.9298271, 0.20917049, 0.3027692, -0.21947163, -0.9756189, 0, 0.2953873, -0.06644924, 0.9530641, -2.30609, 0.44382194, -1.4508088)
 
 [node name="Sprite3D" type="Sprite3D" parent="Barricade/Props" unique_id=1265064373]
@@ -887,8 +880,8 @@ texture = ExtResource("14_1vfnp")
 
 [node name="StickyNote0" parent="DemoRoom/Props" unique_id=2090067259 instance=ExtResource("32_ii06k")]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, -9.802498, 3.3671613, 18.499784)
-material_override = SubResource("ShaderMaterial_pseyb")
-mesh = SubResource("PlaneMesh_bqltn")
+material_override = SubResource("ShaderMaterial_ii06k")
+mesh = SubResource("PlaneMesh_pseyb")
 skeleton = NodePath("../../..")
 base_color = Color(1, 1, 1, 0)
 text_texture = ExtResource("34_bqltn")

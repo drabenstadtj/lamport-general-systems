@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://boyariflskddn"]
+
+[ext_resource type="Texture2D" uid="uid://tl1vhbd1wfq7" path="res://assets/models/props/cabinet_cabinet.png" id="1_x1ln6"]
+
+[resource]
+resource_name = "cabinet"
+cull_mode = 2
+albedo_texture = ExtResource("1_x1ln6")
+roughness = 0.5
+texture_filter = 2

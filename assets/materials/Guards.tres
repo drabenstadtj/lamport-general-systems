@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cy223m6xo51kc"]
+
+[ext_resource type="Texture2D" uid="uid://bippm8gk0u5nc" path="res://assets/models/props/serverrack_atlas.png" id="1_mdrck"]
+
+[resource]
+resource_name = "Guards"
+cull_mode = 2
+albedo_texture = ExtResource("1_mdrck")
+roughness = 0.5

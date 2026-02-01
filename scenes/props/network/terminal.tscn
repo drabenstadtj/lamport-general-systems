@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://nb348stosqva"]
+
+[ext_resource type="Script" uid="uid://cgpqpva4kccqp" path="res://scripts/interaction/terminal.gd" id="1_1kxmp"]
+[ext_resource type="Script" uid="uid://dji5ee5pfuvra" path="res://scripts/interaction/interactable.gd" id="2_a25ei"]
+[ext_resource type="PackedScene" uid="uid://fg0f8cmehy67" path="res://scenes/ui/terminal_interface.tscn" id="2_hqx8d"]
+[ext_resource type="PackedScene" uid="uid://cwqhal5qghml4" path="res://assets/models/props/keyboard.glb" id="4_dctd8"]
+[ext_resource type="PackedScene" uid="uid://ccv7l8iuxfqcu" path="res://assets/models/props/mouse.glb" id="5_rg1er"]
+[ext_resource type="PackedScene" uid="uid://0cklnfb0gitp" path="res://assets/models/props/monitor.glb" id="6_rg1er"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iyti1"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txsdt"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_iyti1")
+
+[sub_resource type="QuadMesh" id="QuadMesh_bl038"]
+resource_local_to_scene = true
+size = Vector2(1.6, 0.9)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a25ei"]
+points = PackedVector3Array(0.09219046, -0.16038501, 0.14130336, 0.044900186, -0.17688827, -0.16048814, -0.07347466, -0.1604973, -0.16089234, -0.013849339, 0.2724984, -0.28271744, -0.013849339, 0.2724984, 0.28271744, -0.13751747, -0.13389756, 0.14135872, 0.0329528, 0.24939999, -0.2542886, -0.013849339, -0.054390192, 0.28271744, 0.0329528, 0.24939999, 0.2542886, -0.13751747, -0.13389756, -0.14135872, 0.03917056, -0.054390192, -0.28271744, 0.09219046, -0.16038501, -0.14130336, 0.06246371, -0.17860962, 0.1617457, 0.03917056, -0.054390192, 0.28271744, -0.013849339, -0.054390192, -0.28271744, -0.073462285, -0.16044776, 0.16085313, -0.122734, -0.14902902, 0.15012698, -0.12865832, -0.13389756, -0.15901472, -0.12865832, -0.13389756, 0.15901472, -0.13033196, -0.14767392, -0.13251501, 0.07723951, -0.17362721, -0.14984392, 0.07184077, -0.18059121, 0.07729079, -0.11454188, -0.14934398, -0.15869558, 0.084915966, -0.17232634, 0.13235363, -0.11450881, -0.14927483, 0.15863846, 0.084913924, -0.17232226, -0.13235113, -0.13033196, -0.14767393, 0.13251503, 0.06909039, -0.17409007, -0.1584439, 0.044896126, -0.17687507, 0.1604785, 0.07723724, -0.1736223, 0.14984052)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hqx8d"]
+size = Vector3(0.012145996, 0.45261383, 0.55718994)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hqx8d"]
+points = PackedVector3Array(0.039175183, 0.008227843, 0.07688107, -0.03978193, -0.017480645, 0.07623842, 0.03629827, -0.017480645, -0.07593842, -0.029286692, 0.013994279, -0.068064936, -0.037160177, 0.019245237, 0.07623842, 0.028424786, 0.013994279, -0.07067847, 0.038920026, -0.017480645, 0.07623842, -0.031916667, -0.020111904, -0.07593842, 0.03629827, 0.019245237, 0.07623842, -0.037160177, 0.0034962166, -0.08118193, 0.03629827, 0.0034962166, -0.08118193, -0.042411905, 0.006119769, 0.08148193, -0.03453842, -0.020111904, 0.07623842, 0.031074915, -0.01861089, 0.07043466, -0.03978193, -0.004362883, 0.08411191, -0.03453842, -0.017480645, -0.078551956, 0.028424786, 0.006119769, -0.0838119, 0.03732252, 0.0058537372, 0.08070336, 0.02870179, -0.018641297, -0.070252225, -0.026664939, 0.013994279, -0.073308446, 0.038718417, -0.004097838, -0.0047398363, -0.03978193, 0.006119769, 0.08411191, 0.03629827, -0.017480645, 0.07885196, -0.042411905, -0.004362883, 0.08148193, 0.033676516, -0.017480645, -0.078551956, -0.03453842, 0.0008765168, -0.0838119, 0.038920026, 0.016613979, 0.07623842, -0.03978193, 0.016613979, 0.07623842, -0.029286692, 0.006119769, -0.0838119, 0.033676516, 0.008747174, -0.078551956, 0.03629827, 0.016613979, 0.07885196, 0.028424786, 0.011370727, -0.078551956)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a25ei"]
+size = Vector3(0.1541504, 0.039916992, 0.368042)
+
+[node name="Terminal" type="Node3D" unique_id=1133609830]
+script = ExtResource("1_1kxmp")
+
+[node name="Screen" type="MeshInstance3D" parent="." unique_id=2044122646]
+transform = Transform3D(0.34, 0, 0, 0, 0.3350094, 0.1252954, 0, -0.0518622, 0.8093591, 0, 0.20966329, 0.01789596)
+material_override = SubResource("StandardMaterial3D_txsdt")
+mesh = SubResource("QuadMesh_bl038")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1003056870]
+disable_3d = true
+size = Vector2i(1600, 900)
+
+[node name="TerminalUI" parent="SubViewport" unique_id=1097621896 instance=ExtResource("2_hqx8d")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1052554697]
+visible = false
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=494144024]
+transform = Transform3D(-4.329835e-08, 5.9948646e-09, -1, 0.13714652, 0.99055076, 0, 0.99055076, -0.13714652, -4.371139e-08, -1.9408755e-05, 0.07253046, 0.0005519632)
+shape = SubResource("ConvexPolygonShape3D_a25ei")
+
+[node name="CameraPosition" type="Node3D" parent="." unique_id=1360425651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27290583, 0.40179005)
+
+[node name="CameraLookAt" type="Node3D" parent="." unique_id=1342719689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18733709, 0.026986629)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1882100741]
+visible = false
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Area3D" unique_id=1707952780]
+transform = Transform3D(-4.329835e-08, 5.9948646e-09, -1, 0.13714652, 0.99055076, 0, 0.99055076, -0.13714652, -4.371139e-08, 0.00013318009, 0.12000012, 0.02855011)
+shape = SubResource("BoxShape3D_hqx8d")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D" unique_id=998116640]
+transform = Transform3D(0.98480785, 0, 0.17364818, 0, 1.0000001, 0, -0.1736482, 0, 0.9848077, 0.3, -0.076480955, 0.3)
+shape = SubResource("ConvexPolygonShape3D_hqx8d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1478840488]
+transform = Transform3D(-0.08715577, 0, -0.9961947, 0, 1, 0, 0.9961947, 0, -0.08715577, -0.1001772, -0.07349023, 0.30412623)
+shape = SubResource("BoxShape3D_a25ei")
+
+[node name="Interactable" type="Node" parent="Area3D" unique_id=925901667]
+script = ExtResource("2_a25ei")
+metadata/_custom_type_script = "uid://dji5ee5pfuvra"
+
+[node name="keyboard" parent="." unique_id=1062888022 instance=ExtResource("4_dctd8")]
+transform = Transform3D(-0.0851908, 0, -0.99636465, 0, 1, 0, 0.99636465, 0, -0.0851908, -0.10490718, -0.06716317, 0.28785425)
+
+[node name="mouse" parent="." unique_id=1339410372 instance=ExtResource("5_rg1er")]
+transform = Transform3D(0.05219657, 0, -0.99863684, 0, 1, 0, 0.99863684, 0, 0.05219657, 0.3091193, -0.080504246, 0.30686095)
+
+[node name="monitor" parent="." unique_id=1262267360 instance=ExtResource("6_rg1er")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.21056476, -0.023546755)

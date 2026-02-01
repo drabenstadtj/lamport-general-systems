@@ -1,8 +1,8 @@
-[gd_scene load_steps=28 format=4 uid="uid://dovm16uxv36vy"]
+[gd_scene format=4 uid="uid://dovm16uxv36vy"]
 
-[ext_resource type="PackedScene" uid="uid://fewocnssgvr8" path="res://models/props/car.glb" id="1_fekg2"]
+[ext_resource type="PackedScene" uid="uid://fewocnssgvr8" path="res://assets/models/props/car.glb" id="1_fekg2"]
 [ext_resource type="Script" uid="uid://mj7n1dpfkvad" path="res://scripts/levels/arrival_cutscene_manager.gd" id="1_l0hne"]
-[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/prefabs/player/player.tscn" id="2_l0hne"]
+[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/characters/player/player.tscn" id="2_l0hne"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l0hne"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -224,879 +224,877 @@ _data = {
 &"RESET": SubResource("Animation_l0hne")
 }
 
-[node name="Arrival" type="Node3D"]
+[node name="Arrival" type="Node3D" unique_id=764117903]
 script = ExtResource("1_l0hne")
 
-[node name="Environment" type="Node3D" parent="."]
+[node name="Environment" type="Node3D" parent="." unique_id=1284103693]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=1086249076]
 environment = SubResource("Environment_s002n")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=355049640]
 transform = Transform3D(1, 0, 0, 0, -0.25881907, 0.9659258, 0, -0.9659259, -0.25881907, 0, 24, 0)
 
-[node name="Ground" type="Node3D" parent="Environment"]
+[node name="Ground" type="Node3D" parent="Environment" unique_id=1484277175]
 
-[node name="Terrain" type="Node3D" parent="Environment/Ground"]
+[node name="Terrain" type="Node3D" parent="Environment/Ground" unique_id=1665102384]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Terrain"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Terrain" unique_id=1405182892]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 size = Vector3(1000, 1, 1000)
 material = SubResource("StandardMaterial3D_srqwl")
 
-[node name="Road" type="Node3D" parent="Environment/Ground"]
+[node name="Road" type="Node3D" parent="Environment/Ground" unique_id=456533445]
 
-[node name="MainRoad" type="Node3D" parent="Environment/Ground/Road"]
+[node name="MainRoad" type="Node3D" parent="Environment/Ground/Road" unique_id=1471730127]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/MainRoad"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/MainRoad" unique_id=921811122]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19999999, -32)
 size = Vector3(9, 0.6, 906)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="MainRoad2" type="Node3D" parent="Environment/Ground/Road"]
+[node name="MainRoad2" type="Node3D" parent="Environment/Ground/Road" unique_id=1339984679]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -213, 0, 346)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/MainRoad2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/MainRoad2" unique_id=1783016716]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19999999, 94)
 size = Vector3(9, 0.6, 654)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="MainRoad3" type="Node3D" parent="Environment/Ground/Road"]
+[node name="MainRoad3" type="Node3D" parent="Environment/Ground/Road" unique_id=731874967]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -213, 0, -241.5)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/MainRoad3"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/MainRoad3" unique_id=1794315142]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19999999, 94)
 size = Vector3(9, 0.6, 654)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="Highway" type="Node3D" parent="Environment/Ground/Road"]
+[node name="Highway" type="Node3D" parent="Environment/Ground/Road" unique_id=386761680]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 155.5, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/Highway"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/Highway" unique_id=429605228]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, -0.19999999, -120.5)
 size = Vector3(20.725, 0.6, 1319)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="Exitramp" type="Node3D" parent="Environment/Ground/Road/Highway"]
+[node name="Exitramp" type="Node3D" parent="Environment/Ground/Road/Highway" unique_id=568280389]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.299995, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp" unique_id=592895897]
 transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 41.250008, -0.19999999, -97.84456)
 size = Vector3(9, 0.6, 33)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp" unique_id=1304488760]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.250008, -0.19999999, -145.84456)
 size = Vector3(11, 0.6, 73)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp" unique_id=1356157676]
 transform = Transform3D(0.90630776, 0, -0.42261827, 0, 1, 0, 0.42261827, 0, 0.90630776, 54.95002, -0.19999999, -188.89456)
 size = Vector3(11, 0.6, 20.300001)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp" unique_id=1819889232]
 transform = Transform3D(0.7071067, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071067, 22.250008, -0.19999999, -72.84456)
 size = Vector3(9, 0.6, 33)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp" unique_id=102834341]
 transform = Transform3D(0.49999994, 0, -0.8660253, 0, 1, 0, 0.8660253, 0, 0.49999994, -2.7499924, -0.19999999, -53.84456)
 size = Vector3(9, 0.6, 33)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp" unique_id=1149180501]
 transform = Transform3D(0.25881898, 0, -0.9659257, 0, 1, 0, 0.9659257, 0, 0.25881898, -31.749992, -0.19999999, -41.84456)
 size = Vector3(9, 0.6, 33)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp" unique_id=1878446799]
 transform = Transform3D(-2.9802322e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -2.9802322e-08, -59.249992, -0.19999999, -37.84456)
 size = Vector3(9, 0.6, 26)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="Exitramp2" type="Node3D" parent="Environment/Ground/Road/Highway"]
+[node name="Exitramp2" type="Node3D" parent="Environment/Ground/Road/Highway" unique_id=785044174]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, -56.299995, -0.4, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2" unique_id=95373900]
 transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 41.250008, -0.19999999, -97.84456)
 size = Vector3(9, 0.6, 33)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2" unique_id=1211899718]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.250008, -0.19999999, -145.84456)
 size = Vector3(11, 0.6, 73)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2" unique_id=770004952]
 transform = Transform3D(0.90630776, 0, -0.42261827, 0, 1, 0, 0.42261827, 0, 0.90630776, 54.95002, -0.19999999, -188.89456)
 size = Vector3(11, 0.6, 20.300001)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2" unique_id=1649457787]
 transform = Transform3D(0.7071067, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071067, 22.250008, -0.19999999, -72.84456)
 size = Vector3(9, 0.6, 33)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2" unique_id=61502917]
 transform = Transform3D(0.49999994, 0, -0.8660253, 0, 1, 0, 0.8660253, 0, 0.49999994, -2.7499924, -0.19999999, -53.84456)
 size = Vector3(9, 0.6, 33)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2" unique_id=233533090]
 transform = Transform3D(0.25881898, 0, -0.9659257, 0, 1, 0, 0.9659257, 0, 0.25881898, -31.749992, -0.19999999, -41.84456)
 size = Vector3(9, 0.6, 33)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Ground/Road/Highway/Exitramp2" unique_id=525599626]
 transform = Transform3D(-2.9802322e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -2.9802322e-08, -59.249992, -0.19999999, -37.84456)
 size = Vector3(9, 0.6, 26)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="DCRoad" type="Node3D" parent="Environment/Ground/Road"]
+[node name="DCRoad" type="Node3D" parent="Environment/Ground/Road" unique_id=1118436589]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -34.9, 0, 108)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/DCRoad"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/DCRoad" unique_id=763454735]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, -11.400002)
 size = Vector3(9, 0.6, 84)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="DCRoad2" type="Node3D" parent="Environment/Ground/Road"]
+[node name="DCRoad2" type="Node3D" parent="Environment/Ground/Road" unique_id=1108852461]
 transform = Transform3D(-0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, -0.9659258, -34.9, 0, 54)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/DCRoad2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/DCRoad2" unique_id=1530925786]
 transform = Transform3D(1.0000012, 0, 0, 0, 1, 0, 0, 0, 1.0000012, 3.8146973e-06, -0.2, -14.400002)
 size = Vector3(9, 0.6, 78)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="DCRoad3" type="Node3D" parent="Environment/Ground/Road"]
+[node name="DCRoad3" type="Node3D" parent="Environment/Ground/Road" unique_id=1899602130]
 transform = Transform3D(-0.7071068, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, -0.7071068, -75.3, 0, -8.299999)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/DCRoad3"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/DCRoad3" unique_id=608789742]
 transform = Transform3D(0.99619484, 0, -0.08715573, 0, 1, 0, 0.08715573, 0, 0.99619484, 0, -0.2, -11.400002)
 size = Vector3(9, 0.6, 84)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="DCRoad4" type="Node3D" parent="Environment/Ground/Road"]
+[node name="DCRoad4" type="Node3D" parent="Environment/Ground/Road" unique_id=1300752637]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -146.8, 0, -28.3)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/DCRoad4"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/DCRoad4" unique_id=854288371]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8999996, -0.2, -13.900009)
 size = Vector3(47, 0.6, 84)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="DCParking" type="Node3D" parent="Environment/Ground/Road"]
+[node name="DCParking" type="Node3D" parent="Environment/Ground/Road" unique_id=1752442059]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -108, 0, 108)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/DCParking"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Ground/Road/DCParking" unique_id=1176673400]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.2, 29.600014)
 size = Vector3(39, 0.6, 144)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground" unique_id=1004514266]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/StaticBody3D" unique_id=455817078]
 shape = SubResource("WorldBoundaryShape3D_l0hne")
 
-[node name="Datacenter1" type="Node3D" parent="Environment"]
+[node name="Datacenter1" type="Node3D" parent="Environment" unique_id=227770239]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -130.8, 5, 168.7)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Datacenter1"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Datacenter1" unique_id=953601883]
 size = Vector3(200, 10, 80)
 material = SubResource("StandardMaterial3D_tlc7f")
 
-[node name="Roof" type="Node3D" parent="Environment/Datacenter1"]
+[node name="Roof" type="Node3D" parent="Environment/Datacenter1" unique_id=488265928]
 
-[node name="Ducts" type="Node3D" parent="Environment/Datacenter1/Roof"]
+[node name="Ducts" type="Node3D" parent="Environment/Datacenter1/Roof" unique_id=839209551]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0)
 
-[node name="Duct" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1275065443]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26.300003, -15.5, -13.800003)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct2" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct2" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1150924335]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -41.699997, -15.5, -13.800003)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct3" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct3" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1055640426]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -41.699997, -15.5, -4.699997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct4" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct4" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=230218702]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -41.699997, -15.5, 3.5)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct5" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct5" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=2017438359]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -41.699997, -15.5, 13)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct6" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct6" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=870551139]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -41.699997, -15.5, 23.5)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct7" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct7" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1105850504]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -25.699997, -15.5, -13.800003)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct8" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct8" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=690231312]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -25.699997, -15.5, -4.699997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct9" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct9" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1542583036]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -25.699997, -15.5, 3.5)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct10" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct10" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=844908648]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -25.699997, -15.5, 13)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct11" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct11" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1750181635]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -25.699997, -15.5, 23.5)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct12" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct12" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1233386987]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.300003, -15.5, -13.800003)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct13" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct13" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=581210670]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.300003, -15.5, -4.699997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct14" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct14" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1019590194]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.300003, -15.5, 3.5)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct15" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct15" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=606897847]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.300003, -15.5, 13)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct16" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct16" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1932686567]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.300003, -15.5, 23.5)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct17" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct17" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1371266787]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 48.300003, -15.5, -13.800003)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct18" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct18" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1576248289]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 48.300003, -15.5, -4.699997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct19" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct19" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1574217757]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 48.300003, -15.5, 3.5)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct20" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct20" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1114717669]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 48.300003, -15.5, 13)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct21" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct21" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1455006071]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 48.300003, -15.5, 23.5)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct22" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct22" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1562266878]
 transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 91.40001, -15.5, -23.800003)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct23" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct23" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=722485803]
 transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 82.3, -15.5, -23.800003)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct24" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct24" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1464241137]
 transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 74.100006, -15.5, -23.800003)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct25" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct25" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=2034011521]
 transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 64.600006, -15.5, -23.800003)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct26" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts"]
+[node name="Duct26" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Ducts" unique_id=1258854422]
 transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 54.100006, -15.5, -23.800003)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Boxes" type="Node3D" parent="Environment/Datacenter1/Roof"]
+[node name="Boxes" type="Node3D" parent="Environment/Datacenter1/Roof" unique_id=39059173]
 
-[node name="Box" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes"]
+[node name="Box" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes" unique_id=275840478]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 5.5, 0)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box2" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes"]
+[node name="Box2" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes" unique_id=1388913773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.300003, 5.5, 0)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box3" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes"]
+[node name="Box3" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes" unique_id=1952487643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.3, 5.5, 31)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box4" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes"]
+[node name="Box4" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes" unique_id=645847678]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.100006, 5.5, 18.399994)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box5" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes"]
+[node name="Box5" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes" unique_id=113618407]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.100006, 5.5, -3.9000092)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box6" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes"]
+[node name="Box6" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes" unique_id=893315450]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66.100006, 5.5, -23.200012)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box7" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes"]
+[node name="Box7" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes" unique_id=1218516036]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.199997, 5.5, -23.200012)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box8" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes"]
+[node name="Box8" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes" unique_id=448206263]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 5.5, -23.200012)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box9" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes"]
+[node name="Box9" type="MeshInstance3D" parent="Environment/Datacenter1/Roof/Boxes" unique_id=446593493]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.199997, 5.5, -23.200012)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Molding" type="Node3D" parent="Environment/Datacenter1/Roof"]
+[node name="Molding" type="Node3D" parent="Environment/Datacenter1/Roof" unique_id=411439205]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Datacenter1/Roof/Molding"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Datacenter1/Roof/Molding" unique_id=2097818456]
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Datacenter1/Roof/Molding/CSGCombiner3D"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Datacenter1/Roof/Molding/CSGCombiner3D" unique_id=567046593]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
 size = Vector3(200.25, 2, 80.25)
 material = SubResource("StandardMaterial3D_s002n")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Datacenter1/Roof/Molding/CSGCombiner3D"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Datacenter1/Roof/Molding/CSGCombiner3D" unique_id=218488533]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0999999, 0)
 operation = 2
 size = Vector3(198, 10, 78)
 
-[node name="Molding2" type="Node3D" parent="Environment/Datacenter1/Roof"]
+[node name="Molding2" type="Node3D" parent="Environment/Datacenter1/Roof" unique_id=1015262724]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.300001, 0)
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Datacenter1/Roof/Molding2"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Datacenter1/Roof/Molding2" unique_id=1214138672]
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Datacenter1/Roof/Molding2/CSGCombiner3D"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Datacenter1/Roof/Molding2/CSGCombiner3D" unique_id=1203404797]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, 0)
 size = Vector3(200.25, 2, 80.25)
 material = SubResource("StandardMaterial3D_s002n")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Datacenter1/Roof/Molding2/CSGCombiner3D"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Datacenter1/Roof/Molding2/CSGCombiner3D" unique_id=2021156902]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0999999, 0)
 operation = 2
 size = Vector3(198, 10, 78)
 
-[node name="GroundBits" type="Node3D" parent="Environment/Datacenter1"]
+[node name="GroundBits" type="Node3D" parent="Environment/Datacenter1" unique_id=1175308333]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, -42)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Datacenter1/GroundBits" unique_id=1315991964]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.1, -3.5)
 radius = 5.0
 height = 10.0
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Environment/Datacenter1/GroundBits" unique_id=600660905]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.400002, 5.1, -3.5)
 radius = 5.0
 height = 10.0
 
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Environment/Datacenter1/GroundBits" unique_id=997460673]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.40001, 5.1, -3.5)
 radius = 5.0
 height = 10.0
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=1251388966]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.800003, 3.4000006, -6.199997)
 size = Vector3(7, 7, 15)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=1917455015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.300003, 3.4000006, -6.199997)
 size = Vector3(7, 7, 15)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=898235437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.90001, 3.4000006, -6.199997)
 size = Vector3(7, 7, 15)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=984335100]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.199997, 3.4000006, -6.199997)
 size = Vector3(7, 7, 15)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=2121494586]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.699997, 3.4000006, -6.199997)
 size = Vector3(7, 7, 15)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=1348210069]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.09999, 3.4000006, -6.199997)
 size = Vector3(7, 7, 15)
 
-[node name="Box9" type="MeshInstance3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="Box9" type="MeshInstance3D" parent="Environment/Datacenter1/GroundBits" unique_id=1422951530]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 51.1, 1.5, -8.000015)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box10" type="MeshInstance3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="Box10" type="MeshInstance3D" parent="Environment/Datacenter1/GroundBits" unique_id=1583979404]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.900009, 1.5, -8.000015)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box11" type="MeshInstance3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="Box11" type="MeshInstance3D" parent="Environment/Datacenter1/GroundBits" unique_id=1887670645]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -47.90001, 1.5, -8.000015)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=2076757198]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.1, -11.400002)
 size = Vector3(2, 2.2, 1.8000001)
 material = SubResource("StandardMaterial3D_xwocj")
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=1878768872]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.800003, 1.1, -11.400002)
 size = Vector3(2, 2.2, 1.8000001)
 material = SubResource("StandardMaterial3D_xwocj")
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=623737024]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7000046, 1.1, -11.400002)
 size = Vector3(2, 2.2, 1.8000001)
 material = SubResource("StandardMaterial3D_xwocj")
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D10" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=1275335438]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.700005, 1.1, -11.400002)
 size = Vector3(2, 2.2, 1.8000001)
 material = SubResource("StandardMaterial3D_xwocj")
 
-[node name="CSGBox3D11" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D11" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=327515016]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.5, 1.1, -16.400002)
 size = Vector3(2, 2.2, 1.8000001)
 material = SubResource("StandardMaterial3D_xwocj")
 
-[node name="CSGBox3D12" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D12" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=1590541145]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.199997, 1.1, -16.400002)
 size = Vector3(2, 2.2, 1.8000001)
 material = SubResource("StandardMaterial3D_xwocj")
 
-[node name="CSGBox3D13" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D13" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=999927458]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.300003, 1.1, -16.400002)
 size = Vector3(2, 2.2, 1.8000001)
 material = SubResource("StandardMaterial3D_xwocj")
 
-[node name="CSGBox3D14" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D14" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=868713415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.300003, 1.1, -16.400002)
 size = Vector3(2, 2.2, 1.8000001)
 material = SubResource("StandardMaterial3D_xwocj")
 
-[node name="CSGBox3D15" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D15" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=850457701]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.600006, 1.1, -16.400002)
 size = Vector3(2, 2.2, 1.8000001)
 material = SubResource("StandardMaterial3D_xwocj")
 
-[node name="CSGBox3D16" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D16" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=1579956763]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.90001, 1.1, -16.400002)
 size = Vector3(2, 2.2, 1.8000001)
 material = SubResource("StandardMaterial3D_xwocj")
 
-[node name="CSGBox3D17" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D17" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=70366818]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.800003, 1.1, -16.400002)
 size = Vector3(2, 2.2, 1.8000001)
 material = SubResource("StandardMaterial3D_xwocj")
 
-[node name="CSGBox3D18" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits"]
+[node name="CSGBox3D18" type="CSGBox3D" parent="Environment/Datacenter1/GroundBits" unique_id=560812572]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.800003, 1.1, -16.400002)
 size = Vector3(2, 2.2, 1.8000001)
 material = SubResource("StandardMaterial3D_xwocj")
 
-[node name="Datacenter2" type="Node3D" parent="Environment"]
+[node name="Datacenter2" type="Node3D" parent="Environment" unique_id=1427180606]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.40001, 5, 45)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Datacenter2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Datacenter2" unique_id=1791985507]
 size = Vector3(150, 10, 80)
 material = SubResource("StandardMaterial3D_tlc7f")
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Datacenter2"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Datacenter2" unique_id=710735119]
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Datacenter2/CSGCombiner3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Datacenter2/CSGCombiner3D" unique_id=493260052]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0)
 size = Vector3(150.2, 1, 80.2)
 material = SubResource("StandardMaterial3D_lnyx0")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Datacenter2/CSGCombiner3D"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Datacenter2/CSGCombiner3D" unique_id=1788333144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0)
 operation = 2
 size = Vector3(149, 1, 79)
 
-[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="Environment/Datacenter2"]
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="Environment/Datacenter2" unique_id=1704468553]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.7, 0)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Datacenter2/CSGCombiner3D2"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Datacenter2/CSGCombiner3D2" unique_id=1770706011]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0)
 size = Vector3(150.2, 1, 80.2)
 material = SubResource("StandardMaterial3D_lnyx0")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Datacenter2/CSGCombiner3D2"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Datacenter2/CSGCombiner3D2" unique_id=187878698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0)
 operation = 2
 size = Vector3(149, 1, 79)
 
-[node name="Roof" type="Node3D" parent="Environment/Datacenter2"]
+[node name="Roof" type="Node3D" parent="Environment/Datacenter2" unique_id=740721419]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Datacenter2/Roof"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Datacenter2/Roof" unique_id=1759470545]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Datacenter2/Roof/CSGCombiner3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Datacenter2/Roof/CSGCombiner3D" unique_id=143952690]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 7.500001, 20)
 size = Vector3(98, 5, 24)
 material = SubResource("StandardMaterial3D_ajb04")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Datacenter2/Roof/CSGCombiner3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Datacenter2/Roof/CSGCombiner3D" unique_id=195388366]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 7.500001, 20)
 operation = 2
 size = Vector3(97.8, 5, 23.8)
 material = SubResource("StandardMaterial3D_ajb04")
 
-[node name="Box9" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Box9" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=2113951708]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 28.099998, 5.5, 19.999985)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box10" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Box10" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=428227539]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 17.5, 5.5, 19.999985)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box11" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Box11" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=1191020895]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 7, 5.5, 19.999985)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box12" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Box12" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=651318109]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.800003, 5.5, 19.999985)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box13" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Box13" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=1285027240]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -13.699997, 5.5, 19.999985)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box14" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Box14" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=410917437]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -27.399994, 5.5, 19.999985)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Box15" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Box15" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=1395808382]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -27.399994, 5.5, 19.999985)
 mesh = SubResource("ArrayMesh_srqwl")
 
-[node name="Duct7" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Duct7" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=2086561263]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -55.699997, 6.5, 14.199997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct8" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Duct8" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=64300254]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -55.699997, 6.5, 21.199997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct9" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Duct9" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=325354815]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -55.699997, 6.5, 27.199997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct10" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Duct10" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=1743278487]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -47.699997, 6.5, 14.199997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct11" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Duct11" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=1800218482]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -47.699997, 6.5, 21.199997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct12" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Duct12" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=1462255854]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -47.699997, 6.5, 27.199997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct13" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Duct13" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=206372739]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -38.699997, 6.5, 14.199997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct14" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Duct14" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=1970939721]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -38.699997, 6.5, 21.199997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="Duct15" type="MeshInstance3D" parent="Environment/Datacenter2/Roof"]
+[node name="Duct15" type="MeshInstance3D" parent="Environment/Datacenter2/Roof" unique_id=1569963868]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -38.699997, 6.5, 27.199997)
 mesh = SubResource("ArrayMesh_fekg2")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Datacenter2/Roof"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Datacenter2/Roof" unique_id=998348844]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.40001, 5, 0)
 size = Vector3(6, 1, 6)
 material = SubResource("StandardMaterial3D_qo1di")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Datacenter2/Roof"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Datacenter2/Roof" unique_id=2126484255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.40001, 5, -27.5)
 size = Vector3(6, 1, 6)
 material = SubResource("StandardMaterial3D_qo1di")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Datacenter2/Roof"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Datacenter2/Roof" unique_id=1643377844]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.40001, 5, -13.5)
 size = Vector3(6, 1, 6)
 material = SubResource("StandardMaterial3D_qo1di")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Datacenter2/Roof"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Datacenter2/Roof" unique_id=1866756895]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.40001, 5, -13.5)
 size = Vector3(6, 1, 6)
 material = SubResource("StandardMaterial3D_qo1di")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Datacenter2/Roof"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Datacenter2/Roof" unique_id=1956433806]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.400009, 5, -13.5)
 size = Vector3(6, 1, 6)
 material = SubResource("StandardMaterial3D_qo1di")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Datacenter2/Roof"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Datacenter2/Roof" unique_id=926214596]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.400009, 5, -0.5)
 size = Vector3(6, 1, 6)
 material = SubResource("StandardMaterial3D_qo1di")
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Datacenter2/Roof"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Datacenter2/Roof" unique_id=1214326552]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.40001, 5, -0.5)
 size = Vector3(6, 1, 6)
 material = SubResource("StandardMaterial3D_qo1di")
 
-[node name="Neighborhood" type="Node3D" parent="Environment"]
+[node name="Neighborhood" type="Node3D" parent="Environment" unique_id=381137206]
 
-[node name="House" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=538667872]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -72, 0.5, -291)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House2" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House2" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1179170333]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -95, 0.5, -291)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House3" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House3" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1016230755]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -119, 0.5, -291)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House16" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House16" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=632834166]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -171, 0.5, -291)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House17" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House17" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1747082753]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -194, 0.5, -291)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House18" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House18" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=629066631]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -218, 0.5, -291)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House19" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House19" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=949502097]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -217.66666, 0.5, -409)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House20" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House20" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=481214021]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -194.66666, 0.5, -409)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House21" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House21" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1485097309]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -170.66666, 0.5, -409)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House22" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House22" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1348783607]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -143.66666, 0.5, -409)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House23" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House23" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=794495121]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -120.66666, 0.5, -409)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House24" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House24" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=598717170]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -96.66666, 0.5, -409)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House27" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House27" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=684551117]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -194.66666, 0.5, -326)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House28" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House28" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=425958734]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -170.66666, 0.5, -326)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House29" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House29" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=555906449]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -143.66666, 0.5, -326)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House30" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House30" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1385653382]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -120.66666, 0.5, -326)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House31" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House31" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1093367533]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -96.66666, 0.5, -326)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House32" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House32" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1238446763]
 transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, -95.86664, 0.5, -370)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House33" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House33" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1450180933]
 transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, -119.86664, 0.5, -370)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House34" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House34" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=2146638343]
 transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, -146.86664, 0.5, -370)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House35" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House35" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=703299730]
 transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, -169.86664, 0.5, -370)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House36" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House36" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=586894361]
 transform = Transform3D(-2.1855693e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855693e-07, -193.86664, 0.5, -370)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House25" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House25" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=706236930]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -74.66666, 0.5, -409)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House26" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House26" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=978417992]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -51.666656, 0.5, -409)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House4" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House4" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=641925390]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -27.333334, 0.5, -368.33334)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House5" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House5" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=2046453146]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -27.333332, 0.5, -345.33334)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House6" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House6" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1004736884]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -27.333332, 0.5, -321.33334)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House13" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House13" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=550506118]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -219.33333, 0.5, -368.33334)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House14" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House14" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1176749629]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -219.33333, 0.5, -345.33334)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House15" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House15" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1924261793]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -219.33333, 0.5, -321.33334)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House7" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House7" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1411486408]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -74.33332, 0.5, -326.66666)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House8" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House8" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1021071215]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -74.33333, 0.5, -349.66666)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House9" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House9" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=1796838997]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -74.33333, 0.5, -373.66666)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House10" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House10" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=419196659]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -260.3333, 0.5, -326.66666)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House11" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House11" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=467855857]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -260.3333, 0.5, -349.66666)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="House12" type="MeshInstance3D" parent="Environment/Neighborhood"]
+[node name="House12" type="MeshInstance3D" parent="Environment/Neighborhood" unique_id=53743915]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -260.3333, 0.5, -373.66666)
 mesh = SubResource("ArrayMesh_6sdwv")
 skeleton = NodePath("")
 
-[node name="NeighborhoodRoad" type="Node3D" parent="Environment/Neighborhood"]
+[node name="NeighborhoodRoad" type="Node3D" parent="Environment/Neighborhood" unique_id=257831347]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -146.30002, 0, -376)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Neighborhood/NeighborhoodRoad"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Neighborhood/NeighborhoodRoad" unique_id=207940699]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19999999, 100.5)
 size = Vector3(9, 0.6, 59)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="NeighborhoodRoad2" type="Node3D" parent="Environment/Neighborhood"]
+[node name="NeighborhoodRoad2" type="Node3D" parent="Environment/Neighborhood" unique_id=1385960187]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -146.30002, 0, -376)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Neighborhood/NeighborhoodRoad2"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Neighborhood/NeighborhoodRoad2" unique_id=1478953801]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.5, -0.19999999, 67.5)
 size = Vector3(9, 0.6, 196)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Neighborhood/NeighborhoodRoad2"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Neighborhood/NeighborhoodRoad2" unique_id=963881169]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.5, -0.19999999, -13.5)
 size = Vector3(9, 0.6, 196)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Neighborhood/NeighborhoodRoad2"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Neighborhood/NeighborhoodRoad2" unique_id=1911044012]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 94.5, -0.19999999, 27)
 size = Vector3(9, 0.6, 75)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Neighborhood/NeighborhoodRoad2"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Neighborhood/NeighborhoodRoad2" unique_id=910550341]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -93.5, -0.19999999, 27)
 size = Vector3(9, 0.6, 75)
 material = SubResource("StandardMaterial3D_6sdwv")
 
-[node name="Car" parent="." instance=ExtResource("1_fekg2")]
+[node name="Car" parent="." unique_id=428067808 instance=ExtResource("1_fekg2")]
 transform = Transform3D(-3.6717562e-08, 0, -0.8399999, 0, 0.8399999, 0, 0.8399999, 0, -3.6717562e-08, 22.350002, 1.9, 106.74284)
 
-[node name="Player" parent="Car" instance=ExtResource("2_l0hne")]
+[node name="Player" parent="Car" unique_id=1249559981 instance=ExtResource("2_l0hne")]
 transform = Transform3D(-1.0714287, 0, 9.3667296e-08, 0, 1.0714287, 0, -9.3667296e-08, 0, -1.0714287, 0, -0.6992303, -0.6744385)
 
 [node name="Camera3D" parent="Car/Player/CameraPivot" index="0"]
 current = false
 
 [node name="GeneralSkeleton" parent="Car/Player" index="15"]
-bones/0/position = Vector3(-0.0018843825, 0.9268234, -0.09234701)
-bones/0/rotation = Quaternion(-0.040924836, -0.115915924, -0.004780146, 0.99240404)
-bones/2/rotation = Quaternion(0.04955798, 0.000110332505, 0.00012889951, 0.9987713)
-bones/3/rotation = Quaternion(-0.09901221, -0.00022048352, -0.0002575492, 0.9950862)
-bones/4/rotation = Quaternion(0.074437454, 0.09579423, 0.007004624, 0.99258935)
-bones/6/rotation = Quaternion(0.49114293, 0.52537155, 0.52752113, -0.45220006)
-bones/7/rotation = Quaternion(-0.050710678, 0.8194717, -0.5707881, 0.00977652)
-bones/8/rotation = Quaternion(0.19038099, -0.6579016, 0.18752375, 0.704099)
-bones/15/rotation = Quaternion(0.54331416, -0.47368026, -0.47541144, -0.5044015)
-bones/16/rotation = Quaternion(0.07666865, 0.8225863, -0.56336546, -0.009649545)
-bones/17/rotation = Quaternion(0.29001185, 0.5501774, -0.2078437, 0.75498277)
-bones/24/rotation = Quaternion(-0.00081487186, 0.1308738, 0.9845295, -0.11650408)
-bones/25/rotation = Quaternion(0.017114973, 0.9811331, -0.15671994, 0.111910425)
-bones/26/rotation = Quaternion(-0.09772334, 0.72661376, -0.6799974, 0.009280519)
-bones/28/rotation = Quaternion(0.0008431574, -0.09559558, 0.9880939, 0.12054549)
-bones/29/rotation = Quaternion(-0.038189005, 0.9270705, -0.10563193, -0.35766453)
-bones/30/rotation = Quaternion(0.16938353, 0.63492906, -0.75377285, 0.00089116395)
+bones/0/position = Vector3(-0.0009151607, 0.92355275, -0.091895774)
+bones/0/rotation = Quaternion(-0.044223774, -0.1158994, -0.005165487, 0.9922626)
+bones/2/rotation = Quaternion(0.04346409, 0.00010700995, 0.00013136827, 0.999055)
+bones/3/rotation = Quaternion(-0.08546593, -0.00021310618, -0.00026313652, 0.9963411)
+bones/4/rotation = Quaternion(0.05460637, 0.09534189, 0.011667749, 0.99387723)
+bones/6/rotation = Quaternion(0.4966948, 0.52344435, 0.5292271, -0.44633964)
+bones/7/rotation = Quaternion(-0.033201024, 0.8222893, -0.56801707, 0.009729086)
+bones/8/rotation = Quaternion(0.16364926, -0.67515063, 0.16806825, 0.6993881)
+bones/15/rotation = Quaternion(0.5487626, -0.47242063, -0.4764678, -0.49865514)
+bones/16/rotation = Quaternion(0.081752986, 0.8234325, -0.56141156, -0.009615955)
+bones/17/rotation = Quaternion(0.290884, 0.5471975, -0.20665641, 0.7571358)
+bones/24/rotation = Quaternion(-0.0008262521, 0.13652474, 0.9835681, -0.118128225)
+bones/25/rotation = Quaternion(0.018920904, 0.9783596, -0.17371555, 0.11080441)
+bones/26/rotation = Quaternion(-0.09774838, 0.72105783, -0.6858984, 0.008019492)
+bones/28/rotation = Quaternion(0.0008966265, -0.09173593, 0.98749745, 0.12819047)
+bones/29/rotation = Quaternion(-0.04485259, 0.92552257, -0.12356833, -0.3551439)
+bones/30/rotation = Quaternion(0.17019747, 0.62797517, -0.759392, 0.0019987302)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Car"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Car" unique_id=1477705330]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/StaticBody3D" unique_id=2050055018]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2758495, -0.00012207031)
 shape = SubResource("BoxShape3D_l0hne")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ila73")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1225593923]
+libraries/ = SubResource("AnimationLibrary_ila73")
 
-[node name="Cameras" type="Node3D" parent="."]
+[node name="Cameras" type="Node3D" parent="." unique_id=1967863484]
 
-[node name="Camera3D" type="Camera3D" parent="Cameras"]
+[node name="Camera3D" type="Camera3D" parent="Cameras" unique_id=218595557]
 transform = Transform3D(-0.83147246, -0.24611758, 0.498076, 0, 0.89651996, 0.44300336, -0.55556595, 0.36834508, -0.7454317, 59.72229, 33.403748, -469.89478)
 
 [editable path="Car/Player"]
