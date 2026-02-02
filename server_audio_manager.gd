@@ -3,10 +3,10 @@ class_name ServerAudioManager
 
 # Audio streams
 @export_group("Audio Streams")
-@export var power_on_beep: AudioStream = preload("res://audio/server/server_powerup.mp3")
-@export var power_off_beep: AudioStream = preload("res://audio/server/server_powerdown.mp3")
-@export var hdd_spinup: AudioStream = preload("res://audio/server/harddrive_spinup.mp3")
-@export var hdd_idle_sound: AudioStream = preload("res://audio/server/harddrive_idle.mp3")
+@export var power_on_beep: AudioStream = preload("res://assets/audio/server/server_powerup.mp3")
+@export var power_off_beep: AudioStream = preload("res://assets/audio/server/server_powerdown.mp3")
+@export var hdd_spinup: AudioStream = preload("res://assets/audio/server/harddrive_spinup.mp3")
+@export var hdd_idle_sound: AudioStream = preload("res://assets/audio/server/harddrive_idle.mp3")
 
 @export_group("Idle Sound Settings")
 @export var num_idle_layers: int = 3

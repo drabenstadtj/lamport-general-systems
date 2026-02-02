@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/props/dropceiling_light.tscn" id="3_y87cy"]
 [ext_resource type="Material" uid="uid://qicm7tcw3gqr" path="res://assets/materials/glass.tres" id="5_annih"]
 [ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/props/desk.tscn" id="5_msxrg"]
-[ext_resource type="PackedScene" uid="uid://d0qscqamxbx2b" path="res://scenes/props/sticky_note.tscn" id="6_s1pth"]
+[ext_resource type="PackedScene" uid="uid://b5688h6fdndwu" path="res://scenes/props/sticky_note.tscn" id="6_s1pth"]
 [ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://assets/shaders/sticky_note.gdshader" id="7_7futf"]
 [ext_resource type="Texture2D" uid="uid://c1lokk4d6cc2t" path="res://assets/textures/props/sticky_notes/sticky_test.png" id="8_pkgf1"]
 [ext_resource type="Texture2D" uid="uid://c6ao6vertpl60" path="res://assets/textures/props/sticky_notes/logo3.png" id="8_w01ly"]

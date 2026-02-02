@@ -21,10 +21,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-HUD="*res://scenes/prefabs/ui/hud.tscn"
 Enums="*res://scripts/autoload/enums.gd"
-NetworkManager="*res://scenes/managers/network_manager.tscn"
 AudioManager="*uid://bcfgrl3i7inof"
+HUD="*uid://b23xito26d7cc"
+NetworkManager="*uid://tkf1ooq6b5sb"
 
 [display]
 

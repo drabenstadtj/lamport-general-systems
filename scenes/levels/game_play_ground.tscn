@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://oj0n6wi0abcq"]
+
+[ext_resource type="Texture2D" uid="uid://cwwheq8qqe065" path="res://trenchbroom/textures/carpet_gray.png" id="1_oteb6"]
+[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/characters/player/player.tscn" id="2_1dbpc"]
+[ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="3_sokcy"]
+[ext_resource type="PackedScene" uid="uid://c1rtsq2uioscb" path="res://scenes/ui/default_filesystem.tscn" id="4_qba2w"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1dbpc"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_sokcy"]
+sky_material = SubResource("ProceduralSkyMaterial_1dbpc")
+
+[sub_resource type="Environment" id="Environment_qba2w"]
+background_mode = 2
+sky = SubResource("Sky_sokcy")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1dbpc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sokcy"]
+noise = SubResource("FastNoiseLite_1dbpc")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qba2w"]
+albedo_texture = ExtResource("1_oteb6")
+normal_enabled = true
+normal_scale = 2.89
+normal_texture = SubResource("NoiseTexture2D_sokcy")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2bpxm"]
+material = SubResource("StandardMaterial3D_qba2w")
+size = Vector2(1000, 1000)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_oteb6"]
+
+[node name="GamePlayGround" type="Node3D" unique_id=598042711]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1388618990]
+environment = SubResource("Environment_qba2w")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=151008491]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="Node3D" parent="." unique_id=964636125]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=164353484]
+mesh = SubResource("PlaneMesh_2bpxm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=170055685]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=1082099166]
+shape = SubResource("WorldBoundaryShape3D_oteb6")
+
+[node name="Player" parent="." unique_id=1666983605 instance=ExtResource("2_1dbpc")]
+
+[node name="Terminal" parent="." unique_id=1133609830 instance=ExtResource("3_sokcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19009876, 1.0166141, -2.6116)
+filesystem_scene = ExtResource("4_qba2w")

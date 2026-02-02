@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c1rtsq2uioscb"]
+
+[ext_resource type="Script" uid="uid://l3eopalsk5ad" path="res://scripts/interaction/filesystem/filesystem.gd" id="1_idfk6"]
+[ext_resource type="Script" uid="uid://dlkc6ghj1ey2" path="res://scripts/interaction/filesystem/dir_node.gd" id="2_204la"]
+[ext_resource type="Script" uid="uid://cxrpuf1js1c6f" path="res://scripts/interaction/filesystem/file_node.gd" id="3_ejm3q"]
+
+[node name="Filesystem" type="Node" unique_id=2130713977]
+script = ExtResource("1_idfk6")
+
+[node name="home" type="Node" parent="." unique_id=1099522813]
+script = ExtResource("2_204la")
+metadata/_custom_type_script = "uid://dlkc6ghj1ey2"
+
+[node name="user" type="Node" parent="home" unique_id=1655397167]
+script = ExtResource("2_204la")
+metadata/_custom_type_script = "uid://dlkc6ghj1ey2"
+
+[node name="test" type="Node" parent="home/user" unique_id=1682398972]
+script = ExtResource("3_ejm3q")
+content = "this is a test"
+metadata/_custom_type_script = "uid://cxrpuf1js1c6f"

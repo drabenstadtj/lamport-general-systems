@@ -7,12 +7,17 @@ class_name Terminal
 @onready var camera_lookat_marker: Node3D = $CameraLookAt
 
 @export var node_id: int = -1
+@export var filesystem_scene: PackedScene  
 
 var is_being_viewed: bool = false
 var network_node: NetworkNode = null
 var network_manager: NetworkManager = null
 
 func _ready():
+	# Pass filesystem to UI before anything else
+	if terminal_ui and filesystem_scene:
+		terminal_ui.load_filesystem(filesystem_scene)
+	
 	# Setup interactable
 	if interactable:
 		interactable.prompt_text = "Press %s to use Terminal"

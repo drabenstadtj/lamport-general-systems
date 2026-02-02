@@ -1,39 +1,16 @@
 extends Control
 class_name TerminalUI
 
-# FILE SYSTEM CLASS
-
-class FileNode:
-	var name: String
-	var is_directory: bool
-	var content: String = ""
-	var children: Array = []
-	var parent: FileNode = null
-	
-	func _init(node_name: String, is_dir: bool = false):
-		name = node_name
-		is_directory = is_dir
-	
-	func add_child(child: FileNode):
-		child.parent = self
-		children.append(child)
-	
-	func get_child_by_name(child_name: String) -> FileNode:
-		for child in children:
-			if child.name == child_name:
-				return child
-		return null
-
 # VARIABLES
 
-var root_directory: FileNode
-var current_directory: FileNode
+var root_directory: Dictionary = {}
+var current_path: String = "/home/user"
 var accept_input: bool = true
 var command_history: Array[String] = []
 var history_index: int = -1
 
 var network_manager: NetworkManager = null
-var controlled_node_id: int = -1  # Which node this terminal controls
+var controlled_node_id: int = -1
 
 @onready var output_label = $MarginContainer/VBoxContainer/OutputLabel
 @onready var input_field = $MarginContainer/VBoxContainer/InputContainer/InputField
@@ -42,8 +19,6 @@ var controlled_node_id: int = -1  # Which node this terminal controls
 # INITIALIZATION
 
 func _ready():
-	setup_file_system()
-	
 	output_label.scroll_following = true
 	
 	input_field.grab_focus()
@@ -51,55 +26,92 @@ func _ready():
 	input_field.text_submitted.connect(_on_command_entered)
 	input_field.gui_input.connect(_on_input_field_gui_input)
 	
-	# Find NetworkManager
 	await get_tree().process_frame
 	network_manager = get_tree().get_first_node_in_group("network_manager")
 
+func load_filesystem(filesystem_scene: PackedScene = null):
+	if filesystem_scene:
+		var filesystem_instance = filesystem_scene.instantiate()
+		
+		filesystem_instance._ready()  # Force _ready to run
+		root_directory = {
+			"type": "dir",
+			"children": filesystem_instance.root
+		}
+		
+		filesystem_instance.queue_free()
+	else:
+		push_error("No Filesystem provided.")
+
 func setup_network_context(node_id: int):
-	"""Called by Terminal (parent) to set which node this UI controls."""
 	controlled_node_id = node_id
-	update_prompt()  # NOW update the prompt with the node ID
+	update_prompt()
 	print_to_terminal("=== Connected to Node %d ===" % node_id)
 
-func setup_file_system():
-	root_directory = FileNode.new("root", true)
-	
-	var home = FileNode.new("home", true)
-	root_directory.add_child(home)
-	
-	var user = FileNode.new("user", true)
-	home.add_child(user)
-	
-	var documents = FileNode.new("documents", true)
-	var projects = FileNode.new("projects", true)
-	var downloads = FileNode.new("downloads", true)
-	
-	user.add_child(documents)
-	user.add_child(projects)
-	user.add_child(downloads)
-	
-	# Add files
-	var readme = FileNode.new("readme.txt", false)
-	readme.content = "> Welcome to my profile!
-> I develop games and software.
-> Currently: Implementing Lamport General Systems in Godot"
-	user.add_child(readme)
-	
-	var log_file = FileNode.new("system.log", false)
-	log_file.content = """System Log - Lamport General Systems
-Facility operational status: DEGRADED
-Warning: Byzantine fault tolerance at minimum threshold"""
-	user.add_child(log_file)
-	
-	var notes = FileNode.new("notes.txt", false)
-	notes.content = "Node maintenance log:\n- Check consensus thresholds\n- Monitor network health"
-	documents.add_child(notes)
+# PATH UTILITIES
 
-	var consensus_log = FileNode.new("consensus.log", false)
-	consensus_log.content = "=== Consensus Log ===\nNode logs will appear here during consensus rounds.\n"
-	user.add_child(consensus_log)
+func resolve_path(path: String) -> Dictionary:
+	"""Returns {"node": Dictionary or null, "parent": Dictionary or null, "name": String}"""
+	var clean_path = path
+	
+	# Handle relative paths
+	if not path.begins_with("/"):
+		clean_path = current_path.path_join(path)
+	
+	# Normalize path (handle . and ..)
+	var parts = clean_path.split("/", false)
+	var normalized: Array[String] = []
+	
+	for part in parts:
+		if part == "..":
+			if normalized.size() > 0:
+				normalized.pop_back()
+		elif part != ".":
+			normalized.append(part)
+	
+	# Traverse to find node
+	var current = root_directory
+	var parent = null
+	var node_name = ""
+	
+	for i in range(normalized.size()):
+		var part = normalized[i]
+		node_name = part
+		
+		if current["type"] != "dir":
+			return {"node": null, "parent": null, "name": ""}
+		
+		if not current["children"].has(part):
+			return {"node": null, "parent": current, "name": part}
+		
+		parent = current
+		current = current["children"][part]
+	
+	return {"node": current, "parent": parent, "name": node_name}
 
-	current_directory = user
+func get_node_at_path(path: String):
+	"""Returns the filesystem node at path, or null if not found."""
+	return resolve_path(path)["node"]
+
+func get_current_dir() -> Dictionary:
+	var result = get_node_at_path(current_path)
+	if result and result["type"] == "dir":
+		return result
+	return root_directory
+
+func normalize_path(path: String) -> String:
+	var clean_path = path if path.begins_with("/") else current_path.path_join(path)
+	var parts = clean_path.split("/", false)
+	var normalized: Array[String] = []
+	
+	for part in parts:
+		if part == "..":
+			if normalized.size() > 0:
+				normalized.pop_back()
+		elif part != ".":
+			normalized.append(part)
+	
+	return "/" + "/".join(normalized)
 
 # INPUT HANDLING
 
@@ -186,7 +198,7 @@ func process_command(command: String):
 	
 	match cmd:
 		"ls":
-			cmd_ls()
+			cmd_ls(args)
 		"cd":
 			cmd_cd(args)
 		"pwd":
@@ -199,8 +211,6 @@ func process_command(command: String):
 			cmd_clear()
 		"help":
 			cmd_help()
-		
-		# Node-specific commands
 		"reboot":
 			cmd_reboot()
 		"crash":
@@ -209,15 +219,12 @@ func process_command(command: String):
 			cmd_corrupt()
 		"status":
 			cmd_status()
-		
-		# Network-wide commands
 		"network":
 			cmd_network()
 		"consensus":
 			cmd_consensus(args)
 		"connect":
 			cmd_connect(args)
-		
 		_:
 			print_to_terminal("Command not found: " + cmd)
 			print_to_terminal("Type 'help' for available commands")
@@ -246,88 +253,81 @@ func cmd_help():
 	print_to_terminal("  connect <id> - connect to a different node")
 	print_to_terminal("  consensus <OPEN|LOCKED> - trigger consensus")
 
-func cmd_ls():
-	if current_directory.children.size() == 0:
+func cmd_ls(args: Array = []):
+	var target_path = current_path if args.is_empty() else args[0]
+	var node = get_node_at_path(target_path)
+	
+	if node == null:
+		print_to_terminal("ls: cannot access '%s': No such file or directory" % target_path)
 		return
 	
-	for child in current_directory.children:
-		if child.is_directory:
-			print_to_terminal("[color=blue]" + child.name + "/[/color]")
+	if node["type"] != "dir":
+		print_to_terminal(target_path.get_file())
+		return
+	
+	var children = node["children"]
+	if children.is_empty():
+		return
+	
+	# Sort: directories first, then files
+	var dirs: Array[String] = []
+	var files: Array[String] = []
+	
+	for child_name in children.keys():
+		if children[child_name]["type"] == "dir":
+			dirs.append(child_name)
 		else:
-			print_to_terminal(child.name)
+			files.append(child_name)
+	
+	dirs.sort()
+	files.sort()
+	
+	for dir_name in dirs:
+		print_to_terminal("[color=blue]%s/[/color]" % dir_name)
+	for file_name in files:
+		print_to_terminal(file_name)
 
 func cmd_cd(args: Array):
-	if args.size() == 0:
-		print_to_terminal("cd: missing directory argument")
+	if args.is_empty():
+		current_path = "/home/user"
 		return
 	
-	var target_name = args[0].trim_suffix("/")
+	var target = args[0].trim_suffix("/")
+	var new_path = normalize_path(target)
+	var node = get_node_at_path(new_path)
 	
-	if target_name == "..":
-		if current_directory.parent != null:
-			current_directory = current_directory.parent
+	if node == null:
+		print_to_terminal("cd: %s: No such file or directory" % target)
 		return
 	
-	if target_name == ".":
+	if node["type"] != "dir":
+		print_to_terminal("cd: %s: Not a directory" % target)
 		return
 	
-	# Declare 'target' once at the top of the function
-	var target: FileNode = null
-	
-	if target_name.begins_with("/"):
-		target = resolve_absolute_path(target_name)
-		if target == null:
-			print_to_terminal("cd: " + target_name + ": No such directory")
-			return
-		if not target.is_directory:
-			print_to_terminal("cd: " + target_name + ": Not a directory")
-			return
-		current_directory = target
-		return
-	
-	target = current_directory.get_child_by_name(target_name)
-	
-	if target == null:
-		print_to_terminal("cd: " + target_name + ": No such directory")
-		return
-	
-	if not target.is_directory:
-		print_to_terminal("cd: " + target_name + ": Not a directory")
-		return
-	
-	current_directory = target
+	current_path = new_path
 
 func cmd_pwd():
-	var path_parts = []
-	var current = current_directory
-	
-	while current.parent != null:
-		path_parts.insert(0, current.name)
-		current = current.parent
-	
-	var full_path = "/" + "/".join(path_parts)
-	print_to_terminal(full_path)
+	print_to_terminal(current_path if current_path != "" else "/")
 
 func cmd_cat(args: Array):
-	if args.size() == 0:
+	if args.is_empty():
 		print_to_terminal("cat: missing file argument")
 		return
 	
-	var filename = args[0]
-	var file = get_file_by_path(filename)
+	var node = get_node_at_path(args[0])
 	
-	if file == null:
-		print_to_terminal("cat: " + filename + ": No such file")
+	if node == null:
+		print_to_terminal("cat: %s: No such file or directory" % args[0])
 		return
 	
-	if file.is_directory:
-		print_to_terminal("cat: " + filename + ": Is a directory")
+	if node["type"] == "dir":
+		print_to_terminal("cat: %s: Is a directory" % args[0])
 		return
 	
-	print_to_terminal(file.content)
+	print_to_terminal(node["content"])
 
 func cmd_tail(args: Array):
-	if args.size() == 0:
+	if args.is_empty():
 		print_to_terminal("tail: missing file argument")
 		return
 	
@@ -338,17 +338,17 @@ func cmd_tail(args: Array):
 		num_lines = int(args[1])
 		filename = args[2]
 	
-	var file = get_file_by_path(filename)
+	var node = get_node_at_path(filename)
 	
-	if file == null:
-		print_to_terminal("tail: " + filename + ": No such file")
+	if node == null:
+		print_to_terminal("tail: %s: No such file or directory" % filename)
 		return
 	
-	if file.is_directory:
-		print_to_terminal("tail: " + filename + ": Is a directory")
+	if node["type"] == "dir":
+		print_to_terminal("tail: %s: Is a directory" % filename)
 		return
 	
-	var lines = file.content.split("\n")
+	var lines = node["content"].split("\n")
 	var start_index = max(0, lines.size() - num_lines)
 	var tail_lines = lines.slice(start_index)
 	
@@ -404,7 +404,7 @@ func cmd_status():
 	print_to_terminal("State: %s" % state_str)
 
 func cmd_connect(args: Array):
-	if args.size() == 0:
+	if args.is_empty():
 		print_to_terminal("Usage: connect <node_id>")
 		print_to_terminal("Example: connect 2")
 		return
@@ -413,16 +413,13 @@ func cmd_connect(args: Array):
 		print_to_terminal("ERROR: Network not initialized")
 		return
 	
-	# Convert string argument to int
 	var target_node_id = int(args[0])
-	
-	# Check if target node exists
 	var node = network_manager.get_network_node(target_node_id)
+	
 	if not node:
 		print_to_terminal("ERROR: Node %d not found" % target_node_id)
 		return
 	
-	# Switch to new node
 	controlled_node_id = target_node_id
 	update_prompt()
 	print_to_terminal("=== Connected to Node %d ===" % target_node_id)
@@ -454,7 +451,7 @@ func cmd_consensus(args: Array):
 		print_to_terminal("ERROR: Network not initialized")
 		return
 	
-	if args.size() == 0:
+	if args.is_empty():
 		print_to_terminal("Usage: consensus <OPEN|LOCKED>")
 		return
 
@@ -473,35 +470,6 @@ func cmd_consensus(args: Array):
 	network_manager.run_consensus(proposal)
 
 # UTILITIES
-
-func resolve_absolute_path(path: String) -> FileNode:
-	var clean_path = path.trim_prefix("/")
-	if clean_path == "":
-		return root_directory
-	
-	var parts = clean_path.split("/", false)
-	var current = root_directory
-	
-	for part in parts:
-		if part == "..":
-			if current.parent != null:
-				current = current.parent
-			continue
-		
-		if part == ".":
-			continue
-		
-		var child = current.get_child_by_name(part)
-		if child == null:
-			return null
-		current = child
-	
-	return current
-
-func get_file_by_path(path: String) -> FileNode:
-	if path.begins_with("/"):
-		return resolve_absolute_path(path)
-	return current_directory.get_child_by_name(path)
 
 func _get_state_name(state: Enums.NodeState, colored: bool = true) -> String:
 	if colored:
@@ -528,19 +496,18 @@ func handle_tab_complete():
 	var text = input_field.text
 	var parts = text.split(" ", false)
 	
-	if parts.size() == 0:
+	if parts.is_empty():
 		return
 	
 	if parts.size() == 1:
 		autocomplete_command(parts[0])
 	else:
-		var partial = parts[-1]
-		autocomplete_filename(partial, parts.size() - 1)
+		autocomplete_filename(parts[-1])
 
 func autocomplete_command(partial: String):
 	var commands = ["ls", "cd", "pwd", "help", "cat", "tail", "clear", 
 					"reboot", "crash", "corrupt", "status", "network", "consensus", "connect"]
-	var matches = []
+	var matches: Array[String] = []
 	
 	for cmd in commands:
 		if cmd.begins_with(partial):
@@ -552,35 +519,40 @@ func autocomplete_command(partial: String):
 	elif matches.size() > 1:
 		print_to_terminal("Possible commands: " + ", ".join(matches))
 
-func autocomplete_filename(partial: String, _arg_index: int):
-	var matches = []
-	var search_dir = current_directory
-	var prefix = ""
+func autocomplete_filename(partial: String):
+	var search_path: String
+	var file_part: String
 	
-	if partial.begins_with("/"):
+	if partial.contains("/"):
 		var last_slash = partial.rfind("/")
-		var dir_path = partial.substr(0, last_slash + 1)
-		var file_part = partial.substr(last_slash + 1)
-		
-		if dir_path == "/":
-			search_dir = root_directory
-		else:
-			search_dir = resolve_absolute_path(dir_path.trim_suffix("/"))
-			if search_dir == null:
-				return
-		
-		prefix = dir_path
-		partial = file_part
+		search_path = normalize_path(partial.substr(0, last_slash + 1))
+		file_part = partial.substr(last_slash + 1)
+	else:
+		search_path = current_path
+		file_part = partial
 	
-	for child in search_dir.children:
-		if child.name.begins_with(partial):
-			matches.append(child.name)
+	var dir_node = get_node_at_path(search_path)
+	if dir_node == null or dir_node["type"] != "dir":
+		return
+	
+	var matches: Array[String] = []
+	for child_name in dir_node["children"].keys():
+		if child_name.begins_with(file_part):
+			matches.append(child_name)
 	
 	if matches.size() == 1:
 		var parts = input_field.text.split(" ", false)
-		parts[-1] = prefix + matches[0]
-		if search_dir.get_child_by_name(matches[0]).is_directory:
-			parts[-1] += "/"
+		var completed = matches[0]
+		
+		if dir_node["children"][completed]["type"] == "dir":
+			completed += "/"
+		
+		if partial.contains("/"):
+			var last_slash = partial.rfind("/")
+			parts[-1] = partial.substr(0, last_slash + 1) + completed
+		else:
+			parts[-1] = completed
+		
 		input_field.text = " ".join(parts)
 		input_field.caret_column = input_field.text.length()
 	elif matches.size() > 1:
@@ -592,13 +564,19 @@ func print_to_terminal(text: String):
 	output_label.text += text + "\n"
 
 func append_to_file(path: String, line: String) -> bool:
-	var file = get_file_by_path(path)
-	if file != null and not file.is_directory:
-		if file.content != "" and not file.content.ends_with("\n"):
-			file.content += "\n"
-		file.content += line + "\n"
-		return true
-	return false
+	var resolved = resolve_path(path)
+	var node = resolved["node"]
+	
+	if node == null or node["type"] == "dir":
+		return false
+	
+	if node.get("read_only", false):
+		return false
+	
+	if node["content"] != "" and not node["content"].ends_with("\n"):
+		node["content"] += "\n"
+	node["content"] += line + "\n"
+	return true
 
 func update_prompt():
 	prompt_label.text = "user@node%d:~$ " % controlled_node_id if controlled_node_id >= 0 else "user@terminal:~$ "
