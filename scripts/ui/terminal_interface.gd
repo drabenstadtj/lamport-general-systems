@@ -28,6 +28,7 @@ func _ready():
 	
 	await get_tree().process_frame
 	network_manager = get_tree().get_first_node_in_group("network_manager")
+	update_prompt()
 
 func load_filesystem(filesystem_scene: PackedScene = null):
 	if filesystem_scene:
@@ -305,6 +306,7 @@ func cmd_cd(args: Array):
 		return
 	
 	current_path = new_path
+	update_prompt()
 
 func cmd_pwd():
 	print_to_terminal(current_path if current_path != "" else "/")
@@ -579,4 +581,15 @@ func append_to_file(path: String, line: String) -> bool:
 	return true
 
 func update_prompt():
-	prompt_label.text = "user@node%d:~$ " % controlled_node_id if controlled_node_id >= 0 else "user@terminal:~$ "
+	var path_display = current_path
+	
+	# Shorten /home/user to ~
+	if current_path.begins_with("/home/user"):
+		path_display = current_path.replace("/home/user", "~")
+		if path_display == "":
+			path_display = "~"
+	
+	if controlled_node_id >= 0:
+		prompt_label.text = "user@node%d:%s$ " % [controlled_node_id, path_display]
+	else:
+		prompt_label.text = "user@terminal:%s$ " % path_display
