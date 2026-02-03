@@ -22,6 +22,9 @@ var prepare_messages: Array[NetworkMessage] = []
 var pre_prepare_messages: Array[NetworkMessage] = []
 var commit_messages: Array[NetworkMessage] = []
 
+# Blocked message tracking (for player feedback)
+var blocked_messages: Array[Dictionary] = []
+
 func _init(net_state: NetworkState):
 	network_state = net_state
 
@@ -160,6 +163,7 @@ func _execute_om(command_value: Enums.VoteValue, m: int, verbose: bool) -> Dicti
 	pre_prepare_messages.clear()
 	prepare_messages.clear()
 	commit_messages.clear()
+	blocked_messages.clear()
 
 	# Phase: PRE-PREPARE (commander -> all non-crashed)
 	var commander = network_state.get_commander()
@@ -169,10 +173,20 @@ func _execute_om(command_value: Enums.VoteValue, m: int, verbose: bool) -> Dicti
 	for node in network_state.nodes:
 		if node.is_crashed():
 			continue
-		var received := command_value
+		# Check if link is blocked
+		if network_state.is_link_blocked(commander.id, node.id):
+			if verbose:
+				print("  [BLOCKED] PRE-PREPARE from %d to %d" % [commander.id, node.id])
+			blocked_messages.append({"type": "PRE-PREPARE", "from": commander.id, "to": node.id})
+			network_state.report_blocked_message(commander.id, node.id, "PRE-PREPARE")
+			continue
+		# Apply any spoofed value from commander to this node
+		var received := commander.get_spoofed_value(node.id, command_value)
+		if received != command_value:
+			network_state.report_spoofed_message(commander.id, node.id, _vstr(received))
 		var msg = NetworkMessage.new(NetworkMessage.MessageType.PRE_PREPARE, commander.id, node.id, received, current_round)
 		pre_prepare_messages.append(msg)
-		
+
 		# Log the message exchange
 		commander.log_send("PRE-PREP", node.id, received)
 		node.log_receive("PRE-PREP", commander.id, received)
@@ -208,8 +222,19 @@ func _execute_om(command_value: Enums.VoteValue, m: int, verbose: bool) -> Dicti
 		for receiver in network_state.nodes:
 			if receiver.is_crashed():
 				continue
-			commit_messages.append(NetworkMessage.new(NetworkMessage.MessageType.COMMIT, sender_id, receiver.id, v, current_round))
-			
+			# Check if link is blocked
+			if network_state.is_link_blocked(sender_id, receiver.id):
+				if verbose:
+					print("  [BLOCKED] COMMIT from %d to %d" % [sender_id, receiver.id])
+				blocked_messages.append({"type": "COMMIT", "from": sender_id, "to": receiver.id})
+				network_state.report_blocked_message(sender_id, receiver.id, "COMMIT")
+				continue
+			# Apply any spoofed value from sender to receiver
+			var commit_val: Enums.VoteValue = sender.get_spoofed_value(receiver.id, v)
+			if commit_val != v:
+				network_state.report_spoofed_message(sender_id, receiver.id, _vstr(commit_val))
+			commit_messages.append(NetworkMessage.new(NetworkMessage.MessageType.COMMIT, sender_id, receiver.id, commit_val, current_round))
+
 			# Log commit messages
 			sender.log_send("COMMIT", receiver.id, v)
 			receiver.log_receive("COMMIT", sender_id, v)
@@ -237,9 +262,19 @@ func _relay_round(verbose: bool) -> void:
 				continue
 			if recv.id == sender_id:
 				continue
-			var v: Enums.VoteValue = to_send[sender_id]
+			# Check if link is blocked
+			if network_state.is_link_blocked(sender_id, recv.id):
+				if verbose:
+					print("  [BLOCKED] PREPARE from %d to %d" % [sender_id, recv.id])
+				network_state.report_blocked_message(sender_id, recv.id, "PREPARE")
+				continue
+			# Apply any spoofed value from sender to receiver
+			var base_val: Enums.VoteValue = to_send[sender_id]
+			var v: Enums.VoteValue = sender.get_spoofed_value(recv.id, base_val)
+			if v != base_val:
+				network_state.report_spoofed_message(sender_id, recv.id, _vstr(v))
 			prepare_messages.append(NetworkMessage.new(NetworkMessage.MessageType.PREPARE, sender_id, recv.id, v, current_round))
-			
+
 			# Log prepare messages
 			sender.log_send("PREPARE", recv.id, v)
 			recv.log_receive("PREPARE", sender_id, v)

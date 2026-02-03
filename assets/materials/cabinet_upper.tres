@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b85j2dpgdpq5y"]
+
+[ext_resource type="Texture2D" uid="uid://crlwh23s6nona" path="res://assets/models/props/cabinet_cabinet_upper.png" id="1_nsk0x"]
+
+[resource]
+resource_name = "cabinet_upper"
+cull_mode = 2
+albedo_texture = ExtResource("1_nsk0x")
+roughness = 0.5
+texture_filter = 2

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bwqfpo4m6n1jn"]
+
+[ext_resource type="Texture2D" uid="uid://3la3syio4dh5" path="res://assets/models/props/breakroom_table_wall_beige.jpg" id="1_1iew3"]
+
+[resource]
+resource_name = "Material.002"
+cull_mode = 2
+albedo_texture = ExtResource("1_1iew3")
+roughness = 0.5
+texture_filter = 2

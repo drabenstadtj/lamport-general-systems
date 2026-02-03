@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b5688h6fdndwu"]
+
+[ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://assets/shaders/sticky_note.gdshader" id="1_dg6yi"]
+[ext_resource type="Script" uid="uid://nlvobqo8ucdd" path="res://scripts/environment/sticky_note.gd" id="2_d7lr5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tqmnq"]
+render_priority = 0
+shader = ExtResource("1_dg6yi")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vpe5g"]
+size = Vector2(0.1, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ik7w2"]
+render_priority = 0
+shader = ExtResource("1_dg6yi")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[node name="StickyNote0" type="MeshInstance3D" unique_id=2090067259]
+transform = Transform3D(1, 0, 0, 0, 2.2351742e-08, -1, 0, 1, 2.2351742e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_tqmnq")
+mesh = SubResource("PlaneMesh_vpe5g")
+surface_material_override/0 = SubResource("ShaderMaterial_ik7w2")
+script = ExtResource("2_d7lr5")

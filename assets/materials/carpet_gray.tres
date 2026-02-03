@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://12uta5da55h4"]
+
+[ext_resource type="Texture2D" uid="uid://btau5u2ro3u8a" path="res://assets/textures/environment/carpet_gray.JPG" id="1_s5mp4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yjjn1"]
+frequency = 0.3472
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qg7s5"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_yjjn1")
+
+[resource]
+albedo_texture = ExtResource("1_s5mp4")
+normal_enabled = true
+normal_scale = 0.09
+normal_texture = SubResource("NoiseTexture2D_qg7s5")
+uv1_triplanar = true
+texture_filter = 0

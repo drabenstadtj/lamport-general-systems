@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://n7104rhkdngo"]
+
+[ext_resource type="PackedScene" uid="uid://d0qscqamxbx2b" path="res://scenes/props/sticky_note.tscn" id="1_nxsym"]
+[ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://assets/shaders/sticky_note.gdshader" id="2_adv0y"]
+[ext_resource type="Texture2D" uid="uid://c1lokk4d6cc2t" path="res://assets/textures/props/sticky_notes/sticky_test.png" id="3_xxxl8"]
+[ext_resource type="Script" uid="uid://dji5ee5pfuvra" path="res://scripts/interaction/interactable.gd" id="4_f5vpo"]
+[ext_resource type="Script" uid="uid://bswq2gijc5f2s" path="res://scripts/interaction/pickupable.gd" id="5_nxsym"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nxsym"]
+render_priority = 0
+shader = ExtResource("2_adv0y")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/text_decal = ExtResource("3_xxxl8")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_adv0y"]
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nxsym"]
+size = Vector3(0.2, 0.2, 0.001)
+
+[node name="PickupableNote" type="Node3D"]
+
+[node name="StickyNote" parent="." instance=ExtResource("1_nxsym")]
+material_override = SubResource("ShaderMaterial_nxsym")
+mesh = SubResource("PlaneMesh_adv0y")
+text_texture = ExtResource("3_xxxl8")
+note_size = Vector2(0.2, 0.2)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, 2.9802322e-08, -0.00049999356)
+shape = SubResource("BoxShape3D_nxsym")
+
+[node name="Interactable" type="Node" parent="Area3D"]
+script = ExtResource("4_f5vpo")
+prompt_text = "Press %s to view note"
+
+[node name="Pickupable" type="Node" parent="Area3D/Interactable"]
+script = ExtResource("5_nxsym")
+item_root_path = NodePath("../../..")

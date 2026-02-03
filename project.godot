@@ -19,11 +19,16 @@ run/main_scene="uid://dovm16uxv36vy"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cr4si4fyg10se"
+
 [autoload]
 
-HUD="*res://scenes/prefabs/ui/hud.tscn"
-Enums="*res://scripts/core/enums.gd"
-NetworkManager="*res://scenes/managers/network_manager.tscn"
+Enums="*res://scripts/autoload/enums.gd"
+AudioManager="*uid://bcfgrl3i7inof"
+HUD="*uid://b23xito26d7cc"
+NetworkManager="*uid://tkf1ooq6b5sb"
 
 [display]
 
@@ -49,6 +54,38 @@ folder_colors={
 
 player=""
 collision_mesh=""
+
+[importer_defaults]
+
+scene={
+"_subresources": {},
+"animation/fps": 30,
+"animation/import": true,
+"animation/import_rest_as_RESET": false,
+"animation/remove_immutable_tracks": true,
+"animation/trimming": false,
+"gltf/embedded_image_handling": 1,
+"gltf/naming_version": 2,
+"import_script/path": "",
+&"materials/extract": 1,
+"materials/extract_format": 0,
+&"materials/extract_path": "res://assets/materials",
+"meshes/create_shadow_meshes": true,
+"meshes/ensure_tangents": true,
+"meshes/force_disable_compression": false,
+"meshes/generate_lods": true,
+"meshes/light_baking": 1,
+"meshes/lightmap_texel_size": 0.2,
+"nodes/apply_root_scale": true,
+"nodes/import_as_skeleton_bones": false,
+"nodes/root_name": "",
+"nodes/root_scale": 1.0,
+"nodes/root_script": null,
+"nodes/root_type": "",
+"nodes/use_name_suffixes": true,
+"nodes/use_node_type_suffixes": true,
+"skins/use_named_skins": true
+}
 
 [input]
 
@@ -110,6 +147,7 @@ close={
 [physics]
 
 common/physics_ticks_per_second=100
+3d/physics_engine="Jolt Physics"
 
 [rendering]
 

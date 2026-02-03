@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://mgb5cwekv6c0"]
+
+[ext_resource type="Texture2D" uid="uid://cpvgysvb3ppef" path="res://assets/models/props/cabinet_wood00.jpg" id="1_1elr3"]
+
+[resource]
+resource_name = "countertop"
+cull_mode = 2
+albedo_texture = ExtResource("1_1elr3")
+roughness = 0.5
+texture_filter = 2

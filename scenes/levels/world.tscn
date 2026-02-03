@@ -1,10 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://c4e8uihm4jkha"]
+[gd_scene format=3 uid="uid://c4e8uihm4jkha"]
 
-[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/prefabs/player/player.tscn" id="1_7k8c1"]
-[ext_resource type="PackedScene" uid="uid://dr4rbdoq34kgr" path="res://scenes/prefabs/environment/door_interactable.tscn" id="2_lfyvx"]
-[ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/prefabs/environment/desk.tscn" id="3_lfyvx"]
-[ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/prefabs/network/terminal.tscn" id="4_0lift"]
-[ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/prefabs/network/server_rack.tscn" id="5_7xgas"]
+[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/characters/player/player.tscn" id="1_7k8c1"]
+[ext_resource type="PackedScene" uid="uid://dr4rbdoq34kgr" path="res://scenes/props/interactables/door_interactable.tscn" id="2_lfyvx"]
+[ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/props/environment/desk.tscn" id="3_lfyvx"]
+[ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="4_0lift"]
+[ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/props/network/server_rack.tscn" id="5_7xgas"]
 [ext_resource type="Script" uid="uid://b5dbyeybyr3m6" path="res://scripts/hardware/server_slot_config.gd" id="6_gy5pc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnsk1"]

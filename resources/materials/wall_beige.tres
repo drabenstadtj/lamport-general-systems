@@ -1,8 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bih45r5gkqxtw"]
-
-[ext_resource type="Texture2D" uid="uid://d3i3b6twi62dn" path="res://textures/wall_beige.jpg" id="1_jep5e"]
-
-[resource]
-albedo_texture = ExtResource("1_jep5e")
-uv1_triplanar = true
-texture_filter = 0

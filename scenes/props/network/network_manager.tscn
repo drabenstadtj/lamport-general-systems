@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://tkf1ooq6b5sb"]
+
+[ext_resource type="Script" uid="uid://bb50fpm7g7d37" path="res://scripts/network/network_manager.gd" id="1_daels"]
+[ext_resource type="AudioStream" uid="uid://bj5vkbqqqnyhe" path="res://assets/audio/network_manager/consensus_start.mp3" id="2_mg1o3"]
+[ext_resource type="AudioStream" uid="uid://7ufcp8kmbsya" path="res://assets/audio/network_manager/consensus_success.mp3" id="3_7ikxq"]
+[ext_resource type="AudioStream" uid="uid://bkddcxc34wc8s" path="res://assets/audio/network_manager/consensus_fail.mp3" id="4_acrl8"]
+
+[node name="NetworkManager" type="Node" unique_id=1021680922]
+script = ExtResource("1_daels")
+consensus_start_sound = ExtResource("2_mg1o3")
+consensus_success_sound = ExtResource("3_7ikxq")
+consensus_fail_sound = ExtResource("4_acrl8")

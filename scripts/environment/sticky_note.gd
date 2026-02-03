@@ -38,7 +38,7 @@ func update_mesh():
 		mesh.size = note_size
 
 func setup_material():
-	var shader = load("res://resources/shaders/sticky_note.gdshader")
+	var shader = load("res://assets/shaders/sticky_note.gdshader")
 	shader_material = ShaderMaterial.new()
 	shader_material.shader = shader
 	material_override = shader_material

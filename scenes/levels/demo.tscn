@@ -1,34 +1,34 @@
-[gd_scene load_steps=68 format=3 uid="uid://dh6u3n1btpftl"]
+[gd_scene format=3 uid="uid://dh6u3n1btpftl"]
 
-[ext_resource type="Material" uid="uid://12uta5da55h4" path="res://resources/materials/carpet_gray.tres" id="1_msxrg"]
-[ext_resource type="Material" uid="uid://dtq47vyyxhf5e" path="res://resources/materials/dropceiling.tres" id="2_msxrg"]
-[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/prefabs/player/player.tscn" id="2_qg7s5"]
-[ext_resource type="Material" uid="uid://bih45r5gkqxtw" path="res://resources/materials/wall_beige.tres" id="3_msxrg"]
-[ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/prefabs/environment/dropceiling_light.tscn" id="3_y87cy"]
-[ext_resource type="Material" uid="uid://qicm7tcw3gqr" path="res://resources/materials/glass.tres" id="5_annih"]
-[ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/prefabs/environment/desk.tscn" id="5_msxrg"]
-[ext_resource type="PackedScene" uid="uid://d0qscqamxbx2b" path="res://scenes/prefabs/environment/sticky_note.tscn" id="6_s1pth"]
-[ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://resources/shaders/sticky_note.gdshader" id="7_7futf"]
-[ext_resource type="Texture2D" uid="uid://c1lokk4d6cc2t" path="res://textures/props/sticky_notes/sticky_test.png" id="8_pkgf1"]
-[ext_resource type="Texture2D" uid="uid://c6ao6vertpl60" path="res://textures/props/sticky_notes/logo3.png" id="8_w01ly"]
-[ext_resource type="Texture2D" uid="uid://0dhorow2vmfo" path="res://textures/props/sticky_notes/security_office_label.png" id="9_dpkri"]
-[ext_resource type="PackedScene" uid="uid://36xplm2mhker" path="res://scenes/prefabs/environment/door.tscn" id="10_pkgf1"]
-[ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/prefabs/network/server_rack.tscn" id="11_7futf"]
+[ext_resource type="Material" uid="uid://12uta5da55h4" path="res://assets/materials/carpet_gray.tres" id="1_msxrg"]
+[ext_resource type="Material" uid="uid://dtq47vyyxhf5e" path="res://assets/materials/dropceiling.tres" id="2_msxrg"]
+[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/characters/player/player.tscn" id="2_qg7s5"]
+[ext_resource type="Material" uid="uid://bih45r5gkqxtw" path="res://assets/materials/wall_beige.tres" id="3_msxrg"]
+[ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/props/environment/dropceiling_light.tscn" id="3_y87cy"]
+[ext_resource type="Material" uid="uid://qicm7tcw3gqr" path="res://assets/materials/glass.tres" id="5_annih"]
+[ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/props/environment/desk.tscn" id="5_msxrg"]
+[ext_resource type="PackedScene" uid="uid://b5688h6fdndwu" path="res://scenes/props/sticky_note.tscn" id="6_s1pth"]
+[ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://assets/shaders/sticky_note.gdshader" id="7_7futf"]
+[ext_resource type="Texture2D" uid="uid://c1lokk4d6cc2t" path="res://assets/textures/props/sticky_notes/sticky_test.png" id="8_pkgf1"]
+[ext_resource type="Texture2D" uid="uid://c6ao6vertpl60" path="res://assets/textures/props/sticky_notes/logo3.png" id="8_w01ly"]
+[ext_resource type="Texture2D" uid="uid://0dhorow2vmfo" path="res://assets/textures/props/sticky_notes/security_office_label.png" id="9_dpkri"]
+[ext_resource type="PackedScene" uid="uid://36xplm2mhker" path="res://scenes/props/environment/door.tscn" id="10_pkgf1"]
+[ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/props/network/server_rack.tscn" id="11_7futf"]
 [ext_resource type="Script" uid="uid://b5dbyeybyr3m6" path="res://scripts/hardware/server_slot_config.gd" id="12_qc6mj"]
-[ext_resource type="Texture2D" uid="uid://vo2d8wb3g6s3" path="res://textures/props/sticky_notes/auth_pers_only.png" id="13_bdxja"]
-[ext_resource type="Texture2D" uid="uid://cvei6307hu83" path="res://textures/props/sticky_notes/byz_gen_prob.png" id="14_fcj2s"]
-[ext_resource type="Texture2D" uid="uid://d2mofhhoqtx3r" path="res://textures/props/sticky_notes/door_override.png" id="15_oxwlp"]
-[ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/prefabs/network/terminal.tscn" id="16_dwe0t"]
+[ext_resource type="Texture2D" uid="uid://vo2d8wb3g6s3" path="res://assets/textures/props/sticky_notes/auth_pers_only.png" id="13_bdxja"]
+[ext_resource type="Texture2D" uid="uid://cvei6307hu83" path="res://assets/textures/props/sticky_notes/byz_gen_prob.png" id="14_fcj2s"]
+[ext_resource type="Texture2D" uid="uid://d2mofhhoqtx3r" path="res://assets/textures/props/sticky_notes/door_override.png" id="15_oxwlp"]
+[ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="16_dwe0t"]
 [ext_resource type="Script" uid="uid://dw2txcbbbtijv" path="res://scripts/levels/demo_manager.gd" id="17_6u2t8"]
-[ext_resource type="Texture2D" uid="uid://bsbji6yt0jofr" path="res://textures/props/sticky_notes/node1_powered_down.png" id="17_s7bt4"]
-[ext_resource type="Texture2D" uid="uid://de8i8uxjin553" path="res://textures/props/sticky_notes/node0.png" id="18_vx4r5"]
-[ext_resource type="Texture2D" uid="uid://cqjesgulnu2y4" path="res://textures/props/sticky_notes/node1.png" id="19_cnq2v"]
-[ext_resource type="PackedScene" uid="uid://hdxokx00t3dj" path="res://scenes/managers/network_config.tscn" id="19_yyk5i"]
-[ext_resource type="Texture2D" uid="uid://1nkcwgb68lbu" path="res://textures/props/sticky_notes/node2.png" id="20_s7bt4"]
-[ext_resource type="Texture2D" uid="uid://cg7pbxd5xhbn4" path="res://textures/props/sticky_notes/node3.png" id="21_jifuf"]
-[ext_resource type="PackedScene" uid="uid://n7104rhkdngo" path="res://scenes/prefabs/environment/viewable_note.tscn" id="28_jifuf"]
-[ext_resource type="PackedScene" uid="uid://cx8jujda558th" path="res://scenes/prefabs/environment/pickupable_item.tscn" id="29_tqei0"]
-[ext_resource type="PackedScene" uid="uid://blnks60r55v6i" path="res://scenes/prefabs/environment/monitor.tscn" id="30_prc7k"]
+[ext_resource type="Texture2D" uid="uid://bsbji6yt0jofr" path="res://assets/textures/props/sticky_notes/node1_powered_down.png" id="17_s7bt4"]
+[ext_resource type="Texture2D" uid="uid://de8i8uxjin553" path="res://assets/textures/props/sticky_notes/node0.png" id="18_vx4r5"]
+[ext_resource type="Texture2D" uid="uid://cqjesgulnu2y4" path="res://assets/textures/props/sticky_notes/node1.png" id="19_cnq2v"]
+[ext_resource type="PackedScene" uid="uid://hdxokx00t3dj" path="res://scenes/props/network/network_config.tscn" id="19_yyk5i"]
+[ext_resource type="Texture2D" uid="uid://1nkcwgb68lbu" path="res://assets/textures/props/sticky_notes/node2.png" id="20_s7bt4"]
+[ext_resource type="Texture2D" uid="uid://cg7pbxd5xhbn4" path="res://assets/textures/props/sticky_notes/node3.png" id="21_jifuf"]
+[ext_resource type="PackedScene" uid="uid://n7104rhkdngo" path="res://scenes/props/interactables/viewable_note.tscn" id="28_jifuf"]
+[ext_resource type="PackedScene" uid="uid://cx8jujda558th" path="res://scenes/props/interactables/pickupable_item.tscn" id="29_tqei0"]
+[ext_resource type="PackedScene" uid="uid://blnks60r55v6i" path="res://scenes/props/environment/monitor.tscn" id="30_prc7k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iag8j"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -223,191 +223,191 @@ points = PackedVector3Array(0.037046682, 0.24940374, -0.25519747, 0.024914542, 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_prc7k"]
 size = Vector3(0.23, 0.507, 0.655)
 
-[node name="Demo" type="Node3D"]
+[node name="Demo" type="Node3D" unique_id=1281229092]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1776775338]
 environment = SubResource("Environment_yjjn1")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1987986215]
 transform = Transform3D(0.5732233, 0.81694186, -0.06341323, 0.35355344, -0.1767767, 0.91855866, 0.7391989, -0.5489591, -0.39016506, 0, 5.6000004, 0)
 visible = false
 shadow_enabled = true
 
-[node name="Environment" type="Node3D" parent="."]
+[node name="Environment" type="Node3D" parent="." unique_id=924849992]
 
-[node name="Geometry" type="Node3D" parent="Environment"]
+[node name="Geometry" type="Node3D" parent="Environment" unique_id=233711903]
 
-[node name="EntryRoom" type="Node3D" parent="Environment/Geometry"]
+[node name="EntryRoom" type="Node3D" parent="Environment/Geometry" unique_id=1922514025]
 
-[node name="Floor" type="Node3D" parent="Environment/Geometry/EntryRoom"]
+[node name="Floor" type="Node3D" parent="Environment/Geometry/EntryRoom" unique_id=1411422296]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Floor"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Floor" unique_id=722950777]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 mesh = SubResource("PlaneMesh_msxrg")
 
-[node name="Ceiling" type="Node3D" parent="Environment/Geometry/EntryRoom"]
+[node name="Ceiling" type="Node3D" parent="Environment/Geometry/EntryRoom" unique_id=663354597]
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 3.2, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling" unique_id=1311779451]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 mesh = SubResource("PlaneMesh_w01ly")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment/Geometry/EntryRoom/Ceiling" unique_id=391269557]
 transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 1, -0.0938468, -8.204353e-09)
 mesh = SubResource("PlaneMesh_w01ly")
 
-[node name="Light0" parent="Environment/Geometry/EntryRoom/Ceiling" instance=ExtResource("3_y87cy")]
+[node name="Light0" parent="Environment/Geometry/EntryRoom/Ceiling" unique_id=1507572186 instance=ExtResource("3_y87cy")]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -2.5, 0.0029997826, 1.5)
 light_energy = 0.5
 
-[node name="Light1" parent="Environment/Geometry/EntryRoom/Ceiling" instance=ExtResource("3_y87cy")]
+[node name="Light1" parent="Environment/Geometry/EntryRoom/Ceiling" unique_id=703051083 instance=ExtResource("3_y87cy")]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -2.5, 0.0030002594, -1.5)
 light_energy = 0.5
 
-[node name="Light2" parent="Environment/Geometry/EntryRoom/Ceiling" instance=ExtResource("3_y87cy")]
+[node name="Light2" parent="Environment/Geometry/EntryRoom/Ceiling" unique_id=1336618825 instance=ExtResource("3_y87cy")]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 1.5, 0.0030002594, -1.5)
 light_energy = 0.5
 
-[node name="Light3" parent="Environment/Geometry/EntryRoom/Ceiling" instance=ExtResource("3_y87cy")]
+[node name="Light3" parent="Environment/Geometry/EntryRoom/Ceiling" unique_id=231872276 instance=ExtResource("3_y87cy")]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 1.5, 0.0029997826, 1.5)
 light_energy = 0.5
 
-[node name="Walls" type="Node3D" parent="Environment/Geometry/EntryRoom"]
+[node name="Walls" type="Node3D" parent="Environment/Geometry/EntryRoom" unique_id=33825788]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/EntryRoom/Walls"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/EntryRoom/Walls" unique_id=1110114831]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/Walls/CSGCombiner3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/Walls/CSGCombiner3D" unique_id=177875043]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5999999, -3.5762787e-07)
 flip_faces = true
 size = Vector3(10, 3.4, 6)
 material = ExtResource("3_msxrg")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/Walls/CSGCombiner3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/Walls/CSGCombiner3D" unique_id=1253573723]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0027013, 1.0500001, 0)
 operation = 2
 size = Vector3(0.03365478, 2.1, 2.2)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/Walls/CSGCombiner3D"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/Walls/CSGCombiner3D" unique_id=105618689]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.01651001, 1.0500001, 3)
 operation = 2
 size = Vector3(0.03365478, 2.1, 2.2)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Geometry/EntryRoom/Walls"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Geometry/EntryRoom/Walls" unique_id=2006558719]
 
-[node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="Environment/Geometry/EntryRoom/Walls/StaticBody3D"]
+[node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="Environment/Geometry/EntryRoom/Walls/StaticBody3D" unique_id=910919847]
 shape = SubResource("ConcavePolygonShape3D_bdxja")
 
-[node name="GlassDoor" type="Node3D" parent="Environment/Geometry/EntryRoom"]
+[node name="GlassDoor" type="Node3D" parent="Environment/Geometry/EntryRoom" unique_id=61334101]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/EntryRoom/GlassDoor"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/EntryRoom/GlassDoor" unique_id=2061350010]
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D" unique_id=99914796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9999998, 2.1000001, 0)
 size = Vector3(0.25, 0.1, 2.2)
 
-[node name="CSGBox3D16" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+[node name="CSGBox3D16" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D" unique_id=808245570]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9999998, -0.04667247, 0)
 size = Vector3(0.25, 0.1, 2.2)
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+[node name="CSGBox3D10" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D" unique_id=1941542167]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0249996, 2, -0.024938941)
 size = Vector3(0.1, 0.1, 2.1501222)
 
-[node name="CSGBox3D13" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+[node name="CSGBox3D13" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D" unique_id=879710415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0249996, 0, -0.027880788)
 size = Vector3(0.1, 0.1, 2.1442385)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D" unique_id=1497170417]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9999998, 0.90000004, 1.1)
 size = Vector3(0.25, 2.5, 0.1)
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D" unique_id=1161970397]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9999998, 0.90000004, -1.1)
 size = Vector3(0.25, 2.5, 0.1)
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D" unique_id=919602733]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0249996, 0.95, 0.051)
 size = Vector3(0.1, 2, 0.1)
 
-[node name="CSGBox3D14" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+[node name="CSGBox3D14" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D" unique_id=1312079011]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0249996, 0.95, -0.051)
 size = Vector3(0.1, 2, 0.1)
 
-[node name="CSGBox3D11" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+[node name="CSGBox3D11" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D" unique_id=1456382780]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0250006, 0.9500001, 1)
 size = Vector3(0.1, 2, 0.1)
 
-[node name="CSGBox3D12" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+[node name="CSGBox3D12" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D" unique_id=316047751]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0250006, 0.9500001, -1)
 size = Vector3(0.1, 2, 0.1)
 
-[node name="CSGBox3D15" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D"]
+[node name="CSGBox3D15" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/GlassDoor/CSGCombiner3D" unique_id=709668374]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0250006, 1.0000001, -5.9604645e-08)
 size = Vector3(0.01, 1.9, 1.9)
 material = ExtResource("5_annih")
 
-[node name="FacilityDoor" type="Node3D" parent="Environment/Geometry/EntryRoom"]
+[node name="FacilityDoor" type="Node3D" parent="Environment/Geometry/EntryRoom" unique_id=1632570892]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/EntryRoom/FacilityDoor"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/EntryRoom/FacilityDoor" unique_id=1270409278]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 3)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=64249571]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1000001, 0)
 size = Vector3(0.25, 0.1, 2.2)
 
-[node name="CSGBox3D17" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGBox3D17" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=1948314516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.073138, 2.225293, -0.012939318)
 size = Vector3(0.25, 0.15058593, 2.4764647)
 
-[node name="CSGBox3D16" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGBox3D16" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=1109349971]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04667247, 0)
 size = Vector3(0.25, 0.1, 2.2)
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGBox3D10" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=942180227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000095, 2, -0.024938941)
 size = Vector3(0.1, 0.1, 2.1501222)
 
-[node name="CSGBox3D13" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGBox3D13" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=932972149]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000095, 0, -0.027880788)
 size = Vector3(0.1, 0.1, 2.1442385)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=1457498453]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90000004, 1.1)
 size = Vector3(0.25, 2.5, 0.1)
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGBox3D9" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=1946206695]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90000004, -1.1)
 size = Vector3(0.25, 2.5, 0.1)
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=1156614443]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000095, 0.95, 0.051)
 size = Vector3(0.1, 2, 0.1)
 
-[node name="CSGBox3D14" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGBox3D14" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=79554966]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000095, 0.95, -0.051)
 size = Vector3(0.1, 2, 0.1)
 
-[node name="CSGBox3D11" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGBox3D11" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=1870219737]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000572, 0.9500001, 1)
 size = Vector3(0.1, 2, 0.1)
 
-[node name="CSGBox3D12" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGBox3D12" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=1578190462]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000572, 0.9500001, -1)
 size = Vector3(0.1, 2, 0.1)
 
-[node name="CSGBox3D15" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGBox3D15" type="CSGBox3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=1664683262]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025000572, 1.0000001, -5.9604645e-08)
 size = Vector3(0.01, 1.9, 1.9)
 material = ExtResource("5_annih")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Geometry/EntryRoom/FacilityDoor/CSGCombiner3D" unique_id=1804978363]
 transform = Transform3D(1, 4.371139e-08, 4.371139e-08, -4.371139e-08, -4.371139e-08, 1, 4.371139e-08, -1, -4.3711385e-08, 0, 2.3, -0.012500167)
 radius = 0.2
 height = 2.4750001
 
-[node name="Props" type="Node3D" parent="Environment/Geometry/EntryRoom"]
+[node name="Props" type="Node3D" parent="Environment/Geometry/EntryRoom" unique_id=615624394]
 
-[node name="StickyNote0" parent="Environment/Geometry/EntryRoom/Props" instance=ExtResource("6_s1pth")]
+[node name="StickyNote0" parent="Environment/Geometry/EntryRoom/Props" unique_id=884861551 instance=ExtResource("6_s1pth")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.5, 1.7, -2.9303522)
 material_override = SubResource("ShaderMaterial_ewbg4")
 mesh = SubResource("PlaneMesh_tqei0")
@@ -416,89 +416,89 @@ base_color = Color(1, 1, 1, 1)
 text_texture = ExtResource("8_w01ly")
 note_size = Vector2(3.28, 1)
 
-[node name="SecurityOffice" type="Node3D" parent="Environment/Geometry"]
+[node name="SecurityOffice" type="Node3D" parent="Environment/Geometry" unique_id=1255567108]
 
-[node name="Walls" type="Node3D" parent="Environment/Geometry/SecurityOffice"]
+[node name="Walls" type="Node3D" parent="Environment/Geometry/SecurityOffice" unique_id=1717350462]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/SecurityOffice/Walls"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/SecurityOffice/Walls" unique_id=436594187]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D" unique_id=570782533]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 0.8000001)
 size = Vector3(0.2, 1, 4.4)
 material = ExtResource("3_msxrg")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D" unique_id=1938576076]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5999999, 2.4)
 size = Vector3(0.2, 1.2, 1.2)
 material = ExtResource("3_msxrg")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D" unique_id=2116265966]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5999999, -0.9999998)
 size = Vector3(0.2, 1.2, 0.8)
 material = ExtResource("3_msxrg")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D" unique_id=906459427]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.0999998, -2.902622)
 size = Vector3(0.2, 2.2, 0.3)
 material = ExtResource("3_msxrg")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/CSGCombiner3D" unique_id=1561262727]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.75, 2.9802322e-07)
 size = Vector3(0.2, 1.1, 6)
 material = ExtResource("3_msxrg")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Geometry/SecurityOffice/Walls"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Geometry/SecurityOffice/Walls" unique_id=719921932]
 
-[node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="Environment/Geometry/SecurityOffice/Walls/StaticBody3D"]
+[node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="Environment/Geometry/SecurityOffice/Walls/StaticBody3D" unique_id=743423097]
 shape = SubResource("ConcavePolygonShape3D_w01ly")
 
-[node name="Ledge" type="Node3D" parent="Environment/Geometry/SecurityOffice/Walls"]
+[node name="Ledge" type="Node3D" parent="Environment/Geometry/SecurityOffice/Walls" unique_id=1367001594]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/Ledge"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/Ledge" unique_id=118007884]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999998, 0.9515634, 0.6)
 size = Vector3(0.4, 0.1, 2.6000001)
 
-[node name="DoorMolding" type="Node3D" parent="Environment/Geometry/SecurityOffice/Walls"]
+[node name="DoorMolding" type="Node3D" parent="Environment/Geometry/SecurityOffice/Walls" unique_id=1379720236]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/SecurityOffice/Walls/DoorMolding"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/SecurityOffice/Walls/DoorMolding" unique_id=362447277]
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/DoorMolding/CSGCombiner3D"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/DoorMolding/CSGCombiner3D" unique_id=284968216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999998, 2.248898, -2.1000001)
 size = Vector3(0.25, 0.1, 1.2)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/DoorMolding/CSGCombiner3D"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/DoorMolding/CSGCombiner3D" unique_id=935987679]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999998, 1.1488978, -2.7493503)
 size = Vector3(0.25, 2.3, 0.1)
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/DoorMolding/CSGCombiner3D"]
+[node name="CSGBox3D8" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Walls/DoorMolding/CSGCombiner3D" unique_id=103946223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9999998, 1.1488978, -1.4511218)
 size = Vector3(0.25, 2.3, 0.1)
 
-[node name="Window" type="Node3D" parent="Environment/Geometry/SecurityOffice"]
+[node name="Window" type="Node3D" parent="Environment/Geometry/SecurityOffice" unique_id=1166092484]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/SecurityOffice/Window"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/SecurityOffice/Window" unique_id=128550542]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Window/CSGCombiner3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Environment/Geometry/SecurityOffice/Window/CSGCombiner3D" unique_id=58955220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.7, 0.6)
 size = Vector3(0.01, 1.4, 2.4)
 material = ExtResource("5_annih")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Geometry/SecurityOffice/Window/CSGCombiner3D/CSGBox3D"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Environment/Geometry/SecurityOffice/Window/CSGCombiner3D/CSGBox3D" unique_id=1992511709]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.025000095, -0.70000005, 0)
 operation = 2
 radius = 0.3
 height = 0.15
 sides = 16
 
-[node name="Light0" parent="Environment/Geometry/SecurityOffice" instance=ExtResource("3_y87cy")]
+[node name="Light0" parent="Environment/Geometry/SecurityOffice" unique_id=1955151469 instance=ExtResource("3_y87cy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 3.1967597, 1.5)
 
-[node name="Light1" parent="Environment/Geometry/SecurityOffice" instance=ExtResource("3_y87cy")]
+[node name="Light1" parent="Environment/Geometry/SecurityOffice" unique_id=697291737 instance=ExtResource("3_y87cy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 3.1967597, -1.5000002)
 
-[node name="Props" type="Node3D" parent="Environment/Geometry/SecurityOffice"]
+[node name="Props" type="Node3D" parent="Environment/Geometry/SecurityOffice" unique_id=566581510]
 
-[node name="StickyNote2" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("6_s1pth")]
+[node name="StickyNote2" parent="Environment/Geometry/SecurityOffice/Props" unique_id=1157986327 instance=ExtResource("6_s1pth")]
 transform = Transform3D(-1.1442328e-09, -1, 4.369641e-08, 0.026176995, -4.3711385e-08, -0.9996573, 0.9996574, 0, 0.026176998, 2.8910677, 1.5429302, -1.0162332)
 material_override = SubResource("ShaderMaterial_prc7k")
 mesh = SubResource("PlaneMesh_23njw")
@@ -507,16 +507,16 @@ base_color = Color(1, 1, 1, 1)
 text_texture = ExtResource("9_dpkri")
 note_size = Vector2(0.275, 0.2)
 
-[node name="Desk" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("5_msxrg")]
+[node name="Desk" parent="Environment/Geometry/SecurityOffice/Props" unique_id=1009318907 instance=ExtResource("5_msxrg")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.6, 0.77171713, 1.0999999)
 
-[node name="Desk2" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("5_msxrg")]
+[node name="Desk2" parent="Environment/Geometry/SecurityOffice/Props" unique_id=155596966 instance=ExtResource("5_msxrg")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.0595927, 0.77171713, 2.5)
 
-[node name="Door" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("10_pkgf1")]
+[node name="Door" parent="Environment/Geometry/SecurityOffice/Props" unique_id=732928174 instance=ExtResource("10_pkgf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9900806, 1.0999504, -2.079081)
 
-[node name="StickyNote0" parent="Environment/Geometry/SecurityOffice/Props/Door" instance=ExtResource("6_s1pth")]
+[node name="StickyNote0" parent="Environment/Geometry/SecurityOffice/Props/Door" unique_id=1777146728 instance=ExtResource("6_s1pth")]
 transform = Transform3D(1.9106855e-15, -1, 4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1, 0, -4.371139e-08, -0.09579539, 0.16638398, 1.0651842)
 material_override = SubResource("ShaderMaterial_joyyg")
 mesh = SubResource("PlaneMesh_dcw3b")
@@ -524,7 +524,7 @@ base_color = Color(1, 1, 1, 1)
 text_texture = ExtResource("13_bdxja")
 note_size = Vector2(0.285, 0.275)
 
-[node name="StickyNote1" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("6_s1pth")]
+[node name="StickyNote1" parent="Environment/Geometry/SecurityOffice/Props" unique_id=54734059 instance=ExtResource("6_s1pth")]
 transform = Transform3D(1.8189044e-15, 3.5527137e-15, 1, 1.4901161e-08, 1.0000001, -1.4388143e-36, -1.0000001, 1.4901161e-08, 2.664535e-15, 3.7, 0.7938087, 1.5840203)
 material_override = SubResource("ShaderMaterial_150yn")
 mesh = SubResource("PlaneMesh_vyhv0")
@@ -532,7 +532,7 @@ base_color = Color(1, 1, 1, 1)
 text_texture = ExtResource("14_fcj2s")
 note_size = Vector2(0.283, 0.435)
 
-[node name="StickyNote3" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("6_s1pth")]
+[node name="StickyNote3" parent="Environment/Geometry/SecurityOffice/Props" unique_id=1667061243 instance=ExtResource("6_s1pth")]
 transform = Transform3D(-1.070953e-15, -7.1054274e-15, 1.2600001, -3.725291e-08, 1.2600002, 0, -1.2600002, -3.725291e-08, -9.783523e-23, 3.670741, 0.8, 0.4)
 material_override = SubResource("ShaderMaterial_hfkr4")
 mesh = SubResource("PlaneMesh_8wy75")
@@ -540,7 +540,7 @@ base_color = Color(1, 1, 1, 1)
 text_texture = ExtResource("15_oxwlp")
 note_size = Vector2(0.21, 0.279)
 
-[node name="StickyNote4" parent="Environment/Geometry/SecurityOffice/Props" instance=ExtResource("6_s1pth")]
+[node name="StickyNote4" parent="Environment/Geometry/SecurityOffice/Props" unique_id=2101685873 instance=ExtResource("6_s1pth")]
 transform = Transform3D(-0.9999999, 1.04308114e-07, 5.32907e-15, 1.0430812e-07, 0.99999994, 0, -4.559453e-15, 7.1054274e-15, -0.99999994, 4.8, 0.79999995, 2.2363296)
 material_override = SubResource("ShaderMaterial_lec6t")
 mesh = SubResource("PlaneMesh_lvral")
@@ -548,59 +548,59 @@ base_color = Color(1, 1, 1, 1)
 text_texture = ExtResource("17_s7bt4")
 note_size = Vector2(0.239, 0.299)
 
-[node name="Network" type="Node3D" parent="Environment/Geometry/SecurityOffice"]
+[node name="Network" type="Node3D" parent="Environment/Geometry/SecurityOffice" unique_id=168972959]
 
-[node name="ServerRack" parent="Environment/Geometry/SecurityOffice/Network" instance=ExtResource("11_7futf")]
+[node name="ServerRack" parent="Environment/Geometry/SecurityOffice/Network" unique_id=1204584018 instance=ExtResource("11_7futf")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.5, 0.1, 2.4)
 server_configs = Array[ExtResource("12_qc6mj")]([SubResource("Resource_pkgf1"), SubResource("Resource_dpkri"), SubResource("Resource_w01ly"), SubResource("Resource_bdxja"), SubResource("Resource_6u2t8")])
 
-[node name="StickyNote0" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" instance=ExtResource("6_s1pth")]
+[node name="StickyNote0" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" unique_id=1874214657 instance=ExtResource("6_s1pth")]
 transform = Transform3D(0.0017474666, 0.9999743, 0.0069547067, -0.0005963188, 0.0069557577, -0.9999756, -0.9999983, 0.001743272, 0.0006084584, 0.29999995, 1.4779817, -0.3216052)
 material_override = SubResource("ShaderMaterial_wmum2")
 mesh = SubResource("PlaneMesh_4pbvs")
 text_texture = ExtResource("18_vx4r5")
 
-[node name="StickyNote1" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" instance=ExtResource("6_s1pth")]
+[node name="StickyNote1" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" unique_id=170092562 instance=ExtResource("6_s1pth")]
 transform = Transform3D(0.025087416, 0.9892877, 0.14380692, -0.009064204, 0.14407137, -0.9895258, -0.99964434, 0.023521146, 0.012581483, 0.29999995, 0.9048171, -0.3216052)
 material_override = SubResource("ShaderMaterial_llnp7")
 mesh = SubResource("PlaneMesh_ea7rt")
 text_texture = ExtResource("19_cnq2v")
 
-[node name="StickyNote2" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" instance=ExtResource("6_s1pth")]
+[node name="StickyNote2" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" unique_id=49099956 instance=ExtResource("6_s1pth")]
 transform = Transform3D(0.26276612, 0.95723766, 0.121037036, 0.018223774, 0.12049907, -0.99254614, -0.9646875, 0.26301324, 0.014218591, 0.30650306, 0.74525833, -0.3216052)
 material_override = SubResource("ShaderMaterial_no53j")
 mesh = SubResource("PlaneMesh_60ll8")
 text_texture = ExtResource("20_s7bt4")
 
-[node name="StickyNote3" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" instance=ExtResource("6_s1pth")]
+[node name="StickyNote3" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" unique_id=1748271421 instance=ExtResource("6_s1pth")]
 transform = Transform3D(0.09412524, 0.98587483, 0.13853239, -0.0002429028, 0.1391729, -0.99026805, -0.9955604, 0.093175545, 0.013339152, 0.30650306, 0.5732225, -0.3216052)
 material_override = SubResource("ShaderMaterial_niqx4")
 mesh = SubResource("PlaneMesh_t0572")
 text_texture = ExtResource("21_jifuf")
 
-[node name="Terminal" parent="Environment/Geometry/SecurityOffice/Network" instance=ExtResource("16_dwe0t")]
+[node name="Terminal" parent="Environment/Geometry/SecurityOffice/Network" unique_id=1689253140 instance=ExtResource("16_dwe0t")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.4, 0.8769578, 1)
 
-[node name="Terminal2" parent="Environment/Geometry/SecurityOffice/Network" instance=ExtResource("16_dwe0t")]
+[node name="Terminal2" parent="Environment/Geometry/SecurityOffice/Network" unique_id=927555330 instance=ExtResource("16_dwe0t")]
 transform = Transform3D(-0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, -0.9659258, 4.4, 0.8769578, 2.7)
 
-[node name="Ground" type="Node3D" parent="Environment/Geometry"]
+[node name="Ground" type="Node3D" parent="Environment/Geometry" unique_id=288637351]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Geometry/Ground"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Geometry/Ground" unique_id=51969913]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Geometry/Ground/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Geometry/Ground/StaticBody3D" unique_id=842780977]
 shape = SubResource("WorldBoundaryShape3D_iag8j")
 
-[node name="Player" parent="." instance=ExtResource("2_qg7s5")]
+[node name="Player" parent="." unique_id=1379088035 instance=ExtResource("2_qg7s5")]
 
-[node name="DemoManager" type="Node" parent="."]
+[node name="DemoManager" type="Node" parent="." unique_id=1001540951]
 script = ExtResource("17_6u2t8")
 
-[node name="NetworkConfig" parent="." instance=ExtResource("19_yyk5i")]
+[node name="NetworkConfig" parent="." unique_id=1776471563 instance=ExtResource("19_yyk5i")]
 initially_crashed_nodes = Array[int]([1])
 initially_powered_off_nodes = Array[int]([2])
 
-[node name="ViewableNote" parent="." instance=ExtResource("28_jifuf")]
+[node name="ViewableNote" parent="." unique_id=38484922 instance=ExtResource("28_jifuf")]
 transform = Transform3D(-0.071393825, -0.42315954, 0.90323806, -0.049990498, 0.9059288, 0.4204688, -0.9961947, -0.015134442, -0.08583168, 3.4704683, 0.8662095, 0.7773003)
 
 [node name="StickyNote" parent="ViewableNote" index="0"]
@@ -613,7 +613,7 @@ note_size = Vector2(0.1, 0.1)
 transform = Transform3D(1, 1.9557774e-08, 8.940697e-08, 1.8626451e-09, 0.9999874, -9.19681e-09, 1.1920929e-07, -3.3265678e-06, 0.999999, 0.0018648505, -0.006969154, 0.003967285)
 shape = SubResource("BoxShape3D_nxsym")
 
-[node name="PickupableMonitor" parent="." instance=ExtResource("29_tqei0")]
+[node name="PickupableMonitor" parent="." unique_id=388441928 instance=ExtResource("29_tqei0")]
 transform = Transform3D(0.9848076, -0.17364816, 0, 0.17364816, 0.9848077, 0, 0, 0, 0.9999999, 0.20141089, 0.1839697, -1.1442918)
 collision_mask = 5
 model_scene = ExtResource("30_prc7k")
@@ -622,7 +622,7 @@ model_scene = ExtResource("30_prc7k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5762787e-07, -0.019995034, -1.1920929e-07)
 shape = SubResource("ConvexPolygonShape3D_ewbg4")
 
-[node name="@MeshInstance3D@204785" parent="PickupableMonitor/Models" index="0" instance=ExtResource("30_prc7k")]
+[node name="@MeshInstance3D@204785" parent="PickupableMonitor/Models" index="0" unique_id=350413563 instance=ExtResource("30_prc7k")]
 
 [node name="Area3D" parent="PickupableMonitor" index="2"]
 visible = false
@@ -630,7 +630,7 @@ visible = false
 [node name="CollisionShape3D" parent="PickupableMonitor/Area3D" index="0"]
 shape = SubResource("BoxShape3D_prc7k")
 
-[node name="PickupableMonitor2" parent="." instance=ExtResource("29_tqei0")]
+[node name="PickupableMonitor2" parent="." unique_id=1272644869 instance=ExtResource("29_tqei0")]
 transform = Transform3D(0.8067072, -0.14224425, 0.5735764, 0.17364816, 0.9848077, 0, -0.56486243, 0.099600494, 0.81915194, 3.6014106, 0.9871304, 2.3557086)
 collision_mask = 5
 model_scene = ExtResource("30_prc7k")

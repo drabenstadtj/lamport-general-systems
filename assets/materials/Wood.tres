@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dunm5gl5a3rrf"]
+
+[ext_resource type="Texture2D" uid="uid://dxhnk38l0n6me" path="res://assets/models/props/desk_desk_wood00.jpg" id="1_3seee"]
+
+[resource]
+resource_name = "Wood"
+cull_mode = 2
+albedo_texture = ExtResource("1_3seee")
+roughness = 0.5
+uv1_scale = Vector3(5, 5, 1)
+uv1_offset = Vector3(0, -4, 0)

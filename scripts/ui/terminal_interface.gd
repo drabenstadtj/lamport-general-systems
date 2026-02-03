@@ -1,111 +1,129 @@
 extends Control
 class_name TerminalUI
 
-# FILE SYSTEM CLASS
-
-class FileNode:
-	var name: String
-	var is_directory: bool
-	var content: String = ""
-	var children: Array = []
-	var parent: FileNode = null
-	
-	func _init(node_name: String, is_dir: bool = false):
-		name = node_name
-		is_directory = is_dir
-	
-	func add_child(child: FileNode):
-		child.parent = self
-		children.append(child)
-	
-	func get_child_by_name(child_name: String) -> FileNode:
-		for child in children:
-			if child.name == child_name:
-				return child
-		return null
-
 # VARIABLES
 
-var root_directory: FileNode
-var current_directory: FileNode
+var current_path: String = "/home/user"
 var accept_input: bool = true
 var command_history: Array[String] = []
 var history_index: int = -1
 
 var network_manager: NetworkManager = null
-var controlled_node_id: int = -1  # Which node this terminal controls
+var controlled_node_id: int = -1
+var connected_node: NetworkNode = null  # The node we're "SSH'd" into
 
-@onready var output_label = $MarginContainer/VBoxContainer/OutputLabel
-@onready var input_field = $MarginContainer/VBoxContainer/InputContainer/InputField
-@onready var prompt_label = $MarginContainer/VBoxContainer/InputContainer/PromptLabel
+@onready var output_scroll: ScrollContainer = $MarginContainer/ScrollContainer
+@onready var output_label: RichTextLabel = $MarginContainer/ScrollContainer/VBoxContainer/OutputLabel
+@onready var input_field: LineEdit = $MarginContainer/ScrollContainer/VBoxContainer/InputContainer/InputField
+@onready var prompt_label: Label = $MarginContainer/ScrollContainer/VBoxContainer/InputContainer/PromptLabel
 
 # INITIALIZATION
 
 func _ready():
-	setup_file_system()
-	
-	output_label.scroll_following = true
-	
+
 	input_field.grab_focus()
 	print_to_terminal("Terminal ready. Type 'help' for commands.")
 	input_field.text_submitted.connect(_on_command_entered)
 	input_field.gui_input.connect(_on_input_field_gui_input)
-	
-	# Find NetworkManager
+
 	await get_tree().process_frame
 	network_manager = get_tree().get_first_node_in_group("network_manager")
+	update_prompt()
+
+func get_filesystem() -> Dictionary:
+	# Returns the filesystem of the connected node, or empty if not connected
+	if connected_node:
+		return connected_node.filesystem
+	return {}
+
+func is_connected_to_node() -> bool:
+	return connected_node != null
+
+func require_connection() -> bool:
+	# Returns true if connected, prints error and returns false if not
+	if not is_connected_to_node():
+		print_to_terminal("ERROR: Not connected to any node")
+		print_to_terminal("Use 'connect <node_id>' to connect first")
+		return false
+	return true
 
 func setup_network_context(node_id: int):
-	"""Called by Terminal (parent) to set which node this UI controls."""
 	controlled_node_id = node_id
-	update_prompt()  # NOW update the prompt with the node ID
+	update_prompt()
 	print_to_terminal("=== Connected to Node %d ===" % node_id)
 
-func setup_file_system():
-	root_directory = FileNode.new("root", true)
-	
-	var home = FileNode.new("home", true)
-	root_directory.add_child(home)
-	
-	var user = FileNode.new("user", true)
-	home.add_child(user)
-	
-	var documents = FileNode.new("documents", true)
-	var projects = FileNode.new("projects", true)
-	var downloads = FileNode.new("downloads", true)
-	
-	user.add_child(documents)
-	user.add_child(projects)
-	user.add_child(downloads)
-	
-	# Add files
-	var readme = FileNode.new("readme.txt", false)
-	readme.content = "Welcome to the terminal!\nThis is a test file."
-	user.add_child(readme)
-	
-	var log_file = FileNode.new("system.log", false)
-	log_file.content = """System Log - Lamport General Systems
-Facility operational status: DEGRADED
-Warning: Byzantine fault tolerance at minimum threshold"""
-	user.add_child(log_file)
-	
-	var notes = FileNode.new("notes.txt", false)
-	notes.content = "Node maintenance log:\n- Check consensus thresholds\n- Monitor network health"
-	documents.add_child(notes)
+# PATH UTILITIES
 
-	var consensus_log = FileNode.new("consensus.log", false)
-	consensus_log.content = "=== Consensus Log ===\nNode logs will appear here during consensus rounds.\n"
-	user.add_child(consensus_log)
+func resolve_path(path: String) -> Dictionary:
+	"""Returns {"node": Dictionary or null, "parent": Dictionary or null, "name": String}"""
+	var clean_path = path
 
-	current_directory = user
+	# Handle relative paths
+	if not path.begins_with("/"):
+		clean_path = current_path.path_join(path)
+
+	# Normalize path (handle . and ..)
+	var parts = clean_path.split("/", false)
+	var normalized: Array[String] = []
+
+	for part in parts:
+		if part == "..":
+			if normalized.size() > 0:
+				normalized.pop_back()
+		elif part != ".":
+			normalized.append(part)
+
+	# Traverse to find node
+	var current = get_filesystem()
+	var parent = null
+	var node_name = ""
+
+	for i in range(normalized.size()):
+		var part = normalized[i]
+		node_name = part
+
+		if current["type"] != "dir":
+			return {"node": null, "parent": null, "name": ""}
+
+		if not current["children"].has(part):
+			return {"node": null, "parent": current, "name": part}
+
+		parent = current
+		current = current["children"][part]
+
+	return {"node": current, "parent": parent, "name": node_name}
+
+func get_node_at_path(path: String):
+	"""Returns the filesystem node at path, or null if not found."""
+	return resolve_path(path)["node"]
+
+func get_current_dir() -> Dictionary:
+	var result = get_node_at_path(current_path)
+	if result and result["type"] == "dir":
+		return result
+	return get_filesystem()
+
+func normalize_path(path: String) -> String:
+	var clean_path = path if path.begins_with("/") else current_path.path_join(path)
+	var parts = clean_path.split("/", false)
+	var normalized: Array[String] = []
+
+	for part in parts:
+		if part == "..":
+			if normalized.size() > 0:
+				normalized.pop_back()
+		elif part != ".":
+			normalized.append(part)
+
+	return "/" + "/".join(normalized)
 
 # INPUT HANDLING
 
 func _input(event):
 	if not accept_input:
 		return
-	
-	if event is InputEventKey and event.pressed:  
+
+	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ENTER:
 			_on_command_entered(input_field.text)
 			get_viewport().set_input_as_handled()
@@ -124,10 +142,12 @@ func _input(event):
 			navigate_history(-1)
 			get_viewport().set_input_as_handled()
 		elif event.keycode == KEY_PAGEUP:
-			output_label.scroll_vertical -= 100
+			var sb := output_scroll.get_v_scroll_bar()
+			sb.value = maxf(sb.min_value, sb.value - 200.0)
 			get_viewport().set_input_as_handled()
 		elif event.keycode == KEY_PAGEDOWN:
-			output_label.scroll_vertical += 100
+			var sb := output_scroll.get_v_scroll_bar()
+			sb.value = minf(sb.max_value, sb.value + 200.0)
 			get_viewport().set_input_as_handled()
 		elif event.unicode != 0 and event.unicode < 128:
 			var character = char(event.unicode)
@@ -135,22 +155,38 @@ func _input(event):
 			input_field.caret_column = input_field.text.length()
 			get_viewport().set_input_as_handled()
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			_scroll_output(-1)
+			get_viewport().set_input_as_handled()
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			_scroll_output(1)
+			get_viewport().set_input_as_handled()
+			
 func _on_input_field_gui_input(event: InputEvent):
 	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_TAB:
-			handle_tab_complete()
-			get_viewport().set_input_as_handled()
+		match event.keycode:
+			KEY_TAB:
+				handle_tab_complete()
+				get_viewport().set_input_as_handled()
+			KEY_PAGEUP:
+				_scroll_output(-1)
+				get_viewport().set_input_as_handled()
+			KEY_PAGEDOWN:
+				_scroll_output(1)
+				get_viewport().set_input_as_handled()
 
 func _on_command_entered(text: String):
 	if text.strip_edges() == "":
 		return
-	
+
 	command_history.append(text)
 	history_index = -1
-	
+
 	print_to_terminal("$ " + text)
 	process_command(text)
-	
+
 	input_field.release_focus()
 	input_field.text = ""
 	await get_tree().process_frame
@@ -159,32 +195,32 @@ func _on_command_entered(text: String):
 func navigate_history(direction: int):
 	if command_history.is_empty():
 		return
-	
+
 	history_index += direction
 	history_index = clamp(history_index, -1, command_history.size() - 1)
-	
+
 	if history_index == -1:
 		input_field.text = ""
 	else:
 		var actual_index = command_history.size() - 1 - history_index
 		input_field.text = command_history[actual_index]
-	
+
 	input_field.caret_column = input_field.text.length()
 
 # COMMAND PROCESSING
 
 func process_command(command: String):
 	var parts = command.split(" ", false)
-	
+
 	if parts.size() == 0:
 		return
-	
+
 	var cmd = parts[0].to_lower()
 	var args = parts.slice(1)
-	
+
 	match cmd:
 		"ls":
-			cmd_ls()
+			cmd_ls(args)
 		"cd":
 			cmd_cd(args)
 		"pwd":
@@ -197,8 +233,6 @@ func process_command(command: String):
 			cmd_clear()
 		"help":
 			cmd_help()
-		
-		# Node-specific commands
 		"reboot":
 			cmd_reboot()
 		"crash":
@@ -207,15 +241,30 @@ func process_command(command: String):
 			cmd_corrupt()
 		"status":
 			cmd_status()
-		
-		# Network-wide commands
 		"network":
 			cmd_network()
 		"consensus":
 			cmd_consensus(args)
 		"connect":
 			cmd_connect(args)
-		
+		"disconnect":
+			cmd_disconnect()
+		"block":
+			cmd_block(args)
+		"unblock":
+			cmd_unblock(args)
+		"links":
+			cmd_links()
+		"spoof":
+			cmd_spoof(args)
+		"unspoof":
+			cmd_unspoof(args)
+		"spoofs":
+			cmd_spoofs()
+		"alerts":
+			cmd_alerts()
+		"suspicion":
+			cmd_suspicion()
 		_:
 			print_to_terminal("Command not found: " + cmd)
 			print_to_terminal("Type 'help' for available commands")
@@ -241,119 +290,145 @@ func cmd_help():
 	print_to_terminal("")
 	print_to_terminal("[color=cyan]Network:[/color]")
 	print_to_terminal("  network      - list all nodes and states")
-	print_to_terminal("  connect <id> - connect to a different node")
+	print_to_terminal("  connect <id> - connect to a node (SSH)")
+	print_to_terminal("  disconnect   - disconnect from current node")
 	print_to_terminal("  consensus <OPEN|LOCKED> - trigger consensus")
+	print_to_terminal("")
+	print_to_terminal("[color=cyan]Link Control:[/color]")
+	print_to_terminal("  block <node> [rounds] - block messages to node")
+	print_to_terminal("  unblock <node>        - unblock messages to node")
+	print_to_terminal("  links                 - show all blocked links")
+	print_to_terminal("")
+	print_to_terminal("[color=cyan]Message Interception:[/color]")
+	print_to_terminal("  spoof <node> <value>  - send fake value to node")
+	print_to_terminal("  unspoof [node]        - clear spoof (all if no node)")
+	print_to_terminal("  spoofs                - show active spoofs")
+	print_to_terminal("")
+	print_to_terminal("[color=cyan]Detection System:[/color]")
+	print_to_terminal("  alerts                - show network alert status")
+	print_to_terminal("  suspicion             - show node suspicion levels")
 
-func cmd_ls():
-	if current_directory.children.size() == 0:
+func cmd_ls(args: Array = []):
+	if not require_connection():
 		return
-	
-	for child in current_directory.children:
-		if child.is_directory:
-			print_to_terminal("[color=blue]" + child.name + "/[/color]")
+
+	var target_path = current_path if args.is_empty() else args[0]
+	var node = get_node_at_path(target_path)
+
+	if node == null:
+		print_to_terminal("ls: cannot access '%s': No such file or directory" % target_path)
+		return
+
+	if node["type"] != "dir":
+		print_to_terminal(target_path.get_file())
+		return
+
+	var children = node["children"]
+	if children.is_empty():
+		return
+
+	# Sort: directories first, then files
+	var dirs: Array[String] = []
+	var files: Array[String] = []
+
+	for child_name in children.keys():
+		if children[child_name]["type"] == "dir":
+			dirs.append(child_name)
 		else:
-			print_to_terminal(child.name)
+			files.append(child_name)
+
+	dirs.sort()
+	files.sort()
+
+	for dir_name in dirs:
+		print_to_terminal("[color=blue]%s/[/color]" % dir_name)
+	for file_name in files:
+		print_to_terminal(file_name)
 
 func cmd_cd(args: Array):
-	if args.size() == 0:
-		print_to_terminal("cd: missing directory argument")
+	if not require_connection():
 		return
-	
-	var target_name = args[0].trim_suffix("/")
-	
-	if target_name == "..":
-		if current_directory.parent != null:
-			current_directory = current_directory.parent
+
+	if args.is_empty():
+		current_path = "/home/user"
 		return
-	
-	if target_name == ".":
+
+	var target = args[0].trim_suffix("/")
+	var new_path = normalize_path(target)
+	var node = get_node_at_path(new_path)
+
+	if node == null:
+		print_to_terminal("cd: %s: No such file or directory" % target)
 		return
-	
-	# Declare 'target' once at the top of the function
-	var target: FileNode = null
-	
-	if target_name.begins_with("/"):
-		target = resolve_absolute_path(target_name)
-		if target == null:
-			print_to_terminal("cd: " + target_name + ": No such directory")
-			return
-		if not target.is_directory:
-			print_to_terminal("cd: " + target_name + ": Not a directory")
-			return
-		current_directory = target
+
+	if node["type"] != "dir":
+		print_to_terminal("cd: %s: Not a directory" % target)
 		return
-	
-	target = current_directory.get_child_by_name(target_name)
-	
-	if target == null:
-		print_to_terminal("cd: " + target_name + ": No such directory")
-		return
-	
-	if not target.is_directory:
-		print_to_terminal("cd: " + target_name + ": Not a directory")
-		return
-	
-	current_directory = target
+
+	current_path = new_path
+	update_prompt()
 
 func cmd_pwd():
-	var path_parts = []
-	var current = current_directory
-	
-	while current.parent != null:
-		path_parts.insert(0, current.name)
-		current = current.parent
-	
-	var full_path = "/" + "/".join(path_parts)
-	print_to_terminal(full_path)
+	if not require_connection():
+		return
+	print_to_terminal(current_path if current_path != "" else "/")
 
 func cmd_cat(args: Array):
-	if args.size() == 0:
+	if not require_connection():
+		return
+
+	if args.is_empty():
 		print_to_terminal("cat: missing file argument")
 		return
-	
-	var filename = args[0]
-	var file = get_file_by_path(filename)
-	
-	if file == null:
-		print_to_terminal("cat: " + filename + ": No such file")
+
+	var node = get_node_at_path(args[0])
+
+	if node == null:
+		print_to_terminal("cat: %s: No such file or directory" % args[0])
 		return
-	
-	if file.is_directory:
-		print_to_terminal("cat: " + filename + ": Is a directory")
+
+	if node["type"] == "dir":
+		print_to_terminal("cat: %s: Is a directory" % args[0])
 		return
-	
-	print_to_terminal(file.content)
+
+	print_to_terminal(node["content"])
 
 func cmd_tail(args: Array):
-	if args.size() == 0:
+	if not require_connection():
+		return
+
+	if args.is_empty():
 		print_to_terminal("tail: missing file argument")
 		return
-	
+
 	var num_lines = 10
 	var filename = args[0]
-	
+
 	if args[0] == "-n" and args.size() >= 3:
 		num_lines = int(args[1])
 		filename = args[2]
-	
-	var file = get_file_by_path(filename)
-	
-	if file == null:
-		print_to_terminal("tail: " + filename + ": No such file")
+
+	var node = get_node_at_path(filename)
+
+	if node == null:
+		print_to_terminal("tail: %s: No such file or directory" % filename)
 		return
-	
-	if file.is_directory:
-		print_to_terminal("tail: " + filename + ": Is a directory")
+
+	if node["type"] == "dir":
+		print_to_terminal("tail: %s: Is a directory" % filename)
 		return
-	
-	var lines = file.content.split("\n")
+
+	var lines = node["content"].split("\n")
 	var start_index = max(0, lines.size() - num_lines)
 	var tail_lines = lines.slice(start_index)
-	
+
 	print_to_terminal("\n".join(tail_lines))
 
 func cmd_clear():
 	output_label.text = ""
+	await get_tree().process_frame
+	output_scroll.get_v_scroll_bar().value = 0
+
 
 # NODE CONTROL COMMANDS
 
@@ -361,7 +436,7 @@ func cmd_reboot():
 	if not network_manager or controlled_node_id < 0:
 		print_to_terminal("ERROR: Terminal not connected to a node")
 		return
-	
+
 	if network_manager.reboot_node(controlled_node_id):
 		print_to_terminal("Rebooting node %d..." % controlled_node_id)
 	else:
@@ -371,7 +446,7 @@ func cmd_crash():
 	if not network_manager or controlled_node_id < 0:
 		print_to_terminal("ERROR: Terminal not connected to a node")
 		return
-	
+
 	if network_manager.crash_node(controlled_node_id):
 		print_to_terminal("Crashing node %d..." % controlled_node_id)
 	else:
@@ -381,7 +456,7 @@ func cmd_corrupt():
 	if not network_manager or controlled_node_id < 0:
 		print_to_terminal("ERROR: Terminal not connected to a node")
 		return
-	
+
 	if network_manager.corrupt_node(controlled_node_id):
 		print_to_terminal("Corrupting node %d..." % controlled_node_id)
 	else:
@@ -391,39 +466,50 @@ func cmd_status():
 	if not network_manager or controlled_node_id < 0:
 		print_to_terminal("ERROR: Terminal not connected to a node")
 		return
-	
+
 	var node = network_manager.get_network_node(controlled_node_id)
 	if not node:
 		print_to_terminal("ERROR: Node %d not found" % controlled_node_id)
 		return
-	
+
 	var state_str = _get_state_name(node.state, true)
 	print_to_terminal("=== NODE %d STATUS ===" % controlled_node_id)
 	print_to_terminal("State: %s" % state_str)
 
 func cmd_connect(args: Array):
-	if args.size() == 0:
+	if args.is_empty():
 		print_to_terminal("Usage: connect <node_id>")
 		print_to_terminal("Example: connect 2")
 		return
-		
+
 	if not network_manager:
 		print_to_terminal("ERROR: Network not initialized")
 		return
-	
-	# Convert string argument to int
+
 	var target_node_id = int(args[0])
-	
-	# Check if target node exists
 	var node = network_manager.get_network_node(target_node_id)
+
 	if not node:
 		print_to_terminal("ERROR: Node %d not found" % target_node_id)
 		return
-	
-	# Switch to new node
+
+	# Connect to this node (like SSH)
 	controlled_node_id = target_node_id
+	connected_node = node
+	current_path = "/home/user"  # Reset to home directory
 	update_prompt()
 	print_to_terminal("=== Connected to Node %d ===" % target_node_id)
+
+func cmd_disconnect():
+	if not is_connected_to_node():
+		print_to_terminal("Not connected to any node")
+		return
+
+	print_to_terminal("Disconnected from Node %d" % controlled_node_id)
+	controlled_node_id = -1
+	connected_node = null
+	current_path = "/home/user"
+	update_prompt()
 
 # NETWORK COMMANDS
 
@@ -440,7 +526,7 @@ func cmd_network():
 	print_to_terminal("  Crashed: %d" % health["crashed"])
 	print_to_terminal("  Byzantine: %d" % health["byzantine"])
 	print_to_terminal("")
-	
+
 	for i in range(health["total"]):
 		var node = network_manager.get_network_node(i)
 		if node:
@@ -451,8 +537,8 @@ func cmd_consensus(args: Array):
 	if not network_manager:
 		print_to_terminal("ERROR: Network not initialized")
 		return
-	
-	if args.size() == 0:
+
+	if args.is_empty():
 		print_to_terminal("Usage: consensus <OPEN|LOCKED>")
 		return
 
@@ -467,39 +553,254 @@ func cmd_consensus(args: Array):
 		print_to_terminal("Invalid vote value. Use OPEN or LOCKED")
 		return
 
-	print_to_terminal("Initiating consensus for: %s" % proposal_str)
-	network_manager.run_consensus(proposal)
+	print_to_terminal("Initiating consensus for: [color=cyan]%s[/color]..." % proposal_str)
+	print_to_terminal("")
+
+	var result = network_manager.run_consensus(proposal)
+
+	# Display result summary
+	_display_consensus_result(result)
+
+func _display_consensus_result(result: Dictionary):
+	var success = result.get("success", false)
+	var consensus_val = result.get("consensus", null)
+	var confidence = result.get("confidence", 0.0)
+	var rounds = result.get("rounds_used", 0)
+	var blocked: Array = result.get("blocked_messages", [])
+
+	print_to_terminal("=== CONSENSUS RESULT ===")
+
+	if success:
+		var val_name = "OPEN" if consensus_val == Enums.VoteValue.OPEN else "LOCKED"
+		print_to_terminal("[color=green]SUCCESS[/color]: Network agreed on [color=cyan]%s[/color]" % val_name)
+		print_to_terminal("  Confidence: %.0f%%" % (confidence * 100))
+		print_to_terminal("  Rounds used: %d" % rounds)
+	else:
+		var reason = result.get("reason", "Unknown")
+		print_to_terminal("[color=red]FAILED[/color]: %s" % reason)
+		if consensus_val != null:
+			var val_name = "OPEN" if consensus_val == Enums.VoteValue.OPEN else "LOCKED"
+			print_to_terminal("  Network chose: %s (%.0f%% confidence)" % [val_name, confidence * 100])
+
+	# Show blocked messages if any
+	if not blocked.is_empty():
+		print_to_terminal("")
+		print_to_terminal("[color=yellow]Blocked messages:[/color] %d" % blocked.size())
+		for msg in blocked.slice(0, 5):  # Show first 5
+			print_to_terminal("  %s: Node %d -> Node %d" % [msg["type"], msg["from"], msg["to"]])
+		if blocked.size() > 5:
+			print_to_terminal("  ... and %d more" % (blocked.size() - 5))
+
+	print_to_terminal("")
+	print_to_terminal("output written to logs/consensus.log")
+
+# LINK BLOCKING COMMANDS
+
+func cmd_block(args: Array):
+	if not network_manager or controlled_node_id < 0:
+		print_to_terminal("ERROR: Terminal not connected to a node")
+		return
+
+	if args.is_empty():
+		print_to_terminal("Usage: block <target_node> [rounds]")
+		print_to_terminal("Blocks messages FROM this node TO target")
+		return
+
+	var target_id = int(args[0])
+	var rounds = 1 if args.size() < 2 else int(args[1])
+
+	if target_id < 0 or target_id >= network_manager.num_nodes:
+		print_to_terminal("ERROR: Invalid node ID: %d" % target_id)
+		return
+
+	if target_id == controlled_node_id:
+		print_to_terminal("ERROR: Cannot block messages to self")
+		return
+
+	network_manager.block_link(controlled_node_id, target_id, rounds)
+	print_to_terminal("[color=yellow]Blocked[/color] link to Node %d for %d round(s)" % [target_id, rounds])
+
+func cmd_unblock(args: Array):
+	if not network_manager or controlled_node_id < 0:
+		print_to_terminal("ERROR: Terminal not connected to a node")
+		return
+
+	if args.is_empty():
+		print_to_terminal("Usage: unblock <target_node>")
+		return
+
+	var target_id = int(args[0])
+	network_manager.unblock_link(controlled_node_id, target_id)
+	print_to_terminal("[color=green]Unblocked[/color] link to Node %d" % target_id)
+
+func cmd_links():
+	if not network_manager:
+		print_to_terminal("ERROR: Network not initialized")
+		return
+
+	var blocked = network_manager.get_blocked_links()
+
+	if blocked.is_empty():
+		print_to_terminal("No blocked links")
+		return
+
+	print_to_terminal("=== BLOCKED LINKS ===")
+	for link in blocked:
+		print_to_terminal("  Node %d -> Node %d (%d round(s) remaining)" % [link["from"], link["to"], link["rounds"]])
+
+# MESSAGE INTERCEPTION COMMANDS
+
+func cmd_spoof(args: Array):
+	if not require_connection():
+		return
+
+	if args.size() < 2:
+		print_to_terminal("Usage: spoof <target_node> <OPEN|LOCKED>")
+		print_to_terminal("Makes this node send a different value to target")
+		return
+
+	var target_id = int(args[0])
+	var value_str = args[1].to_upper()
+
+	if target_id < 0 or target_id >= network_manager.num_nodes:
+		print_to_terminal("ERROR: Invalid node ID: %d" % target_id)
+		return
+
+	if target_id == controlled_node_id:
+		print_to_terminal("ERROR: Cannot spoof messages to self")
+		return
+
+	var value: Enums.VoteValue
+	if value_str == "OPEN":
+		value = Enums.VoteValue.OPEN
+	elif value_str == "LOCKED":
+		value = Enums.VoteValue.LOCKED
+	else:
+		print_to_terminal("ERROR: Invalid value. Use OPEN or LOCKED")
+		return
+
+	connected_node.set_spoof(target_id, value)
+	print_to_terminal("[color=yellow]Spoof set:[/color] Messages to Node %d will show %s" % [target_id, value_str])
+
+func cmd_unspoof(args: Array):
+	if not require_connection():
+		return
+
+	if args.is_empty():
+		# Clear all spoofs
+		connected_node.clear_all_spoofs()
+		print_to_terminal("[color=green]Cleared[/color] all spoofed messages")
+		return
+
+	var target_id = int(args[0])
+	if not connected_node.has_spoof_for(target_id):
+		print_to_terminal("No spoof set for Node %d" % target_id)
+		return
+
+	connected_node.clear_spoof(target_id)
+	print_to_terminal("[color=green]Cleared[/color] spoof for Node %d" % target_id)
+
+func cmd_spoofs():
+	if not require_connection():
+		return
+
+	var spoofs = connected_node.get_all_spoofs()
+
+	if spoofs.is_empty():
+		print_to_terminal("No active spoofs on this node")
+		return
+
+	print_to_terminal("=== ACTIVE SPOOFS ===")
+	for target_id in spoofs.keys():
+		var value = spoofs[target_id]
+		var value_str = "OPEN" if value == Enums.VoteValue.OPEN else "LOCKED"
+		print_to_terminal("  -> Node %d: %s" % [target_id, value_str])
+
+# DETECTION SYSTEM COMMANDS
+
+func cmd_alerts():
+	if not network_manager or not network_manager.network_state:
+		print_to_terminal("ERROR: Network not initialized")
+		return
+
+	var state = network_manager.network_state
+	var level_name = state.get_alert_level_name()
+	var level_color = _get_alert_color(state.alert_level)
+
+	print_to_terminal("=== NETWORK ALERTS ===")
+	print_to_terminal("Alert Level: [color=%s]%s[/color]" % [level_color, level_name])
+	print_to_terminal("")
+
+	var anomalies = state.get_recent_anomalies(10)
+	if anomalies.is_empty():
+		print_to_terminal("No recent anomalies detected")
+		return
+
+	print_to_terminal("Recent Anomalies:")
+	for anomaly in anomalies:
+		var severity_str = _get_severity_indicator(anomaly["severity"])
+		print_to_terminal("  %s [Node %d] %s: %s" % [severity_str, anomaly["node_id"], anomaly["type"], anomaly["details"]])
+
+func cmd_suspicion():
+	if not network_manager or not network_manager.network_state:
+		print_to_terminal("ERROR: Network not initialized")
+		return
+
+	var state = network_manager.network_state
+
+	print_to_terminal("=== NODE SUSPICION LEVELS ===")
+
+	var has_suspicion = false
+	for i in range(network_manager.num_nodes):
+		var suspicion = state.get_node_suspicion(i)
+		if suspicion > 0:
+			has_suspicion = true
+			var bar = _get_suspicion_bar(suspicion)
+			var color = _get_suspicion_color(suspicion)
+			print_to_terminal("  Node %d: [color=%s]%s[/color] (%d)" % [i, color, bar, suspicion])
+
+	if not has_suspicion:
+		print_to_terminal("No suspicious activity detected")
+
+func _get_alert_color(level: int) -> String:
+	match level:
+		0: return "green"
+		1: return "yellow"
+		2: return "orange"
+		3: return "red"
+	return "white"
+
+func _get_severity_indicator(severity: int) -> String:
+	match severity:
+		1: return "[color=yellow]![/color]"
+		2: return "[color=orange]!![/color]"
+		3: return "[color=red]!!![/color]"
+	return "?"
+
+func _get_suspicion_bar(suspicion: int) -> String:
+	var filled = mini(suspicion, 10)
+	var bar = ""
+	for i in range(filled):
+		bar += "|"
+	for i in range(10 - filled):
+		bar += "."
+	return "[" + bar + "]"
+
+func _get_suspicion_color(suspicion: int) -> String:
+	if suspicion >= 10:
+		return "red"
+	elif suspicion >= 6:
+		return "orange"
+	elif suspicion >= 3:
+		return "yellow"
+	return "green"
 
 # UTILITIES
 
-func resolve_absolute_path(path: String) -> FileNode:
-	var clean_path = path.trim_prefix("/")
-	if clean_path == "":
-		return root_directory
-	
-	var parts = clean_path.split("/", false)
-	var current = root_directory
-	
-	for part in parts:
-		if part == "..":
-			if current.parent != null:
-				current = current.parent
-			continue
-		
-		if part == ".":
-			continue
-		
-		var child = current.get_child_by_name(part)
-		if child == null:
-			return null
-		current = child
-	
-	return current
-
-func get_file_by_path(path: String) -> FileNode:
-	if path.begins_with("/"):
-		return resolve_absolute_path(path)
-	return current_directory.get_child_by_name(path)
+func _scroll_output(direction: int) -> void:
+	var sb: ScrollBar = output_scroll.get_v_scroll_bar()
+	var step := output_scroll.size.y * 0.8
+	sb.value = clampf(sb.value + direction * step, sb.min_value, sb.max_value)
 
 func _get_state_name(state: Enums.NodeState, colored: bool = true) -> String:
 	if colored:
@@ -525,78 +826,123 @@ func _get_state_name(state: Enums.NodeState, colored: bool = true) -> String:
 func handle_tab_complete():
 	var text = input_field.text
 	var parts = text.split(" ", false)
-	
-	if parts.size() == 0:
+
+	if parts.is_empty():
 		return
-	
+
 	if parts.size() == 1:
 		autocomplete_command(parts[0])
 	else:
-		var partial = parts[-1]
-		autocomplete_filename(partial, parts.size() - 1)
+		autocomplete_filename(parts[-1])
 
 func autocomplete_command(partial: String):
-	var commands = ["ls", "cd", "pwd", "help", "cat", "tail", "clear", 
-					"reboot", "crash", "corrupt", "status", "network", "consensus", "connect"]
-	var matches = []
-	
+	var commands = ["ls", "cd", "pwd", "help", "cat", "tail", "clear",
+					"reboot", "crash", "corrupt", "status", "network", "consensus", "connect",
+					"disconnect", "block", "unblock", "links", "spoof", "unspoof", "spoofs",
+					"alerts", "suspicion"]
+	var matches: Array[String] = []
+
 	for cmd in commands:
 		if cmd.begins_with(partial):
 			matches.append(cmd)
-	
+
 	if matches.size() == 1:
 		input_field.text = matches[0] + " "
 		input_field.caret_column = input_field.text.length()
 	elif matches.size() > 1:
 		print_to_terminal("Possible commands: " + ", ".join(matches))
 
-func autocomplete_filename(partial: String, _arg_index: int):
-	var matches = []
-	var search_dir = current_directory
-	var prefix = ""
-	
-	if partial.begins_with("/"):
+func autocomplete_filename(partial: String):
+	var search_path: String
+	var file_part: String
+
+	if partial.contains("/"):
 		var last_slash = partial.rfind("/")
-		var dir_path = partial.substr(0, last_slash + 1)
-		var file_part = partial.substr(last_slash + 1)
-		
-		if dir_path == "/":
-			search_dir = root_directory
-		else:
-			search_dir = resolve_absolute_path(dir_path.trim_suffix("/"))
-			if search_dir == null:
-				return
-		
-		prefix = dir_path
-		partial = file_part
-	
-	for child in search_dir.children:
-		if child.name.begins_with(partial):
-			matches.append(child.name)
-	
+		search_path = normalize_path(partial.substr(0, last_slash + 1))
+		file_part = partial.substr(last_slash + 1)
+	else:
+		search_path = current_path
+		file_part = partial
+
+	var dir_node = get_node_at_path(search_path)
+	if dir_node == null or dir_node["type"] != "dir":
+		return
+
+	var matches: Array[String] = []
+	for child_name in dir_node["children"].keys():
+		if child_name.begins_with(file_part):
+			matches.append(child_name)
+
 	if matches.size() == 1:
 		var parts = input_field.text.split(" ", false)
-		parts[-1] = prefix + matches[0]
-		if search_dir.get_child_by_name(matches[0]).is_directory:
-			parts[-1] += "/"
+		var completed = matches[0]
+
+		if dir_node["children"][completed]["type"] == "dir":
+			completed += "/"
+
+		if partial.contains("/"):
+			var last_slash = partial.rfind("/")
+			parts[-1] = partial.substr(0, last_slash + 1) + completed
+		else:
+			parts[-1] = completed
+
 		input_field.text = " ".join(parts)
 		input_field.caret_column = input_field.text.length()
 	elif matches.size() > 1:
 		print_to_terminal(", ".join(matches))
 
 # PUBLIC API
+var _autoscroll_queued := false
 
-func print_to_terminal(text: String):
-	output_label.text += text + "\n"
+func print_to_terminal(line: String) -> void:
+	output_label.append_text(line + "\n")
+	_queue_autoscroll()
+
+func _queue_autoscroll() -> void:
+	if _autoscroll_queued:
+		return
+	_autoscroll_queued = true
+	_autoscroll_async()
+
+func _autoscroll_async() -> void:
+	# Wait for RichTextLabel fit-content + VBox layout + ScrollContainer to update.
+	await get_tree().process_frame
+	await get_tree().process_frame
+
+	_autoscroll_queued = false
+
+	var sb: ScrollBar = output_scroll.get_v_scroll_bar()
+	sb.value = sb.max_value
+
 
 func append_to_file(path: String, line: String) -> bool:
-	var file = get_file_by_path(path)
-	if file != null and not file.is_directory:
-		if file.content != "" and not file.content.ends_with("\n"):
-			file.content += "\n"
-		file.content += line + "\n"
-		return true
-	return false
+	if not is_connected_to_node():
+		return false
+
+	var resolved = resolve_path(path)
+	var node = resolved["node"]
+
+	if node == null or node["type"] == "dir":
+		return false
+
+	if node.get("read_only", false):
+		return false
+
+	if node["content"] != "" and not node["content"].ends_with("\n"):
+		node["content"] += "\n"
+	node["content"] += line + "\n"
+	return true
 
 func update_prompt():
-	prompt_label.text = "user@node%d:~$ " % controlled_node_id if controlled_node_id >= 0 else "user@terminal:~$ "
+	var path_display = current_path
+
+	# Shorten /home/user to ~
+	if current_path.begins_with("/home/user"):
+		path_display = current_path.replace("/home/user", "~")
+		if path_display == "":
+			path_display = "~"
+
+	if controlled_node_id >= 0:
+		prompt_label.text = "user@node%d:%s$ " % [controlled_node_id, path_display]
+	else:
+		prompt_label.text = "user@terminal:%s$ " % path_display
