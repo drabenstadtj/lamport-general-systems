@@ -4,7 +4,7 @@ extends RigidBody3D
 @export var model_scene: PackedScene:
 	set(value):
 		model_scene = value
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() and is_inside_tree():
 			_update_model()
 
 @export var model_offset: Vector3 = Vector3.ZERO:
@@ -16,7 +16,7 @@ extends RigidBody3D
 @export var auto_generate_collision: bool = true:
 	set(value):
 		auto_generate_collision = value
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() and is_inside_tree():
 			_update_model()
 			
 ## Mesh instances with this group will be used
@@ -24,7 +24,7 @@ extends RigidBody3D
 
 @export var update_model: bool:
 	set(value):
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() and is_inside_tree():
 			_update_model()
 
 var models_container: Node3D
