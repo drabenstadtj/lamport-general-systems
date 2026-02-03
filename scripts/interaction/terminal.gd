@@ -16,6 +16,8 @@ func _ready():
 	if interactable:
 		interactable.prompt_text = "Press %s to use Terminal"
 		interactable.interacted.connect(_on_interacted)
+		interactable.require_facing = true
+		interactable.facing_direction = Vector3.BACK
 
 	# Wait for NetworkManager
 	await get_tree().process_frame

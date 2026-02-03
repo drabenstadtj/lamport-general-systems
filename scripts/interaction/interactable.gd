@@ -5,6 +5,20 @@ signal interacted(player)
 
 @export var prompt_text: String = "Press %s to interact"
 @export var enabled: bool = true
+@export var require_facing: bool = false
+@export var facing_direction: Vector3 = Vector3.FORWARD
+@export_range(0, 180) var facing_angle: float = 90.0
+
+func can_interact_from(position: Vector3) -> bool:
+	if not require_facing:
+		return true
+	var parent_3d = get_parent() as Node3D
+	if not parent_3d:
+		return true
+	var world_facing = parent_3d.global_transform.basis * facing_direction
+	var to_position = (position - parent_3d.global_position).normalized()
+	var angle = rad_to_deg(world_facing.angle_to(to_position))
+	return angle <= facing_angle
 
 func interact(player):
 	if enabled:
