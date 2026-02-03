@@ -19,6 +19,10 @@ run/main_scene="uid://dovm16uxv36vy"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cr4si4fyg10se"
+
 [autoload]
 
 Enums="*res://scripts/autoload/enums.gd"

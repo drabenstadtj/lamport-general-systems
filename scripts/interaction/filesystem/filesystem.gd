@@ -2,7 +2,7 @@ class_name Filesystem
 extends Node
 
 var root: Dictionary = {}
-@export var print_parse: bool = true
+@export var print_parse: bool = false
 
 func _ready():
 	root = _parse_node(self, "")

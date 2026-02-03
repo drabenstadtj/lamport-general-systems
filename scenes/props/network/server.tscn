@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://pd62ye6jvt7i" path="res://scripts/hardware/server.gd" id="1_f4xvy"]
 [ext_resource type="ArrayMesh" uid="uid://1md8q7ylqsl6" path="res://assets/models/props/server.tres" id="2_vddb8"]
 [ext_resource type="Script" uid="uid://dny8sp5ne2p8o" path="res://scripts/interaction/power_button_interactable.gd" id="3_7erek"]
-[ext_resource type="Script" uid="uid://cdj4d7jfffecq" path="res://server_audio_manager.gd" id="4_tui6l"]
+[ext_resource type="Script" uid="uid://cdj4d7jfffecq" path="res://scripts/hardware/server_audio_manager.gd" id="4_tui6l"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wy724"]
 size = Vector3(0.56225586, 0.14365235, 0.484375)

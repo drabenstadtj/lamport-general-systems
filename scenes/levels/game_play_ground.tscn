@@ -3,7 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://cwwheq8qqe065" path="res://trenchbroom/textures/carpet_gray.png" id="1_oteb6"]
 [ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/characters/player/player.tscn" id="2_1dbpc"]
 [ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="3_sokcy"]
-[ext_resource type="PackedScene" uid="uid://c1rtsq2uioscb" path="res://scenes/ui/default_filesystem.tscn" id="4_qba2w"]
+[ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/props/network/server_rack.tscn" id="5_x0rqm"]
+[ext_resource type="Script" uid="uid://b5dbyeybyr3m6" path="res://scripts/hardware/server_slot_config.gd" id="6_sp4yh"]
+[ext_resource type="PackedScene" uid="uid://hdxokx00t3dj" path="res://scenes/props/network/network_config.tscn" id="7_sp4yh"]
+[ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/props/environment/desk.tscn" id="8_slol7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1dbpc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -16,7 +19,14 @@ sky_material = SubResource("ProceduralSkyMaterial_1dbpc")
 background_mode = 2
 sky = SubResource("Sky_sokcy")
 tonemap_mode = 2
+ssao_enabled = true
+ssao_intensity = 5.5
 glow_enabled = true
+glow_levels/1 = 2.69
+glow_levels/2 = 1.45
+glow_bloom = 0.19
+fog_enabled = true
+fog_light_color = Color(0.8841736, 0.8961832, 0.91487664, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_1dbpc"]
 
@@ -39,7 +49,48 @@ size = Vector2(1000, 1000)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_oteb6"]
 
-[node name="GamePlayGround" type="Node3D" unique_id=598042711]
+[sub_resource type="Resource" id="Resource_slol7"]
+script = ExtResource("6_sp4yh")
+is_active_node = true
+node_id = 0
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_6hn45"]
+script = ExtResource("6_sp4yh")
+is_active_node = true
+node_id = 1
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_a10dw"]
+script = ExtResource("6_sp4yh")
+is_active_node = true
+node_id = 2
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_7e65x"]
+script = ExtResource("6_sp4yh")
+is_active_node = true
+node_id = 3
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Curve3D" id="Curve3D_a10dw"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.06683057, 0.95486516, -2.479962, -0.04564154, 0.02872014, 0.06077385, 0.04564154, -0.02872014, -0.06077385, 0.110761814, 0.7943588, -2.5076945, -0.014053412, 0.0065270066, 0.1333611, 0.014053412, -0.0065270066, -0.1333611, 0.11095041, 0.771675, -2.7359433, 0.0572744, 0.018674135, 0.27296734, -0.0572744, -0.018674135, -0.27296734, 0.15324438, 0.01597792, -3.0389922, 0, 0, 0, 0, 0, 0, 0.0036035776, 0.029314697, -3.206924, 0, 0, 0, 0, 0, 0, -0.21246386, 0.029321134, -3.283331, 0, 0, 0, 0, 0, 0, -0.4508337, 0.02927488, -3.297759, 0, 0, 0, 0, 0, 0, -0.70530874, 0.02919954, -3.2786188, 0, 0, 0, 0, 0, 0, -0.96914756, 0.02909273, -3.2210243, 0, 0, 0, 0, 0, 0, -1.1400858, 0.028985918, -3.1341383, 0, 0, 0, 0, 0, 0, -1.2411281, 0.028897941, -3.0500581, 0, 0, 0, 0, 0, 0, -1.2516457, 0.051743146, -2.778227),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 12
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_slol7"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_6hn45"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.07491448, 0.9543685, -2.4727392, -0.04564154, 0.02872014, 0.06077385, 0.04564154, -0.02872014, -0.06077385, 0.110761814, 0.7943588, -2.5076945, -0.014053412, 0.0065270066, 0.1333611, 0.014053412, -0.0065270066, -0.1333611, 0.14582135, 0.76248544, -2.7092752, 0.0572744, 0.018674135, 0.27296734, -0.0572744, -0.018674135, -0.27296734, 0.2002173, 0.0048589227, -3.0160415, 0, 0, 0, 0, 0, 0, 0.0036035776, 0.029314697, -3.206924, 0, 0, 0, 0, 0, 0, -0.21246386, 0.029321134, -3.283331, 0, 0, 0, 0, 0, 0, -0.4508337, 0.02927488, -3.297759, 0, 0, 0, 0, 0, 0, -0.70530874, 0.02919954, -3.2786188, 0, 0, 0, 0, 0, 0, -0.96914756, 0.02909273, -3.2210243, 0, 0, 0, 0, 0, 0, -1.1400858, 0.028985918, -3.1341383, 0, 0, 0, 0, 0, 0, -1.2411281, 0.028897941, -3.0500581, 0, 0, 0, 0, 0, 0, -1.2255124, 0.028465427, -2.658744),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 12
+
+[node name="GamePlay" type="Node3D" unique_id=598042711]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1388618990]
 environment = SubResource("Environment_qba2w")
@@ -51,6 +102,7 @@ shadow_enabled = true
 [node name="Ground" type="Node3D" parent="." unique_id=964636125]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=164353484]
+transform = Transform3D(1.0412271, 0, 0, 0, 1.0412271, 0, 0, 0, 1.0412271, 0, 0, 0)
 mesh = SubResource("PlaneMesh_2bpxm")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=170055685]
@@ -61,5 +113,53 @@ shape = SubResource("WorldBoundaryShape3D_oteb6")
 [node name="Player" parent="." unique_id=1666983605 instance=ExtResource("2_1dbpc")]
 
 [node name="Terminal" parent="." unique_id=1133609830 instance=ExtResource("3_sokcy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19009876, 1.0166141, -2.6116)
-filesystem_scene = ExtResource("4_qba2w")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19009876, 0.89078, -2.5057163)
+
+[node name="ServerRack" parent="." unique_id=189241122 instance=ExtResource("5_x0rqm")]
+transform = Transform3D(0.36037132, 0, -0.932809, 0, 1, 0, 0.932809, 0, 0.36037132, -1.2787507, 0.04561031, -2.1795273)
+server_configs = Array[ExtResource("6_sp4yh")]([SubResource("Resource_slol7"), SubResource("Resource_6hn45"), SubResource("Resource_a10dw"), SubResource("Resource_7e65x")])
+
+[node name="NetworkConfig" parent="." unique_id=1865605720 instance=ExtResource("7_sp4yh")]
+
+[node name="DeskMesh" parent="." unique_id=2115324838 instance=ExtResource("8_slol7")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.26694846, 0.7717242, -2.3994625)
+
+[node name="Path3D" type="Path3D" parent="." unique_id=1575760761]
+transform = Transform3D(1.0412271, 0, 0, 0, 1.0412271, 0, 0, 0, 1.0412271, 0, 0, 0)
+curve = SubResource("Curve3D_a10dw")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D" unique_id=636243930]
+polygon = PackedVector2Array(0, 0, 0, 0.01, 0.01, 0.01, 0.01, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.06
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+material = SubResource("StandardMaterial3D_slol7")
+
+[node name="Path3D2" type="Path3D" parent="." unique_id=739939127]
+transform = Transform3D(1.0412271, 0, 0, 0, 1.0412271, 0, 0, 0, 1.0412271, -0.06850982, 0, 0)
+curve = SubResource("Curve3D_6hn45")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D2" unique_id=1543676887]
+polygon = PackedVector2Array(0, 0, 0, 0.01, 0.01, 0.01, 0.01, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.06
+path_simplify_angle = 0.0
+path_rotation = 1
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+material = SubResource("StandardMaterial3D_slol7")

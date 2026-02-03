@@ -1,0 +1,22 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://cr4si4fyg10se"]
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
+resource_name = "HighPassFilter"
+cutoff_hz = 3011.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+damping = 1.0
+wet = 0.24
+
+[sub_resource type="AudioEffectStereoEnhance" id="AudioEffectStereoEnhance_j3pel"]
+resource_name = "StereoEnhance"
+
+[resource]
+bus/0/bypass_fx = true
+bus/0/effect/0/effect = SubResource("AudioEffectHighPassFilter_j3pel")
+bus/0/effect/0/enabled = true
+bus/0/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
+bus/0/effect/1/enabled = true
+bus/0/effect/2/effect = SubResource("AudioEffectStereoEnhance_j3pel")
+bus/0/effect/2/enabled = true

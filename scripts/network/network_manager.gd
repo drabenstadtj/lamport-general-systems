@@ -10,15 +10,26 @@ var f_value: int = 1
 var network_id: String = "default"
 var num_nodes: int = 0
 
+# Commander proposal - what the network "wants" (hostile network wants LOCKED)
+@export_group("Consensus Settings")
+@export_enum("LOCKED", "OPEN") var commander_proposal_setting: int = 0  # 0 = LOCKED, 1 = OPEN
+
+# Consensus audio
+@export_group("Consensus Audio")
+@export var consensus_start_sound: AudioStream
+@export var consensus_success_sound: AudioStream
+@export var consensus_fail_sound: AudioStream
+@export var consensus_volume_db: float = 0.0
+
 signal node_state_changed(node_id: int, old_state: Enums.NodeState, new_state: Enums.NodeState)
 signal consensus_completed(result: Dictionary)
+signal consensus_started(proposal: Enums.VoteValue)
+signal message_blocked(from_id: int, to_id: int, msg_type: String)
 signal turn_completed(turn_number: int)
 signal game_won(win_type: String)
 signal network_initialized
 signal security_level_changed(old_level: Enums.SecurityLevel, new_level: Enums.SecurityLevel)
 signal all_nodes_ready
-
-
 
 func _ready():
 	add_to_group("network_manager")
@@ -34,7 +45,7 @@ func initialize_from_scene():
 	if config:
 		f_value = config.f_value
 		network_id = config.network_id
-		print("NetworkManager: Using config from scene (f=%d, id=%s)" % [f_value, network_id])
+		print("[NetworkManager] Using config from scene (f=%d, id=%s)" % [f_value, network_id])
 	
 	initialize_network()
 
@@ -46,10 +57,10 @@ func initialize_network():
 	num_nodes = max(min_required, physical_node_ids.size())
 	
 	if physical_node_ids.size() < min_required:
-		push_error("NetworkManager: Not enough physical servers! Found %d, need at least %d (for f=%d)" % [physical_node_ids.size(), min_required, f_value])
+		push_error("[NetworkManager] Not enough physical servers! Found %d, need at least %d (for f=%d)" % [physical_node_ids.size(), min_required, f_value])
 		return
 	
-	print("NetworkManager: Initializing network (f=%d, nodes=%d, physical=%d)" % [f_value, num_nodes, physical_node_ids.size()])
+	print("[NetworkManager] Initializing network (f=%d, nodes=%d, physical=%d)" % [f_value, num_nodes, physical_node_ids.size()])
 	
 	# Create the BFT network
 	network_state = NetworkState.new(f_value, num_nodes)
@@ -57,10 +68,10 @@ func initialize_network():
 	
 	for node_id in physical_node_ids:
 		if node_id >= num_nodes:
-			push_warning("NetworkManager: Physical server has node_id %d but only %d logical nodes exist!" % [node_id, num_nodes])
+			push_warning("[NetworkManager] Physical server has node_id %d but only %d logical nodes exist!" % [node_id, num_nodes])
 	
 	current_turn = 0
-	print("NetworkManager: Network initialized.")
+	print("[NetworkManager] Network initialized.")
 	network_initialized.emit()
 
 func discover_physical_servers() -> Array[int]:
@@ -188,22 +199,85 @@ func power_on_node(node_id: int) -> bool:
 	_advance_turn()
 	return true
 
+# Link Blocking
+
+func block_link(from_id: int, to_id: int, rounds: int = 1) -> bool:
+	if not network_state:
+		return false
+	network_state.block_link(from_id, to_id, rounds)
+	return true
+
+func unblock_link(from_id: int, to_id: int) -> bool:
+	if not network_state:
+		return false
+	network_state.unblock_link(from_id, to_id)
+	return true
+
+func get_blocked_links() -> Array:
+	if not network_state:
+		return []
+	return network_state.get_blocked_links()
+
 # Consensus
 
 func run_consensus(proposal: Enums.VoteValue) -> Dictionary:
 	print("\n=== CONSENSUS ROUND ===")
+
+	# Play consensus start sound
+	_play_consensus_sound(consensus_start_sound)
+
+	# Log consensus start on all nodes
+	for node in network_state.nodes:
+		node.log_consensus_start(proposal)
+
+	consensus_started.emit(proposal)
+
 	var result = consensus_engine.run_consensus_round(proposal)
+
+	# Log blocked messages to receiving nodes
+	for blocked in consensus_engine.blocked_messages:
+		var to_node = network_state.get_node(blocked["to"])
+		if to_node:
+			to_node.log_blocked(blocked["type"], blocked["from"])
+		message_blocked.emit(blocked["from"], blocked["to"], blocked["type"])
+
+	# Log consensus end on all nodes
+	var success = result.get("success", false)
+	var consensus_val = result.get("consensus", null)
+	var confidence = result.get("confidence", 0.0)
+	var reason = result.get("reason", "")
+	for node in network_state.nodes:
+		node.log_consensus_end(success, consensus_val, confidence, reason)
+
+	# Add blocked messages to result for terminal display
+	result["blocked_messages"] = consensus_engine.blocked_messages.duplicate()
+
+	# Add all messages to result for logging
+	result["pre_prepare_messages"] = consensus_engine.pre_prepare_messages.duplicate()
+	result["prepare_messages"] = consensus_engine.prepare_messages.duplicate()
+	result["commit_messages"] = consensus_engine.commit_messages.duplicate()
+
+	# Tick link blocks after consensus round
+	network_state.tick_link_blocks()
+
 	consensus_completed.emit(result)
-	
-	# Check for door opening via consensus
+
+	# Play success or fail sound
 	if result.get("success", false):
+		_play_consensus_sound(consensus_success_sound)
 		var agreed_value = result.get("agreed_value", Enums.VoteValue.LOCKED)
 		if agreed_value == Enums.VoteValue.OPEN:
 			game_won.emit("consensus")
-	
+	else:
+		_play_consensus_sound(consensus_fail_sound)
+
 	return result
 
 # Internal
+
+func _play_consensus_sound(sound: AudioStream):
+	if sound and AudioManager:
+		AudioManager.play_sound(sound, consensus_volume_db)
 
 func _advance_turn():
 	var old_level = network_state.current_level

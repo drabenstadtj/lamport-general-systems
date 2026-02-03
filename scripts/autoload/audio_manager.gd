@@ -38,7 +38,7 @@ func _create_audio_players():
 		add_child(player)
 		priority_pool_3d.append(player)
 	
-	print("AudioManager: Created ", player_pool_3d.size(), " 3D players")
+	print("[AudioManager] Created ", player_pool_3d.size(), " 3D players")
 
 # For UI/non-positional sounds
 func play_sound(stream: AudioStream, volume_db: float = 0.0) -> AudioStreamPlayer:

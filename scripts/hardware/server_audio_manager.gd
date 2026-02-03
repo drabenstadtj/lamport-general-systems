@@ -6,6 +6,7 @@ class_name ServerAudioManager
 @export var power_on_beep: AudioStream = preload("res://assets/audio/server/server_powerup.mp3")
 @export var power_off_beep: AudioStream = preload("res://assets/audio/server/server_powerdown.mp3")
 @export var hdd_spinup: AudioStream = preload("res://assets/audio/server/harddrive_spinup.mp3")
+@export var hdd_spindown: AudioStream = preload("res://assets/audio/server/harddrive_spindown.mp3")
 @export var hdd_idle_sound: AudioStream = preload("res://assets/audio/server/harddrive_idle.mp3")
 
 @export_group("Idle Sound Settings")
@@ -24,6 +25,7 @@ var is_transitioning: bool = false
 var spinup_player_ref: AudioStreamPlayer3D = null
 var server_position: Vector3 = Vector3.ZERO
 var should_start_idle: bool = false
+var base_idle_player: AudioStreamPlayer3D = null
 
 func _ready():
 	# Get parent's position
@@ -74,26 +76,32 @@ func play_power_on_sequence():
 	print("[ServerAudio] Power on sequence complete")
 
 func play_power_off_sequence():
-	# Cancel any ongoing transition
 	if is_transitioning:
 		print("[ServerAudio] Interrupting previous power sequence")
 		if spinup_player_ref and is_instance_valid(spinup_player_ref):
 			spinup_player_ref.stop()
-	
+
 	is_transitioning = true
 	print("[ServerAudio] Starting power off sequence")
-	
-	# Stop idle sound immediately
+
 	stop_idle_system()
-	
-	await get_tree().create_timer(0.1).timeout
-	
-	# Power down beep
+	await get_tree().create_timer(0.05).timeout
+
+	# Power down beep first
 	if power_off_beep:
 		AudioManager.play_sound_3d_priority(power_off_beep, server_position)
-	
+
+	await get_tree().create_timer(0.05).timeout
+
+	# Then HDD spindown (use priority so it doesn't get stolen)
+	if hdd_spindown:
+		var spindown_player := AudioManager.play_sound_3d_priority(hdd_spindown, server_position)
+		if spindown_player:
+			await spindown_player.finished
+
 	is_transitioning = false
 	print("[ServerAudio] Power off sequence complete")
+
 
 func start_idle_system():
 	if not is_inside_tree():
@@ -107,6 +115,11 @@ func start_idle_system():
 	idle_players.clear()
 	
 	print("[ServerAudio] Starting idle system with ", num_idle_layers, " layers")
+	
+	# Base layer: always on, looped
+	base_idle_player = AudioManager.play_sound_3d(hdd_idle_sound, server_position, -22.0)
+	if base_idle_player:
+		base_idle_player.pitch_scale = randf_range(0.98, 1.02)
 	
 	# Start multiple layers with random offsets
 	for i in range(num_idle_layers):
@@ -122,6 +135,10 @@ func stop_idle_system():
 		if is_instance_valid(player):
 			player.stop()
 	
+	if base_idle_player and is_instance_valid(base_idle_player):
+		base_idle_player.stop()
+	base_idle_player = null
+
 	idle_players.clear()
 
 func _start_idle_layer(initial_delay: float = 0.0):
@@ -138,14 +155,23 @@ func _start_idle_layer(initial_delay: float = 0.0):
 	# Create and start player silently
 	var random_volume = randf_range(-idle_volume_variation, idle_volume_variation)
 	var player = AudioManager.play_sound_3d(hdd_idle_sound, server_position, -80.0)
-	
 	if not player:
-		# If no player available, try again later
 		await get_tree().create_timer(2.0).timeout
 		if idle_active:
 			_start_idle_layer()
 		return
-	
+
+	# Subtle pitch drift (prevents “same-y” feel)
+	player.pitch_scale = randf_range(0.96, 1.04)
+
+	# Start at a random point in the sample so you don’t always hear the same beginning
+	var stream_len := 0.0
+	if player.stream and player.stream.has_method("get_length"):
+		stream_len = player.stream.get_length()
+
+	if stream_len > 2.0:
+		player.seek(randf_range(0.0, stream_len - 1.0))
+
 	idle_players.append(player)
 	
 	# Fade in

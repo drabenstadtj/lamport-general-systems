@@ -7,10 +7,10 @@
 [ext_resource type="Material" uid="uid://bli85pejemy78" path="res://trenchbroom/textures/wall_beige.tres" id="4_wdyd2"]
 [ext_resource type="Material" uid="uid://lgiysotwuq1y" path="res://trenchbroom/textures/dropceiling.tres" id="5_rvs8q"]
 [ext_resource type="Material" uid="uid://cfk32c516r4hf" path="res://trenchbroom/textures/molding.tres" id="6_0vuvt"]
-[ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/props/dropceiling_light.tscn" id="7_8wegd"]
+[ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/props/environment/dropceiling_light.tscn" id="7_8wegd"]
 [ext_resource type="PackedScene" uid="uid://cmsivc13revmb" path="res://assets/models/props/door_exterior.glb" id="9_rvs8q"]
-[ext_resource type="Texture2D" uid="uid://nxrs7cdwu2ir" path="res://assets/textures/props/door_exterior_Metal_09-128x128.png" id="10_0vuvt"]
-[ext_resource type="Texture2D" uid="uid://dqkbp4s5j8epa" path="res://assets/textures/props/door_exterior_glass.png" id="11_8wegd"]
+[ext_resource type="Texture2D" path="res://assets/textures/props/door_exterior_Metal_09-128x128.png" id="10_0vuvt"]
+[ext_resource type="Texture2D" path="res://assets/textures/props/door_exterior_glass.png" id="11_8wegd"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_km5w5"]
 _surfaces = [{

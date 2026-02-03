@@ -8,6 +8,14 @@ class_name Server
 @onready var status_light = $StatusLight
 @onready var audio_component: ServerAudioManager = $ServerAudioManager
 
+# Consensus LED animation
+var is_in_consensus: bool = false
+var consensus_tween: Tween = null
+var base_light_color: Color = Color.GREEN
+var base_light_energy: float = 5.0
+var consensus_blink_start_time: int = 0
+const MIN_BLINK_DURATION_MS: int = 800  # Minimum time to show blinking
+
 func _ready():
 	if not is_active:
 		if status_light:
@@ -15,14 +23,16 @@ func _ready():
 			status_light.light_energy = 0.0
 	else:
 		add_to_group("server")
-		
+
 		await NetworkManager.all_nodes_ready
-		
+
 		NetworkManager.node_state_changed.connect(_on_node_state_changed)
-		
+		NetworkManager.consensus_started.connect(_on_consensus_started)
+		NetworkManager.consensus_completed.connect(_on_consensus_completed)
+
 		sync_with_network_state()
 		update_status_light()
-		
+
 		await get_tree().process_frame
 		var power_button = find_power_button()
 		if power_button:
@@ -142,3 +152,65 @@ func _find_power_button_recursive(node: Node) -> PowerButtonInteractable:
 
 func get_power_state() -> bool:
 	return is_powered_on
+
+# Consensus LED Animation
+
+func _on_consensus_started(_proposal: Enums.VoteValue):
+	if not is_active or not is_powered_on:
+		return
+
+	is_in_consensus = true
+	consensus_blink_start_time = Time.get_ticks_msec()
+	start_consensus_blink()
+
+func _on_consensus_completed(_result: Dictionary):
+	is_in_consensus = false
+	# Ensure minimum blink duration so player can see the effect
+	var elapsed = Time.get_ticks_msec() - consensus_blink_start_time
+	var remaining = max(0, MIN_BLINK_DURATION_MS - elapsed)
+	if remaining > 0:
+		await get_tree().create_timer(remaining / 1000.0).timeout
+	stop_consensus_blink()
+
+func start_consensus_blink():
+	if not status_light:
+		return
+
+	# Store current color/energy as base
+	base_light_color = status_light.light_color
+	base_light_energy = status_light.light_energy
+
+	# Start blinking tween
+	_do_consensus_blink()
+
+func _do_consensus_blink():
+	if not is_in_consensus or not status_light:
+		return
+
+	# Kill any existing tween
+	if consensus_tween and consensus_tween.is_valid():
+		consensus_tween.kill()
+
+	consensus_tween = create_tween()
+	consensus_tween.set_loops()
+
+	# Blink pattern: bright -> dim -> bright
+	var blink_color = Color.CYAN
+	var dim_energy = base_light_energy * 0.3
+	var bright_energy = base_light_energy * 1.5
+
+	# Quick flicker effect
+	consensus_tween.tween_property(status_light, "light_color", blink_color, 0.05)
+	consensus_tween.parallel().tween_property(status_light, "light_energy", bright_energy, 0.05)
+	consensus_tween.tween_property(status_light, "light_energy", dim_energy, 0.1)
+	consensus_tween.tween_property(status_light, "light_color", base_light_color, 0.05)
+	consensus_tween.parallel().tween_property(status_light, "light_energy", base_light_energy, 0.05)
+	consensus_tween.tween_interval(0.15)
+
+func stop_consensus_blink():
+	if consensus_tween and consensus_tween.is_valid():
+		consensus_tween.kill()
+		consensus_tween = null
+
+	# Restore to proper state
+	update_status_light()

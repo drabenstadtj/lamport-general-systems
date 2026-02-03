@@ -15,6 +15,24 @@ metadata/_custom_type_script = "uid://dlkc6ghj1ey2"
 script = ExtResource("2_204la")
 metadata/_custom_type_script = "uid://dlkc6ghj1ey2"
 
+[node name="logs" type="Node" parent="home/user"]
+script = ExtResource("2_204la")
+metadata/_custom_type_script = "uid://dlkc6ghj1ey2"
+
+[node name="consensus" type="Node" parent="home/user/logs"]
+script = ExtResource("3_ejm3q")
+file_type = "log"
+content = ""
+read_only = false
+metadata/_custom_type_script = "uid://cxrpuf1js1c6f"
+
+[node name="messages" type="Node" parent="home/user/logs"]
+script = ExtResource("3_ejm3q")
+file_type = "log"
+content = ""
+read_only = false
+metadata/_custom_type_script = "uid://cxrpuf1js1c6f"
+
 [node name="test" type="Node" parent="home/user" unique_id=1682398972]
 script = ExtResource("3_ejm3q")
 content = "this is a test"
