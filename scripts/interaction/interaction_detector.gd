@@ -20,7 +20,7 @@ func _update_current_interactable():
 		var collider = get_collider()
 		if collider:
 			var interactable = collider.get_node_or_null("Interactable")
-			if interactable and interactable.enabled:
+			if interactable and interactable.enabled and interactable.can_interact_from(global_position):
 				current_interactable = interactable
 	
 	if current_interactable != previous_interactable:
