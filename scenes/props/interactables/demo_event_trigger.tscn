@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c1hpba1iw4trw"]
+
+[ext_resource type="Script" uid="uid://dfrqu3kescuk" path="res://scripts/environment/demo_event_trigger.gd" id="1_yxgcf"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yxgcf"]
+radius = 3.0
+
+[node name="DemoEventTrigger" type="Area3D" unique_id=855858244]
+collision_mask = 2
+script = ExtResource("1_yxgcf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1054335552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_yxgcf")

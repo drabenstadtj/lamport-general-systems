@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bkdh7b01puu1d"]
+
+[ext_resource type="Shader" uid="uid://cy8ymbbapwvwx" path="res://assets/shaders/cubemap.gdshader" id="1_6uhlb"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_6uhlb")
+shader_parameter/q_levels = 1.0
+shader_parameter/interpolation_z = 0.0
+shader_parameter/zoom = 1.0
+shader_parameter/o_y = 0.0005
+shader_parameter/blend_sharpness = 8.0
