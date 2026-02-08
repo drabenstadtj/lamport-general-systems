@@ -12,20 +12,20 @@
 [ext_resource type="PackedScene" uid="uid://7vpoc5wnvxy" path="res://scenes/props/environment/cabinet.tscn" id="10_j8xgc"]
 [ext_resource type="Texture2D" uid="uid://dh8ucww82r80a" path="res://assets/textures/screens/demo_slides/slide_04.png" id="10_yo52i"]
 [ext_resource type="PackedScene" uid="uid://cwhitdnvlglgs" path="res://scenes/props/environment/fridge.tscn" id="11_ovmjf"]
-[ext_resource type="PackedScene" uid="uid://c3qsr33trla1l" path="res://assets/models/props/breakroom_table.glb" id="12_1vfnp"]
+[ext_resource type="PackedScene" uid="uid://c3qsr33trla1l" path="res://assets/models/props/furniture/breakroom_table.glb" id="12_1vfnp"]
 [ext_resource type="PackedScene" uid="uid://d2wbfdd5ib87k" path="res://scenes/props/environment/trashbin.tscn" id="12_mwefk"]
-[ext_resource type="PackedScene" uid="uid://d361g2crf7p2o" path="res://assets/models/props/breakroom_chair.glb" id="13_bd4s6"]
+[ext_resource type="PackedScene" uid="uid://d361g2crf7p2o" path="res://assets/models/props/furniture/breakroom_chair.glb" id="13_bd4s6"]
 [ext_resource type="PackedScene" uid="uid://bjf24jrck2chl" path="res://scenes/props/environment/breakroom_table.tscn" id="13_jua6e"]
 [ext_resource type="Texture2D" uid="uid://cjrwilggph514" path="res://assets/textures/decals/body_drag_blood.png" id="14_1vfnp"]
 [ext_resource type="PackedScene" uid="uid://3gw4tnt1amn3" path="res://scenes/props/environment/breakroom_chair.tscn" id="14_vtnee"]
 [ext_resource type="Texture2D" uid="uid://c28tf7lsjqb4s" path="res://assets/textures/decals/tidy_breakroom.png" id="15_ovmjf"]
-[ext_resource type="PackedScene" uid="uid://c6skd4yrxw10d" path="res://assets/models/props/coffee pot.glb" id="19_mwefk"]
-[ext_resource type="PackedScene" uid="uid://c2xm0bar6so53" path="res://assets/models/props/demo_display.glb" id="20_jua6e"]
+[ext_resource type="PackedScene" uid="uid://c6skd4yrxw10d" path="res://assets/models/props/appliances/coffee pot.glb" id="19_mwefk"]
+[ext_resource type="PackedScene" uid="uid://c2xm0bar6so53" path="res://assets/models/props/furniture/demo_display.glb" id="20_jua6e"]
 [ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/props/environment/desk.tscn" id="21_8ohfs"]
 [ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="22_r6qow"]
 [ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/props/network/server_rack.tscn" id="23_1hcxj"]
 [ext_resource type="PackedScene" uid="uid://j35gjs44jema" path="res://scenes/props/demo_display.tscn" id="25_1d07b"]
-[ext_resource type="PackedScene" uid="uid://ck1yppmi46sda" path="res://assets/models/props/stanchionpair.glb" id="25_1hcxj"]
+[ext_resource type="PackedScene" uid="uid://ck1yppmi46sda" path="res://assets/models/props/furniture/stanchionpair.glb" id="25_1hcxj"]
 [ext_resource type="Texture2D" uid="uid://cv04qn2dnat6g" path="res://assets/textures/screens/demo_slides/slide_01.png" id="26_nq73e"]
 [ext_resource type="Texture2D" uid="uid://cjb0gvxpeapu1" path="res://assets/textures/screens/demo_slides/slide_02.png" id="27_nq73e"]
 [ext_resource type="Texture2D" uid="uid://cr5j8l50hstky" path="res://assets/textures/screens/demo_slides/slide_03.png" id="28_64olr"]
@@ -246,7 +246,7 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_575cj"]
 size = Vector3(1, 3.3128662, 4.446289)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bqltn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pseyb"]
 render_priority = 0
 shader = ExtResource("31_pseyb")
 shader_parameter/base_color = Color(1, 1, 1, 0)
@@ -254,7 +254,7 @@ shader_parameter/text_decal = ExtResource("34_bqltn")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(0.97880507, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_0hr52"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_bqltn"]
 size = Vector2(10.45, 3.345)
 
 [node name="BaseLevel" type="Node3D" unique_id=66007950]
@@ -887,8 +887,8 @@ texture = ExtResource("14_1vfnp")
 
 [node name="StickyNote0" parent="DemoRoom/Props" unique_id=2090067259 instance=ExtResource("32_ii06k")]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, -9.802498, 3.3671613, 18.499784)
-material_override = SubResource("ShaderMaterial_bqltn")
-mesh = SubResource("PlaneMesh_0hr52")
+material_override = SubResource("ShaderMaterial_pseyb")
+mesh = SubResource("PlaneMesh_bqltn")
 skeleton = NodePath("../../..")
 base_color = Color(1, 1, 1, 0)
 text_texture = ExtResource("34_bqltn")
