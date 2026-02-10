@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://clmpp81t4yffk"]
+
+[ext_resource type="Theme" uid="uid://fffs8ouuidd6" path="res://assets/themes/pda_theme.tres" id="1_xyvdh"]
+[ext_resource type="Texture2D" uid="uid://cbk05wf7icyvu" path="res://assets/textures/icons/pda/mail.png" id="2_88iuf"]
+[ext_resource type="Texture2D" uid="uid://da4a4cosptnfe" path="res://assets/textures/icons/pda/network.png" id="3_25yvc"]
+[ext_resource type="Texture2D" uid="uid://dhhau00bli0cg" path="res://assets/textures/icons/pda/map.png" id="4_xqwi4"]
+[ext_resource type="Texture2D" uid="uid://carmmtbmbhq43" path="res://assets/textures/icons/pda/settings.png" id="5_hnl86"]
+
+[node name="PDAUI" type="Control" unique_id=500014419]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1295.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1518463304]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.36862746, 0.6784314, 0.3254902, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1354139863]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xyvdh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1333057674]
+layout_mode = 2
+theme = ExtResource("1_xyvdh")
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1385867263]
+layout_mode = 2
+theme = ExtResource("1_xyvdh")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1136902745]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme = ExtResource("1_xyvdh")
+
+[node name="Mail" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=708792360]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_xyvdh")
+toggle_mode = true
+icon = ExtResource("2_88iuf")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Network" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1922978110]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_xyvdh")
+toggle_mode = true
+icon = ExtResource("3_25yvc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Map" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=137935984]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_xyvdh")
+toggle_mode = true
+icon = ExtResource("4_xqwi4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=759706230]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_xyvdh")
+toggle_mode = true
+icon = ExtResource("5_hnl86")
+icon_alignment = 1
+expand_icon = true

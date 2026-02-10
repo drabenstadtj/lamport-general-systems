@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://0dhorow2vmfo" path="res://assets/textures/props/sticky_notes/security_office_label.png" id="9_dpkri"]
 [ext_resource type="PackedScene" uid="uid://36xplm2mhker" path="res://scenes/props/environment/door.tscn" id="10_pkgf1"]
 [ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/props/network/server_rack.tscn" id="11_7futf"]
-[ext_resource type="Script" uid="uid://b5dbyeybyr3m6" path="res://scripts/hardware/server_slot_config.gd" id="12_qc6mj"]
+[ext_resource type="Script" uid="uid://b5dbyeybyr3m6" path="res://scripts/network/server_slot_config.gd" id="12_qc6mj"]
 [ext_resource type="Texture2D" uid="uid://vo2d8wb3g6s3" path="res://assets/textures/props/sticky_notes/auth_pers_only.png" id="13_bdxja"]
 [ext_resource type="Texture2D" uid="uid://cvei6307hu83" path="res://assets/textures/props/sticky_notes/byz_gen_prob.png" id="14_fcj2s"]
 [ext_resource type="Texture2D" uid="uid://d2mofhhoqtx3r" path="res://assets/textures/props/sticky_notes/door_override.png" id="15_oxwlp"]

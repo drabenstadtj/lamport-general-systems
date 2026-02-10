@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/props/environment/desk.tscn" id="3_lfyvx"]
 [ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="4_0lift"]
 [ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/props/network/server_rack.tscn" id="5_7xgas"]
-[ext_resource type="Script" uid="uid://b5dbyeybyr3m6" path="res://scripts/hardware/server_slot_config.gd" id="6_gy5pc"]
+[ext_resource type="Script" uid="uid://b5dbyeybyr3m6" path="res://scripts/network/server_slot_config.gd" id="6_gy5pc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnsk1"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)

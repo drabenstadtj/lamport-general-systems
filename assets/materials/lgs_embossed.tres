@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cdh3nw3ip35xm"]
+
+[ext_resource type="Texture2D" uid="uid://cvck2yfs3jwj3" path="res://assets/models/props/electronics/pda_cool_lgs_embossed.png" id="1_5ncb7"]
+
+[resource]
+resource_name = "lgs_embossed"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_5ncb7")
+roughness = 0.5
+texture_filter = 2
+texture_repeat = false

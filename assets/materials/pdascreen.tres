@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://de0ggnfoadmyn"]
+
+[ext_resource type="Texture2D" uid="uid://be16ufug2irnq" path="res://assets/models/props/electronics/pda_cool_pdascreen.png" id="1_ht8q3"]
+
+[resource]
+resource_name = "pdascreen"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_ht8q3")
+metallic = 0.86206895
+roughness = 0.262069
+texture_filter = 2
+texture_repeat = false

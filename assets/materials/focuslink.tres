@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dn3tpntbqgbjf"]
+
+[ext_resource type="Texture2D" uid="uid://chm857ttaqb2l" path="res://assets/models/props/electronics/pda_cool_focuslink.png" id="1_o6uil"]
+
+[resource]
+resource_name = "focuslink"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_o6uil")
+roughness = 0.5
+texture_filter = 2
+texture_repeat = false
