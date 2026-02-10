@@ -1,5 +1,6 @@
 extends Node
-class_name CameraController
+class_name CameraControllerOld
+
 
 signal camera_rotated(rotation: Vector2)
 

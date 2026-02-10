@@ -15,6 +15,7 @@ extends CharacterBody3D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var interaction_detector = $CameraPivot/Camera3D/InteractionRaycast
 @onready var terminal_viewer: TerminalViewer = $TerminalViewer
+@onready var pda_viewer: PDAViewer = $PDAViewer
 @onready var item_viewer: ItemViewer = $ItemViewer
 @onready var collision_manager: CollisionManager = $CollisionManager
 @onready var camera_controller: CameraController = $CameraController
@@ -32,6 +33,10 @@ func _ready() -> void:
 	if terminal_viewer:
 		terminal_viewer.viewing_started.connect(_on_terminal_viewing_started)
 		terminal_viewer.viewing_ended.connect(_on_terminal_viewing_ended)
+	
+	if pda_viewer:
+		pda_viewer.viewing_started.connect(_on_pda_viewing_started)
+		pda_viewer.viewing_ended.connect(_on_pda_viewing_ended)
 
 func _on_terminal_viewing_started() -> void:
 	if camera_controller:
@@ -45,7 +50,21 @@ func _on_terminal_viewing_ended() -> void:
 	if interaction_detector:
 		interaction_detector.enabled = true
 
+func _on_pda_viewing_started() -> void:
+	if camera_controller:
+		camera_controller.lock_camera()
+	if interaction_detector:
+		interaction_detector.enabled = false
+
+func _on_pda_viewing_ended() -> void:
+	if camera_controller:
+		camera_controller.unlock_camera()
+	if interaction_detector:
+		interaction_detector.enabled = true
+
 func _input(event: InputEvent) -> void:
+	if pda_viewer and pda_viewer.handle_input(event):
+		return
 	if terminal_viewer and terminal_viewer.handle_input(event):
 		return
 	if item_viewer and item_viewer.handle_input(event):
@@ -88,10 +107,17 @@ func _handle_free_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		if interaction_detector:
 			interaction_detector.try_interact(self)
+			
+	if event.is_action_pressed("open_pda"):  
+		open_pda()
 
 func start_viewing_terminal(terminal: Terminal) -> void:
 	if terminal_viewer:
 		terminal_viewer.start_viewing(terminal)
+
+func open_pda() -> void:
+	if pda_viewer:
+		pda_viewer.start_viewing()
 
 func get_input_direction() -> Vector2:
 	if terminal_viewer and terminal_viewer.is_viewing:

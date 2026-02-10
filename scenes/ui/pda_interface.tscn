@@ -1,0 +1,398 @@
+[gd_scene format=3 uid="uid://mkbsgdexe7pg"]
+
+[ext_resource type="Script" uid="uid://dpkmt07ccxpf5" path="res://scripts/ui/pda_interface.gd" id="1_6ehk2"]
+[ext_resource type="Theme" uid="uid://fffs8ouuidd6" path="res://assets/themes/pda_theme.tres" id="1_vi71y"]
+[ext_resource type="Texture2D" uid="uid://cbk05wf7icyvu" path="res://assets/textures/icons/pda/mail.png" id="2_6ehk2"]
+[ext_resource type="Texture2D" uid="uid://da4a4cosptnfe" path="res://assets/textures/icons/pda/network.png" id="3_0y8w6"]
+[ext_resource type="LabelSettings" uid="uid://bewya5shxjqkf" path="res://assets/themes/labelsettings/pda_header.tres" id="3_ebdp5"]
+[ext_resource type="Texture2D" uid="uid://dhhau00bli0cg" path="res://assets/textures/icons/pda/map.png" id="4_ebdp5"]
+[ext_resource type="PackedScene" uid="uid://d0guc2ge4sg1r" path="res://scenes/ui/pda_message.tscn" id="4_xvsge"]
+[ext_resource type="Texture2D" uid="uid://carmmtbmbhq43" path="res://assets/textures/icons/pda/settings.png" id="5_xvsge"]
+[ext_resource type="Texture2D" uid="uid://cknapk88mfax3" path="res://assets/textures/icons/pda/cursor.png" id="7_0y8w6"]
+
+[node name="PDAUI" type="Control" unique_id=500014419]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1608.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ehk2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1518463304]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.36862746, 0.6784314, 0.3254902, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1354139863]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vi71y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1333057674]
+layout_mode = 2
+theme = ExtResource("1_vi71y")
+alignment = 2
+
+[node name="ViewBox" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1358976952]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+
+[node name="MailView" type="Control" parent="MarginContainer/VBoxContainer/ViewBox" unique_id=2132185464]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView" unique_id=1619577060]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer" unique_id=1333494252]
+layout_mode = 2
+theme = ExtResource("1_vi71y")
+text = "Mail"
+label_settings = ExtResource("3_ebdp5")
+horizontal_alignment = 1
+
+[node name="Line" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer" unique_id=836213453]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer" unique_id=215211943]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_vi71y")
+horizontal_scroll_mode = 0
+
+[node name="MessageContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer" unique_id=799093668]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Message" type="MarginContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer" unique_id=1838160227]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message" unique_id=367799482]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Line" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message/Container" unique_id=1127898356]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Subject" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message/Container" unique_id=775418591]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Facility Shutdown"
+autowrap_mode = 2
+
+[node name="Line2" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message/Container" unique_id=30076647]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme = ExtResource("1_vi71y")
+color = Color(0, 0, 0, 1)
+
+[node name="Content" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message/Container" unique_id=1764131269]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur..."
+autowrap_mode = 2
+
+[node name="Message8" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer" unique_id=902753270 instance=ExtResource("4_xvsge")]
+layout_mode = 2
+
+[node name="Message2" type="MarginContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer" unique_id=176168301]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message2" unique_id=847531707]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Line" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message2/Container" unique_id=2136753393]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Subject" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message2/Container" unique_id=1251046222]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Facility Shutdown"
+autowrap_mode = 2
+
+[node name="Line2" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message2/Container" unique_id=849787526]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme = ExtResource("1_vi71y")
+color = Color(0, 0, 0, 1)
+
+[node name="Content" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message2/Container" unique_id=349380526]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur..."
+autowrap_mode = 2
+
+[node name="Message3" type="MarginContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer" unique_id=2144020942]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message3" unique_id=1507657496]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Line" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message3/Container" unique_id=394384429]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Subject" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message3/Container" unique_id=1200084545]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Facility Shutdown"
+autowrap_mode = 2
+
+[node name="Line2" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message3/Container" unique_id=1972241843]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme = ExtResource("1_vi71y")
+color = Color(0, 0, 0, 1)
+
+[node name="Content" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message3/Container" unique_id=1143510185]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur..."
+autowrap_mode = 2
+
+[node name="Message4" type="MarginContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer" unique_id=847605893]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message4" unique_id=2007651151]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Line" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message4/Container" unique_id=879767478]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Subject" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message4/Container" unique_id=774627889]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Facility Shutdown"
+autowrap_mode = 2
+
+[node name="Line2" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message4/Container" unique_id=659170969]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme = ExtResource("1_vi71y")
+color = Color(0, 0, 0, 1)
+
+[node name="Content" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message4/Container" unique_id=1156106659]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur..."
+autowrap_mode = 2
+
+[node name="Message5" type="MarginContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer" unique_id=230679103]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message5" unique_id=741353687]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Line" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message5/Container" unique_id=115831636]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Subject" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message5/Container" unique_id=723291371]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Facility Shutdown"
+autowrap_mode = 2
+
+[node name="Line2" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message5/Container" unique_id=173174382]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme = ExtResource("1_vi71y")
+color = Color(0, 0, 0, 1)
+
+[node name="Content" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message5/Container" unique_id=1071415160]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur..."
+autowrap_mode = 2
+
+[node name="Message6" type="MarginContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer" unique_id=242142488]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message6" unique_id=1584368478]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Line" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message6/Container" unique_id=385127460]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Subject" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message6/Container" unique_id=830667290]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Facility Shutdown"
+autowrap_mode = 2
+
+[node name="Line2" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message6/Container" unique_id=1654346565]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme = ExtResource("1_vi71y")
+color = Color(0, 0, 0, 1)
+
+[node name="Content" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message6/Container" unique_id=1591473414]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur..."
+autowrap_mode = 2
+
+[node name="Message7" type="MarginContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer" unique_id=340913243]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message7" unique_id=770549764]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Line" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message7/Container" unique_id=283259769]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Subject" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message7/Container" unique_id=1339564014]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Facility Shutdown"
+autowrap_mode = 2
+
+[node name="Line2" type="ColorRect" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message7/Container" unique_id=855268940]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme = ExtResource("1_vi71y")
+color = Color(0, 0, 0, 1)
+
+[node name="Content" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MailView/VBoxContainer/ScrollContainer/MessageContainer/Message7/Container" unique_id=1388527785]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur..."
+autowrap_mode = 2
+
+[node name="NetworkView" type="Control" parent="MarginContainer/VBoxContainer/ViewBox" unique_id=1861103793]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/NetworkView" unique_id=1868506314]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Network"
+
+[node name="MapView" type="Control" parent="MarginContainer/VBoxContainer/ViewBox" unique_id=689030262]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/MapView" unique_id=1267911087]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Map"
+
+[node name="SettingsView" type="Control" parent="MarginContainer/VBoxContainer/ViewBox" unique_id=892685226]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ViewBox/SettingsView" unique_id=791687838]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Settings"
+
+[node name="BottomBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1136902745]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+theme = ExtResource("1_vi71y")
+
+[node name="Mail" type="Button" parent="MarginContainer/VBoxContainer/BottomBar" unique_id=708792360]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vi71y")
+icon = ExtResource("2_6ehk2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Network" type="Button" parent="MarginContainer/VBoxContainer/BottomBar" unique_id=1922978110]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vi71y")
+icon = ExtResource("3_0y8w6")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Map" type="Button" parent="MarginContainer/VBoxContainer/BottomBar" unique_id=137935984]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vi71y")
+icon = ExtResource("4_ebdp5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/BottomBar" unique_id=759706230]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_vi71y")
+icon = ExtResource("5_xvsge")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Cursor" type="TextureRect" parent="." unique_id=1211434346]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.039
+anchor_top = 0.003
+anchor_right = 0.042000003
+anchor_bottom = 0.004
+offset_left = -12.168
+offset_top = -1.62
+offset_right = 18.896
+offset_bottom = 29.84
+pivot_offset = Vector2(12.59, 1.595)
+mouse_filter = 2
+texture = ExtResource("7_0y8w6")
+expand_mode = 3
+stretch_mode = 4

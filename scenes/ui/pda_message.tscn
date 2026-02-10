@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://d0guc2ge4sg1r"]
+
+[ext_resource type="Theme" uid="uid://fffs8ouuidd6" path="res://assets/themes/pda_theme.tres" id="1_6nobm"]
+
+[node name="PDAMessage" type="MarginContainer" unique_id=902753270]
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="Container" type="VBoxContainer" parent="." unique_id=2127910387]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Line" type="ColorRect" parent="Container" unique_id=271696468]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Subject" type="Label" parent="Container" unique_id=703863833]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Message Subject"
+autowrap_mode = 2
+
+[node name="Line2" type="ColorRect" parent="Container" unique_id=874391345]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme = ExtResource("1_6nobm")
+color = Color(0, 0, 0, 1)
+
+[node name="Content" type="Label" parent="Container" unique_id=1794817987]
+custom_minimum_size = Vector2(272, 0)
+layout_mode = 2
+text = "Message Content"
+autowrap_mode = 2

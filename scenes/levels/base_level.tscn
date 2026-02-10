@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://3mtbxfhulw7m"]
 
-[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/characters/player/player.tscn" id="1_md458"]
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="2_wwrw0"]
 [ext_resource type="Resource" uid="uid://bpisdf0bouswg" path="res://trenchbroom/lgs_map_settings.tres" id="3_wwrw0"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="4_o1chu"]
@@ -34,7 +33,11 @@
 [ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://assets/shaders/sticky_note.gdshader" id="31_pseyb"]
 [ext_resource type="PackedScene" uid="uid://b5688h6fdndwu" path="res://scenes/props/sticky_note.tscn" id="32_ii06k"]
 [ext_resource type="Texture2D" uid="uid://b8la1iojgb6hl" path="res://logos/logo3.png" id="34_bqltn"]
+[ext_resource type="PackedScene" uid="uid://ctuk5fd0rndil" path="res://scenes/characters/demo_robot.tscn" id="35_0hr52"]
+[ext_resource type="PackedScene" uid="uid://vqtlme6jjkyk" path="res://scenes/characters/player/player_noanim.tscn" id="35_bqltn"]
 [ext_resource type="Texture2D" uid="uid://0usddfgyqqv5" path="res://assets/textures/screens/demo_slides/slide_08.png" id="35_pseyb"]
+[ext_resource type="PackedScene" uid="uid://c1hpba1iw4trw" path="res://scenes/props/interactables/demo_event_trigger.tscn" id="37_0hr52"]
+[ext_resource type="AudioStream" uid="uid://dx70r8bw2qm5k" path="res://assets/audio/demo_room/welcome.wav" id="38_u2nyb"]
 
 [sub_resource type="Environment" id="Environment_1hcxj"]
 
@@ -246,7 +249,7 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_575cj"]
 size = Vector3(1, 3.3128662, 4.446289)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pseyb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u2nyb"]
 render_priority = 0
 shader = ExtResource("31_pseyb")
 shader_parameter/base_color = Color(1, 1, 1, 0)
@@ -254,7 +257,7 @@ shader_parameter/text_decal = ExtResource("34_bqltn")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(0.97880507, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_bqltn"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_cnqkx"]
 size = Vector2(10.45, 3.345)
 
 [node name="BaseLevel" type="Node3D" unique_id=66007950]
@@ -266,9 +269,6 @@ environment = SubResource("Environment_1hcxj")
 transform = Transform3D(0.5148197, 0.796526, -0.3170281, 0.29343134, 0.18374477, 0.9381556, 0.8055176, -0.576007, -0.1391303, 0, 5.6000004, 0)
 visible = false
 shadow_enabled = true
-
-[node name="Player" parent="." unique_id=1765874637 instance=ExtResource("1_md458")]
-transform = Transform3D(0.022381544, 0, 0.8997216, 0, 0.9, 0, -0.8997216, 0, 0.022381544, 9.107207, -0.5, 0)
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=809142196]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -887,8 +887,8 @@ texture = ExtResource("14_1vfnp")
 
 [node name="StickyNote0" parent="DemoRoom/Props" unique_id=2090067259 instance=ExtResource("32_ii06k")]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, -9.802498, 3.3671613, 18.499784)
-material_override = SubResource("ShaderMaterial_pseyb")
-mesh = SubResource("PlaneMesh_bqltn")
+material_override = SubResource("ShaderMaterial_u2nyb")
+mesh = SubResource("PlaneMesh_cnqkx")
 skeleton = NodePath("../../..")
 base_color = Color(1, 1, 1, 0)
 text_texture = ExtResource("34_bqltn")
@@ -904,3 +904,14 @@ transform = Transform3D(-0.9978612, 0, 0.065368414, 0, 1, 0, -0.065368414, 0, -0
 
 [node name="ServerRack" parent="DemoRoom/Interactables" unique_id=951366003 instance=ExtResource("23_1hcxj")]
 transform = Transform3D(-0.7337061, 0, 0.6794669, 0, 1, 0, -0.6794669, 0, -0.7337061, 2.63604, -0.4543898, 15.376928)
+
+[node name="Player" parent="." unique_id=1819242889 instance=ExtResource("35_bqltn")]
+
+[node name="DemoRobot" parent="." unique_id=1436206390 instance=ExtResource("35_0hr52")]
+transform = Transform3D(0.6194639, 0, -0.7850251, 0, 1, 0, 0.7850251, 0, 0.6194639, 3.2687485, -0.5, 3.3655884)
+
+[node name="DemoEventTrigger" parent="." unique_id=855858244 instance=ExtResource("37_0hr52")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0698988, -0.5, 3.3420706)
+voiceline = ExtResource("38_u2nyb")
+demo_robot = NodePath("../DemoRobot")
+delay_seconds = 3.0

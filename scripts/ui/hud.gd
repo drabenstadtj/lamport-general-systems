@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var interaction_prompt = $InteractionPrompt
 @onready var demo_prompt: Label = $DemoPrompt 
 @onready var control_prompt: Label = $MarginContainer/ControlPrompt
-
+@onready var cursor: ColorRect = $Cursor
 @export var fade_duration: float = 0.5
 
 var current_demo_tween: Tween = null
@@ -89,3 +89,9 @@ func show_control_prompt(text: String):
 func hide_control_prompt():
 	if control_prompt:
 		control_prompt.visible = false
+		
+func disable_cursor():
+	cursor.visible = false
+	
+func enable_cursor():
+	cursor.visible = true

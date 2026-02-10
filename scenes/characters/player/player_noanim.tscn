@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://epcimk2yc4nk" path="res://scripts/player_controller/no_anim/player.gd" id="1_64ag5"]
 [ext_resource type="Script" uid="uid://dxtdstchcmwg7" path="res://scripts/player_controller/core/terminal_viewer.gd" id="2_5cjx6"]
+[ext_resource type="Script" uid="uid://blekuyfwc8xs" path="res://scripts/player_controller/core/pda_viewer.gd" id="3_6uc42"]
 [ext_resource type="Script" uid="uid://d3o4mqu5cjlcx" path="res://scripts/player_controller/core/collision_manager.gd" id="3_jnklg"]
 [ext_resource type="Script" uid="uid://bdm6qn3v6n5h2" path="res://scripts/player_controller/no_anim/camera_controller_minimal.gd" id="4_64ag5"]
 [ext_resource type="Script" uid="uid://bh86rqxohveas" path="res://scripts/player_controller/core/item_viewer.gd" id="5_j1nb4"]
 [ext_resource type="Script" uid="uid://bpe7eiwq0xmt5" path="res://scripts/interaction/interaction_detector.gd" id="6_w25xy"]
 [ext_resource type="Script" uid="uid://cywrcqv30ljar" path="res://scripts/player_controller/core/state_machine.gd" id="7_kg1x3"]
 [ext_resource type="Script" uid="uid://fx0vhnevmfei" path="res://scripts/player_controller/no_anim/movement/idle.gd" id="8_54hjk"]
+[ext_resource type="PackedScene" uid="uid://d3f5re2kf7fxu" path="res://scenes/props/interactables/pda.tscn" id="8_p8hx0"]
 [ext_resource type="Script" uid="uid://bfxl4nuw7ak7u" path="res://scripts/player_controller/no_anim/movement/walking.gd" id="9_5cjx6"]
 [ext_resource type="Script" uid="uid://bh7adbjctd6i4" path="res://scripts/player_controller/no_anim/movement/running.gd" id="10_jnklg"]
 [ext_resource type="Script" uid="uid://d30nu1d8gabfw" path="res://scripts/player_controller/no_anim/movement/jumping.gd" id="11_e5dxl"]
@@ -16,6 +18,31 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3uyx6"]
 radius = 0.41
 height = 1.7
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_p8hx0"]
+resource_local_to_scene = true
+resource_name = "pda_cool_pdascreen"
+_surfaces = [{
+"aabb": AABB(-0.31198537, 0, -0.5, 0.62397075, 1e-05, 1),
+"attribute_data": PackedByteArray(0, 0, 255, 255, 255, 255, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "pdascreen",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(0, 0, 0, 0, 255, 255, 255, 191, 255, 255, 0, 0, 0, 0, 255, 191, 255, 255, 0, 0, 255, 255, 255, 191, 0, 0, 0, 0, 0, 0, 255, 191, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xn3ok"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gjdu"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_xn3ok")
+texture_filter = 0
 
 [node name="Player" type="CharacterBody3D" unique_id=1819242889 groups=["player"]]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
@@ -28,6 +55,14 @@ jump_velocity = 5.0
 
 [node name="TerminalViewer" type="Node" parent="." unique_id=445125905]
 script = ExtResource("2_5cjx6")
+
+[node name="PDAViewer" type="Node" parent="." unique_id=828798833 node_paths=PackedStringArray("pda_model", "pda_viewport")]
+script = ExtResource("3_6uc42")
+pda_model = NodePath("../CameraPivot/Camera3D/PDA")
+pda_viewport = NodePath("../CameraPivot/Camera3D/PDA/SubViewport")
+view_position = Vector3(0, 0, -0.15)
+hidden_rotation = Vector3(0, 0, 0)
+view_rotation = Vector3(80, 0, 0)
 
 [node name="CollisionManager" type="Node" parent="." unique_id=586099521]
 script = ExtResource("3_jnklg")
@@ -59,6 +94,15 @@ raycast_length = 2.0
 [node name="ItemViewPosition" type="Node3D" parent="CameraPivot/Camera3D" unique_id=1584328793]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
+[node name="PDA" parent="CameraPivot/Camera3D" unique_id=1152373490 instance=ExtResource("8_p8hx0")]
+
+[node name="Screen" parent="CameraPivot/Camera3D/PDA" index="4" unique_id=582516628]
+mesh = SubResource("ArrayMesh_p8hx0")
+surface_material_override/0 = SubResource("StandardMaterial3D_5gjdu")
+
+[node name="Node3D" type="Node3D" parent="CameraPivot/Camera3D" unique_id=595376350]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, -0.025920033, -0.28629625)
+
 [node name="StateMachine" type="Node" parent="." unique_id=820851740 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("7_kg1x3")
 initial_state = NodePath("Idle")
@@ -77,3 +121,5 @@ script = ExtResource("11_e5dxl")
 
 [node name="Crouching" type="Node" parent="StateMachine" unique_id=1268437460]
 script = ExtResource("12_j1nb4")
+
+[editable path="CameraPivot/Camera3D/PDA"]

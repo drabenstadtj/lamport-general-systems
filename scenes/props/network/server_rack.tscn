@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://djmhrpo53lrks"]
 
 [ext_resource type="Texture2D" uid="uid://2nvtrpgq7ump" path="res://assets/textures/props/serverrack_atlas.png" id="1_h3oph"]
-[ext_resource type="Script" uid="uid://pdqemlb5tat6" path="res://scripts/hardware/server_rack.gd" id="1_peprk"]
+[ext_resource type="Script" uid="uid://pdqemlb5tat6" path="res://scripts/network/server_rack.gd" id="1_peprk"]
 [ext_resource type="PackedScene" uid="uid://chuie6g4h2ufa" path="res://scenes/props/network/server.tscn" id="3_5xx3q"]
-[ext_resource type="Script" uid="uid://dv3rl8j1gdob7" path="res://scripts/hardware/server_rack_slot_label.gd" id="4_6xhkf"]
+[ext_resource type="Script" uid="uid://dv3rl8j1gdob7" path="res://scripts/network/server_rack_slot_label.gd" id="4_6xhkf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxxuc"]
 resource_name = "Metal"
