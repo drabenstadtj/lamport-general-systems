@@ -60,9 +60,9 @@ script = ExtResource("2_5cjx6")
 script = ExtResource("3_6uc42")
 pda_model = NodePath("../CameraPivot/Camera3D/PDA")
 pda_viewport = NodePath("../CameraPivot/Camera3D/PDA/SubViewport")
-view_position = Vector3(0, 0, -0.15)
+view_position = Vector3(0.1, -0.025, -0.15)
 hidden_rotation = Vector3(0, 0, 0)
-view_rotation = Vector3(80, 0, 0)
+view_rotation = Vector3(80, -5, 5)
 
 [node name="CollisionManager" type="Node" parent="." unique_id=586099521]
 script = ExtResource("3_jnklg")

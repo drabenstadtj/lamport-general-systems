@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://fewocnssgvr8" path="res://assets/models/props/car.glb" id="1_fekg2"]
 [ext_resource type="Script" uid="uid://mj7n1dpfkvad" path="res://scripts/levels/arrival_cutscene_manager.gd" id="1_l0hne"]
-[ext_resource type="PackedScene" uid="uid://8jt8rdjdcaci" path="res://scenes/characters/player/player.tscn" id="2_l0hne"]
+[ext_resource type="PackedScene" uid="uid://vqtlme6jjkyk" path="res://scenes/characters/player/player_noanim.tscn" id="3_l0hne"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l0hne"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -150,22 +150,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Car/Player/CameraPivot/Camera3D:current")
+tracks/2/path = NodePath("Car:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(5),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Car:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(22.3, 23.805477),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -189,34 +177,22 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Car/Player/CameraPivot/Camera3D:current")
+tracks/1/path = NodePath("Car:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Car:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, -1.5707964, 0)]
 }
-tracks/3/type = "position_3d"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Car")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 22.350002, 1.9, 106.74284)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Car")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 22.350002, 1.9, 106.74284)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ila73"]
 _data = {
@@ -1058,36 +1034,13 @@ material = SubResource("StandardMaterial3D_6sdwv")
 [node name="Car" parent="." unique_id=428067808 instance=ExtResource("1_fekg2")]
 transform = Transform3D(-3.6717562e-08, 0, -0.8399999, 0, 0.8399999, 0, 0.8399999, 0, -3.6717562e-08, 22.350002, 1.9, 106.74284)
 
-[node name="Player" parent="Car" unique_id=1249559981 instance=ExtResource("2_l0hne")]
-transform = Transform3D(-1.0714287, 0, 9.3667296e-08, 0, 1.0714287, 0, -9.3667296e-08, 0, -1.0714287, 0, -0.6992303, -0.6744385)
-
-[node name="Camera3D" parent="Car/Player/CameraPivot" index="0"]
-current = false
-
-[node name="GeneralSkeleton" parent="Car/Player" index="15"]
-bones/0/position = Vector3(-0.0009151607, 0.92355275, -0.091895774)
-bones/0/rotation = Quaternion(-0.044223774, -0.1158994, -0.005165487, 0.9922626)
-bones/2/rotation = Quaternion(0.04346409, 0.00010700995, 0.00013136827, 0.999055)
-bones/3/rotation = Quaternion(-0.08546593, -0.00021310618, -0.00026313652, 0.9963411)
-bones/4/rotation = Quaternion(0.05460637, 0.09534189, 0.011667749, 0.99387723)
-bones/6/rotation = Quaternion(0.4966948, 0.52344435, 0.5292271, -0.44633964)
-bones/7/rotation = Quaternion(-0.033201024, 0.8222893, -0.56801707, 0.009729086)
-bones/8/rotation = Quaternion(0.16364926, -0.67515063, 0.16806825, 0.6993881)
-bones/15/rotation = Quaternion(0.5487626, -0.47242063, -0.4764678, -0.49865514)
-bones/16/rotation = Quaternion(0.081752986, 0.8234325, -0.56141156, -0.009615955)
-bones/17/rotation = Quaternion(0.290884, 0.5471975, -0.20665641, 0.7571358)
-bones/24/rotation = Quaternion(-0.0008262521, 0.13652474, 0.9835681, -0.118128225)
-bones/25/rotation = Quaternion(0.018920904, 0.9783596, -0.17371555, 0.11080441)
-bones/26/rotation = Quaternion(-0.09774838, 0.72105783, -0.6858984, 0.008019492)
-bones/28/rotation = Quaternion(0.0008966265, -0.09173593, 0.98749745, 0.12819047)
-bones/29/rotation = Quaternion(-0.04485259, 0.92552257, -0.12356833, -0.3551439)
-bones/30/rotation = Quaternion(0.17019747, 0.62797517, -0.759392, 0.0019987302)
-
 [node name="StaticBody3D" type="StaticBody3D" parent="Car" unique_id=1477705330]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Car/StaticBody3D" unique_id=2050055018]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2758495, -0.00012207031)
 shape = SubResource("BoxShape3D_l0hne")
+
+[node name="Player" parent="Car" unique_id=1819242889 instance=ExtResource("3_l0hne")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1225593923]
 libraries/ = SubResource("AnimationLibrary_ila73")
@@ -1096,5 +1049,3 @@ libraries/ = SubResource("AnimationLibrary_ila73")
 
 [node name="Camera3D" type="Camera3D" parent="Cameras" unique_id=218595557]
 transform = Transform3D(-0.83147246, -0.24611758, 0.498076, 0, 0.89651996, 0.44300336, -0.55556595, 0.36834508, -0.7454317, 59.72229, 33.403748, -469.89478)
-
-[editable path="Car/Player"]
