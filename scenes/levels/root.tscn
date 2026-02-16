@@ -12,7 +12,7 @@ transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.5, 0)
 [node name="CurrentLevel" parent="." unique_id=454405047 instance=ExtResource("2_q23bv")]
 
 [node name="TransferRoom" parent="CurrentLevel" unique_id=1228649981 instance=ExtResource("2_edpnl")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5, 0.4, 0)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5, 0.5, 0)
 door1_scene_path = "uid://d2aoeurh2i8ig"
 door1_dock = "DockA"
 door2_scene_path = "uid://3mtbxfhulw7m"
