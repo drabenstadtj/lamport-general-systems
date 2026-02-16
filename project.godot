@@ -29,6 +29,7 @@ Enums="*res://scripts/autoload/enums.gd"
 AudioManager="*uid://bcfgrl3i7inof"
 HUD="*uid://b23xito26d7cc"
 NetworkManager="*uid://tkf1ooq6b5sb"
+SceneManager="*uid://b0ofspsd07gxu"
 
 [display]
 

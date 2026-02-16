@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://blwt4o4gdkmxh"]
+
+[ext_resource type="PackedScene" uid="uid://dlrcymtcjjjrv" path="res://scenes/levels/transfer_room.tscn" id="2_edpnl"]
+[ext_resource type="PackedScene" uid="uid://vqtlme6jjkyk" path="res://scenes/characters/player/player_noanim.tscn" id="2_h3mcq"]
+[ext_resource type="PackedScene" uid="uid://3mtbxfhulw7m" path="res://scenes/levels/base_level.tscn" id="3_edpnl"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_06k03"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h3mcq"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="Root" type="Node3D" unique_id=1638958329]
+
+[node name="Player" parent="." unique_id=1819242889 instance=ExtResource("2_h3mcq")]
+
+[node name="CurrentLevel" type="Node3D" parent="." unique_id=206100569]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CurrentLevel" unique_id=1670701602]
+mesh = SubResource("PlaneMesh_06k03")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CurrentLevel/MeshInstance3D" unique_id=793926218]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CurrentLevel/MeshInstance3D/StaticBody3D" unique_id=435175237]
+shape = SubResource("ConcavePolygonShape3D_h3mcq")
+
+[node name="Dock" type="Marker3D" parent="CurrentLevel" unique_id=834746113]
+
+[node name="TransferRoom" parent="CurrentLevel" unique_id=1228649981 instance=ExtResource("2_edpnl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+destination_scene = ExtResource("3_edpnl")
