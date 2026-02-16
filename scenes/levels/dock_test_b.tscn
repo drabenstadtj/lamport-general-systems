@@ -1,0 +1,48 @@
+[gd_scene format=4 uid="uid://dohfxemrrytew"]
+
+[ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_issh6"]
+[ext_resource type="Resource" uid="uid://bpisdf0bouswg" path="res://trenchbroom/lgs_map_settings.tres" id="2_5d0lu"]
+[ext_resource type="Material" uid="uid://mbn7a0pr60ka" path="res://trenchbroom/textures/carpet_gray.tres" id="3_60sxn"]
+[ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/double_door.tscn" id="4_q2ku1"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5d0lu"]
+_surfaces = [{
+"aabb": AABB(-2, -0.5, -2, 4, 1, 4),
+"attribute_data": PackedByteArray("AAAAvwAAAL4AAAA/AAAAvgAAAD8AAAA+AAAAvwAAAD4AAAA/AAAAPgAAAL8AAAA+AAAAvwAAAL4AAAA/AAAAvgAAAL8AAAA/AAAAvwAAAL8AAAA/AAAAvwAAAD8AAAA/AAAAPwAAAD8AAAC/AAAAPwAAAL8AAAC/AAAAPwAAAL8AAAC/AAAAvgAAAD8AAAC+AAAAPwAAAD4AAAC/AAAAPgAAAD8AAAA+AAAAvwAAAD4AAAC/AAAAvgAAAD8AAAC+"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": ExtResource("3_60sxn"),
+"name": "carpet_gray",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAQAAAAD8AAADAAAAAwAAAAD8AAADAAAAAwAAAAL8AAADAAAAAQAAAAL8AAADAAAAAwAAAAL8AAABAAAAAwAAAAL8AAADAAAAAwAAAAD8AAADAAAAAwAAAAD8AAABAAAAAwAAAAL8AAABAAAAAQAAAAL8AAABAAAAAQAAAAL8AAADAAAAAwAAAAL8AAADAAAAAwAAAAD8AAABAAAAAwAAAAD8AAADAAAAAQAAAAD8AAADAAAAAQAAAAD8AAABAAAAAQAAAAD8AAABAAAAAQAAAAD8AAADAAAAAQAAAAL8AAADAAAAAQAAAAL8AAABAAAAAQAAAAL8AAABAAAAAwAAAAL8AAABAAAAAwAAAAD8AAABAAAAAQAAAAD8AAABA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_60sxn"]
+points = PackedVector3Array(2, 0.5, 2, 2, -0.5, 2, -2, 0.5, 2, -2, -0.5, 2, 2, 0.5, -2, 2, -0.5, -2, -2, 0.5, -2, -2, -0.5, -2)
+
+[node name="DockTestB" type="Node3D" unique_id=1784282888]
+
+[node name="FuncGodotMap" type="Node3D" parent="." unique_id=1129742071]
+script = ExtResource("1_issh6")
+local_map_file = "uid://bxvf2dt7h3n1h"
+map_settings = ExtResource("2_5d0lu")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=1210867900]
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1162818450]
+mesh = SubResource("ArrayMesh_5d0lu")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=513275930]
+shape = SubResource("ConvexPolygonShape3D_60sxn")
+
+[node name="entity_1_double_door" type="Node3D" parent="FuncGodotMap" unique_id=1440088747]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.5, -2)
+
+[node name="DoubleDoor" parent="." unique_id=62288274 instance=ExtResource("4_q2ku1")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 0.5, 3.7252903e-08)
+dock_name = "DockB"

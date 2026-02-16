@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" format=3 uid="uid://ujuabunf5en"]
+
+[ext_resource type="Script" uid="uid://d1nwwgcrner8b" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class_display_descriptor.gd" id="1_qc1xh"]
+[ext_resource type="PackedScene" uid="uid://cmgorjy628to8" path="res://scenes/props/environment/single_door.tscn" id="2_qc1xh"]
+[ext_resource type="Script" uid="uid://cxsqwtsqd8w33" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="3_ir1md"]
+
+[resource]
+script = ExtResource("3_ir1md")
+scene_file = ExtResource("2_qc1xh")
+classname = "single_door"
+meta_properties = Dictionary[String, Variant]({
+"color": Color(0.6181195, 0.86192393, 0.7717112, 1),
+"size": AABB(0, 0, 0, 32, 2, 72)
+})
+metadata/_custom_type_script = "uid://cxsqwtsqd8w33"

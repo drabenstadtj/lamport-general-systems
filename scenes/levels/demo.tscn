@@ -56,7 +56,7 @@ size = Vector2(10, 6)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_bdxja"]
 data = PackedVector3Array(-4, -0.10000014, -3.0000005, -4, 1.1920929e-07, -1.1, -4, 2.1, -1.1, -4, -0.10000014, -3.0000005, -4, -0.10000014, 2.9999995, -4, 1.1920929e-07, -1.1, -4, -0.10000014, -3.0000005, 6, -0.10000014, -3.0000005, -4, -0.10000014, 2.9999995, -4, -0.10000014, -3.0000005, -4, 3.3, -3.0000005, 6, -0.10000014, -3.0000005, -4, -0.10000014, 2.9999995, -4, 1.1920929e-07, 1.1, -4, 1.1920929e-07, -1.1, -4, -0.10000014, 2.9999995, -1.11651, 1.1920929e-07, 2.9999995, -1.11651, 2.1, 2.9999995, -4, -0.10000014, 2.9999995, -4, 3.3, 2.9999995, -4, 1.1920929e-07, 1.1, -4, -0.10000014, 2.9999995, 6, -0.10000014, 2.9999995, -1.11651, 1.1920929e-07, 2.9999995, -4, -0.10000014, -3.0000005, -4, 2.1, -1.1, -4, 3.3, -3.0000005, -4, 3.3, -3.0000005, -4, 2.1, -1.1, -4, 2.1, 1.1, -4, 3.3, 2.9999995, -4, 2.1, 1.1, -4, 1.1920929e-07, 1.1, -4, -0.10000014, 2.9999995, -1.11651, 2.1, 2.9999995, -4, 3.3, 2.9999995, -4, 3.3, -3.0000005, -4, 2.1, 1.1, -4, 3.3, 2.9999995, -4, 3.3, -3.0000005, -4, 3.3, 2.9999995, 6, 3.3, 2.9999995, -4, 3.3, 2.9999995, -1.11651, 2.1, 2.9999995, 6, 3.3, 2.9999995, -4, -0.10000014, 2.9999995, 6, -0.10000014, -3.0000005, 6, -0.10000014, 2.9999995, 6, -0.10000014, 2.9999995, 1.08349, 1.1920929e-07, 2.9999995, -1.11651, 1.1920929e-07, 2.9999995, 6, -0.10000014, -3.0000005, 6, 3.3, 2.9999995, 6, -0.10000014, 2.9999995, 6, -0.10000014, 2.9999995, 6, 3.3, 2.9999995, 1.08349, 1.1920929e-07, 2.9999995, -4, 3.3, -3.0000005, 6, 3.3, -3.0000005, 6, -0.10000014, -3.0000005, -4, 3.3, -3.0000005, 6, 3.3, 2.9999995, 6, 3.3, -3.0000005, 6, -0.10000014, -3.0000005, 6, 3.3, -3.0000005, 6, 3.3, 2.9999995, 6, 3.3, 2.9999995, 1.08349, 2.1, 2.9999995, 1.08349, 1.1920929e-07, 2.9999995, 6, 3.3, 2.9999995, -1.11651, 2.1, 2.9999995, 1.08349, 2.1, 2.9999995, -3.985874, 1.1920929e-07, -1.1, -3.985874, 1.1920929e-07, 1.1, -4, 1.1920929e-07, -1.1, -3.985874, 1.1920929e-07, -1.1, -4, 1.1920929e-07, -1.1, -4, 2.1, -1.1, -3.985874, 1.1920929e-07, -1.1, -4, 2.1, -1.1, -3.985874, 2.1, -1.1, -3.985874, 1.1920929e-07, -1.1, -3.985874, 2.1, -1.1, -3.985874, 2.1, 1.1, -3.985874, 1.1920929e-07, 1.1, -4, 1.1920929e-07, 1.1, -4, 1.1920929e-07, -1.1, -3.985874, 1.1920929e-07, -1.1, -3.985874, 2.1, 1.1, -3.985874, 1.1920929e-07, 1.1, -3.985874, 1.1920929e-07, 1.1, -3.985874, 2.1, 1.1, -4, 1.1920929e-07, 1.1, -3.985874, 2.1, 1.1, -4, 2.1, 1.1, -4, 1.1920929e-07, 1.1, -3.985874, 2.1, -1.1, -4, 2.1, -1.1, -4, 2.1, 1.1, -3.985874, 2.1, -1.1, -4, 2.1, 1.1, -3.985874, 2.1, 1.1, -1.11651, 1.1920929e-07, 2.9831727, 1.08349, 1.1920929e-07, 2.9831727, -1.11651, 1.1920929e-07, 2.9999995, -1.11651, 1.1920929e-07, 2.9831727, -1.11651, 1.1920929e-07, 2.9999995, -1.11651, 2.1, 2.9999995, 1.08349, 1.1920929e-07, 2.9831727, 1.08349, 1.1920929e-07, 2.9999995, -1.11651, 1.1920929e-07, 2.9999995, -1.11651, 1.1920929e-07, 2.9831727, 1.08349, 2.1, 2.9831727, 1.08349, 1.1920929e-07, 2.9831727, -1.11651, 1.1920929e-07, 2.9831727, -1.11651, 2.1, 2.9999995, -1.11651, 2.1, 2.9831727, -1.11651, 1.1920929e-07, 2.9831727, -1.11651, 2.1, 2.9831727, 1.08349, 2.1, 2.9831727, -1.11651, 2.1, 2.9831727, -1.11651, 2.1, 2.9999995, 1.08349, 2.1, 2.9999995, -1.11651, 2.1, 2.9831727, 1.08349, 2.1, 2.9999995, 1.08349, 2.1, 2.9831727, 1.08349, 1.1920929e-07, 2.9831727, 1.08349, 2.1, 2.9831727, 1.08349, 1.1920929e-07, 2.9999995, 1.08349, 2.1, 2.9831727, 1.08349, 2.1, 2.9999995, 1.08349, 1.1920929e-07, 2.9999995)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tqei0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ewbg4"]
 render_priority = 0
 shader = ExtResource("7_7futf")
 shader_parameter/base_color = Color(1, 1, 1, 1)
@@ -64,7 +64,7 @@ shader_parameter/text_decal = ExtResource("8_w01ly")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(0.9322717, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_prc7k"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_tqei0"]
 size = Vector2(3.28, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_w01ly"]
@@ -73,7 +73,7 @@ data = PackedVector3Array(2.9, 1, -1.4, 2.9, 1, -1.3999999, 2.9, 1, 1.8000001, 2
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_prc7k"]
 data = PackedVector3Array(2.995, 1, -0.6, 2.995, 1.1148051, 0.3228362, 2.995, 1, 0.3, 2.995, 1, -0.6, 2.995, 2.4, -0.6, 2.995, 1.1148051, 0.3228362, 2.995, 2.4, -0.6, 2.995, 1.212132, 0.38786793, 2.995, 1.1148051, 0.3228362, 2.995, 2.4, -0.6, 2.995, 1.2771639, 0.48519498, 2.995, 1.212132, 0.38786793, 2.995, 2.4, -0.6, 2.995, 1.3, 0.6, 2.995, 1.2771639, 0.48519498, 2.995, 2.4, -0.6, 2.995, 1.2771639, 0.71480507, 2.995, 1.3, 0.6, 2.995, 2.4, -0.6, 2.995, 1.212132, 0.81213206, 2.995, 1.2771639, 0.71480507, 2.995, 1, -0.6, 2.995, 1, 0.3, 3.005, 1, -0.6, 2.995, 1, -0.6, 3.005, 1, -0.6, 2.995, 2.4, -0.6, 2.995, 1, 1.8000001, 2.995, 1, 0.90000004, 2.995, 1.114805, 0.8771639, 2.995, 1, 1.8000001, 2.995, 1.114805, 0.8771639, 2.995, 1.212132, 0.81213206, 2.995, 1, 1.8000001, 2.995, 1.212132, 0.81213206, 2.995, 2.4, -0.6, 2.995, 1, 1.8000001, 3.005, 1, 0.90000004, 2.995, 1, 0.90000004, 2.995, 1, 1.8000001, 2.995, 2.4, -0.6, 2.995, 2.4, 1.8000001, 2.995, 1, 1.8000001, 2.995, 2.4, 1.8000001, 3.005, 2.4, 1.8000001, 2.995, 2.4, -0.6, 3.005, 2.4, 1.8000001, 2.995, 2.4, 1.8000001, 3.005, 1, -0.6, 2.995, 1, 0.3, 3.005, 1, 0.3, 3.005, 1, -0.6, 3.005, 1, 0.3, 3.005, 1.1148051, 0.3228362, 3.005, 1, -0.6, 3.005, 1.1148051, 0.3228362, 3.005, 1.212132, 0.38786793, 3.005, 1, -0.6, 3.005, 1.212132, 0.38786793, 3.005, 2.4, 1.8000001, 2.995, 1, 1.8000001, 3.005, 1, 1.8000001, 3.005, 1, 0.90000004, 2.995, 1, 1.8000001, 3.005, 2.4, 1.8000001, 3.005, 1, 1.8000001, 3.005, 1, 1.8000001, 3.005, 1.114805, 0.8771639, 3.005, 1, 0.90000004, 3.005, 2.4, 1.8000001, 3.005, 1.212132, 0.38786793, 3.005, 1.2771639, 0.48519498, 3.005, 2.4, 1.8000001, 3.005, 1.212132, 0.81213206, 3.005, 1.114805, 0.8771639, 3.005, 2.4, 1.8000001, 3.005, 1.2771639, 0.48519498, 3.005, 1.3, 0.6, 3.005, 2.4, 1.8000001, 3.005, 1.3, 0.6, 3.005, 1.2771639, 0.71480507, 3.005, 2.4, 1.8000001, 3.005, 1.2771639, 0.71480507, 3.005, 1.212132, 0.81213206, 3.005, 1, 1.8000001, 3.005, 2.4, 1.8000001, 3.005, 1.114805, 0.8771639, 2.995, 2.4, -0.6, 3.005, 1, -0.6, 3.005, 2.4, -0.6, 2.995, 2.4, -0.6, 3.005, 2.4, -0.6, 3.005, 2.4, 1.8000001, 3.005, 1, -0.6, 3.005, 2.4, 1.8000001, 3.005, 2.4, -0.6, 2.995, 1, 0.3, 2.995, 1.1148051, 0.3228362, 3.005, 1, 0.3, 2.995, 1.212132, 0.38786793, 3.005, 1.1148051, 0.3228362, 2.995, 1.1148051, 0.3228362, 2.995, 1.2771639, 0.48519498, 3.005, 1.212132, 0.38786793, 2.995, 1.212132, 0.38786793, 2.995, 1.3, 0.6, 3.005, 1.2771639, 0.48519498, 2.995, 1.2771639, 0.48519498, 2.995, 1, 0.90000004, 3.005, 1.114805, 0.8771639, 2.995, 1.114805, 0.8771639, 2.995, 1.212132, 0.81213206, 3.005, 1.2771639, 0.71480507, 2.995, 1.2771639, 0.71480507, 2.995, 1.114805, 0.8771639, 3.005, 1.212132, 0.81213206, 2.995, 1.212132, 0.81213206, 2.995, 1.2771639, 0.71480507, 3.005, 1.3, 0.6, 2.995, 1.3, 0.6, 2.995, 1.1148051, 0.3228362, 3.005, 1.1148051, 0.3228362, 3.005, 1, 0.3, 2.995, 1.212132, 0.38786793, 3.005, 1.212132, 0.38786793, 3.005, 1.1148051, 0.3228362, 2.995, 1.2771639, 0.48519498, 3.005, 1.2771639, 0.48519498, 3.005, 1.212132, 0.38786793, 2.995, 1.3, 0.6, 3.005, 1.3, 0.6, 3.005, 1.2771639, 0.48519498, 3.005, 1, 0.90000004, 3.005, 1.114805, 0.8771639, 2.995, 1, 0.90000004, 2.995, 1.114805, 0.8771639, 3.005, 1.114805, 0.8771639, 3.005, 1.212132, 0.81213206, 2.995, 1.212132, 0.81213206, 3.005, 1.212132, 0.81213206, 3.005, 1.2771639, 0.71480507, 2.995, 1.2771639, 0.71480507, 3.005, 1.2771639, 0.71480507, 3.005, 1.3, 0.6)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_23njw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_prc7k"]
 render_priority = 0
 shader = ExtResource("7_7futf")
 shader_parameter/base_color = Color(1, 1, 1, 1)
@@ -81,10 +81,10 @@ shader_parameter/text_decal = ExtResource("9_dpkri")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(0.72727275, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_joyyg"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_23njw"]
 size = Vector2(0.275, 0.2)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dcw3b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_joyyg"]
 render_priority = 0
 shader = ExtResource("7_7futf")
 shader_parameter/base_color = Color(1, 1, 1, 1)
@@ -92,10 +92,10 @@ shader_parameter/text_decal = ExtResource("13_bdxja")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(0.9649123, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_150yn"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_dcw3b"]
 size = Vector2(0.285, 0.275)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vyhv0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_150yn"]
 render_priority = 0
 shader = ExtResource("7_7futf")
 shader_parameter/base_color = Color(1, 1, 1, 1)
@@ -103,10 +103,10 @@ shader_parameter/text_decal = ExtResource("14_fcj2s")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(1, 0.941792)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_hfkr4"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_vyhv0"]
 size = Vector2(0.283, 0.435)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8wy75"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hfkr4"]
 render_priority = 0
 shader = ExtResource("7_7futf")
 shader_parameter/base_color = Color(1, 1, 1, 1)
@@ -114,10 +114,10 @@ shader_parameter/text_decal = ExtResource("15_oxwlp")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(1, 0.9781085)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_lec6t"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_8wy75"]
 size = Vector2(0.21, 0.279)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lvral"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lec6t"]
 render_priority = 0
 shader = ExtResource("7_7futf")
 shader_parameter/base_color = Color(1, 1, 1, 1)
@@ -125,7 +125,7 @@ shader_parameter/text_decal = ExtResource("17_s7bt4")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(1, 0.58903086)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_wmum2"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_lvral"]
 size = Vector2(0.239, 0.299)
 
 [sub_resource type="Resource" id="Resource_pkgf1"]
@@ -160,7 +160,7 @@ metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
 script = ExtResource("12_qc6mj")
 metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4pbvs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmum2"]
 render_priority = 0
 shader = ExtResource("7_7futf")
 shader_parameter/base_color = Color(1, 1, 0.7, 1)
@@ -168,10 +168,10 @@ shader_parameter/text_decal = ExtResource("18_vx4r5")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(1, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_llnp7"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_4pbvs"]
 size = Vector2(0.1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ea7rt"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_llnp7"]
 render_priority = 0
 shader = ExtResource("7_7futf")
 shader_parameter/base_color = Color(1, 1, 0.7, 1)
@@ -179,10 +179,10 @@ shader_parameter/text_decal = ExtResource("19_cnq2v")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(1, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_no53j"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_ea7rt"]
 size = Vector2(0.1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_60ll8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_no53j"]
 render_priority = 0
 shader = ExtResource("7_7futf")
 shader_parameter/base_color = Color(1, 1, 0.7, 1)
@@ -190,10 +190,10 @@ shader_parameter/text_decal = ExtResource("20_s7bt4")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(1, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_niqx4"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_60ll8"]
 size = Vector2(0.1, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t0572"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_niqx4"]
 render_priority = 0
 shader = ExtResource("7_7futf")
 shader_parameter/base_color = Color(1, 1, 0.7, 1)
@@ -201,12 +201,12 @@ shader_parameter/text_decal = ExtResource("21_jifuf")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(1, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_0s1x3"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_t0572"]
 size = Vector2(0.1, 0.1)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_iag8j"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4osbd"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0s1x3"]
 render_priority = 0
 shader = ExtResource("7_7futf")
 shader_parameter/base_color = Color(1, 1, 0.7, 1)
@@ -214,7 +214,7 @@ shader_parameter/text_decal = ExtResource("8_pkgf1")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(1, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_c745v"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_4osbd"]
 size = Vector2(0.1, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nxsym"]
@@ -350,6 +350,7 @@ size = Vector3(0.01, 1.9, 1.9)
 material = ExtResource("5_annih")
 
 [node name="FacilityDoor" type="Node3D" parent="Environment/Geometry/EntryRoom" unique_id=1632570892]
+visible = false
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Environment/Geometry/EntryRoom/FacilityDoor" unique_id=1270409278]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 3)
@@ -412,8 +413,8 @@ height = 2.4750001
 
 [node name="StickyNote0" parent="Environment/Geometry/EntryRoom/Props" unique_id=884861551 instance=ExtResource("6_s1pth")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.5, 1.7, -2.9303522)
-material_override = SubResource("ShaderMaterial_tqei0")
-mesh = SubResource("PlaneMesh_prc7k")
+material_override = SubResource("ShaderMaterial_ewbg4")
+mesh = SubResource("PlaneMesh_tqei0")
 skeleton = NodePath("../..")
 base_color = Color(1, 1, 1, 1)
 text_texture = ExtResource("8_w01ly")
@@ -508,8 +509,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 3.1967597, -1.5000002)
 
 [node name="StickyNote2" parent="Environment/Geometry/SecurityOffice/Props" unique_id=1157986327 instance=ExtResource("6_s1pth")]
 transform = Transform3D(-1.1442328e-09, -1, 4.369641e-08, 0.026176995, -4.3711385e-08, -0.9996573, 0.9996574, 0, 0.026176998, 2.8910677, 1.5429302, -1.0162332)
-material_override = SubResource("ShaderMaterial_23njw")
-mesh = SubResource("PlaneMesh_joyyg")
+material_override = SubResource("ShaderMaterial_prc7k")
+mesh = SubResource("PlaneMesh_23njw")
 skeleton = NodePath("")
 base_color = Color(1, 1, 1, 1)
 text_texture = ExtResource("9_dpkri")
@@ -526,32 +527,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9900806, 1.0999504, -2.0790
 
 [node name="StickyNote0" parent="Environment/Geometry/SecurityOffice/Props/Door" unique_id=1777146728 instance=ExtResource("6_s1pth")]
 transform = Transform3D(1.9106855e-15, -1, 4.371139e-08, -4.371139e-08, -4.371139e-08, -1, 1, 0, -4.371139e-08, -0.09579539, 0.16638398, 1.0651842)
-material_override = SubResource("ShaderMaterial_dcw3b")
-mesh = SubResource("PlaneMesh_150yn")
+material_override = SubResource("ShaderMaterial_joyyg")
+mesh = SubResource("PlaneMesh_dcw3b")
 base_color = Color(1, 1, 1, 1)
 text_texture = ExtResource("13_bdxja")
 note_size = Vector2(0.285, 0.275)
 
 [node name="StickyNote1" parent="Environment/Geometry/SecurityOffice/Props" unique_id=54734059 instance=ExtResource("6_s1pth")]
 transform = Transform3D(1.8189044e-15, 3.5527137e-15, 1, 1.4901161e-08, 1.0000001, -1.4388143e-36, -1.0000001, 1.4901161e-08, 2.664535e-15, 3.7, 0.7938087, 1.5840203)
-material_override = SubResource("ShaderMaterial_vyhv0")
-mesh = SubResource("PlaneMesh_hfkr4")
+material_override = SubResource("ShaderMaterial_150yn")
+mesh = SubResource("PlaneMesh_vyhv0")
 base_color = Color(1, 1, 1, 1)
 text_texture = ExtResource("14_fcj2s")
 note_size = Vector2(0.283, 0.435)
 
 [node name="StickyNote3" parent="Environment/Geometry/SecurityOffice/Props" unique_id=1667061243 instance=ExtResource("6_s1pth")]
 transform = Transform3D(-1.070953e-15, -7.1054274e-15, 1.2600001, -3.725291e-08, 1.2600002, 0, -1.2600002, -3.725291e-08, -9.783523e-23, 3.670741, 0.8, 0.4)
-material_override = SubResource("ShaderMaterial_8wy75")
-mesh = SubResource("PlaneMesh_lec6t")
+material_override = SubResource("ShaderMaterial_hfkr4")
+mesh = SubResource("PlaneMesh_8wy75")
 base_color = Color(1, 1, 1, 1)
 text_texture = ExtResource("15_oxwlp")
 note_size = Vector2(0.21, 0.279)
 
 [node name="StickyNote4" parent="Environment/Geometry/SecurityOffice/Props" unique_id=2101685873 instance=ExtResource("6_s1pth")]
 transform = Transform3D(-0.9999999, 1.04308114e-07, 5.32907e-15, 1.0430812e-07, 0.99999994, 0, -4.559453e-15, 7.1054274e-15, -0.99999994, 4.8, 0.79999995, 2.2363296)
-material_override = SubResource("ShaderMaterial_lvral")
-mesh = SubResource("PlaneMesh_wmum2")
+material_override = SubResource("ShaderMaterial_lec6t")
+mesh = SubResource("PlaneMesh_lvral")
 base_color = Color(1, 1, 1, 1)
 text_texture = ExtResource("17_s7bt4")
 note_size = Vector2(0.239, 0.299)
@@ -564,26 +565,26 @@ server_configs = Array[ExtResource("12_qc6mj")]([SubResource("Resource_pkgf1"), 
 
 [node name="StickyNote0" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" unique_id=1874214657 instance=ExtResource("6_s1pth")]
 transform = Transform3D(0.0017474666, 0.9999743, 0.0069547067, -0.0005963188, 0.0069557577, -0.9999756, -0.9999983, 0.001743272, 0.0006084584, 0.29999995, 1.4779817, -0.3216052)
-material_override = SubResource("ShaderMaterial_4pbvs")
-mesh = SubResource("PlaneMesh_llnp7")
+material_override = SubResource("ShaderMaterial_wmum2")
+mesh = SubResource("PlaneMesh_4pbvs")
 text_texture = ExtResource("18_vx4r5")
 
 [node name="StickyNote1" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" unique_id=170092562 instance=ExtResource("6_s1pth")]
 transform = Transform3D(0.025087416, 0.9892877, 0.14380692, -0.009064204, 0.14407137, -0.9895258, -0.99964434, 0.023521146, 0.012581483, 0.29999995, 0.9048171, -0.3216052)
-material_override = SubResource("ShaderMaterial_ea7rt")
-mesh = SubResource("PlaneMesh_no53j")
+material_override = SubResource("ShaderMaterial_llnp7")
+mesh = SubResource("PlaneMesh_ea7rt")
 text_texture = ExtResource("19_cnq2v")
 
 [node name="StickyNote2" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" unique_id=49099956 instance=ExtResource("6_s1pth")]
 transform = Transform3D(0.26276612, 0.95723766, 0.121037036, 0.018223774, 0.12049907, -0.99254614, -0.9646875, 0.26301324, 0.014218591, 0.30650306, 0.74525833, -0.3216052)
-material_override = SubResource("ShaderMaterial_60ll8")
-mesh = SubResource("PlaneMesh_niqx4")
+material_override = SubResource("ShaderMaterial_no53j")
+mesh = SubResource("PlaneMesh_60ll8")
 text_texture = ExtResource("20_s7bt4")
 
 [node name="StickyNote3" parent="Environment/Geometry/SecurityOffice/Network/ServerRack" unique_id=1748271421 instance=ExtResource("6_s1pth")]
 transform = Transform3D(0.09412524, 0.98587483, 0.13853239, -0.0002429028, 0.1391729, -0.99026805, -0.9955604, 0.093175545, 0.013339152, 0.30650306, 0.5732225, -0.3216052)
-material_override = SubResource("ShaderMaterial_t0572")
-mesh = SubResource("PlaneMesh_0s1x3")
+material_override = SubResource("ShaderMaterial_niqx4")
+mesh = SubResource("PlaneMesh_t0572")
 text_texture = ExtResource("21_jifuf")
 
 [node name="Terminal" parent="Environment/Geometry/SecurityOffice/Network" unique_id=1689253140 instance=ExtResource("16_dwe0t")]
@@ -613,8 +614,8 @@ transform = Transform3D(-0.071393825, -0.42315954, 0.90323806, -0.049990498, 0.9
 
 [node name="StickyNote" parent="ViewableNote" index="0"]
 transform = Transform3D(1.0000002, 0, 0, 0, -4.371138e-08, -0.9999992, 0, 0.9999998, -4.3711353e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_4osbd")
-mesh = SubResource("PlaneMesh_c745v")
+material_override = SubResource("ShaderMaterial_0s1x3")
+mesh = SubResource("PlaneMesh_4osbd")
 note_size = Vector2(0.1, 0.1)
 
 [node name="CollisionShape3D" parent="ViewableNote/Area3D" index="0"]

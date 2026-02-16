@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://r7um3tfwfusq"
+path="res://.godot/imported/docktesta.map-15f7e2baacb44f8a7bba38ef018700f8.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/docktesta.map"
+dest_files=["res://.godot/imported/docktesta.map-15f7e2baacb44f8a7bba38ef018700f8.tres"]
+
+[params]
+

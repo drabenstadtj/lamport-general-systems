@@ -85,7 +85,7 @@
 ( -112 336 8 ) ( -112 335 8 ) ( -111 336 8 ) wall_beige [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
 ( 272 320 112 ) ( 273 320 112 ) ( 272 319 112 ) wall_beige [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
 ( -112 324 -16 ) ( -111 324 -16 ) ( -112 324 -15 ) skip [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
-( -32 320 112 ) ( -32 319 112 ) ( -32 320 113 ) skip [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
+( -32 320 112 ) ( -32 319 112 ) ( -32 320 113 ) wall_beige [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
 }
 // brush 9
 {
@@ -188,7 +188,7 @@
 }
 // brush 20
 {
-( 32 336 -16 ) ( 32 336 -15 ) ( 32 335 -16 ) skip [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
+( 32 336 -16 ) ( 32 336 -15 ) ( 32 335 -16 ) wall_beige [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
 ( 560 320 112 ) ( 560 320 113 ) ( 561 320 112 ) wall_beige [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
 ( 176 336 8 ) ( 176 335 8 ) ( 177 336 8 ) skip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
 ( 560 320 112 ) ( 561 320 112 ) ( 560 319 112 ) skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
@@ -197,7 +197,7 @@
 }
 // brush 21
 {
-( 32 336 -120 ) ( 32 336 -119 ) ( 32 335 -120 ) skip [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
+( 32 336 -120 ) ( 32 336 -119 ) ( 32 335 -120 ) molding [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
 ( 560 320 8 ) ( 560 320 9 ) ( 561 320 8 ) molding [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
 ( 176 336 -16 ) ( 176 335 -16 ) ( 177 336 -16 ) molding [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
 ( 560 320 8 ) ( 561 320 8 ) ( 560 319 8 ) skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
@@ -220,7 +220,7 @@
 ( -112 336 -16 ) ( -112 335 -16 ) ( -111 336 -16 ) molding [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
 ( 272 320 8 ) ( 273 320 8 ) ( 272 319 8 ) skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
 ( -112 324 -120 ) ( -111 324 -120 ) ( -112 324 -119 ) skip [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
-( -32 320 8 ) ( -32 319 8 ) ( -32 320 9 ) skip [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
+( -32 320 8 ) ( -32 319 8 ) ( -32 320 9 ) molding [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
 }
 // brush 24
 {
@@ -393,8 +393,33 @@
 ( 80 320 112 ) ( 81 320 112 ) ( 80 320 113 ) wall_beige [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
 ( 80 528 112 ) ( 80 528 113 ) ( 80 529 112 ) skip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
 }
+// brush 43
+{
+( -32 320 -16 ) ( -32 321 -16 ) ( -32 320 -15 ) vct_floor [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
+( -32 320 -16 ) ( -32 320 -15 ) ( -31 320 -16 ) vct_floor [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
+( -32 320 -16 ) ( -31 320 -16 ) ( -32 321 -16 ) vct_floor [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
+( 32 336 0 ) ( 32 337 0 ) ( 33 336 0 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
+( 32 324 0 ) ( 33 324 0 ) ( 32 324 1 ) vct_floor [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
+( 32 336 0 ) ( 32 336 1 ) ( 32 337 0 ) vct_floor [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
+}
+// brush 44
+{
+( -32 336 48 ) ( -32 336 49 ) ( -32 335 48 ) wall_beige [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
+( 512 320 176 ) ( 512 320 177 ) ( 513 320 176 ) wall_beige [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
+( 128 336 72 ) ( 128 335 72 ) ( 129 336 72 ) skip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
+( 512 320 112 ) ( 513 320 112 ) ( 512 319 112 ) skip [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
+( 128 324 48 ) ( 129 324 48 ) ( 128 324 49 ) skip [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
+( 32 320 176 ) ( 32 319 176 ) ( 32 320 177 ) skip [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
+}
 }
 // entity 1
+{
+"classname" "double_door"
+"origin" "0 322 0"
+"angle" "270"
+"dock_name" "DockZ"
+}
+// entity 2
 {
 "classname" "func_group"
 "_tb_type" "_tb_layer"
@@ -402,349 +427,349 @@
 "_tb_id" "1"
 "_tb_layer_sort_index" "0"
 }
-// entity 2
+// entity 3
 {
 "classname" "ceiling_light"
 "origin" "0 80 96"
 "_tb_layer" "1"
 }
-// entity 3
+// entity 4
 {
 "classname" "ceiling_light"
 "origin" "0 -16 96"
 "_tb_layer" "1"
 }
-// entity 4
+// entity 5
 {
 "classname" "ceiling_light"
 "origin" "0 176 96"
 "_tb_layer" "1"
 }
-// entity 5
+// entity 6
 {
 "classname" "ceiling_light"
 "origin" "0 272 96"
 "_tb_layer" "1"
 }
-// entity 6
+// entity 7
 {
 "classname" "ceiling_light"
 "origin" "-128 272 96"
 "_tb_layer" "1"
 }
-// entity 7
+// entity 8
 {
 "classname" "ceiling_light"
 "origin" "-128 176 96"
 "_tb_layer" "1"
 }
-// entity 8
+// entity 9
 {
 "classname" "ceiling_light"
 "origin" "-224 272 96"
 "_tb_layer" "1"
 }
-// entity 9
+// entity 10
 {
 "classname" "ceiling_light"
 "origin" "-224 176 96"
 "_tb_layer" "1"
 }
-// entity 10
+// entity 11
 {
 "classname" "ceiling_light"
 "origin" "128 80 192"
 "_tb_layer" "1"
 }
-// entity 11
+// entity 12
 {
 "classname" "ceiling_light"
 "origin" "224 80 192"
 "_tb_layer" "1"
 }
-// entity 12
+// entity 13
 {
 "classname" "ceiling_light"
 "origin" "128 -16 192"
 "_tb_layer" "1"
 }
-// entity 13
+// entity 14
 {
 "classname" "ceiling_light"
 "origin" "224 -16 192"
 "_tb_layer" "1"
 }
-// entity 14
+// entity 15
 {
 "classname" "ceiling_light"
 "origin" "416 -16 192"
 "_tb_layer" "1"
 }
-// entity 15
+// entity 16
 {
 "classname" "ceiling_light"
 "origin" "320 -16 192"
 "_tb_layer" "1"
 }
-// entity 16
+// entity 17
 {
 "classname" "ceiling_light"
 "origin" "320 80 192"
 "_tb_layer" "1"
 }
-// entity 17
+// entity 18
 {
 "classname" "ceiling_light"
 "origin" "416 80 192"
 "_tb_layer" "1"
 }
-// entity 18
+// entity 19
 {
 "classname" "ceiling_light"
 "origin" "512 80 192"
 "_tb_layer" "1"
 }
-// entity 19
+// entity 20
 {
 "classname" "ceiling_light"
 "origin" "512 -16 192"
 "_tb_layer" "1"
 }
-// entity 20
+// entity 21
 {
 "classname" "ceiling_light"
 "origin" "512 -112 192"
 "_tb_layer" "1"
 }
-// entity 21
+// entity 22
 {
 "classname" "ceiling_light"
 "origin" "512 -208 192"
 "_tb_layer" "1"
 }
-// entity 22
+// entity 23
 {
 "classname" "ceiling_light"
 "origin" "416 -208 192"
 "_tb_layer" "1"
 }
-// entity 23
+// entity 24
 {
 "classname" "ceiling_light"
 "origin" "416 -112 192"
 "_tb_layer" "1"
 }
-// entity 24
+// entity 25
 {
 "classname" "ceiling_light"
 "origin" "320 -112 192"
 "_tb_layer" "1"
 }
-// entity 25
+// entity 26
 {
 "classname" "ceiling_light"
 "origin" "320 -208 192"
 "_tb_layer" "1"
 }
-// entity 26
+// entity 27
 {
 "classname" "ceiling_light"
 "origin" "224 -208 192"
 "_tb_layer" "1"
 }
-// entity 27
+// entity 28
 {
 "classname" "ceiling_light"
 "origin" "224 -112 192"
 "_tb_layer" "1"
 }
-// entity 28
+// entity 29
 {
 "classname" "ceiling_light"
 "origin" "128 -112 192"
 "_tb_layer" "1"
 }
-// entity 29
+// entity 30
 {
 "classname" "ceiling_light"
 "origin" "128 -208 192"
 "_tb_layer" "1"
 }
-// entity 30
+// entity 31
 {
 "classname" "ceiling_light"
 "origin" "512 -336 192"
 "_tb_layer" "1"
 }
-// entity 31
+// entity 32
 {
 "classname" "ceiling_light"
 "origin" "512 -432 192"
 "_tb_layer" "1"
 }
-// entity 32
+// entity 33
 {
 "classname" "ceiling_light"
 "origin" "416 -432 192"
 "_tb_layer" "1"
 }
-// entity 33
+// entity 34
 {
 "classname" "ceiling_light"
 "origin" "416 -336 192"
 "_tb_layer" "1"
 }
-// entity 34
+// entity 35
 {
 "classname" "ceiling_light"
 "origin" "320 -336 192"
 "_tb_layer" "1"
 }
-// entity 35
+// entity 36
 {
 "classname" "ceiling_light"
 "origin" "320 -432 192"
 "_tb_layer" "1"
 }
-// entity 36
+// entity 37
 {
 "classname" "ceiling_light"
 "origin" "224 -432 192"
 "_tb_layer" "1"
 }
-// entity 37
+// entity 38
 {
 "classname" "ceiling_light"
 "origin" "224 -336 192"
 "_tb_layer" "1"
 }
-// entity 38
+// entity 39
 {
 "classname" "ceiling_light"
 "origin" "128 -336 192"
 "_tb_layer" "1"
 }
-// entity 39
+// entity 40
 {
 "classname" "ceiling_light"
 "origin" "128 -432 192"
 "_tb_layer" "1"
 }
-// entity 40
+// entity 41
 {
 "classname" "ceiling_light"
 "origin" "512 -528 192"
 "_tb_layer" "1"
 }
-// entity 41
+// entity 42
 {
 "classname" "ceiling_light"
 "origin" "512 -624 192"
 "_tb_layer" "1"
 }
-// entity 42
+// entity 43
 {
 "classname" "ceiling_light"
 "origin" "416 -624 192"
 "_tb_layer" "1"
 }
-// entity 43
+// entity 44
 {
 "classname" "ceiling_light"
 "origin" "416 -528 192"
 "_tb_layer" "1"
 }
-// entity 44
+// entity 45
 {
 "classname" "ceiling_light"
 "origin" "320 -528 192"
 "_tb_layer" "1"
 }
-// entity 45
+// entity 46
 {
 "classname" "ceiling_light"
 "origin" "320 -624 192"
 "_tb_layer" "1"
 }
-// entity 46
+// entity 47
 {
 "classname" "ceiling_light"
 "origin" "224 -624 192"
 "_tb_layer" "1"
 }
-// entity 47
+// entity 48
 {
 "classname" "ceiling_light"
 "origin" "224 -528 192"
 "_tb_layer" "1"
 }
-// entity 48
+// entity 49
 {
 "classname" "ceiling_light"
 "origin" "128 -528 192"
 "_tb_layer" "1"
 }
-// entity 49
+// entity 50
 {
 "classname" "ceiling_light"
 "origin" "128 -624 192"
 "_tb_layer" "1"
 }
-// entity 50
+// entity 51
 {
 "classname" "ceiling_light"
 "origin" "512 -720 192"
 "_tb_layer" "1"
 }
-// entity 51
+// entity 52
 {
 "classname" "ceiling_light"
 "origin" "416 -816 192"
 "_tb_layer" "1"
 }
-// entity 52
+// entity 53
 {
 "classname" "ceiling_light"
 "origin" "416 -720 192"
 "_tb_layer" "1"
 }
-// entity 53
+// entity 54
 {
 "classname" "ceiling_light"
 "origin" "320 -720 192"
 "_tb_layer" "1"
 }
-// entity 54
+// entity 55
 {
 "classname" "ceiling_light"
 "origin" "320 -816 192"
 "_tb_layer" "1"
 }
-// entity 55
+// entity 56
 {
 "classname" "ceiling_light"
 "origin" "224 -816 192"
 "_tb_layer" "1"
 }
-// entity 56
+// entity 57
 {
 "classname" "ceiling_light"
 "origin" "224 -720 192"
 "_tb_layer" "1"
 }
-// entity 57
+// entity 58
 {
 "classname" "ceiling_light"
 "origin" "128 -720 192"
 "_tb_layer" "1"
 }
-// entity 58
+// entity 59
 {
 "classname" "ceiling_light"
 "origin" "128 -816 192"
 "_tb_layer" "1"
 }
-// entity 59
+// entity 60
 {
 "classname" "ceiling_light"
 "origin" "512 -816 192"

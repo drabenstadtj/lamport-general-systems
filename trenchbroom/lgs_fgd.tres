@@ -3,10 +3,12 @@
 [ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_wpu4p"]
 [ext_resource type="Resource" uid="uid://bg662hng35ku2" path="res://trenchbroom/entities/ceiling_light.tres" id="2_3jh7s"]
 [ext_resource type="Script" uid="uid://drlmgulwbjwqu" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="2_ywbn4"]
+[ext_resource type="Resource" uid="uid://ujuabunf5en" path="res://trenchbroom/entities/single_door.tres" id="3_3jh7s"]
+[ext_resource type="Resource" uid="uid://15tifllymv08" path="res://trenchbroom/entities/double_door.tres" id="4_c4fri"]
 
 [resource]
 script = ExtResource("2_ywbn4")
 fgd_name = "lamport-general-systems"
 base_fgd_files = Array[Resource]([ExtResource("1_wpu4p")])
-entity_definitions = Array[Resource]([ExtResource("2_3jh7s")])
+entity_definitions = Array[Resource]([ExtResource("2_3jh7s"), ExtResource("3_3jh7s"), ExtResource("4_c4fri")])
 metadata/_custom_type_script = "uid://drlmgulwbjwqu"
