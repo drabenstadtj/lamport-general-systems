@@ -8,9 +8,14 @@
 [ext_resource type="Material" uid="uid://lgiysotwuq1y" path="res://trenchbroom/textures/dropceiling.tres" id="5_rvs8q"]
 [ext_resource type="Material" uid="uid://cfk32c516r4hf" path="res://trenchbroom/textures/molding.tres" id="6_0vuvt"]
 [ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/props/environment/dropceiling_light.tscn" id="7_8wegd"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://cmsivc13revmb" path="res://assets/models/props/door_exterior.glb" id="9_rvs8q"]
 [ext_resource type="Texture2D" path="res://assets/textures/props/door_exterior_Metal_09-128x128.png" id="10_0vuvt"]
 [ext_resource type="Texture2D" path="res://assets/textures/props/door_exterior_glass.png" id="11_8wegd"]
+=======
+[ext_resource type="PackedScene" uid="uid://bbyv7qs0epj28" path="res://scenes/props/environment/double_doors.tscn" id="8_km5w5"]
+[ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/double_door.tscn" id="10_wdyd2"]
+>>>>>>> Stashed changes
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_km5w5"]
 _surfaces = [{
@@ -329,7 +334,14 @@ shape = SubResource("ConvexPolygonShape3D_jxi53")
 [node name="entity_0_brush_26_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_ej2q5")
 
+<<<<<<< Updated upstream
 [node name="entity_1_ceiling_light" parent="FuncGodotMap" instance=ExtResource("7_8wegd")]
+=======
+[node name="entity_0_brush_26_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=216907950]
+shape = SubResource("ConvexPolygonShape3D_cjypa")
+
+[node name="entity_1_ceiling_light" parent="FuncGodotMap" unique_id=797157574 instance=ExtResource("7_8wegd")]
+>>>>>>> Stashed changes
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.5, 4.0625, -1.5)
 
 [node name="entity_2_ceiling_light" parent="FuncGodotMap" instance=ExtResource("7_8wegd")]
@@ -368,6 +380,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 1.0547587, 0.79953915)
 [node name="door_exterior2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, -8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -6.7, 1.0547587, -0.20046085)
 
+<<<<<<< Updated upstream
 [node name="Cube_001" type="MeshInstance3D" parent="door_exterior2"]
 mesh = SubResource("ArrayMesh_f483p")
 skeleton = NodePath("")
+=======
+[node name="DoubleDoors" parent="." unique_id=781733162 instance=ExtResource("8_km5w5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 1.1, 0)
+
+[node name="DoubleDoor" parent="." unique_id=62288274 instance=ExtResource("10_wdyd2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 0, 3.5)
+dock_name = "DockB"
+door1_scene_path = "uid://mju0rlw4o1oy"
+door1_dock = "DockB"
+door2_scene_path = "uid://3mtbxfhulw7m"
+door2_dock = "DockA"
+
+[node name="DoubleDoor2" parent="." unique_id=1842653930 instance=ExtResource("10_wdyd2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+dock_name = "DockA"
+door1_scene_path = "uid://mju0rlw4o1oy"
+door1_dock = "DockA"
+door2_scene_path = "uid://d2aoeurh2i8ig"
+>>>>>>> Stashed changes

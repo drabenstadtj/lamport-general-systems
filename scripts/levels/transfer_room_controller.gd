@@ -33,7 +33,7 @@ func _on_interactable_interacted(player: Variant) -> void:
 		exit = SceneManager.DoorSide.DOOR1
 	
 	await SceneManager.change_scene(dest_path, exit, dest_dock, self)
-	
+
 func lockdown():
 	var tween = create_tween().set_parallel(true)
 	if door1_open:

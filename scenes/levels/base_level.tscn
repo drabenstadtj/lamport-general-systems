@@ -585,6 +585,14 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -25.
 
 [node name="DoubleDoor" parent="." unique_id=62288274 instance=ExtResource("8_u2nyb")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 10, -0.5, 0)
+<<<<<<< Updated upstream
+=======
+dock_name = "DockA"
+door1_scene_path = "uid://3mtbxfhulw7m"
+door1_dock = "DockA"
+door2_scene_path = "uid://mju0rlw4o1oy"
+door2_dock = "DockB"
+>>>>>>> Stashed changes
 
 [node name="BreakRoom" type="Node3D" parent="." unique_id=1702747330]
 
@@ -810,4 +818,10 @@ voiceline = ExtResource("38_u2nyb")
 demo_robot = NodePath("../DemoRobot")
 delay_seconds = 3.0
 
-[editable path="DoubleDoor"]
+[node name="DoubleDoor2" parent="." unique_id=22058007 instance=ExtResource("8_u2nyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.3, -0.48638916, 0)
+dock_name = "DockB"
+door1_scene_path = "uid://3mtbxfhulw7m"
+door1_dock = "DockB"
+door2_scene_path = "uid://esir2tt1ujs7"
+door2_dock = "DockA"

@@ -11,11 +11,37 @@ transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.5, 0)
 
 [node name="CurrentLevel" parent="." unique_id=454405047 instance=ExtResource("2_q23bv")]
 
+<<<<<<< Updated upstream
 [node name="TransferRoom" parent="CurrentLevel" unique_id=1228649981 instance=ExtResource("2_edpnl")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5, 0.5, 0)
 door1_scene_path = "uid://d2aoeurh2i8ig"
 door1_dock = "DockA"
 door2_scene_path = "uid://3mtbxfhulw7m"
+=======
+[node name="FuncGodotMap" type="Node3D" parent="CurrentLevel" unique_id=1003030339]
+script = ExtResource("2_21w1c")
+local_map_file = "uid://r7um3tfwfusq"
+map_settings = ExtResource("3_33hba")
+metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="CurrentLevel/FuncGodotMap" unique_id=851611529]
+collision_mask = 0
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="CurrentLevel/FuncGodotMap/entity_0_worldspawn" unique_id=1329581700]
+mesh = SubResource("ArrayMesh_xsbl2")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="CurrentLevel/FuncGodotMap/entity_0_worldspawn" unique_id=1986631368]
+shape = SubResource("ConvexPolygonShape3D_07fji")
+
+[node name="entity_1_double_door" type="Node3D" parent="CurrentLevel/FuncGodotMap" unique_id=1101691406]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.5, -2)
+
+[node name="DoubleDoor" parent="CurrentLevel" unique_id=62288274 instance=ExtResource("5_tx1qe")]
+transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 2, 0.5, 1.4901161e-08)
+door1_scene_path = "uid://d2aoeurh2i8ig"
+door2_scene_path = "uid://mju0rlw4o1oy"
+door2_dock = "DockA"
+>>>>>>> Stashed changes
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=338651907]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)

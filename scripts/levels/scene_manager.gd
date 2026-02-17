@@ -23,15 +23,15 @@ func change_scene(dest_scene_path: String, side: DoorSide, dock_name: String, tr
 		if child != transfer_room:
 			child.queue_free()
 	
+	DoorRegistry.clear()
+	DoorRegistry.register_transfer_room(dock_name, transfer_room)
 	await get_tree().process_frame
-	
+
 	level_container.add_child(new_level)
-	
-	# wait for docks to register
 	await get_tree().process_frame
 	
 	var level_dock = DoorRegistry.get_dock(dock_name)
-	if not level_dock:
+	if level_dock == Transform3D():
 		push_error("Dock not found: " + dock_name)
 		return
 	
@@ -41,13 +41,13 @@ func change_scene(dest_scene_path: String, side: DoorSide, dock_name: String, tr
 	else:
 		door_dock = transfer_room.get_node("Door2Dock")
 	
-	# save player offset from transfer room before moving
 	var player_local = transfer_room.global_transform.inverse() * player.global_transform
 	
 	var flip_angle = 0.0 if side == DoorSide.DOOR1 else PI
-	transfer_room.global_rotation = Vector3(0, level_dock.global_rotation.y + flip_angle, 0)
+	var dock_rotation_y = level_dock.basis.get_euler().y
+	transfer_room.global_rotation = Vector3(0, dock_rotation_y + flip_angle, 0)
 	
-	var offset = level_dock.global_position - door_dock.global_position
+	var offset = level_dock.origin - door_dock.global_position
 	transfer_room.global_position += offset
 	
 	player.global_transform = transfer_room.global_transform * player_local
