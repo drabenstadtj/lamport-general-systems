@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cytgx4ft8j3e3"]
+
+[ext_resource type="Texture2D" uid="uid://bbfkkrtk2hgkd" path="res://assets/models/props/architecture/singledoor_Metal_10-128x128.png" id="1_7mscb"]
+
+[resource]
+resource_name = "door_metal_mat.001"
+cull_mode = 2
+albedo_texture = ExtResource("1_7mscb")
+roughness = 0.5
+texture_filter = 2

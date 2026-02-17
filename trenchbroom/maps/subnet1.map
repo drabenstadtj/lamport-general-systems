@@ -270,19 +270,19 @@
 {
 ( 968 64 132 ) ( 968 65 132 ) ( 968 64 133 ) vct_floor [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( 968 336 132 ) ( 968 336 133 ) ( 969 336 132 ) vct_floor [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 968 64 128 ) ( 969 64 128 ) ( 968 65 128 ) dropceiling [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
+( 968 64 128 ) ( 969 64 128 ) ( 968 65 128 ) dropceiling [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.25 0.25
 ( 1096 72 136 ) ( 1096 73 136 ) ( 1097 72 136 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( 1096 856 136 ) ( 1097 856 136 ) ( 1096 856 137 ) vct_floor [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( 1096 72 136 ) ( 1096 72 137 ) ( 1096 73 136 ) vct_floor [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 // brush 30
 {
-( -64 336 176 ) ( -64 337 176 ) ( -64 336 177 ) dropceiling [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
-( -64 336 176 ) ( -64 336 177 ) ( -63 336 176 ) dropceiling [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
-( -64 336 192 ) ( -63 336 192 ) ( -64 337 192 ) dropceiling [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
-( 64 464 208 ) ( 64 465 208 ) ( 65 464 208 ) dropceiling [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
-( 64 848 208 ) ( 65 848 208 ) ( 64 848 209 ) dropceiling [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
-( 960 464 208 ) ( 960 464 209 ) ( 960 465 208 ) dropceiling [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
+( -64 336 176 ) ( -64 337 176 ) ( -64 336 177 ) dropceiling [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 0.25 0.25
+( -64 336 176 ) ( -64 336 177 ) ( -63 336 176 ) dropceiling [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 0.25 0.25
+( -64 336 192 ) ( -63 336 192 ) ( -64 337 192 ) dropceiling [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.25 0.25
+( 64 464 208 ) ( 64 465 208 ) ( 65 464 208 ) dropceiling [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 0.25 0.25
+( 64 848 208 ) ( 65 848 208 ) ( 64 848 209 ) dropceiling [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 0.25 0.25
+( 960 464 208 ) ( 960 464 209 ) ( 960 465 208 ) dropceiling [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 0.25 0.25
 }
 // brush 31
 {
@@ -342,7 +342,7 @@
 {
 ( 128 64 132 ) ( 128 65 132 ) ( 128 64 133 ) vct_floor [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( 128 64 132 ) ( 128 64 133 ) ( 129 64 132 ) vct_floor [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 128 64 128 ) ( 129 64 128 ) ( 128 65 128 ) dropceiling [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
+( 128 64 128 ) ( 129 64 128 ) ( 128 65 128 ) dropceiling [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.25 0.25
 ( 256 72 136 ) ( 256 73 136 ) ( 257 72 136 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( 256 328 136 ) ( 257 328 136 ) ( 256 328 137 ) vct_floor [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( 256 72 136 ) ( 256 72 137 ) ( 256 73 136 ) vct_floor [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -351,7 +351,7 @@
 {
 ( -64 -64 104 ) ( -64 -63 104 ) ( -64 -64 105 ) __TB_empty [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -64 -64 104 ) ( -64 -64 105 ) ( -63 -64 104 ) __TB_empty [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( -64 -64 128 ) ( -63 -64 128 ) ( -64 -63 128 ) dropceiling [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
+( -64 -64 128 ) ( -63 -64 128 ) ( -64 -63 128 ) dropceiling [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.25 0.25
 ( 64 64 136 ) ( 64 65 136 ) ( 65 64 136 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( 64 64 136 ) ( 65 64 136 ) ( 64 64 137 ) __TB_empty [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( 968 64 136 ) ( 968 64 137 ) ( 968 65 136 ) __TB_empty [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -360,7 +360,7 @@
 {
 ( 832 64 132 ) ( 832 65 132 ) ( 832 64 133 ) vct_floor [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( 832 64 132 ) ( 832 64 133 ) ( 833 64 132 ) vct_floor [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 832 64 128 ) ( 833 64 128 ) ( 832 65 128 ) dropceiling [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
+( 832 64 128 ) ( 833 64 128 ) ( 832 65 128 ) dropceiling [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.25 0.25
 ( 960 72 136 ) ( 960 73 136 ) ( 961 72 136 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( 960 328 136 ) ( 961 328 136 ) ( 960 328 137 ) vct_floor [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( 960 72 136 ) ( 960 72 137 ) ( 960 73 136 ) vct_floor [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
@@ -373,15 +373,6 @@
 ( -64 32 128 ) ( -64 33 128 ) ( -63 32 128 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -64 32 0 ) ( -63 32 0 ) ( -64 32 1 ) vct_floor [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -64 32 0 ) ( -64 32 1 ) ( -64 33 0 ) wall_beige [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
-}
-// brush 41
-{
-( 968 -8 -8 ) ( 968 -8 -7 ) ( 968 -9 -8 ) wall_beige [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
-( 976 -64 136 ) ( 976 -64 137 ) ( 977 -64 136 ) vct_floor [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
-( 968 -8 -8 ) ( 968 -9 -8 ) ( 969 -8 -8 ) vct_floor [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( 976 -200 128 ) ( 977 -200 128 ) ( 976 -201 128 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
-( 968 64 -8 ) ( 969 64 -8 ) ( 968 64 -7 ) vct_floor [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
-( 976 -200 136 ) ( 976 -201 136 ) ( 976 -200 137 ) vct_floor [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
 // entity 1
@@ -410,244 +401,4 @@
 "classname" "double_door"
 "origin" "192 336 0"
 "angle" "270"
-}
-// entity 6
-{
-"classname" "ceiling_light"
-"origin" "-16 16 128"
-}
-// entity 7
-{
-"classname" "ceiling_light"
-"origin" "176 16 128"
-}
-// entity 8
-{
-"classname" "ceiling_light"
-"origin" "368 16 128"
-}
-// entity 9
-{
-"classname" "ceiling_light"
-"origin" "560 16 128"
-}
-// entity 10
-{
-"classname" "ceiling_light"
-"origin" "752 16 128"
-}
-// entity 11
-{
-"classname" "ceiling_light"
-"origin" "944 16 128"
-}
-// entity 12
-{
-"classname" "ceiling_light"
-"origin" "464 -16 128"
-}
-// entity 13
-{
-"classname" "ceiling_light"
-"origin" "272 -16 128"
-}
-// entity 14
-{
-"classname" "ceiling_light"
-"origin" "80 -16 128"
-}
-// entity 15
-{
-"classname" "ceiling_light"
-"origin" "656 -16 128"
-}
-// entity 16
-{
-"classname" "ceiling_light"
-"origin" "848 -16 128"
-}
-// entity 17
-{
-"classname" "ceiling_light"
-"origin" "1040 -16 128"
-}
-// entity 18
-{
-"classname" "ceiling_light"
-"origin" "208 112 128"
-}
-// entity 19
-{
-"classname" "ceiling_light"
-"origin" "176 112 128"
-}
-// entity 20
-{
-"classname" "ceiling_light"
-"origin" "208 272 128"
-}
-// entity 21
-{
-"classname" "ceiling_light"
-"origin" "176 272 128"
-}
-// entity 22
-{
-"classname" "ceiling_light"
-"origin" "880 400 192"
-}
-// entity 23
-{
-"classname" "ceiling_light"
-"origin" "752 400 192"
-}
-// entity 24
-{
-"classname" "ceiling_light"
-"origin" "624 400 192"
-}
-// entity 25
-{
-"classname" "ceiling_light"
-"origin" "496 400 192"
-}
-// entity 26
-{
-"classname" "ceiling_light"
-"origin" "-16 400 192"
-}
-// entity 27
-{
-"classname" "ceiling_light"
-"origin" "368 400 192"
-}
-// entity 28
-{
-"classname" "ceiling_light"
-"origin" "240 400 192"
-}
-// entity 29
-{
-"classname" "ceiling_light"
-"origin" "112 400 192"
-}
-// entity 30
-{
-"classname" "ceiling_light"
-"origin" "-16 528 192"
-}
-// entity 31
-{
-"classname" "ceiling_light"
-"origin" "368 528 192"
-}
-// entity 32
-{
-"classname" "ceiling_light"
-"origin" "240 528 192"
-}
-// entity 33
-{
-"classname" "ceiling_light"
-"origin" "112 528 192"
-}
-// entity 34
-{
-"classname" "ceiling_light"
-"origin" "880 528 192"
-}
-// entity 35
-{
-"classname" "ceiling_light"
-"origin" "752 528 192"
-}
-// entity 36
-{
-"classname" "ceiling_light"
-"origin" "624 528 192"
-}
-// entity 37
-{
-"classname" "ceiling_light"
-"origin" "496 528 192"
-}
-// entity 38
-{
-"classname" "ceiling_light"
-"origin" "-16 656 192"
-}
-// entity 39
-{
-"classname" "ceiling_light"
-"origin" "368 656 192"
-}
-// entity 40
-{
-"classname" "ceiling_light"
-"origin" "240 656 192"
-}
-// entity 41
-{
-"classname" "ceiling_light"
-"origin" "112 656 192"
-}
-// entity 42
-{
-"classname" "ceiling_light"
-"origin" "880 656 192"
-}
-// entity 43
-{
-"classname" "ceiling_light"
-"origin" "752 656 192"
-}
-// entity 44
-{
-"classname" "ceiling_light"
-"origin" "624 656 192"
-}
-// entity 45
-{
-"classname" "ceiling_light"
-"origin" "496 656 192"
-}
-// entity 46
-{
-"classname" "ceiling_light"
-"origin" "-16 784 192"
-}
-// entity 47
-{
-"classname" "ceiling_light"
-"origin" "368 784 192"
-}
-// entity 48
-{
-"classname" "ceiling_light"
-"origin" "240 784 192"
-}
-// entity 49
-{
-"classname" "ceiling_light"
-"origin" "112 784 192"
-}
-// entity 50
-{
-"classname" "ceiling_light"
-"origin" "880 784 192"
-}
-// entity 51
-{
-"classname" "ceiling_light"
-"origin" "752 784 192"
-}
-// entity 52
-{
-"classname" "ceiling_light"
-"origin" "624 784 192"
-}
-// entity 53
-{
-"classname" "ceiling_light"
-"origin" "496 784 192"
 }
