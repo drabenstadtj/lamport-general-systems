@@ -179,6 +179,7 @@ mesh = SubResource("ArrayMesh_0qkcu")
 skeleton = NodePath("")
 
 [node name="DoorFrame" type="MeshInstance3D" parent="." unique_id=943401617]
+transform = Transform3D(0.999, 0, 0, 0, 0.999, 0, 0, 0, 0.999, 0, 0, 0)
 mesh = SubResource("ArrayMesh_6klqp")
 skeleton = NodePath("")
 
