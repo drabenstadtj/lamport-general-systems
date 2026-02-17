@@ -585,6 +585,11 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -25.
 
 [node name="DoubleDoor" parent="." unique_id=62288274 instance=ExtResource("8_u2nyb")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 10, -0.5, 0)
+transfer_room_scene = null
+door1_scene_path = null
+door1_dock = null
+door2_scene_path = null
+door2_dock = null
 
 [node name="BreakRoom" type="Node3D" parent="." unique_id=1702747330]
 

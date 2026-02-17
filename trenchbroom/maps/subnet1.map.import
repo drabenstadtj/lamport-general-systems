@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://bbj1iyx5kpxv7"
+path="res://.godot/imported/subnet1.map-a5a050c4732cbcc4150ea3fd0378e875.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/subnet1.map"
+dest_files=["res://.godot/imported/subnet1.map-a5a050c4732cbcc4150ea3fd0378e875.tres"]
+
+[params]
+
