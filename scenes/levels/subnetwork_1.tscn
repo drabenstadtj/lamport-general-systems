@@ -343,6 +343,11 @@ transform = Transform3D(1.3907092e-07, 0, 1, 0, 1, 0, -1, 0, 1.3907092e-07, 10.5
 
 [node name="DoubleDoor" parent="." unique_id=62288274 instance=ExtResource("7_7walx")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -2)
+dock_name = "DockA"
+door1_scene_path = "uid://esir2tt1ujs7"
+door1_dock = "DockA"
+door2_scene_path = "uid://3mtbxfhulw7m"
+door2_dock = "DockB"
 
 [node name="DoubleDoors" parent="." unique_id=781733162 instance=ExtResource("8_1l6jw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.1, 6)

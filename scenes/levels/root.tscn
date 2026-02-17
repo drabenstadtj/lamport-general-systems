@@ -68,10 +68,9 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 
 [node name="DoubleDoor" parent="CurrentLevel" unique_id=62288274 instance=ExtResource("5_tx1qe")]
 transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 2, 0.5, 1.4901161e-08)
-dock_name = "DockA"
 door1_scene_path = "uid://d2aoeurh2i8ig"
-door1_dock = "DockA"
-door2_scene_path = "uid://esir2tt1ujs7"
+door2_scene_path = "uid://mju0rlw4o1oy"
+door2_dock = "DockA"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="CurrentLevel" unique_id=338651907]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)

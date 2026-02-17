@@ -8,7 +8,6 @@
 [ext_resource type="Material" uid="uid://cfk32c516r4hf" path="res://trenchbroom/textures/molding.tres" id="6_0vuvt"]
 [ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/props/environment/dropceiling_light.tscn" id="7_8wegd"]
 [ext_resource type="PackedScene" uid="uid://bbyv7qs0epj28" path="res://scenes/props/environment/double_doors.tscn" id="8_km5w5"]
-[ext_resource type="PackedScene" uid="uid://vqtlme6jjkyk" path="res://scenes/characters/player/player_noanim.tscn" id="9_f5j66"]
 [ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/double_door.tscn" id="10_wdyd2"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_f5j66"]
@@ -277,9 +276,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 
 [node name="entity_13_double_door" type="Node3D" parent="FuncGodotMap" unique_id=525118325]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -6.75, 0, 0)
 
-[node name="Player" parent="." unique_id=1819242889 instance=ExtResource("9_f5j66")]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -5, 0, -1)
-
 [node name="DoubleDoors" parent="." unique_id=781733162 instance=ExtResource("8_km5w5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 1.1, 0)
 
@@ -297,4 +293,6 @@ door2_dock = "DockA"
 [node name="DoubleDoor2" parent="." unique_id=666490940 instance=ExtResource("10_wdyd2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
 dock_name = "DockA"
-door1_scene_path = "uid://d2aoeurh2i8ig"
+door1_scene_path = "uid://mju0rlw4o1oy"
+door1_dock = "DockA"
+door2_scene_path = "uid://d2aoeurh2i8ig"
