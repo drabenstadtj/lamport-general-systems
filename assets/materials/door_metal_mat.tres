@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://tcsl4wg6t722"]
+
+[ext_resource type="Texture2D" uid="uid://bvdqnmp0gxcj5" path="res://assets/models/props/architecture/doubledoors_Metal_10-128x128.png" id="1_do27b"]
+
+[resource]
+resource_name = "door_metal_mat"
+cull_mode = 2
+albedo_texture = ExtResource("1_do27b")
+roughness = 0.5
+texture_filter = 2

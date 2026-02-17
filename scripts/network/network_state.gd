@@ -42,7 +42,7 @@ func initialize_nodes(count: int):
 		
 		nodes.append(node)
 	
-	print("Created %d nodes (f=%d, healthy=%d, crashed=%d)" % [nodes.size(), f, min_required, max(0, nodes.size() - min_required)])
+	print("[NetworkState] Created %d nodes (f=%d, healthy=%d, crashed=%d)" % [nodes.size(), f, min_required, max(0, nodes.size() - min_required)])
 	
 func get_node(node_id: int) -> NetworkNode:
 	if node_id >= 0 and node_id < nodes.size():

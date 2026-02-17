@@ -37,7 +37,7 @@ func _ready():
 func initialize_from_scene():
 	"""Call this from your scene after it loads"""
 	if _initialized:
-		print("WARNING: Already initialized, skipping")
+		print("[NetworkManager] WARNING: Already initialized, skipping")
 		return
 	
 	# Look for a NetworkConfig node in the scene
@@ -94,7 +94,7 @@ func discover_physical_servers() -> Array[int]:
 		if unique_ids.is_empty() or unique_ids[-1] != id:
 			unique_ids.append(id)
 	
-	print("Discovered %d physical servers with node_ids: %s" % [unique_ids.size(), unique_ids])
+	print("[NetworkManager]Discovered %d physical servers with node_ids: %s" % [unique_ids.size(), unique_ids])
 	return unique_ids
 
 

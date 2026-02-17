@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://drvtgm5a0mryp"
+path="res://.godot/imported/uvtest-crash.map-72f29a4210804f218612273d2e430cff.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/uvtest-crash.map"
+dest_files=["res://.godot/imported/uvtest-crash.map-72f29a4210804f218612273d2e430cff.tres"]
+
+[params]
+

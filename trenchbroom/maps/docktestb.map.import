@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://bxvf2dt7h3n1h"
+path="res://.godot/imported/docktestb.map-bac12196d560bd3ea1f9a1fb95e77c93.tres"
+
+[deps]
+
+source_file="res://trenchbroom/maps/docktestb.map"
+dest_files=["res://.godot/imported/docktestb.map-bac12196d560bd3ea1f9a1fb95e77c93.tres"]
+
+[params]
+

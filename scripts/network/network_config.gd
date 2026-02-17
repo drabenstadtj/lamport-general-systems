@@ -32,4 +32,4 @@ func _ready():
 	
 	# Signal that everything is ready
 	NetworkManager.all_nodes_ready.emit()
-	print("NetworkConfig: All nodes initialized and ready.")
+	print("[NetworkConfig] All nodes initialized and ready.")
