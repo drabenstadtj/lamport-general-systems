@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Lamport General Systems"
-run/main_scene="uid://dovm16uxv36vy"
+run/main_scene="uid://blwt4o4gdkmxh"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -158,3 +158,6 @@ common/physics_ticks_per_second=100
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+anti_aliasing/quality/msaa_3d=3
+anti_aliasing/quality/screen_space_aa=2
+anti_aliasing/quality/use_taa=true
