@@ -2,7 +2,7 @@ class_name State
 extends Node
 
 # Reference to the player
-var player: CharacterBody3D 
+var actor: CharacterBody3D 
 
 func enter() -> void:
 	# Called when entering this state

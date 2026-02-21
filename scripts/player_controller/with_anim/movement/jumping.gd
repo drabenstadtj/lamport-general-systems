@@ -9,20 +9,20 @@ var has_landed: bool = false
 func enter() -> void:
 	#print("Entering Jumping state")
 	# Get AnimationTree reference
-	if player.has_node("AnimationTree"):
-		anim_tree = player.get_node("AnimationTree")
+	if actor.has_node("AnimationTree"):
+		anim_tree = actor.get_node("AnimationTree")
 		playback = anim_tree.get("parameters/playback")
 		# Travel to Jumping state machine (will auto-start at Jump_Enter/Jump_Start)
 		playback.travel("Jumping")
-	elif player.has_node("AnimationPlayer"):
-		# Fallback to AnimationPlayer if AnimationTree not found
-		player.get_node("AnimationPlayer").play("AnimationLibrary_Godot/Jump")
+	elif actor.has_node("Animationactor"):
+		# Fallback to Animationactor if AnimationTree not found
+		actor.get_node("Animationactor").play("AnimationLibrary_Godot/Jump")
 	
 	# Jump with more force if sprinting
 	if was_sprinting:
-		player.velocity.y = player.jump_velocity * 1.2
+		actor.velocity.y = actor.jump_velocity * 1.2
 	else:
-		player.velocity.y = player.jump_velocity
+		actor.velocity.y = actor.jump_velocity
 	
 	jump_started = true
 	has_landed = false
@@ -35,25 +35,25 @@ func physics_update(delta: float) -> void:
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	
 	# Air control - can move horizontally while jumping
-	var direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (actor.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
-		var target_speed = player.run_speed if was_sprinting else player.walk_speed
+		var target_speed = actor.run_speed if was_sprinting else actor.walk_speed
 		# Reduced air control
-		player.velocity.x = lerp(player.velocity.x, direction.x * target_speed, player.air_control * delta)
-		player.velocity.z = lerp(player.velocity.z, direction.z * target_speed, player.air_control * delta)
+		actor.velocity.x = lerp(actor.velocity.x, direction.x * target_speed, actor.air_control * delta)
+		actor.velocity.z = lerp(actor.velocity.z, direction.z * target_speed, actor.air_control * delta)
 	
 	# Apply gravity
-	player.velocity.y -= player.gravity * delta
+	actor.velocity.y -= actor.gravity * delta
 	
 	# Variable jump height - release jump early for shorter jump
-	if Input.is_action_just_released("jump") and player.velocity.y > 0:
-		player.velocity.y *= 0.5
+	if Input.is_action_just_released("jump") and actor.velocity.y > 0:
+		actor.velocity.y *= 0.5
 	
-	player.move_and_slide()
+	actor.move_and_slide()
 	
 	# Check if we've started falling (past apex of jump)
-	if jump_started and player.velocity.y < 0:
+	if jump_started and actor.velocity.y < 0:
 		# Transition to fall/loop animation in the Jumping state machine
 		if anim_tree:
 			var jumping_playback = anim_tree.get("parameters/Jumping/playback")
@@ -62,13 +62,13 @@ func physics_update(delta: float) -> void:
 		jump_started = false
 	
 	# Check if landed
-	if player.is_on_floor() and player.velocity.y <= 0 and not has_landed:
+	if actor.is_on_floor() and actor.velocity.y <= 0 and not has_landed:
 		has_landed = true
 		
 		# Get camera pivot through CameraController
-		var camera_controller = player.get_node_or_null("CameraController")
+		var camera_controller = actor.get_node_or_null("CameraController")
 		if camera_controller:
-			var camera_pivot = player.get_node_or_null("CameraPivot")
+			var camera_pivot = actor.get_node_or_null("CameraPivot")
 			if camera_pivot:
 				var tween = create_tween()
 				var start_pos = camera_pivot.position

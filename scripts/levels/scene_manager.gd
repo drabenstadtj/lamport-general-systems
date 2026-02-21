@@ -29,6 +29,8 @@ func change_scene(dest_scene_path: String, side: DoorSide, dock_name: String, tr
 
 	level_container.add_child(new_level)
 	await get_tree().process_frame
+	AIDirector.nav_region = new_level.get_node("NavigationRegion3D")
+	AIDirector.start_robots()
 	
 	var level_dock = DoorRegistry.get_dock(dock_name)
 	if level_dock == Transform3D():

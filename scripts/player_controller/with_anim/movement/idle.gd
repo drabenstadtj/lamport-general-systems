@@ -7,8 +7,8 @@ func enter() -> void:
 	#print("Entering Idle state")
 	
 	# Get AnimationTree reference
-	if player.has_node("AnimationTree"):
-		anim_tree = player.get_node("AnimationTree")
+	if actor.has_node("AnimationTree"):
+		anim_tree = actor.get_node("AnimationTree")
 		playback = anim_tree.get("parameters/playback")
 		# Travel to Grounded state machine
 		playback.travel("Grounded")
@@ -16,8 +16,8 @@ func enter() -> void:
 		var grounded_playback = anim_tree.get("parameters/Grounded/playback")
 		if grounded_playback:
 			grounded_playback.travel("Idle")
-	elif player.has_node("AnimationPlayer"):
-		player.get_node("AnimationPlayer").play("AnimationLibrary_Godot/Idle")
+	elif actor.has_node("Animationactor"):
+		actor.get_node("Animationactor").play("AnimationLibrary_Godot/Idle")
 
 func physics_update(delta: float) -> void:
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -30,15 +30,15 @@ func physics_update(delta: float) -> void:
 		get_parent().transition_to("Crouching")
 		return
 	
-	if Input.is_action_just_pressed("jump") and player.is_on_floor():
+	if Input.is_action_just_pressed("jump") and actor.is_on_floor():
 		get_parent().transition_to("Jumping")
 		return
 	
-	if player.is_on_floor():
-		player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
-		player.velocity.z = move_toward(player.velocity.z, 0, player.friction * delta)
+	if actor.is_on_floor():
+		actor.velocity.x = move_toward(actor.velocity.x, 0, actor.friction * delta)
+		actor.velocity.z = move_toward(actor.velocity.z, 0, actor.friction * delta)
 	
-	if not player.is_on_floor():
-		player.velocity.y -= player.gravity * delta
+	if not actor.is_on_floor():
+		actor.velocity.y -= actor.gravity * delta
 	
-	player.move_and_slide()
+	actor.move_and_slide()

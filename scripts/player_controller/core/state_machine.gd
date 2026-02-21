@@ -5,15 +5,18 @@ var current_state: State
 var states: Dictionary = {}
 
 @export var initial_state: State
+@export var auto_start: bool = true
 
 func _ready() -> void:
-	# Gather all child nodes that are states
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
-			child.player = owner  # Pass reference to the player
-	
-	# Start with initial state
+			child.actor = owner
+	if initial_state and auto_start:
+		current_state = initial_state
+		current_state.enter()
+
+func start() -> void:
 	if initial_state:
 		current_state = initial_state
 		current_state.enter()

@@ -11,16 +11,16 @@ func physics_update(delta: float) -> void:
 		get_parent().transition_to("Crouching")
 		return
 	
-	if Input.is_action_just_pressed("jump") and player.is_on_floor():
+	if Input.is_action_just_pressed("jump") and actor.is_on_floor():
 		get_parent().transition_to("Jumping")
 		return
 	
 	# Apply friction
-	player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
-	player.velocity.z = move_toward(player.velocity.z, 0, player.friction * delta)
+	actor.velocity.x = move_toward(actor.velocity.x, 0, actor.friction * delta)
+	actor.velocity.z = move_toward(actor.velocity.z, 0, actor.friction * delta)
 	
 	# Apply gravity
-	if not player.is_on_floor():
-		player.velocity.y -= player.gravity * delta
+	if not actor.is_on_floor():
+		actor.velocity.y -= actor.gravity * delta
 	
-	player.move_and_slide()
+	actor.move_and_slide()

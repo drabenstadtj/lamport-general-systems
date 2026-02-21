@@ -27,3 +27,8 @@ enum ActionType {
 	POWER_ON_NODE,
 	POWER_OFF_NODE
 }
+
+enum RobotState {
+	ACTIVE,
+	DISABLED
+}

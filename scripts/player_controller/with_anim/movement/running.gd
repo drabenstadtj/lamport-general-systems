@@ -4,20 +4,20 @@ var playback: AnimationNodeStateMachinePlayback
 
 func enter() -> void:
 	#print("Entering Running state")
-	player.set_sprinting(true) 
+	actor.set_sprinting(true) 
 	
-	if player.has_node("AnimationTree"):
-		anim_tree = player.get_node("AnimationTree")
+	if actor.has_node("AnimationTree"):
+		anim_tree = actor.get_node("AnimationTree")
 		playback = anim_tree.get("parameters/playback")
 		playback.travel("Grounded")
 		var grounded_playback = anim_tree.get("parameters/Grounded/playback")
 		if grounded_playback:
 			grounded_playback.travel("Sprint")
-	elif player.has_node("AnimationPlayer"):
-		player.get_node("AnimationPlayer").play("AnimationLibrary_Godot/Sprint")
+	elif actor.has_node("Animationactor"):
+		actor.get_node("Animationactor").play("AnimationLibrary_Godot/Sprint")
 
 func exit() -> void:
-	player.set_sprinting(false)
+	actor.set_sprinting(false)
 
 func physics_update(delta: float) -> void:
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -34,21 +34,21 @@ func physics_update(delta: float) -> void:
 		get_parent().transition_to("Walking")
 		return
 	
-	if Input.is_action_just_pressed("jump") and player.is_on_floor():
+	if Input.is_action_just_pressed("jump") and actor.is_on_floor():
 		var jumping_state = get_parent().get_node("Jumping")
 		if jumping_state:
 			jumping_state.was_sprinting = true
 		get_parent().transition_to("Jumping")
 		return
 	
-	var direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (actor.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if direction and player.is_on_floor():
-		var target_velocity = direction * player.run_speed
-		player.velocity.x = lerp(player.velocity.x, target_velocity.x, player.acceleration * delta)
-		player.velocity.z = lerp(player.velocity.z, target_velocity.z, player.acceleration * delta)
+	if direction and actor.is_on_floor():
+		var target_velocity = direction * actor.run_speed
+		actor.velocity.x = lerp(actor.velocity.x, target_velocity.x, actor.acceleration * delta)
+		actor.velocity.z = lerp(actor.velocity.z, target_velocity.z, actor.acceleration * delta)
 	
-	if not player.is_on_floor():
-		player.velocity.y -= player.gravity * delta
+	if not actor.is_on_floor():
+		actor.velocity.y -= actor.gravity * delta
 	
-	player.move_and_slide()
+	actor.move_and_slide()

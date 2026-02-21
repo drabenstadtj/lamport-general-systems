@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://oj0n6wi0abcq"]
 
 [ext_resource type="Texture2D" uid="uid://cwwheq8qqe065" path="res://trenchbroom/textures/carpet_gray.png" id="1_oteb6"]
+[ext_resource type="Script" uid="uid://cf8iev6qbqi0v" path="res://scripts/levels/game_play_ground.gd" id="1_slol7"]
 [ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="3_sokcy"]
 [ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/props/network/server_rack.tscn" id="5_x0rqm"]
 [ext_resource type="Script" uid="uid://b5dbyeybyr3m6" path="res://scripts/network/server_slot_config.gd" id="6_sp4yh"]
-[ext_resource type="PackedScene" uid="uid://vqtlme6jjkyk" path="res://scenes/characters/player/player_noanim.tscn" id="7_slol7"]
 [ext_resource type="PackedScene" uid="uid://hdxokx00t3dj" path="res://scenes/props/network/network_config.tscn" id="7_sp4yh"]
 [ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/props/environment/desk.tscn" id="8_slol7"]
+[ext_resource type="PackedScene" uid="uid://baleqdg4ot3k2" path="res://scenes/characters/robot.tscn" id="9_6hn45"]
+[ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/double_door.tscn" id="10_a10dw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1dbpc"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -27,27 +29,6 @@ glow_levels/2 = 1.45
 glow_bloom = 0.19
 fog_enabled = true
 fog_light_color = Color(0.8841736, 0.8961832, 0.91487664, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_1dbpc"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sokcy"]
-noise = SubResource("FastNoiseLite_1dbpc")
-seamless = true
-as_normal_map = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qba2w"]
-albedo_texture = ExtResource("1_oteb6")
-normal_enabled = true
-normal_scale = 2.89
-normal_texture = SubResource("NoiseTexture2D_sokcy")
-uv1_triplanar = true
-texture_filter = 0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_2bpxm"]
-material = SubResource("StandardMaterial3D_qba2w")
-size = Vector2(1000, 1000)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_oteb6"]
 
 [sub_resource type="Resource" id="Resource_slol7"]
 script = ExtResource("6_sp4yh")
@@ -90,7 +71,40 @@ _data = {
 }
 point_count = 12
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_sp4yh"]
+vertices = PackedVector3Array(-2.3113556, 0.45000005, -4.0613556, -0.06135559, 0.45000005, -4.0613556, -0.06135559, 0.45000005, -51.561356, -51.561356, 0.45000005, -51.561356, -51.561356, 0.45000005, -4.3113556, 2.1886444, 0.45000005, -4.0613556, 51.438644, 0.45000005, -4.3113556, 51.438644, 0.45000005, -51.561356, -2.8113556, 0.45000005, 2.4386444, 0.6886444, 0.45000005, 2.1886444, 0.6886444, 0.45000005, 0.4386444, -2.8113556, 0.45000005, 0.18864441, -51.561356, 0.45000005, 10.188644, -2.8113556, 0.45000005, 9.688644, -2.3113556, 0.45000005, 9.938644, -2.8113556, 0.45000005, -3.8113556, 2.6886444, 0.45000005, 0.18864441, 2.6886444, 0.45000005, 2.4386444, 2.6886444, 0.45000005, 9.688644, 51.438644, 0.45000005, 10.188644, 2.1886444, 0.45000005, 9.938644, 2.6886444, 0.45000005, -3.8113556, -1.8113556, 3.45, -3.0613556, -1.8113556, 3.45, -0.5613556, 1.6886444, 3.45, -0.5613556, 1.6886444, 3.45, -3.0613556, -1.5613556, 0.45000005, -2.8113556, -1.5613556, 0.45000005, -0.8113556, 1.4386444, 0.45000005, -0.8113556, 1.4386444, 0.45000005, -2.8113556, -1.8113556, 3.45, 3.1886444, -1.8113556, 3.45, 8.938644, 1.6886444, 3.45, 8.938644, 1.6886444, 3.45, 3.1886444, -1.5613556, 0.45000005, 3.4386444, -1.5613556, 0.45000005, 8.688644, 1.4386444, 0.45000005, 8.688644, 1.4386444, 0.45000005, 3.4386444, -0.06135559, 0.45000005, 51.438644, -0.06135559, 0.45000005, 9.938644, -51.561356, 0.45000005, 51.438644, 51.438644, 0.45000005, 51.438644)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(1, 2, 5), PackedInt32Array(5, 2, 6), PackedInt32Array(6, 2, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 8), PackedInt32Array(8, 12, 4), PackedInt32Array(13, 14, 12), PackedInt32Array(4, 0, 15), PackedInt32Array(4, 15, 11), PackedInt32Array(4, 11, 8), PackedInt32Array(10, 16, 9), PackedInt32Array(9, 16, 17), PackedInt32Array(17, 16, 6), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 6), PackedInt32Array(19, 20, 18), PackedInt32Array(21, 5, 6), PackedInt32Array(16, 21, 6), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(29, 28, 26), PackedInt32Array(26, 28, 27), PackedInt32Array(33, 32, 30), PackedInt32Array(30, 32, 31), PackedInt32Array(37, 36, 34), PackedInt32Array(34, 36, 35), PackedInt32Array(39, 38, 14), PackedInt32Array(14, 38, 12), PackedInt32Array(12, 38, 40), PackedInt32Array(39, 20, 38), PackedInt32Array(38, 20, 19), PackedInt32Array(38, 19, 41)]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1dbpc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sokcy"]
+noise = SubResource("FastNoiseLite_1dbpc")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qba2w"]
+albedo_texture = ExtResource("1_oteb6")
+normal_enabled = true
+normal_scale = 2.89
+normal_texture = SubResource("NoiseTexture2D_sokcy")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2bpxm"]
+material = SubResource("StandardMaterial3D_qba2w")
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sp4yh"]
+size = Vector3(100, 0.1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6hn45"]
+size = Vector3(4.3, 3.7, 6.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a10dw"]
+size = Vector3(4.3, 3.7, 3.2)
+
 [node name="GamePlay" type="Node3D" unique_id=598042711]
+script = ExtResource("1_slol7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1388618990]
 environment = SubResource("Environment_qba2w")
@@ -98,17 +112,6 @@ environment = SubResource("Environment_qba2w")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=151008491]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
-
-[node name="Ground" type="Node3D" parent="." unique_id=964636125]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=164353484]
-transform = Transform3D(1.0412271, 0, 0, 0, 1.0412271, 0, 0, 0, 1.0412271, 0, 0, 0)
-mesh = SubResource("PlaneMesh_2bpxm")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=170055685]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=1082099166]
-shape = SubResource("WorldBoundaryShape3D_oteb6")
 
 [node name="Terminal" parent="." unique_id=1133609830 instance=ExtResource("3_sokcy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19009876, 0.89078, -2.5057163)
@@ -162,4 +165,41 @@ path_joined = false
 smooth_faces = true
 material = SubResource("StandardMaterial3D_slol7")
 
-[node name="Player" parent="." unique_id=1819242889 instance=ExtResource("7_slol7")]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=270627694]
+navigation_mesh = SubResource("NavigationMesh_sp4yh")
+
+[node name="Ground" type="Node3D" parent="NavigationRegion3D" unique_id=964636125]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ground" unique_id=164353484]
+transform = Transform3D(1.0412271, 0, 0, 0, 1.0412271, 0, 0, 0, 1.0412271, 0, 0, 0)
+mesh = SubResource("PlaneMesh_2bpxm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Ground" unique_id=170055685]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ground/StaticBody3D" unique_id=1082099166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_sp4yh")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="NavigationRegion3D/Ground" unique_id=508095832]
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Ground/StaticBody3D2" unique_id=165108541]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_sp4yh")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Ground/StaticBody3D2" unique_id=772718316]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.049999893, 1.3000001, 6.15)
+shape = SubResource("BoxShape3D_6hn45")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="NavigationRegion3D/Ground/StaticBody3D2" unique_id=675376255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.049999893, 1.3000001, -1.8000003)
+shape = SubResource("BoxShape3D_a10dw")
+
+[node name="Robot" parent="." unique_id=491551866 instance=ExtResource("9_6hn45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
+
+[node name="DoubleDoor" parent="." unique_id=62288274 instance=ExtResource("10_a10dw")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.039750934, 3)
+transfer_room_scene = "uid://dlrcymtcjjjrv"
+door1_scene_path = "uid://oj0n6wi0abcq"
+door2_scene_path = "uid://d2aoeurh2i8ig"

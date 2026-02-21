@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://baleqdg4ot3k2"]
+
+[ext_resource type="Script" uid="uid://cywrcqv30ljar" path="res://scripts/player_controller/core/state_machine.gd" id="1_edyn1"]
+[ext_resource type="Script" uid="uid://b0nx0rhen2le1" path="res://scripts/ai/robot.gd" id="1_uwdar"]
+[ext_resource type="Script" uid="uid://bguh1b2f0b4md" path="res://scripts/player_controller/robot/patrol.gd" id="4_t7j0s"]
+[ext_resource type="Script" uid="uid://dwl5rvrnxn7kf" path="res://scripts/player_controller/robot/investigate.gd" id="4_yabuy"]
+[ext_resource type="Script" uid="uid://frhcsv4nbdrm" path="res://scripts/player_controller/robot/hunt.gd" id="5_0jwdc"]
+[ext_resource type="Script" uid="uid://bnw11kax877yw" path="res://scripts/player_controller/robot/flee.gd" id="6_3kgy1"]
+[ext_resource type="Script" uid="uid://c3415gcf0v4nc" path="res://scripts/player_controller/robot/sensory_component.gd" id="7_0jwdc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0jwdc"]
+radius = 0.25
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3kgy1"]
+radius = 0.25
+
+[sub_resource type="BoxMesh" id="BoxMesh_0jwdc"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Robot" type="CharacterBody3D" unique_id=1579965753]
+script = ExtResource("1_uwdar")
+id = "robot"
+
+[node name="StateMachine" type="Node" parent="." unique_id=1971916745 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_edyn1")
+initial_state = NodePath("Patrol")
+auto_start = false
+
+[node name="Patrol" type="Node" parent="StateMachine" unique_id=628632275]
+script = ExtResource("4_t7j0s")
+
+[node name="Investigate" type="Node" parent="StateMachine" unique_id=1911506463]
+script = ExtResource("4_yabuy")
+
+[node name="Hunt" type="Node" parent="StateMachine" unique_id=1282840477]
+script = ExtResource("5_0jwdc")
+
+[node name="Flee" type="Node" parent="StateMachine" unique_id=1812736281]
+script = ExtResource("6_3kgy1")
+
+[node name="SensoryComponent" type="Node3D" parent="." unique_id=1678814691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+script = ExtResource("7_0jwdc")
+
+[node name="RayCast3D" type="RayCast3D" parent="SensoryComponent" unique_id=74618111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20000005, 0)
+collision_mask = 3
+debug_shape_custom_color = Color(1, 1, 1, 1)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1677674220]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2029204092]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_0jwdc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1099678325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_3kgy1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=47628503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8000001, -0.2)
+mesh = SubResource("BoxMesh_0jwdc")
