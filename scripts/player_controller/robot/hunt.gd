@@ -22,8 +22,12 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(_delta: float) -> void:
-	# navigate toward player's current position
-	actor.navigate_to(AIDirector.player.global_position)
+	# navigate toward player's live position only when we have LOS
+	# otherwise head to last known position
+	if actor.sensory_component.has_detection:
+		actor.navigate_to(AIDirector.player.global_position)
+	else:
+		actor.navigate_to(actor.sensory_component.last_detected_position)
 
 	# check if close enough
 	if actor.target_in_attack_range():

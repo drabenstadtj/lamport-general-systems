@@ -11,6 +11,7 @@ var is_active: bool = false
 @export var attack_range: float = 0.75 #meters
 @export var move_speed: float = 1.0 #meters per sec
 @export var hunt_move_speed: float = 2.0 #meters per sec
+@export var turn_speed: float = 8.0 #radians per sec (higher = snappier)
 var nav_target
 
 # Called when the node enters the scene tree for the first time.
@@ -49,7 +50,8 @@ func _physics_process(delta: float) -> void:
 		move_dir.y = 0.0
 		if move_dir.length() > 0.01:
 			velocity = move_dir.normalized() * move_speed
-			look_at(global_position + move_dir, Vector3.UP)
+			var target_basis := Basis.looking_at(move_dir, Vector3.UP)
+			basis = basis.slerp(target_basis, clamp(turn_speed * delta, 0.0, 1.0))
 		else:
 			velocity = Vector3.ZERO
 		
