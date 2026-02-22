@@ -1,5 +1,6 @@
 extends State
 
+var _footstep_timer: float = 1.2
 func enter() -> void:
 	actor.crouch_down()
 
@@ -33,5 +34,11 @@ func physics_update(delta: float) -> void:
 	# Gravity
 	if not actor.is_on_floor():
 		actor.velocity.y -= actor.gravity * delta
+	
+	# emit sound to AI's
+	_footstep_timer += delta
+	if _footstep_timer >= 0.5:
+		AIDirector.emit_sound(actor.global_position, 0.9)
+		_footstep_timer = 0.0
 	
 	actor.move_and_slide()

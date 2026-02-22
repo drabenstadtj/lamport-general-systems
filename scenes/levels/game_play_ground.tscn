@@ -10,26 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://baleqdg4ot3k2" path="res://scenes/characters/robot.tscn" id="9_6hn45"]
 [ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/double_door.tscn" id="10_a10dw"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1dbpc"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_sokcy"]
-sky_material = SubResource("ProceduralSkyMaterial_1dbpc")
-
-[sub_resource type="Environment" id="Environment_qba2w"]
-background_mode = 2
-sky = SubResource("Sky_sokcy")
-tonemap_mode = 2
-ssao_enabled = true
-ssao_intensity = 5.5
-glow_enabled = true
-glow_levels/1 = 2.69
-glow_levels/2 = 1.45
-glow_bloom = 0.19
-fog_enabled = true
-fog_light_color = Color(0.8841736, 0.8961832, 0.91487664, 1)
-
 [sub_resource type="Resource" id="Resource_slol7"]
 script = ExtResource("6_sp4yh")
 is_active_node = true
@@ -105,9 +85,6 @@ size = Vector3(4.3, 3.7, 3.2)
 
 [node name="GamePlay" type="Node3D" unique_id=598042711]
 script = ExtResource("1_slol7")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1388618990]
-environment = SubResource("Environment_qba2w")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=151008491]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)

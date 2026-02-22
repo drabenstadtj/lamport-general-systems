@@ -37,3 +37,6 @@ func physics_update(delta: float) -> void:
 				get_parent().transition_to("Walking")
 		else:
 			get_parent().transition_to("Idle")
+	
+	# emit sound to AI's
+	AIDirector.emit_sound(actor.global_position, 1.0)

@@ -54,6 +54,10 @@ func clear_level():
 	robots.clear()
 	robot_refs.clear()
 
+func emit_sound(position: Vector3, volume: float):
+	for robot in AIDirector.robot_refs:
+		robot.sensory_component.hear_sound(position, volume)
+		
 func update_threat():
 	# ya
 	pass
