@@ -26,7 +26,7 @@ var _state_label: Label3D
 
 # Setup -----------------------------------------------------------------------
 func _ready() -> void:
-	AIDirector.register_robot.call_deferred(self)
+	AIDirector.register_robot(self)
 	_setup_state_label()
 
 func _setup_state_label() -> void:
