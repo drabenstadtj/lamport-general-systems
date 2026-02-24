@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://bbyv7qs0epj28"]
 
+[ext_resource type="Script" uid="uid://dqrlmo1d4pbwl" path="res://scripts/environment/double_doors.gd" id="1_ha1df"]
 [ext_resource type="Material" uid="uid://dcy72y2uwmxcv" path="res://assets/materials/door_glass_mat.tres" id="1_l2q37"]
 [ext_resource type="Script" uid="uid://dji5ee5pfuvra" path="res://scripts/interaction/interactable.gd" id="2_dptw2"]
 [ext_resource type="Material" uid="uid://tcsl4wg6t722" path="res://assets/materials/door_metal_mat.tres" id="2_ha1df"]
@@ -156,6 +157,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_w56pn")
 
 [node name="DoubleDoors" type="Node3D" unique_id=781733162]
+script = ExtResource("1_ha1df")
 
 [node name="DoorPivot2" type="Node3D" parent="." unique_id=2081757351]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
