@@ -8,7 +8,7 @@
 [ext_resource type="Material" uid="uid://cfk32c516r4hf" path="res://trenchbroom/textures/molding.tres" id="6_0vuvt"]
 [ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/props/environment/dropceiling_light.tscn" id="7_8wegd"]
 [ext_resource type="PackedScene" uid="uid://bbyv7qs0epj28" path="res://scenes/props/environment/double_doors.tscn" id="8_km5w5"]
-[ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/double_door.tscn" id="10_wdyd2"]
+[ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/transfer_portal.tscn" id="10_wdyd2"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_f5j66"]
 _surfaces = [{

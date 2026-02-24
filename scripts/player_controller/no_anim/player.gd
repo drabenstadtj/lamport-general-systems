@@ -26,6 +26,7 @@ var is_sprinting: bool = false
 var is_walking: bool = false
 
 func _ready() -> void:
+	AIDirector.player = self
 	add_to_group("player")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	

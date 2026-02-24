@@ -1,10 +1,12 @@
 extends State
 
+var _footstep_timer: float = 0.5
+
 func enter() -> void:
-	player.set_sprinting(true)
+	actor.set_sprinting(true)
 
 func exit() -> void:
-	player.set_sprinting(false)
+	actor.set_sprinting(false)
 
 func physics_update(delta: float) -> void:
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -22,7 +24,7 @@ func physics_update(delta: float) -> void:
 		get_parent().transition_to("Walking")
 		return
 	
-	if Input.is_action_just_pressed("jump") and player.is_on_floor():
+	if Input.is_action_just_pressed("jump") and actor.is_on_floor():
 		var jumping_state = get_parent().get_node("Jumping")
 		if jumping_state:
 			jumping_state.was_sprinting = true
@@ -30,18 +32,24 @@ func physics_update(delta: float) -> void:
 		return
 	
 	# Movement
-	var direction = (player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (actor.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if direction and player.is_on_floor():
-		var target_velocity = direction * player.run_speed
-		player.velocity.x = lerp(player.velocity.x, target_velocity.x, player.acceleration * delta)
-		player.velocity.z = lerp(player.velocity.z, target_velocity.z, player.acceleration * delta)
+	if direction and actor.is_on_floor():
+		var target_velocity = direction * actor.run_speed
+		actor.velocity.x = lerp(actor.velocity.x, target_velocity.x, actor.acceleration * delta)
+		actor.velocity.z = lerp(actor.velocity.z, target_velocity.z, actor.acceleration * delta)
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)
-		player.velocity.z = move_toward(player.velocity.z, 0, player.friction * delta)
+		actor.velocity.x = move_toward(actor.velocity.x, 0, actor.friction * delta)
+		actor.velocity.z = move_toward(actor.velocity.z, 0, actor.friction * delta)
 	
 	# Gravity
-	if not player.is_on_floor():
-		player.velocity.y -= player.gravity * delta
+	if not actor.is_on_floor():
+		actor.velocity.y -= actor.gravity * delta
 	
-	player.move_and_slide()
+	# emit sound to AI's
+	_footstep_timer += delta
+	if _footstep_timer >= 0.5:
+		AIDirector.emit_sound(actor.global_position, 0.9)
+		_footstep_timer = 0.0
+		
+	actor.move_and_slide()
