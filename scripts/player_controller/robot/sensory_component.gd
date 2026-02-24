@@ -62,6 +62,12 @@ func _setup_debug_mesh() -> void:
 func _physics_process(_delta: float) -> void:
 	has_detection = false
 
+	var robot := get_parent() as Robot
+	if robot == null or not robot.hostile:
+		visual_confidence = clamp(visual_confidence - 1.0, 0.0, visual_confidence_threshold)
+		is_threat_confirmed = false
+		return
+
 	if vision_check():
 		visual_confidence += 1.0
 	else:

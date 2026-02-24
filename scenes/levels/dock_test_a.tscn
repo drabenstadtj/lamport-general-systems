@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cwu5cf7a0awcd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_xsbl2"]
 [ext_resource type="Resource" uid="uid://bpisdf0bouswg" path="res://trenchbroom/lgs_map_settings.tres" id="2_07fji"]
 [ext_resource type="Material" uid="uid://lgiysotwuq1y" path="res://trenchbroom/textures/dropceiling.tres" id="3_mps32"]
-[ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/double_door.tscn" id="4_wbvde"]
+[ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/transfer_portal.tscn" id="4_wbvde"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xsbl2"]
 _surfaces = [{

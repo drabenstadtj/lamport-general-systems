@@ -8,7 +8,7 @@
 [ext_resource type="Material" uid="uid://bli85pejemy78" path="res://trenchbroom/textures/wall_beige.tres" id="7_43bxi"]
 [ext_resource type="Material" uid="uid://cfk32c516r4hf" path="res://trenchbroom/textures/molding.tres" id="8_575cj"]
 [ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/props/environment/dropceiling_light.tscn" id="8_j7gcg"]
-[ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/double_door.tscn" id="8_u2nyb"]
+[ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/transfer_portal.tscn" id="8_u2nyb"]
 [ext_resource type="PackedScene" uid="uid://7vpoc5wnvxy" path="res://scenes/props/environment/cabinet.tscn" id="10_j8xgc"]
 [ext_resource type="Texture2D" uid="uid://dh8ucww82r80a" path="res://assets/textures/screens/demo_slides/slide_04.png" id="10_yo52i"]
 [ext_resource type="PackedScene" uid="uid://cwhitdnvlglgs" path="res://scenes/props/environment/fridge.tscn" id="11_ovmjf"]

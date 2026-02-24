@@ -27,6 +27,10 @@ func update(_delta: float) -> void:
 	pass
 
 func physics_update(_delta: float) -> void:
+	if not actor.hostile:
+		actor.state_machine.transition_to("Patrol")
+		return
+
 	var sensory: SensoryComponent = actor.sensory_component
 
 	if _attack_phase != AttackPhase.NONE:

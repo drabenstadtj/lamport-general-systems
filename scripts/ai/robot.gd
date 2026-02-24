@@ -14,13 +14,18 @@ class_name Robot
 @export var hunt_move_speed: float = 6.0 # meters per sec
 @export var turn_speed: float = 8.0 # radians per sec (higher = snappier)
 
+@export_group("Patrol")
+@export var patrol_points: Array[PatrolPoint] = []
+
 @export_group("Combat")
+@export var hostile: bool = true
 @export var attack_range: float = 0.75 # meters
 
 # State -----------------------------------------------------------------------
 var is_active: bool = false
 var nav_target: Vector3
 var dormant_time: float = 0.0
+var patrol_index: int = 0
 
 # Debug -----------------------------------------------------------------------
 var _state_label: Label3D
@@ -47,8 +52,7 @@ func play_anim(anim: String) -> void:
 	if animation_player.current_animation != full:
 		animation_player.play(full)
 
-# Returns the appropriate movement anim, factoring in turning and idle.
-# idle_anim can be overridden (e.g. "Idle_LookAround" for investigate).
+# returns the appropriate movement anim, factoring in turning and idle.
 func get_move_anim(move_anim: String, idle_anim: String = "Idle") -> String:
 	if velocity.length() < 0.1:
 		return idle_anim
@@ -56,6 +60,15 @@ func get_move_anim(move_anim: String, idle_anim: String = "Idle") -> String:
 	if abs(angle) > deg_to_rad(60.0):
 		return "Turn90_L" if angle > 0.0 else "Turn90_R"
 	return move_anim
+
+# Patrol route ----------------------------------------------------------------
+func get_patrol_points() -> Array[PatrolPoint]:
+	return patrol_points
+
+func advance_patrol_index() -> void:
+	if patrol_points.is_empty():
+		return
+	patrol_index = (patrol_index + 1) % patrol_points.size()
 
 # Navigation ------------------------------------------------------------------
 func navigate_to(target: Vector3) -> void:

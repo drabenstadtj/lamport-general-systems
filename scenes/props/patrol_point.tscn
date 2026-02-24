@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bgk6qb1man6bw"]
+
+[ext_resource type="Script" uid="uid://d4emdcem3tmm" path="res://scripts/ai/patrol_point.gd" id="1_patrol"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xo7lg"]
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_01"]
+radius = 0.12
+height = 0.24
+
+[node name="PatrolPoint" type="Marker3D" unique_id=1637037449]
+script = ExtResource("1_patrol")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1270905722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+billboard = 1
+no_depth_test = true
+modulate = Color(0.5, 0.5, 0.5, 1)
+text = "(unassigned)"
+outline_size = 6
+
+[node name="Sphere" type="MeshInstance3D" parent="." unique_id=841111633]
+material_override = SubResource("StandardMaterial3D_xo7lg")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_01")
