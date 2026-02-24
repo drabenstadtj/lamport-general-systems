@@ -37,6 +37,7 @@ func physics_update(_delta: float) -> void:
 		actor.state_machine.transition_to("Hunt")
 		return
 
+	actor.play_anim(actor.get_move_anim("Walk", "Idle_LookAround"))
 	search_timer -= _delta
 	if search_timer <= 0.0:
 		actor.state_machine.transition_to("Patrol")

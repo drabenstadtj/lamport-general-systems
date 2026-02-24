@@ -1,19 +1,28 @@
 extends Node
 
-var robots = {} #id -> robot data
+var robots = {} # id -> robot data
 var robot_refs = []
-var threat_meter: float = 0.0
 var player: CharacterBody3D
 var level_name: String
 var nav_region: NavigationRegion3D
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var threat_meter: float = 50.0
+var threat_threshold: float = 20.0
+var hint_cooldown: float = 0.0
+var _threat_print_timer: float = 0.0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	update_threat()
+	update_threat(delta)
+
+	if threat_meter <= threat_threshold and hint_cooldown <= 0.0:
+		print("[AIDirector] threat threshold reached — hinting to robot")
+		var robot_to_hint: Robot = get_most_dormant()
+		if robot_to_hint != null:
+			robot_to_hint.state_machine.transition_to("Patrol")
+			robot_to_hint.navigate_to(get_player_area())
+			hint_cooldown = 10.0
+
+	hint_cooldown = clampf(hint_cooldown - delta, 0.0, 10.0)
 
 func start_robots() -> void:
 	print("[AIDirector] start_robots — ", robot_refs.size(), " robot(s)")
@@ -52,12 +61,46 @@ func clear_level() -> void:
 	print("[AIDirector] clear_level done — refs cleared")
 
 func emit_sound(sound_position: Vector3, volume: float) -> void:
-	for robot in AIDirector.robot_refs:
+	for robot in robot_refs:
 		robot.sensory_component.hear_sound(sound_position, volume)
-		
-func update_threat():
-	# ya
-	pass
 
+func update_threat(delta: float) -> void:
+	_threat_print_timer -= delta
+	var should_print := _threat_print_timer <= 0.0
+	if should_print:
+		_threat_print_timer = 1.0
+	for robot in robot_refs:
+		var current = robot.state_machine.current_state
+		if current == null:
+			continue
+		match current.name:
+			"Patrol":
+				threat_meter -= 1.0 * delta
+			"Investigate":
+				threat_meter += 1.0 * delta
+			"Hunt":
+				if robot.sensory_component.has_detection:
+					threat_meter += 3.0 * delta
+				else:
+					threat_meter += 1.0 * delta
+		if should_print:
+			print("[AIDirector] update_threat — ", robot.id, " (", current.name, ")")
+	threat_meter = clampf(threat_meter, 0.0, 100.0)
+	if should_print:
+		print("[AIDirector] update_threat — threat_meter: ", "%.2f" % threat_meter)
 
-	
+func get_most_dormant() -> Robot:
+	if robot_refs.is_empty():
+		return null
+	var most_dormant: Robot = robot_refs[0]
+	for robot in robot_refs:
+		if robot.dormant_time > most_dormant.dormant_time:
+			most_dormant = robot
+	print("[AIDirector] get_most_dormant — selected: ", most_dormant.id, " (dormant_time: ", "%.2f" % most_dormant.dormant_time, "s)")
+	return most_dormant
+
+func get_player_area() -> Vector3:
+	var hint_radius: float = 5.0 # meters
+	var hint_position = player.global_position + Vector3(randf() * hint_radius, 0, randf() * hint_radius)
+	print("[AIDirector] get_player_area — hinting near: ", hint_position)
+	return hint_position
