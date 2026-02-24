@@ -129,7 +129,7 @@
 ( 256 848 -8 ) ( 257 848 -8 ) ( 256 849 -8 ) vct_floor [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( 968 856 192 ) ( 968 857 192 ) ( 969 856 192 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( 968 856 0 ) ( 969 856 0 ) ( 968 856 1 ) vct_floor [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
-( 968 856 0 ) ( 968 856 1 ) ( 968 857 0 ) vct_floor [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 96 848 -8 ) ( 96 848 -7 ) ( 96 849 -8 ) vct_floor [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 // brush 14
 {
@@ -349,12 +349,12 @@
 }
 // brush 38
 {
-( -64 -64 104 ) ( -64 -63 104 ) ( -64 -64 105 ) dropceiling [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
-( -64 -64 104 ) ( -64 -64 105 ) ( -63 -64 104 ) dropceiling [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
+( -64 -64 104 ) ( -64 -63 104 ) ( -64 -64 105 ) __TB_empty [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( -64 -64 104 ) ( -64 -64 105 ) ( -63 -64 104 ) __TB_empty [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -64 -64 128 ) ( -63 -64 128 ) ( -64 -63 128 ) dropceiling [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
-( 64 64 136 ) ( 64 65 136 ) ( 65 64 136 ) dropceiling [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 0.5 0.5
-( 64 64 136 ) ( 65 64 136 ) ( 64 64 137 ) dropceiling [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
-( 968 64 136 ) ( 968 64 137 ) ( 968 65 136 ) dropceiling [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
+( 64 64 136 ) ( 64 65 136 ) ( 65 64 136 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 64 64 136 ) ( 65 64 136 ) ( 64 64 137 ) __TB_empty [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 968 64 136 ) ( 968 64 137 ) ( 968 65 136 ) __TB_empty [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
 }
 // brush 39
 {
@@ -373,6 +373,42 @@
 ( -64 32 128 ) ( -64 33 128 ) ( -63 32 128 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
 ( -64 32 0 ) ( -63 32 0 ) ( -64 32 1 ) vct_floor [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
 ( -64 32 0 ) ( -64 32 1 ) ( -64 33 0 ) wall_beige [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
+}
+// brush 41
+{
+( 96 848 -8 ) ( 96 849 -8 ) ( 96 848 -7 ) vct_floor [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 256 848 -8 ) ( 256 848 -7 ) ( 257 848 -8 ) wall_beige [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 0.5 0.5
+( 256 848 -8 ) ( 257 848 -8 ) ( 256 849 -8 ) vct_floor [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 968 856 192 ) ( 968 857 192 ) ( 969 856 192 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 968 856 0 ) ( 969 856 0 ) ( 968 856 1 ) vct_floor [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1
+( 968 856 0 ) ( 968 856 1 ) ( 968 857 0 ) vct_floor [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1
+}
+// brush 42
+{
+( 968 226 -8 ) ( 968 226 -7 ) ( 968 225 -8 ) wall_beige [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
+( 976 32 136 ) ( 976 32 137 ) ( 977 32 136 ) vct_floor [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 968 226 -8 ) ( 968 225 -8 ) ( 969 226 -8 ) vct_floor [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 976 34 128 ) ( 977 34 128 ) ( 976 33 128 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 968 64 -8 ) ( 969 64 -8 ) ( 968 64 -7 ) vct_floor [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 970 34 136 ) ( 970 33 136 ) ( 970 34 137 ) vct_floor [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+}
+// brush 43
+{
+( 968 128 -8 ) ( 968 128 -7 ) ( 968 127 -8 ) wall_beige [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
+( 976 -64 136 ) ( 976 -64 137 ) ( 977 -64 136 ) vct_floor [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 968 128 -8 ) ( 968 127 -8 ) ( 969 128 -8 ) vct_floor [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 976 -64 128 ) ( 977 -64 128 ) ( 976 -65 128 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 968 -32 -8 ) ( 969 -32 -8 ) ( 968 -32 -7 ) vct_floor [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 970 -64 136 ) ( 970 -65 136 ) ( 970 -64 137 ) vct_floor [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+}
+// brush 44
+{
+( 968 158 -8 ) ( 968 158 -7 ) ( 968 157 -8 ) wall_beige [ 0 1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 0.5 0.5
+( 976 -34 136 ) ( 976 -34 137 ) ( 977 -34 136 ) vct_floor [ -1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 968 158 72 ) ( 968 157 72 ) ( 969 158 72 ) vct_floor [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 976 -34 128 ) ( 977 -34 128 ) ( 976 -35 128 ) vct_floor [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1
+( 968 34 -8 ) ( 969 34 -8 ) ( 968 34 -7 ) vct_floor [ 1.0000000000000002 0 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
+( 970 -34 136 ) ( 970 -35 136 ) ( 970 -34 137 ) vct_floor [ 0 -1.0000000000000002 0 0 ] [ 0 0 -1.0000000000000002 0 ] 0 1 1
 }
 }
 // entity 1
@@ -404,321 +440,289 @@
 }
 // entity 6
 {
-"classname" "ceiling_light"
-"origin" "-16 16 128"
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "Lights"
+"_tb_id" "1"
+"_tb_linked_group_id" "{2831d8d7-c3e4-478f-b6b8-0a564bd47088}"
+"_tb_transformation" "1 0 0 0 0 1 0 -32 0 0 1 0 0 0 0 1"
 }
 // entity 7
 {
 "classname" "ceiling_light"
-"origin" "80 -16 128"
+"origin" "880 656 192"
+"_tb_group" "1"
 }
 // entity 8
 {
 "classname" "ceiling_light"
-"origin" "176 16 128"
+"origin" "112 656 192"
+"_tb_group" "1"
 }
 // entity 9
 {
 "classname" "ceiling_light"
-"origin" "272 -16 128"
+"origin" "240 656 192"
+"_tb_group" "1"
 }
 // entity 10
 {
 "classname" "ceiling_light"
-"origin" "656 -16 128"
+"origin" "368 656 192"
+"_tb_group" "1"
 }
 // entity 11
 {
 "classname" "ceiling_light"
-"origin" "560 16 128"
+"origin" "496 656 192"
+"_tb_group" "1"
 }
 // entity 12
 {
 "classname" "ceiling_light"
-"origin" "464 -16 128"
+"origin" "624 656 192"
+"_tb_group" "1"
 }
 // entity 13
 {
 "classname" "ceiling_light"
-"origin" "368 16 128"
+"origin" "752 656 192"
+"_tb_group" "1"
 }
 // entity 14
 {
 "classname" "ceiling_light"
-"origin" "944 16 128"
+"origin" "-16 656 192"
+"_tb_group" "1"
 }
 // entity 15
 {
 "classname" "ceiling_light"
-"origin" "848 -16 128"
+"origin" "-16 784 192"
+"_tb_group" "1"
 }
 // entity 16
 {
 "classname" "ceiling_light"
-"origin" "752 16 128"
+"origin" "112 784 192"
+"_tb_group" "1"
 }
 // entity 17
 {
 "classname" "ceiling_light"
-"origin" "208 112 128"
+"origin" "240 784 192"
+"_tb_group" "1"
 }
 // entity 18
 {
 "classname" "ceiling_light"
-"origin" "176 208 128"
+"origin" "368 784 192"
+"_tb_group" "1"
 }
 // entity 19
 {
 "classname" "ceiling_light"
-"origin" "208 304 128"
+"origin" "496 784 192"
+"_tb_group" "1"
 }
 // entity 20
 {
 "classname" "ceiling_light"
-"origin" "16 400 192"
+"origin" "624 784 192"
+"_tb_group" "1"
 }
 // entity 21
 {
 "classname" "ceiling_light"
-"origin" "16 496 192"
+"origin" "752 784 192"
+"_tb_group" "1"
 }
 // entity 22
 {
 "classname" "ceiling_light"
-"origin" "16 592 192"
+"origin" "880 784 192"
+"_tb_group" "1"
 }
 // entity 23
 {
 "classname" "ceiling_light"
-"origin" "16 688 192"
+"origin" "-16 528 192"
+"_tb_group" "1"
 }
 // entity 24
 {
 "classname" "ceiling_light"
-"origin" "16 784 192"
+"origin" "112 528 192"
+"_tb_group" "1"
 }
 // entity 25
 {
 "classname" "ceiling_light"
-"origin" "112 400 192"
+"origin" "240 528 192"
+"_tb_group" "1"
 }
 // entity 26
 {
 "classname" "ceiling_light"
-"origin" "112 496 192"
+"origin" "368 528 192"
+"_tb_group" "1"
 }
 // entity 27
 {
 "classname" "ceiling_light"
-"origin" "112 592 192"
+"origin" "496 528 192"
+"_tb_group" "1"
 }
 // entity 28
 {
 "classname" "ceiling_light"
-"origin" "112 688 192"
+"origin" "624 528 192"
+"_tb_group" "1"
 }
 // entity 29
 {
 "classname" "ceiling_light"
-"origin" "112 784 192"
+"origin" "752 528 192"
+"_tb_group" "1"
 }
 // entity 30
 {
 "classname" "ceiling_light"
-"origin" "208 400 192"
+"origin" "880 528 192"
+"_tb_group" "1"
 }
 // entity 31
 {
 "classname" "ceiling_light"
-"origin" "208 496 192"
+"origin" "-16 400 192"
+"_tb_group" "1"
 }
 // entity 32
 {
 "classname" "ceiling_light"
-"origin" "208 592 192"
+"origin" "112 400 192"
+"_tb_group" "1"
 }
 // entity 33
 {
 "classname" "ceiling_light"
-"origin" "208 688 192"
+"origin" "240 400 192"
+"_tb_group" "1"
 }
 // entity 34
 {
 "classname" "ceiling_light"
-"origin" "208 784 192"
+"origin" "368 400 192"
+"_tb_group" "1"
 }
 // entity 35
 {
 "classname" "ceiling_light"
-"origin" "304 400 192"
+"origin" "496 400 192"
+"_tb_group" "1"
 }
 // entity 36
 {
 "classname" "ceiling_light"
-"origin" "304 496 192"
+"origin" "624 400 192"
+"_tb_group" "1"
 }
 // entity 37
 {
 "classname" "ceiling_light"
-"origin" "304 592 192"
+"origin" "752 400 192"
+"_tb_group" "1"
 }
 // entity 38
 {
 "classname" "ceiling_light"
-"origin" "304 688 192"
+"origin" "880 400 192"
+"_tb_group" "1"
 }
 // entity 39
 {
 "classname" "ceiling_light"
-"origin" "304 784 192"
+"origin" "208 112 128"
 }
 // entity 40
 {
 "classname" "ceiling_light"
-"origin" "400 400 192"
+"origin" "176 272 128"
 }
 // entity 41
 {
-"classname" "ceiling_light"
-"origin" "400 496 192"
+"classname" "func_group"
+"_tb_type" "_tb_group"
+"_tb_name" "Lights2"
+"_tb_id" "2"
+"_tb_linked_group_id" "{17ea8d14-2bbf-40ae-80b2-966950c0ebe2}"
 }
 // entity 42
 {
 "classname" "ceiling_light"
-"origin" "400 592 192"
+"origin" "688 -16 128"
+"_tb_group" "2"
 }
 // entity 43
 {
 "classname" "ceiling_light"
-"origin" "400 688 192"
+"origin" "464 16 128"
+"_tb_group" "2"
 }
 // entity 44
 {
 "classname" "ceiling_light"
-"origin" "400 784 192"
+"origin" "240 -16 128"
+"_tb_group" "2"
 }
 // entity 45
 {
 "classname" "ceiling_light"
-"origin" "496 400 192"
+"origin" "16 16 128"
+"_tb_group" "2"
 }
 // entity 46
 {
 "classname" "ceiling_light"
-"origin" "496 496 192"
+"origin" "1040 816 128"
 }
 // entity 47
 {
 "classname" "ceiling_light"
-"origin" "496 592 192"
+"origin" "1040 720 128"
 }
 // entity 48
 {
 "classname" "ceiling_light"
-"origin" "496 688 192"
+"origin" "1040 624 128"
 }
 // entity 49
 {
 "classname" "ceiling_light"
-"origin" "496 784 192"
+"origin" "1040 528 128"
 }
 // entity 50
 {
 "classname" "ceiling_light"
-"origin" "592 400 192"
+"origin" "1040 432 128"
 }
 // entity 51
 {
 "classname" "ceiling_light"
-"origin" "592 496 192"
+"origin" "880 112 128"
 }
 // entity 52
 {
 "classname" "ceiling_light"
-"origin" "592 592 192"
+"origin" "912 208 128"
 }
 // entity 53
 {
 "classname" "ceiling_light"
-"origin" "592 688 192"
+"origin" "880 304 128"
 }
 // entity 54
 {
-"classname" "ceiling_light"
-"origin" "592 784 192"
-}
-// entity 55
-{
-"classname" "ceiling_light"
-"origin" "688 400 192"
-}
-// entity 56
-{
-"classname" "ceiling_light"
-"origin" "688 496 192"
-}
-// entity 57
-{
-"classname" "ceiling_light"
-"origin" "688 592 192"
-}
-// entity 58
-{
-"classname" "ceiling_light"
-"origin" "688 688 192"
-}
-// entity 59
-{
-"classname" "ceiling_light"
-"origin" "688 784 192"
-}
-// entity 60
-{
-"classname" "ceiling_light"
-"origin" "784 400 192"
-}
-// entity 61
-{
-"classname" "ceiling_light"
-"origin" "784 496 192"
-}
-// entity 62
-{
-"classname" "ceiling_light"
-"origin" "784 592 192"
-}
-// entity 63
-{
-"classname" "ceiling_light"
-"origin" "784 688 192"
-}
-// entity 64
-{
-"classname" "ceiling_light"
-"origin" "784 784 192"
-}
-// entity 65
-{
-"classname" "ceiling_light"
-"origin" "880 400 192"
-}
-// entity 66
-{
-"classname" "ceiling_light"
-"origin" "880 496 192"
-}
-// entity 67
-{
-"classname" "ceiling_light"
-"origin" "880 592 192"
-}
-// entity 68
-{
-"classname" "ceiling_light"
-"origin" "880 688 192"
-}
-// entity 69
-{
-"classname" "ceiling_light"
-"origin" "880 784 192"
+"classname" "double_door"
+"origin" "968 0 0"
 }
