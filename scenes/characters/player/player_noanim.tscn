@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bh86rqxohveas" path="res://scripts/player_controller/core/item_viewer.gd" id="5_j1nb4"]
 [ext_resource type="Script" uid="uid://bpe7eiwq0xmt5" path="res://scripts/interaction/interaction_detector.gd" id="6_w25xy"]
 [ext_resource type="Script" uid="uid://cywrcqv30ljar" path="res://scripts/player_controller/core/state_machine.gd" id="7_kg1x3"]
+[ext_resource type="Script" uid="uid://2jqdy6gooebp" path="res://scripts/player_controller/core/damage_component.gd" id="7_xn3ok"]
 [ext_resource type="Script" uid="uid://fx0vhnevmfei" path="res://scripts/player_controller/no_anim/movement/idle.gd" id="8_54hjk"]
 [ext_resource type="PackedScene" uid="uid://d3f5re2kf7fxu" path="res://scenes/props/interactables/pda.tscn" id="8_p8hx0"]
 [ext_resource type="Script" uid="uid://bfxl4nuw7ak7u" path="res://scripts/player_controller/no_anim/movement/walking.gd" id="9_5cjx6"]
@@ -19,7 +20,7 @@
 radius = 0.41
 height = 1.7
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_p8hx0"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_5gjdu"]
 resource_local_to_scene = true
 resource_name = "pda_cool_pdascreen"
 _surfaces = [{
@@ -36,12 +37,12 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xn3ok"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_hjjqf"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gjdu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7vt4"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_xn3ok")
+albedo_texture = SubResource("ViewportTexture_hjjqf")
 texture_filter = 0
 
 [node name="Player" type="CharacterBody3D" unique_id=1819242889 groups=["player"]]
@@ -75,6 +76,9 @@ walk_fov = 80.0
 [node name="ItemViewer" type="Node" parent="." unique_id=1732957658]
 script = ExtResource("5_j1nb4")
 
+[node name="DamageComponent" type="Node" parent="." unique_id=932376081]
+script = ExtResource("7_xn3ok")
+
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1823666768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
 shape = SubResource("CapsuleShape3D_3uyx6")
@@ -97,8 +101,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 [node name="PDA" parent="CameraPivot/Camera3D" unique_id=1152373490 instance=ExtResource("8_p8hx0")]
 
 [node name="Screen" parent="CameraPivot/Camera3D/PDA" index="4" unique_id=582516628]
-mesh = SubResource("ArrayMesh_p8hx0")
-surface_material_override/0 = SubResource("StandardMaterial3D_5gjdu")
+mesh = SubResource("ArrayMesh_5gjdu")
+surface_material_override/0 = SubResource("StandardMaterial3D_y7vt4")
 
 [node name="Node3D" type="Node3D" parent="CameraPivot/Camera3D" unique_id=595376350]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, -0.025920033, -0.28629625)

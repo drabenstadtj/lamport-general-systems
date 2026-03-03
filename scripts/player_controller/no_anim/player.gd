@@ -19,6 +19,7 @@ extends CharacterBody3D
 @onready var item_viewer: ItemViewer = $ItemViewer
 @onready var collision_manager: CollisionManager = $CollisionManager
 @onready var camera_controller: CameraController = $CameraController
+@onready var damage_component: DamageComponent = $DamageComponent
 
 # Movement State
 var is_crouched: bool = false
@@ -38,6 +39,10 @@ func _ready() -> void:
 	if pda_viewer:
 		pda_viewer.viewing_started.connect(_on_pda_viewing_started)
 		pda_viewer.viewing_ended.connect(_on_pda_viewing_ended)
+		
+	if damage_component:
+		damage_component.player_died.connect(_on_player_died)
+		damage_component.hit_taken.connect(_on_hit_taken)
 
 func _on_terminal_viewing_started() -> void:
 	if camera_controller:
@@ -62,6 +67,18 @@ func _on_pda_viewing_ended() -> void:
 		camera_controller.unlock_camera()
 	if interaction_detector:
 		interaction_detector.enabled = true
+		
+func _on_hit_taken(hits_remaining: int) -> void:
+	if camera_controller:
+		camera_controller.trigger_hit_shake()
+	
+func _on_player_died() -> void:
+	if SaveManager.has_save():
+		await get_tree().process_frame
+		SceneManager.reload_current()
+	else:
+		damage_component.restore(damage_component.max_hits)
+		print("[Player] no save found — resetting health in place")
 
 func _input(event: InputEvent) -> void:
 	if pda_viewer and pda_viewer.handle_input(event):

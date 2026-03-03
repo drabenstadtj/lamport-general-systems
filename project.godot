@@ -32,6 +32,7 @@ NetworkManager="*uid://tkf1ooq6b5sb"
 SceneManager="*uid://b0ofspsd07gxu"
 DoorRegistry="*uid://dkbsha0abjq1t"
 AIDirector="*uid://dcdqfao7r514y"
+SaveManager="*uid://cr1u28ubiryp1"
 
 [display]
 

@@ -8,6 +8,8 @@ var lost_sight_timeout: float = 15.0
 var _prev_move_speed: float = 0.0
 var _had_detection: bool = false
 var _attack_phase := AttackPhase.NONE
+var _attack_cooldown: float = 0.0
+@export var attack_cooldown: float = 1.5
 
 func enter() -> void:
 	print("[HuntState] entered")
@@ -36,13 +38,22 @@ func physics_update(_delta: float) -> void:
 	if _attack_phase != AttackPhase.NONE:
 		_update_attack()
 	else:
-		# navigate to live position when in LOS, otherwise last known
-		if sensory.has_detection:
+		# During cooldown, hold position if already in attack range to avoid pushing player
+		var to_player_flat := AIDirector.player.global_position - actor.global_position
+		to_player_flat.y = 0.0
+		var flat_dist := to_player_flat.length()
+		var holding: bool = _attack_cooldown > 0.0 and flat_dist <= actor.attack_range + 0.3
+
+		if holding:
+			actor.navigate_to(actor.global_position)
+		elif sensory.has_detection:
 			actor.navigate_to(AIDirector.player.global_position)
 		else:
 			actor.navigate_to(sensory.last_detected_position)
 
-		if actor.target_in_attack_range():
+		_face_player(_delta)
+		_attack_cooldown = maxf(_attack_cooldown - _delta, 0.0)
+		if _attack_cooldown <= 0.0 and actor.target_in_attack_range():
 			_start_attack()
 		else:
 			actor.play_anim(actor.get_move_anim("Jog_Fwd"))
@@ -62,6 +73,14 @@ func physics_update(_delta: float) -> void:
 
 	_had_detection = sensory.has_detection
 
+func _face_player(delta: float) -> void:
+	var to_player := AIDirector.player.global_position - actor.global_position
+	to_player.y = 0.0
+	if to_player.length() > 0.01:
+		actor.basis = actor.basis.slerp(
+			Basis.looking_at(to_player, Vector3.UP),
+			clamp(actor.turn_speed * delta, 0.0, 1.0))
+
 func _start_attack() -> void:
 	print("[HuntState] attack — entering stance")
 	_attack_phase = AttackPhase.ENTERING
@@ -76,6 +95,7 @@ func _update_attack() -> void:
 			print("[HuntState] attack — hitting")
 			_attack_phase = AttackPhase.HITTING
 			actor.animation_player.play("AnimationLibrary_Godot/Punch_Jab")
+			AIDirector.player.damage_component.take_hit()
 		AttackPhase.HITTING:
 			print("[HuntState] attack — exiting stance")
 			_attack_phase = AttackPhase.EXITING
@@ -83,3 +103,4 @@ func _update_attack() -> void:
 		AttackPhase.EXITING:
 			print("[HuntState] attack — done")
 			_attack_phase = AttackPhase.NONE
+			_attack_cooldown = attack_cooldown

@@ -1040,13 +1040,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 0)
 transform = Transform3D(-0.8660254, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660254, 13, 0, 0)
 id = "robot1"
 patrol_points = [NodePath("../Robot1Patrol/PatrolPoint"), NodePath("../Robot1Patrol/PatrolPoint2"), NodePath("../Robot1Patrol/PatrolPoint3"), NodePath("../Robot1Patrol/PatrolPoint4")]
-hostile = false
 
 [node name="Robot2" parent="." unique_id=1517618354 node_paths=PackedStringArray("patrol_points") instance=ExtResource("11_yug01")]
 transform = Transform3D(-0.8660254, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660254, 22.17555, 0, 27.131248)
 id = "robot2"
 patrol_points = [NodePath("../Robot2Patrol/PatrolPoint3"), NodePath("../Robot2Patrol/PatrolPoint4"), NodePath("../Robot2Patrol/PatrolPoint"), NodePath("../Robot2Patrol/PatrolPoint2")]
-hostile = false
 
 [node name="NetworkConfig" type="Node" parent="." unique_id=274018967]
 script = ExtResource("15_0rep5")

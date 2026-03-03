@@ -14,7 +14,12 @@ class_name CameraController
 @export var crouch_speed: float = 8.0
 @export var strafe_lean_amount: float = 3.0  # Degrees to lean when strafing
 @export var lean_speed: float = 8.0  # How fast to lean
+
 #endregion
+# Hit shake state
+var _shake_trauma: float = 0.0
+var _shake_intensity: float = 0.006  # radians
+var _shake_decay: float = 4.0
 
 # References
 var player: CharacterBody3D
@@ -89,6 +94,13 @@ func _update_rotation(delta: float) -> void:
 		camera_pivot.rotation.x = camera_rotation.x
 	
 	mouse_motion = Vector2.ZERO
+	# Hit shake
+	if _shake_trauma > 0.0:
+		_shake_trauma = max(_shake_trauma - _shake_decay * delta, 0.0)
+		var shake := _shake_trauma * _shake_trauma  # squared = snappy falloff
+		if camera_pivot:
+			camera_pivot.rotation.x += randf_range(-_shake_intensity, _shake_intensity) * shake
+			camera_pivot.rotation.y += randf_range(-_shake_intensity, _shake_intensity) * shake
 
 func _update_movement_fov(is_sprinting: bool, is_walking: bool) -> void:
 	is_player_sprinting = is_sprinting
@@ -125,6 +137,9 @@ func _update_lean(delta: float) -> void:
 	
 	# Apply as camera roll
 	camera_pivot.rotation_degrees.z = current_lean
+
+func trigger_hit_shake() -> void:
+	_shake_trauma = 1.0
 
 func get_camera() -> Camera3D:
 	return camera

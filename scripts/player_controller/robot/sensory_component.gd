@@ -91,6 +91,12 @@ func vision_check() -> bool:
 	if to_player.length() > vision_range:
 		return false
 
+	# Within melee range — always detected regardless of facing
+	if to_player.length() < 1.5:
+		last_detected_position = player.global_position
+		has_detection = true
+		return true
+
 	# horizontal angle — compare XZ projections
 	var fwd := -global_basis.z
 	var fwd_flat := Vector3(fwd.x, 0.0, fwd.z)
