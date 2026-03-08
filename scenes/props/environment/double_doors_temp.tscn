@@ -164,7 +164,7 @@ skeleton = NodePath("")
 [node name="DoorPivot" type="Node3D" parent="DoorLeft" unique_id=2081757351]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 script = ExtResource("3_ow1aq")
-rotation_deg = -80.0
+rotation_deg = -90.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="DoorLeft/DoorPivot" unique_id=951010051]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)

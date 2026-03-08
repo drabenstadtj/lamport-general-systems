@@ -71,14 +71,30 @@ func _on_pda_viewing_ended() -> void:
 func _on_hit_taken(hits_remaining: int) -> void:
 	if camera_controller:
 		camera_controller.trigger_hit_shake()
-	
+	_update_hud_health(hits_remaining)
+
 func _on_player_died() -> void:
+	_update_hud_health(0)
+	if camera_controller:
+		camera_controller.reset_effects()
+	var hud = get_tree().get_first_node_in_group("hud")
+	if hud:
+		await hud.fade_to_black(0.6)
 	if SaveManager.has_save():
-		await get_tree().process_frame
-		SceneManager.reload_current()
+		await SceneManager.reload_current()
+		_update_hud_health(damage_component.hits_remaining)
 	else:
 		damage_component.restore(damage_component.max_hits)
+		_update_hud_health(damage_component.max_hits)
 		print("[Player] no save found — resetting health in place")
+	if hud:
+		hud.fade_from_black(0.8)
+
+func _update_hud_health(hits_remaining: int) -> void:
+	var hud = get_tree().get_first_node_in_group("hud")
+	if hud:
+		hud.update_health(hits_remaining, damage_component.max_hits)
+	camera_controller.set_injury(hits_remaining, damage_component.max_hits)
 
 func _input(event: InputEvent) -> void:
 	if pda_viewer and pda_viewer.handle_input(event):
@@ -94,7 +110,7 @@ func _process(delta: float) -> void:
 	if collision_manager and camera_controller:
 		camera_controller.update_position(is_sprinting, collision_manager.is_crouched, is_walking, delta)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if terminal_viewer and terminal_viewer.is_viewing:
 		velocity = Vector3.ZERO
 		return

@@ -6,14 +6,24 @@ extends CanvasLayer
 @onready var control_prompt: Label = $MarginContainer/ControlPrompt
 @onready var cursor: ColorRect = $Cursor
 @export var fade_duration: float = 0.5
+@onready var rect = $DamageEffects
 
 var current_demo_tween: Tween = null
+var _desat_tween: Tween = null
+var _fade_overlay: ColorRect = null
+var _fade_tween: Tween = null
 
 func _ready():
+	add_to_group("hud")
 	hide_interaction_prompt()
-	# Set demo_prompt to fully transparent initially
 	if demo_prompt:
 		demo_prompt.modulate.a = 0.0
+	_fade_overlay = ColorRect.new()
+	_fade_overlay.color = Color.BLACK
+	_fade_overlay.modulate.a = 0.0
+	_fade_overlay.anchors_preset = Control.PRESET_FULL_RECT
+	_fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(_fade_overlay)
 	
 func show_interaction_prompt(text: String):
 	interaction_prompt.text = text
@@ -95,3 +105,27 @@ func disable_cursor():
 	
 func enable_cursor():
 	cursor.visible = true
+
+func update_health(hits_remaining: int, max_hits: int) -> void:
+	var target := 1.0 - (float(hits_remaining) / float(max_hits))
+	if _desat_tween:
+		_desat_tween.kill()
+	_desat_tween = create_tween()
+	var current := float(rect.material.get_shader_parameter("desaturate"))
+	_desat_tween.tween_method(set_desaturation, current, target, 0.3)
+
+func set_desaturation(amount: float):
+	rect.material.set_shader_parameter("desaturate", amount)
+
+func fade_to_black(duration: float = 0.5) -> Signal:
+	if _fade_tween:
+		_fade_tween.kill()
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(_fade_overlay, "modulate:a", 1.0, duration)
+	return _fade_tween.finished
+
+func fade_from_black(duration: float = 0.5) -> void:
+	if _fade_tween:
+		_fade_tween.kill()
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(_fade_overlay, "modulate:a", 0.0, duration)

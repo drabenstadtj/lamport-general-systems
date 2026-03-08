@@ -20,7 +20,7 @@
 radius = 0.41
 height = 1.7
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_5gjdu"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_xn3ok"]
 resource_local_to_scene = true
 resource_name = "pda_cool_pdascreen"
 _surfaces = [{
@@ -37,17 +37,18 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_hjjqf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_5gjdu"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7vt4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hjjqf"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_hjjqf")
+albedo_texture = SubResource("ViewportTexture_5gjdu")
 texture_filter = 0
 
 [node name="Player" type="CharacterBody3D" unique_id=1819242889 groups=["player"]]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_64ag5")
 walk_speed = 2.0
 run_speed = 7.0
@@ -72,6 +73,7 @@ script = ExtResource("3_jnklg")
 script = ExtResource("4_64ag5")
 sprint_fov = 90.0
 walk_fov = 80.0
+knockback_amount = 1.0
 
 [node name="ItemViewer" type="Node" parent="." unique_id=1732957658]
 script = ExtResource("5_j1nb4")
@@ -101,8 +103,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 [node name="PDA" parent="CameraPivot/Camera3D" unique_id=1152373490 instance=ExtResource("8_p8hx0")]
 
 [node name="Screen" parent="CameraPivot/Camera3D/PDA" index="4" unique_id=582516628]
-mesh = SubResource("ArrayMesh_5gjdu")
-surface_material_override/0 = SubResource("StandardMaterial3D_y7vt4")
+mesh = SubResource("ArrayMesh_xn3ok")
+surface_material_override/0 = SubResource("StandardMaterial3D_hjjqf")
 
 [node name="Node3D" type="Node3D" parent="CameraPivot/Camera3D" unique_id=595376350]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, -0.025920033, -0.28629625)
