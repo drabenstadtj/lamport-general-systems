@@ -1,9 +1,28 @@
 extends Node
 
-enum DoorSide { 
-	DOOR1, 
-	DOOR2 
+enum DoorSide {
+	DOOR1,
+	DOOR2
 }
+
+var _black_overlay: ColorRect = null
+
+func _ready() -> void:
+	var canvas := CanvasLayer.new()
+	canvas.layer = 128  # on top of everything
+	add_child(canvas)
+	_black_overlay = ColorRect.new()
+	_black_overlay.color = Color.BLACK
+	_black_overlay.anchors_preset = Control.PRESET_FULL_RECT
+	_black_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_black_overlay.visible = false
+	canvas.add_child(_black_overlay)
+
+func show_black_screen() -> void:
+	_black_overlay.visible = true
+
+func hide_black_screen() -> void:
+	_black_overlay.visible = false
 
 func change_scene(dest_scene_path: String, side: DoorSide, dock_name: String, transfer_room: Node3D):
 	if dest_scene_path.begins_with("uid://"):

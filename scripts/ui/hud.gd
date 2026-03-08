@@ -21,9 +21,9 @@ func _ready():
 	_fade_overlay = ColorRect.new()
 	_fade_overlay.color = Color.BLACK
 	_fade_overlay.modulate.a = 0.0
-	_fade_overlay.anchors_preset = Control.PRESET_FULL_RECT
 	_fade_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_fade_overlay)
+	_fade_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	
 func show_interaction_prompt(text: String):
 	interaction_prompt.text = text

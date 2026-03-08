@@ -79,7 +79,7 @@ func _on_player_died() -> void:
 		camera_controller.reset_effects()
 	var hud = get_tree().get_first_node_in_group("hud")
 	if hud:
-		await hud.fade_to_black(0.6)
+		await hud.fade_to_black(0.25)
 	if SaveManager.has_save():
 		await SceneManager.reload_current()
 		_update_hud_health(damage_component.hits_remaining)
@@ -88,7 +88,7 @@ func _on_player_died() -> void:
 		_update_hud_health(damage_component.max_hits)
 		print("[Player] no save found — resetting health in place")
 	if hud:
-		hud.fade_from_black(0.8)
+		hud.fade_from_black(0.25)
 
 func _update_hud_health(hits_remaining: int) -> void:
 	var hud = get_tree().get_first_node_in_group("hud")
