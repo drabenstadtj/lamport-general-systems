@@ -143,5 +143,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
 mesh = SubResource("ArrayMesh_lin6f")
 skeleton = NodePath("")
 
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="DoorPivot" unique_id=1829942773]
+avoidance_enabled = false
+
 [connection signal="interacted" from="DoorPivot/StaticBody3D/Interactable" to="DoorPivot" method="_on_interactable_interacted"]
 [connection signal="interacted" from="DoorPivot/StaticBody3D/Interactable" to="DoorPivot/DoorHandlePivot" method="_on_interactable_interacted"]

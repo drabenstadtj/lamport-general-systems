@@ -14,7 +14,22 @@ class_name CameraController
 @export var crouch_speed: float = 8.0
 @export var strafe_lean_amount: float = 3.0  # Degrees to lean when strafing
 @export var lean_speed: float = 8.0  # How fast to lean
+
 #endregion
+# Hit shake/knockback state
+var _shake_trauma: float = 0.0
+var _shake_intensity: float = 0.006  # radians
+var _shake_decay: float = 4.0
+@export var knockback_amount: float = 0.15  # radians of upward pitch kick
+var _knockback_offset: float = 0.0
+var _knockback_decay: float = 2.5
+
+# Injury bob
+var _injury_amount: float = 0.0
+var _bob_phase: float = 0.0
+@export var injury_bob_speed: float = 1.6     # cycles per second while moving
+@export var injury_tilt: float = 2.5          # degrees of persistent roll toward injured side
+@export var injury_bob_roll: float = 3.5      # degrees of roll swing on top of tilt
 
 # References
 var player: CharacterBody3D
@@ -74,21 +89,23 @@ func update_position(is_sprinting: bool, is_crouched: bool, is_walking: bool, de
 	_update_movement_fov(is_sprinting, is_walking)
 
 func _update_rotation(delta: float) -> void:
-	if mouse_motion == Vector2.ZERO:
-		return
-	
-	# Rotate player body
-	if player:
-		player.rotation.y -= mouse_motion.x * mouse_sensitivity
-	
-	# Rotate camera pitch
-	camera_rotation.x -= mouse_motion.y * mouse_sensitivity
-	camera_rotation.x = clamp(camera_rotation.x, deg_to_rad(camera_x_min), deg_to_rad(camera_x_max))
-	
+	# Apply mouse input
+	if mouse_motion != Vector2.ZERO:
+		if player:
+			player.rotation.y -= mouse_motion.x * mouse_sensitivity
+		camera_rotation.x -= mouse_motion.y * mouse_sensitivity
+		camera_rotation.x = clamp(camera_rotation.x, deg_to_rad(camera_x_min), deg_to_rad(camera_x_max))
+		mouse_motion = Vector2.ZERO
+
+	# Decay knockback and shake every frame
+	_knockback_offset = move_toward(_knockback_offset, 0.0, _knockback_decay * delta)
+	_shake_trauma = max(_shake_trauma - _shake_decay * delta, 0.0)
+	var shake := _shake_trauma * _shake_trauma
+
 	if camera_pivot:
-		camera_pivot.rotation.x = camera_rotation.x
-	
-	mouse_motion = Vector2.ZERO
+		camera_pivot.rotation.x = camera_rotation.x + _knockback_offset \
+			+ randf_range(-_shake_intensity, _shake_intensity) * shake
+		camera_pivot.rotation.y = randf_range(-_shake_intensity, _shake_intensity) * shake
 
 func _update_movement_fov(is_sprinting: bool, is_walking: bool) -> void:
 	is_player_sprinting = is_sprinting
@@ -110,21 +127,37 @@ func _update_fov(delta: float) -> void:
 	
 	camera.fov = lerp(camera.fov, target_fov, fov_transition_speed * delta)
 
+func set_injury(hits_remaining: int, max_hits: int) -> void:
+	_injury_amount = 1.0 - (float(hits_remaining) / float(max_hits))
+
 func _update_lean(delta: float) -> void:
 	if not camera_pivot:
 		return
-	
-	# Get strafe input
+
 	var strafe_input = Input.get_axis("move_left", "move_right")
-	
-	# Calculate target lean
-	var target_lean = -strafe_input * strafe_lean_amount  # Negative so right strafe leans right
-	
-	# Smoothly lerp to target
+	var target_lean = -strafe_input * strafe_lean_amount
 	current_lean = lerp(current_lean, target_lean, lean_speed * delta)
-	
-	# Apply as camera roll
-	camera_pivot.rotation_degrees.z = current_lean
+
+	var injury_offset := 0.0
+	if _injury_amount > 0.0:
+		if player and player.velocity.length() > 0.5:
+			_bob_phase += delta * injury_bob_speed * TAU
+		injury_offset = injury_tilt * _injury_amount + sin(_bob_phase) * injury_bob_roll * _injury_amount
+
+	camera_pivot.rotation_degrees.z = current_lean + injury_offset
+
+func trigger_hit_shake() -> void:
+	_shake_trauma = 1.0
+	_knockback_offset = knockback_amount
+
+func reset_effects() -> void:
+	_shake_trauma = 0.0
+	_knockback_offset = 0.0
+	_injury_amount = 0.0
+	_bob_phase = 0.0
+	if camera_pivot:
+		camera_pivot.rotation.x = camera_rotation.x
+		camera_pivot.rotation.y = 0.0
 
 func get_camera() -> Camera3D:
 	return camera

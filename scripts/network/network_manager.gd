@@ -34,6 +34,13 @@ signal all_nodes_ready
 func _ready():
 	add_to_group("network_manager")
 
+func reset() -> void:
+	network_state = null
+	consensus_engine = null
+	current_turn = 0
+	_initialized = false
+	print("[NetworkManager] reset — ready for new scene")
+
 func initialize_from_scene():
 	"""Call this from your scene after it loads"""
 	if _initialized:

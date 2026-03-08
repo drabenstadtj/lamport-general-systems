@@ -91,6 +91,12 @@ func vision_check() -> bool:
 	if to_player.length() > vision_range:
 		return false
 
+	# Within melee range — always detected regardless of facing
+	if to_player.length() < 1.5:
+		last_detected_position = player.global_position
+		has_detection = true
+		return true
+
 	# horizontal angle — compare XZ projections
 	var fwd := -global_basis.z
 	var fwd_flat := Vector3(fwd.x, 0.0, fwd.z)
@@ -104,17 +110,22 @@ func vision_check() -> bool:
 	if abs(elevation) > deg_to_rad(vision_vertical_angle) / 2.0:
 		return false
 
-	# cast ray toward player center
-	sightline.target_position = sightline.to_local(sightline.global_position + to_player.normalized() * vision_range)
-	sightline.force_raycast_update()
-
-	var collider = sightline.get_collider()
-	if collider is Node:
-		if collider.is_in_group("player"):
-			last_detected_position = player.global_position
-			has_detection = true
-			return true
+	# cast ray toward player center, ignoring door bodies
+	var space := get_world_3d().direct_space_state
+	var query := PhysicsRayQueryParameters3D.create(sightline.global_position, player_center)
+	query.exclude = _get_door_rids()
+	var result := space.intersect_ray(query)
+	if result and result.collider is Node and result.collider.is_in_group("player"):
+		last_detected_position = player.global_position
+		has_detection = true
+		return true
 	return false
+
+func _get_door_rids() -> Array[RID]:
+	var rids: Array[RID] = []
+	for body in get_tree().get_nodes_in_group("door_body"):
+		rids.append(body.get_rid())
+	return rids
 
 # Hearing -------------------------------------------------------------------
 func hear_sound(sound_position: Vector3, volume: float) -> void:

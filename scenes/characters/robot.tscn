@@ -161,8 +161,10 @@ bind/38/bone = -1
 bind/38/pose = Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, -0.11585101, -0.08974405, -0.4845521)
 
 [node name="Robot" type="CharacterBody3D" unique_id=1579965753]
+collision_mask = 5
 script = ExtResource("1_uwdar")
 id = "robot"
+attack_range = 1.0
 
 [node name="StateMachine" type="Node" parent="." unique_id=1971916745 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_edyn1")
@@ -191,6 +193,7 @@ collision_mask = 3
 debug_shape_custom_color = Color(1, 1, 1, 1)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1677674220]
+avoidance_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2029204092]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

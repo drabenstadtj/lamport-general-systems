@@ -4,6 +4,7 @@ var robots = {} # id -> robot data
 var robot_refs = []
 var player: CharacterBody3D
 var level_name: String
+var level_path: String
 var nav_region: NavigationRegion3D
 
 var threat_meter: float = 50.0
@@ -46,6 +47,11 @@ func register_robot(robot: Robot) -> void:
 		new_robot_data.update_from_robot(robot)
 		robots[robot.id] = new_robot_data
 		print("[AIDirector]   no saved data — created new entry for: ", robot.id)
+
+func clear_level_no_save() -> void:
+	robots.clear()
+	robot_refs.clear()
+	print("[AIDirector] clear_level_no_save — refs cleared without writing saves")
 
 func clear_level() -> void:
 	print("[AIDirector] clear_level — saving ", robot_refs.size(), " robot(s)")

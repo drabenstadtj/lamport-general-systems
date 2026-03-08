@@ -65,6 +65,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vqmyv")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ha1df"]
+size = Vector3(1.3000001, 2.4, 0.2)
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_76dgq"]
 _surfaces = [{
 "aabb": AABB(-0.1125, -1.225, -1.1, 0.225, 2.45, 2.2),
@@ -165,7 +168,7 @@ script = ExtResource("3_dek0g")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="DoorPivot2" unique_id=951010051]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-collision_layer = 5
+collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorPivot2/StaticBody3D" unique_id=1385617150]
@@ -180,6 +183,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 mesh = SubResource("ArrayMesh_0qkcu")
 skeleton = NodePath("")
 
+[node name="StaticBody3D2" type="StaticBody3D" parent="DoorPivot2" unique_id=440456061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorPivot2/StaticBody3D2" unique_id=1122853332]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45000002, 0.025000095, 0.100000024)
+shape = SubResource("BoxShape3D_ha1df")
+
 [node name="DoorFrame" type="MeshInstance3D" parent="." unique_id=943401617]
 transform = Transform3D(0.999, 0, 0, 0, 0.999, 0, 0, 0, 0.999, 0, 0, 0)
 mesh = SubResource("ArrayMesh_6klqp")
@@ -188,11 +200,11 @@ skeleton = NodePath("")
 [node name="DoorPivot" type="Node3D" parent="." unique_id=842572086]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 script = ExtResource("3_dek0g")
-rotation_deg = -80.0
+rotation_deg = -90.0
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="DoorPivot" unique_id=1714649291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-collision_layer = 5
+collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorPivot/StaticBody3D2" unique_id=1861307845]
@@ -206,6 +218,15 @@ script = ExtResource("2_dptw2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 mesh = SubResource("ArrayMesh_pjur8")
 skeleton = NodePath("")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="DoorPivot" unique_id=1488658690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DoorPivot/StaticBody3D3" unique_id=470508944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45000002, 0.025000095, -0.100000024)
+shape = SubResource("BoxShape3D_ha1df")
 
 [connection signal="interacted" from="DoorPivot2/StaticBody3D/Interactable" to="DoorPivot2" method="_on_interactable_interacted"]
 [connection signal="interacted" from="DoorPivot/StaticBody3D2/Interactable" to="DoorPivot" method="_on_interactable_interacted"]
