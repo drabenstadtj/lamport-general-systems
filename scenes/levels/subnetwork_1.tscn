@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://dop28qc6cc8m5" path="res://scripts/network/network_config.gd" id="15_0rep5"]
 [ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/props/environment/desk.tscn" id="16_at37b"]
 [ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="17_yaqu0"]
+[ext_resource type="Script" uid="uid://cakdekcyfqs6c" path="res://scripts/environment/cable.gd" id="19_obvoy"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0eri4"]
 vertices = PackedVector3Array(-1.75, 4.75, 10, 1.75, 4.75, 10, 2, 4.75, 7.75, 2, 4.75, 4.25, 1.75, 4.75, -1.75, -1.75, 4.75, -1.75, 9.75, 4.75, 7.75, 9.75, 4.75, 4.25, -1.25, 0.5, 7.25, 0.25, 0.5, 7.25, 0.5, 0.5, 6.5, 0.5, 0.5, 5.75, 0.25, 0.5, 4.5, 1.5, 0.5, -1.25, -0.75, 0.5, -1.5, -1.25, 0.5, -1.25, 3, 0.5, 7.5, 8.5, 0.5, 7.5, 8.5, 0.5, 6.75, 8.5, 0.5, 5.5, 8.5, 0.5, 4.75, 3, 0.5, 4.75, 2.75, 0.5, 6.5, 1.5, 0.5, 4.25, 2.5, 0.5, 5.75, 11, 7, -1.5, 11, 7, 29.75, 26.25, 7, 29.75, 26.25, 7, -1.5, 21.25, 0.5, 3, 22, 0.5, 3, 22, 0.5, 1.25, 21, 0.5, 1, 18, 0.5, 1, 19.25, 0.5, 1, 26, 0.5, -1.25, 11.25, 0.5, -1.25, 15, 0.5, 1, 15.25, 0.5, 3, 16, 0.5, 3, 16.25, 0.5, 1, 18.25, 0.5, 3, 19, 0.5, 3, 11.25, 0.5, 2.75, 13, 0.5, 3, 13.25, 0.5, 1, 24, 0.5, 1, 26, 0.5, 1, 23, 0.5, 16.5, 23, 0.5, 17, 23.25, 0.5, 17.75, 24.25, 0.5, 18, 24.25, 0.5, 16.25, 24, 0.5, 8.5, 26, 0.5, 24.5, 24, 0.5, 24.5, 24, 0.5, 9, 13, 0.5, 17.25, 13.5, 0.5, 17, 13.5, 0.5, 16.5, 13, 0.5, 16.25, 13, 0.5, 9.25, 13.5, 0.5, 9, 13.5, 0.5, 8.5, 13, 0.5, 8.25, 12.75, 0.5, 6.75, 11.25, 0.5, 6.75, 11.25, 0.5, 22.75, 10.75, 0.5, 5.75, 13, 0.5, 22.5, 11.25, 0.5, 5.25, 16, 0.5, 16.25, 15.5, 0.5, 13.25, 15.25, 0.5, 16.25, 22, 0.5, 16.25, 21.25, 0.5, 16.25, 19, 0.5, 17.25, 15.25, 0.5, 8.25, 15.25, 0.5, 9.25, 22, 0.5, 8.25, 21.25, 0.5, 8.25, 21.25, 0.5, 9.25, 22, 0.5, 9.25, 15.25, 0.5, 17.25, 16.25, 0.5, 17, 15.75, 0.5, 19.75, 19, 0.5, 9.25, 18, 0.5, 9, 18.25, 0.5, 16.25, 19, 0.5, 16.25, 18.25, 0.5, 17.25, 19.25, 0.5, 8.5, 18.75, 0.5, 5.25, 15.25, 0.5, 22.5, 16, 0.5, 22.5, 16, 0.5, 9.25, 16.25, 0.5, 8.5, 18.25, 0.5, 22.5, 19, 0.5, 22.5, 18.25, 0.5, 8.25, 16, 0.5, 13, 0.5, 0.5, 7.75, -1.25, 0.5, 29.75, 1.5, 0.5, 29.75, 1.5, 0.5, 7.75, -1.75, 4.75, 24, 1.75, 4.75, 24, 12.5, 0.5, 29.5, 12.75, 0.5, 30.75, 13.5, 0.5, 30.75, 13.75, 0.5, 29.5, 18, 0.5, 24.5, 16.25, 0.5, 24.5, 19.25, 0.5, 24.5, 13.25, 0.5, 24.5, 15, 0.5, 24.5, 11.25, 0.5, 29.5, 22, 0.5, 24.25, 22, 0.5, 19, 21.25, 0.5, 19, 21.25, 0.5, 24.25, 26, 0.5, 29.5, 2, 4.75, 26.25, -1.75, 4.75, 30, 9.75, 4.75, 29.75, 9.75, 4.75, 26.25, 3, 0.5, 26.75, 3, 0.5, 29.5, 9.75, 0.5, 29.5, 9.75, 0.5, 26.75, 12.5, 0.5, 32, 13.75, 0.5, 32, 26, 0.5, 33.75, 26, 0.5, 31, 14.5, 0.5, 32, 11.25, 0.5, 33.75, 11.25, 0.5, 31.75, 14.75, 0.5, 31, 10.75, 4.75, 31, 10.75, 4.75, 34, 26.25, 4.75, 34, 26.25, 4.75, 31)
@@ -257,6 +258,14 @@ script = ExtResource("14_1l6jw")
 is_active_node = true
 node_id = 3
 metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obvoy"]
+albedo_color = Color(0.27265528, 0.2726553, 0.2726553, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tf11d"]
+material = SubResource("StandardMaterial3D_obvoy")
+top_radius = 0.25
+bottom_radius = 0.25
 
 [node name="Subnetwork1" type="Node3D" unique_id=1514744162 node_paths=PackedStringArray("exit_door")]
 script = ExtResource("1_clovb")
@@ -613,7 +622,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb")])
 
 [node name="ServerRack6" parent="NavigationRegion3D/ServerGroup" unique_id=143298999 instance=ExtResource("13_7walx")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.39999962, 0, 4)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_obvoy")])
 
 [node name="ServerRack7" parent="NavigationRegion3D/ServerGroup" unique_id=9406590 instance=ExtResource("13_7walx")]
@@ -675,7 +684,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb")])
 
 [node name="ServerRack4" parent="NavigationRegion3D/ServerGroup3" unique_id=252456132 instance=ExtResource("13_7walx")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.29999924, 0, 2.4)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 2.4)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_tf11d")])
 
 [node name="ServerRack5" parent="NavigationRegion3D/ServerGroup3" unique_id=11007571 instance=ExtResource("13_7walx")]
@@ -788,7 +797,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb")])
 
 [node name="ServerRack6" parent="NavigationRegion3D/ServerGroup6" unique_id=275434915 instance=ExtResource("13_7walx")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.70000076, 0, 4)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_l8hr7")])
 
 [node name="ServerRack7" parent="NavigationRegion3D/ServerGroup6" unique_id=1720926595 instance=ExtResource("13_7walx")]
@@ -920,7 +929,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb")])
 
 [node name="ServerRack4" parent="NavigationRegion3D/ServerGroup10" unique_id=347736924 instance=ExtResource("13_7walx")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.39999962, 0, 2.3999996)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 2.3999996)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_8hc85")])
 
 [node name="ServerRack5" parent="NavigationRegion3D/ServerGroup10" unique_id=1499201678 instance=ExtResource("13_7walx")]
@@ -978,7 +987,7 @@ server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 18)
 
 [node name="ServerRack" parent="NavigationRegion3D/ServerGroup12" unique_id=614064128 instance=ExtResource("13_7walx")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1, 0, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_vmftc")])
 
 [node name="ServerRack2" parent="NavigationRegion3D/ServerGroup12" unique_id=603827740 instance=ExtResource("13_7walx")]
@@ -1091,3 +1100,1358 @@ locked = true
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.138325, 31.290762)
 modulate = Color(0.30980393, 1, 0.39607844, 1)
 text = "$10000000"
+
+[node name="Cables" type="Node3D" parent="." unique_id=191062738]
+
+[node name="CableBunch" type="Node3D" parent="Cables" unique_id=152340951]
+
+[node name="Cable" type="Node3D" parent="Cables/CableBunch" unique_id=1114280171]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D"), NodePath("")])
+sag = 1.48
+thickness = 0.045
+segments = 4
+sides = 3
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch/Cable" unique_id=678542301]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2000008, -6, -1)
+
+[node name="Cable2" type="Node3D" parent="Cables/CableBunch" unique_id=2026152899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch/Cable2" unique_id=1123967771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -4.2, -1.0999999)
+
+[node name="Cable8" type="Node3D" parent="Cables/CableBunch" unique_id=1437087891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch/Cable8" unique_id=1224214024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8999996, -4.2, -1.0999999)
+
+[node name="Cable9" type="Node3D" parent="Cables/CableBunch" unique_id=1867977570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch/Cable9" unique_id=1287402389]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8999996, -4.2, 0.70000076)
+
+[node name="Cable3" type="Node3D" parent="Cables/CableBunch" unique_id=70069219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch/Cable3" unique_id=970841328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -4.2, 0.6999998)
+
+[node name="Cable4" type="Node3D" parent="Cables/CableBunch" unique_id=1735011524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch/Cable4" unique_id=794321855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -4.2, 0.6999998)
+
+[node name="Cable5" type="Node3D" parent="Cables/CableBunch" unique_id=1880162042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch/Cable5" unique_id=885348861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -4.2, -1.1000004)
+
+[node name="Cable6" type="Node3D" parent="Cables/CableBunch" unique_id=1160198]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch/Cable6" unique_id=1036112490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.299999, -4.2, -1.1000004)
+
+[node name="Cable7" type="Node3D" parent="Cables/CableBunch" unique_id=1013955996]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch/Cable7" unique_id=581452562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3999996, -4.2, 0.6999998)
+
+[node name="CableJunction2" type="Node3D" parent="Cables/CableBunch" unique_id=1454259155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cables/CableBunch/CableJunction2" unique_id=1313237816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6999998, 0)
+mesh = SubResource("CylinderMesh_tf11d")
+
+[node name="CableBunch2" type="Node3D" parent="Cables" unique_id=1169861022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="CableJunction" type="Node3D" parent="Cables/CableBunch2" unique_id=7556823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cables/CableBunch2/CableJunction" unique_id=49678890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6999998, 0)
+mesh = SubResource("CylinderMesh_tf11d")
+
+[node name="Cable" type="Node3D" parent="Cables/CableBunch2" unique_id=489536822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D"), NodePath("")])
+sag = 1.48
+thickness = 0.045
+segments = 4
+sides = 3
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch2/Cable" unique_id=1245713572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1000004, -4.2, -1.1999998)
+
+[node name="Cable2" type="Node3D" parent="Cables/CableBunch2" unique_id=1460285366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch2/Cable2" unique_id=689630108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -4.2, -1.0999999)
+
+[node name="Cable8" type="Node3D" parent="Cables/CableBunch2" unique_id=1895647764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch2/Cable8" unique_id=259602514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8999996, -4.2, -1.0999999)
+
+[node name="Cable9" type="Node3D" parent="Cables/CableBunch2" unique_id=1635122828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch2/Cable9" unique_id=751860444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8999996, -4.2, 0.70000076)
+
+[node name="Cable3" type="Node3D" parent="Cables/CableBunch2" unique_id=1023654350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch2/Cable3" unique_id=730689348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -4.2, 0.6999998)
+
+[node name="Cable4" type="Node3D" parent="Cables/CableBunch2" unique_id=1833569211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch2/Cable4" unique_id=830099918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -4.2, 0.6999998)
+
+[node name="Cable5" type="Node3D" parent="Cables/CableBunch2" unique_id=1621170709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch2/Cable5" unique_id=2103325752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -4.2, -1.1000004)
+
+[node name="Cable6" type="Node3D" parent="Cables/CableBunch2" unique_id=1659211568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch2/Cable6" unique_id=348577632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.299999, -4.2, -1.1000004)
+
+[node name="Cable7" type="Node3D" parent="Cables/CableBunch2" unique_id=1671578014]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.4, 6, 9)
+script = ExtResource("19_obvoy")
+mode = null
+waypoints = Array[NodePath]([NodePath("Marker3D")])
+sag = 1.48
+thickness = 0.045
+sides = 8
+
+[node name="Marker3D" type="Marker3D" parent="Cables/CableBunch2/Cable7" unique_id=819744196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3999996, -4.2, 0.6999998)
+
+[node name="FloorBunch" type="Node3D" parent="Cables" unique_id=986503926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 0, 7.7999997)
+
+[node name="Cable" type="Node3D" parent="Cables/FloorBunch" unique_id=1136906568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable2" type="Node3D" parent="Cables/FloorBunch" unique_id=1180285386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable3" type="Node3D" parent="Cables/FloorBunch" unique_id=2032149236]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable4" type="Node3D" parent="Cables/FloorBunch" unique_id=318163428]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable5" type="Node3D" parent="Cables/FloorBunch" unique_id=1766524898]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable6" type="Node3D" parent="Cables/FloorBunch" unique_id=360659096]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable7" type="Node3D" parent="Cables/FloorBunch" unique_id=1031822581]
+transform = Transform3D(2.5500002, 8.7422784e-08, 8.7422784e-08, 2.229281e-07, -1.0000001, 7.642743e-15, 2.229281e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable8" type="Node3D" parent="Cables/FloorBunch" unique_id=747960524]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable9" type="Node3D" parent="Cables/FloorBunch" unique_id=1230879218]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Marker3D" type="Marker3D" parent="Cables/FloorBunch" unique_id=1587534860]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.19999981, 0, -0.7000003)
+
+[node name="Marker3D8" type="Marker3D" parent="Cables/FloorBunch" unique_id=718113929]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 9.536743e-07, 0, -0.4000001)
+
+[node name="Marker3D2" type="Marker3D" parent="Cables/FloorBunch" unique_id=1256260928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -1.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Cables/FloorBunch" unique_id=1391095429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -2.3000002)
+
+[node name="Marker3D9" type="Marker3D" parent="Cables/FloorBunch" unique_id=739463763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -1.8000002)
+
+[node name="Marker3D4" type="Marker3D" parent="Cables/FloorBunch" unique_id=711089942]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -3.1000004)
+
+[node name="Marker3D5" type="Marker3D" parent="Cables/FloorBunch" unique_id=1329117647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -4.0000005)
+
+[node name="Marker3D6" type="Marker3D" parent="Cables/FloorBunch" unique_id=654748164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.1000004)
+
+[node name="Marker3D7" type="Marker3D" parent="Cables/FloorBunch" unique_id=1578726321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.9000006)
+
+[node name="FloorBunch2" type="Node3D" parent="Cables" unique_id=143135253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7, 0, 7.7999997)
+
+[node name="Cable" type="Node3D" parent="Cables/FloorBunch2" unique_id=1925570023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable2" type="Node3D" parent="Cables/FloorBunch2" unique_id=905307691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable3" type="Node3D" parent="Cables/FloorBunch2" unique_id=400128835]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable4" type="Node3D" parent="Cables/FloorBunch2" unique_id=809727979]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable5" type="Node3D" parent="Cables/FloorBunch2" unique_id=394186387]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable6" type="Node3D" parent="Cables/FloorBunch2" unique_id=611126267]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable7" type="Node3D" parent="Cables/FloorBunch2" unique_id=1752473756]
+transform = Transform3D(2.5500002, 8.7422784e-08, 8.7422784e-08, 2.229281e-07, -1.0000001, 7.642743e-15, 2.229281e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable8" type="Node3D" parent="Cables/FloorBunch2" unique_id=1742279699]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable9" type="Node3D" parent="Cables/FloorBunch2" unique_id=1003546912]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Marker3D" type="Marker3D" parent="Cables/FloorBunch2" unique_id=397814878]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.19999981, 0, -0.7000003)
+
+[node name="Marker3D8" type="Marker3D" parent="Cables/FloorBunch2" unique_id=709068280]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 9.536743e-07, 0, -0.4000001)
+
+[node name="Marker3D2" type="Marker3D" parent="Cables/FloorBunch2" unique_id=1691108674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -1.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Cables/FloorBunch2" unique_id=912441885]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -2.3000002)
+
+[node name="Marker3D9" type="Marker3D" parent="Cables/FloorBunch2" unique_id=10802765]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -1.8000002)
+
+[node name="Marker3D4" type="Marker3D" parent="Cables/FloorBunch2" unique_id=262650640]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -3.1000004)
+
+[node name="Marker3D5" type="Marker3D" parent="Cables/FloorBunch2" unique_id=372143518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -4.0000005)
+
+[node name="Marker3D6" type="Marker3D" parent="Cables/FloorBunch2" unique_id=206747473]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.1000004)
+
+[node name="Marker3D7" type="Marker3D" parent="Cables/FloorBunch2" unique_id=2037903855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.9000006)
+
+[node name="FloorBunch3" type="Node3D" parent="Cables" unique_id=1918872622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7, 0, 7.7999997)
+
+[node name="Cable" type="Node3D" parent="Cables/FloorBunch3" unique_id=1548067158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable2" type="Node3D" parent="Cables/FloorBunch3" unique_id=744011613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable3" type="Node3D" parent="Cables/FloorBunch3" unique_id=2133512740]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable4" type="Node3D" parent="Cables/FloorBunch3" unique_id=1434485761]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable5" type="Node3D" parent="Cables/FloorBunch3" unique_id=544452121]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable6" type="Node3D" parent="Cables/FloorBunch3" unique_id=843149237]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable7" type="Node3D" parent="Cables/FloorBunch3" unique_id=599703590]
+transform = Transform3D(2.5500002, 8.7422784e-08, 8.7422784e-08, 2.229281e-07, -1.0000001, 7.642743e-15, 2.229281e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable8" type="Node3D" parent="Cables/FloorBunch3" unique_id=1728252621]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable9" type="Node3D" parent="Cables/FloorBunch3" unique_id=1994561272]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Marker3D" type="Marker3D" parent="Cables/FloorBunch3" unique_id=955328871]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.19999981, 0, -0.7000003)
+
+[node name="Marker3D8" type="Marker3D" parent="Cables/FloorBunch3" unique_id=1938979608]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 9.536743e-07, 0, -0.4000001)
+
+[node name="Marker3D2" type="Marker3D" parent="Cables/FloorBunch3" unique_id=1435272665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -1.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Cables/FloorBunch3" unique_id=1954629480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -2.3000002)
+
+[node name="Marker3D9" type="Marker3D" parent="Cables/FloorBunch3" unique_id=30716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -1.8000002)
+
+[node name="Marker3D4" type="Marker3D" parent="Cables/FloorBunch3" unique_id=412022656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -3.1000004)
+
+[node name="Marker3D5" type="Marker3D" parent="Cables/FloorBunch3" unique_id=1696570969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -4.0000005)
+
+[node name="Marker3D6" type="Marker3D" parent="Cables/FloorBunch3" unique_id=1942425613]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.1000004)
+
+[node name="Marker3D7" type="Marker3D" parent="Cables/FloorBunch3" unique_id=32389900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.9000006)
+
+[node name="FloorBunch4" type="Node3D" parent="Cables" unique_id=2047859091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7, 0, 7.7999997)
+
+[node name="Cable" type="Node3D" parent="Cables/FloorBunch4" unique_id=949768946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable2" type="Node3D" parent="Cables/FloorBunch4" unique_id=1545228800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable3" type="Node3D" parent="Cables/FloorBunch4" unique_id=399104046]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable4" type="Node3D" parent="Cables/FloorBunch4" unique_id=1277755149]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable5" type="Node3D" parent="Cables/FloorBunch4" unique_id=1477051399]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable6" type="Node3D" parent="Cables/FloorBunch4" unique_id=1465259576]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable7" type="Node3D" parent="Cables/FloorBunch4" unique_id=660490729]
+transform = Transform3D(2.5500002, 8.7422784e-08, 8.7422784e-08, 2.229281e-07, -1.0000001, 7.642743e-15, 2.229281e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable8" type="Node3D" parent="Cables/FloorBunch4" unique_id=677677271]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable9" type="Node3D" parent="Cables/FloorBunch4" unique_id=1790278309]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Marker3D" type="Marker3D" parent="Cables/FloorBunch4" unique_id=338007543]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.19999981, 0, -0.7000003)
+
+[node name="Marker3D8" type="Marker3D" parent="Cables/FloorBunch4" unique_id=991387013]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 9.536743e-07, 0, -0.4000001)
+
+[node name="Marker3D2" type="Marker3D" parent="Cables/FloorBunch4" unique_id=839040602]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -1.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Cables/FloorBunch4" unique_id=1829071597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -2.3000002)
+
+[node name="Marker3D9" type="Marker3D" parent="Cables/FloorBunch4" unique_id=487815918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -1.8000002)
+
+[node name="Marker3D4" type="Marker3D" parent="Cables/FloorBunch4" unique_id=728446099]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -3.1000004)
+
+[node name="Marker3D5" type="Marker3D" parent="Cables/FloorBunch4" unique_id=415755955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -4.0000005)
+
+[node name="Marker3D6" type="Marker3D" parent="Cables/FloorBunch4" unique_id=1536490835]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.1000004)
+
+[node name="Marker3D7" type="Marker3D" parent="Cables/FloorBunch4" unique_id=1579874839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.9000006)
+
+[node name="FloorBunch5" type="Node3D" parent="Cables" unique_id=212476248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 0, 15.799999)
+
+[node name="Cable" type="Node3D" parent="Cables/FloorBunch5" unique_id=1046409088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable2" type="Node3D" parent="Cables/FloorBunch5" unique_id=37709910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable3" type="Node3D" parent="Cables/FloorBunch5" unique_id=1164283899]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable4" type="Node3D" parent="Cables/FloorBunch5" unique_id=312274017]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable5" type="Node3D" parent="Cables/FloorBunch5" unique_id=427952805]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable6" type="Node3D" parent="Cables/FloorBunch5" unique_id=2117320587]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable7" type="Node3D" parent="Cables/FloorBunch5" unique_id=1518884122]
+transform = Transform3D(2.5500002, 8.7422784e-08, 8.7422784e-08, 2.229281e-07, -1.0000001, 7.642743e-15, 2.229281e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable8" type="Node3D" parent="Cables/FloorBunch5" unique_id=2005264645]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable9" type="Node3D" parent="Cables/FloorBunch5" unique_id=1505837402]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Marker3D" type="Marker3D" parent="Cables/FloorBunch5" unique_id=48174429]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.19999981, 0, -0.7000003)
+
+[node name="Marker3D8" type="Marker3D" parent="Cables/FloorBunch5" unique_id=21543813]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 9.536743e-07, 0, -0.4000001)
+
+[node name="Marker3D2" type="Marker3D" parent="Cables/FloorBunch5" unique_id=1882507696]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -1.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Cables/FloorBunch5" unique_id=675944617]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -2.3000002)
+
+[node name="Marker3D9" type="Marker3D" parent="Cables/FloorBunch5" unique_id=1262183051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -1.8000002)
+
+[node name="Marker3D4" type="Marker3D" parent="Cables/FloorBunch5" unique_id=1040024702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -3.1000004)
+
+[node name="Marker3D5" type="Marker3D" parent="Cables/FloorBunch5" unique_id=865459284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -4.0000005)
+
+[node name="Marker3D6" type="Marker3D" parent="Cables/FloorBunch5" unique_id=1153216007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.1000004)
+
+[node name="Marker3D7" type="Marker3D" parent="Cables/FloorBunch5" unique_id=298950218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.9000006)
+
+[node name="FloorBunch6" type="Node3D" parent="Cables" unique_id=1018129870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7, 0, 15.799999)
+
+[node name="Cable" type="Node3D" parent="Cables/FloorBunch6" unique_id=284257312]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable2" type="Node3D" parent="Cables/FloorBunch6" unique_id=1099616488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable3" type="Node3D" parent="Cables/FloorBunch6" unique_id=491350858]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable4" type="Node3D" parent="Cables/FloorBunch6" unique_id=358512206]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable5" type="Node3D" parent="Cables/FloorBunch6" unique_id=1098381653]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable6" type="Node3D" parent="Cables/FloorBunch6" unique_id=54833555]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable7" type="Node3D" parent="Cables/FloorBunch6" unique_id=1376743547]
+transform = Transform3D(2.5500002, 8.7422784e-08, 8.7422784e-08, 2.229281e-07, -1.0000001, 7.642743e-15, 2.229281e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable8" type="Node3D" parent="Cables/FloorBunch6" unique_id=55743322]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable9" type="Node3D" parent="Cables/FloorBunch6" unique_id=1059111187]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Marker3D" type="Marker3D" parent="Cables/FloorBunch6" unique_id=1874803659]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.19999981, 0, -0.7000003)
+
+[node name="Marker3D8" type="Marker3D" parent="Cables/FloorBunch6" unique_id=724984023]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 9.536743e-07, 0, -0.4000001)
+
+[node name="Marker3D2" type="Marker3D" parent="Cables/FloorBunch6" unique_id=304040070]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -1.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Cables/FloorBunch6" unique_id=244255359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -2.3000002)
+
+[node name="Marker3D9" type="Marker3D" parent="Cables/FloorBunch6" unique_id=2001514540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -1.8000002)
+
+[node name="Marker3D4" type="Marker3D" parent="Cables/FloorBunch6" unique_id=891526029]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -3.1000004)
+
+[node name="Marker3D5" type="Marker3D" parent="Cables/FloorBunch6" unique_id=1561779238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -4.0000005)
+
+[node name="Marker3D6" type="Marker3D" parent="Cables/FloorBunch6" unique_id=782434616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.1000004)
+
+[node name="Marker3D7" type="Marker3D" parent="Cables/FloorBunch6" unique_id=2144190904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.9000006)
+
+[node name="FloorBunch7" type="Node3D" parent="Cables" unique_id=373895507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7, 0, 15.799999)
+
+[node name="Cable" type="Node3D" parent="Cables/FloorBunch7" unique_id=2107645878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable2" type="Node3D" parent="Cables/FloorBunch7" unique_id=1034825826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable3" type="Node3D" parent="Cables/FloorBunch7" unique_id=785000356]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable4" type="Node3D" parent="Cables/FloorBunch7" unique_id=160438996]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable5" type="Node3D" parent="Cables/FloorBunch7" unique_id=1396368837]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable6" type="Node3D" parent="Cables/FloorBunch7" unique_id=439704607]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable7" type="Node3D" parent="Cables/FloorBunch7" unique_id=1419993552]
+transform = Transform3D(2.5500002, 8.7422784e-08, 8.7422784e-08, 2.229281e-07, -1.0000001, 7.642743e-15, 2.229281e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable8" type="Node3D" parent="Cables/FloorBunch7" unique_id=42796423]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable9" type="Node3D" parent="Cables/FloorBunch7" unique_id=305375109]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Marker3D" type="Marker3D" parent="Cables/FloorBunch7" unique_id=162000505]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.19999981, 0, -0.7000003)
+
+[node name="Marker3D8" type="Marker3D" parent="Cables/FloorBunch7" unique_id=296435406]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 9.536743e-07, 0, -0.4000001)
+
+[node name="Marker3D2" type="Marker3D" parent="Cables/FloorBunch7" unique_id=1178036045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -1.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Cables/FloorBunch7" unique_id=586322518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -2.3000002)
+
+[node name="Marker3D9" type="Marker3D" parent="Cables/FloorBunch7" unique_id=119683462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -1.8000002)
+
+[node name="Marker3D4" type="Marker3D" parent="Cables/FloorBunch7" unique_id=1797208437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -3.1000004)
+
+[node name="Marker3D5" type="Marker3D" parent="Cables/FloorBunch7" unique_id=749706291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -4.0000005)
+
+[node name="Marker3D6" type="Marker3D" parent="Cables/FloorBunch7" unique_id=2071952993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.1000004)
+
+[node name="Marker3D7" type="Marker3D" parent="Cables/FloorBunch7" unique_id=357285719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.9000006)
+
+[node name="FloorBunch8" type="Node3D" parent="Cables" unique_id=1230398690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7, 0, 15.799999)
+
+[node name="Cable" type="Node3D" parent="Cables/FloorBunch8" unique_id=668204844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable2" type="Node3D" parent="Cables/FloorBunch8" unique_id=1324418794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable3" type="Node3D" parent="Cables/FloorBunch8" unique_id=577666802]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable4" type="Node3D" parent="Cables/FloorBunch8" unique_id=126464013]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable5" type="Node3D" parent="Cables/FloorBunch8" unique_id=1812775237]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable6" type="Node3D" parent="Cables/FloorBunch8" unique_id=59103977]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable7" type="Node3D" parent="Cables/FloorBunch8" unique_id=1712608504]
+transform = Transform3D(2.5500002, 8.7422784e-08, 8.7422784e-08, 2.229281e-07, -1.0000001, 7.642743e-15, 2.229281e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable8" type="Node3D" parent="Cables/FloorBunch8" unique_id=895929335]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable9" type="Node3D" parent="Cables/FloorBunch8" unique_id=1978507378]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Marker3D" type="Marker3D" parent="Cables/FloorBunch8" unique_id=666476410]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.19999981, 0, -0.7000003)
+
+[node name="Marker3D8" type="Marker3D" parent="Cables/FloorBunch8" unique_id=877897874]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 9.536743e-07, 0, -0.4000001)
+
+[node name="Marker3D2" type="Marker3D" parent="Cables/FloorBunch8" unique_id=284249950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -1.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Cables/FloorBunch8" unique_id=155738945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -2.3000002)
+
+[node name="Marker3D9" type="Marker3D" parent="Cables/FloorBunch8" unique_id=21002715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -1.8000002)
+
+[node name="Marker3D4" type="Marker3D" parent="Cables/FloorBunch8" unique_id=1706014020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -3.1000004)
+
+[node name="Marker3D5" type="Marker3D" parent="Cables/FloorBunch8" unique_id=1480519240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -4.0000005)
+
+[node name="Marker3D6" type="Marker3D" parent="Cables/FloorBunch8" unique_id=1052404271]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.1000004)
+
+[node name="Marker3D7" type="Marker3D" parent="Cables/FloorBunch8" unique_id=1577841159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.9000006)
+
+[node name="FloorBunch9" type="Node3D" parent="Cables" unique_id=319367007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7, 0, 23.8)
+
+[node name="Cable" type="Node3D" parent="Cables/FloorBunch9" unique_id=904676998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable2" type="Node3D" parent="Cables/FloorBunch9" unique_id=1007092029]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable3" type="Node3D" parent="Cables/FloorBunch9" unique_id=776491596]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable4" type="Node3D" parent="Cables/FloorBunch9" unique_id=717890376]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable5" type="Node3D" parent="Cables/FloorBunch9" unique_id=1843158295]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable6" type="Node3D" parent="Cables/FloorBunch9" unique_id=1062211886]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable7" type="Node3D" parent="Cables/FloorBunch9" unique_id=1981972951]
+transform = Transform3D(2.5500002, 8.7422784e-08, 8.7422784e-08, 2.229281e-07, -1.0000001, 7.642743e-15, 2.229281e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable8" type="Node3D" parent="Cables/FloorBunch9" unique_id=274480519]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable9" type="Node3D" parent="Cables/FloorBunch9" unique_id=30143824]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Marker3D" type="Marker3D" parent="Cables/FloorBunch9" unique_id=678742605]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.19999981, 0, -0.7000003)
+
+[node name="Marker3D8" type="Marker3D" parent="Cables/FloorBunch9" unique_id=979069555]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 9.536743e-07, 0, -0.4000001)
+
+[node name="Marker3D2" type="Marker3D" parent="Cables/FloorBunch9" unique_id=1758995981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -1.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Cables/FloorBunch9" unique_id=2040510404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -2.3000002)
+
+[node name="Marker3D9" type="Marker3D" parent="Cables/FloorBunch9" unique_id=1403599554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -1.8000002)
+
+[node name="Marker3D4" type="Marker3D" parent="Cables/FloorBunch9" unique_id=967675581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -3.1000004)
+
+[node name="Marker3D5" type="Marker3D" parent="Cables/FloorBunch9" unique_id=210876199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -4.0000005)
+
+[node name="Marker3D6" type="Marker3D" parent="Cables/FloorBunch9" unique_id=98050151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.1000004)
+
+[node name="Marker3D7" type="Marker3D" parent="Cables/FloorBunch9" unique_id=2062591924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.9000006)
+
+[node name="FloorBunch10" type="Node3D" parent="Cables" unique_id=847010560]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7, 0, 23.8)
+
+[node name="Cable" type="Node3D" parent="Cables/FloorBunch10" unique_id=642715995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable2" type="Node3D" parent="Cables/FloorBunch10" unique_id=987751195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable3" type="Node3D" parent="Cables/FloorBunch10" unique_id=1151066227]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable4" type="Node3D" parent="Cables/FloorBunch10" unique_id=1703223865]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable5" type="Node3D" parent="Cables/FloorBunch10" unique_id=439108490]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable6" type="Node3D" parent="Cables/FloorBunch10" unique_id=1724014303]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable7" type="Node3D" parent="Cables/FloorBunch10" unique_id=86663144]
+transform = Transform3D(2.5500002, 8.7422784e-08, 8.7422784e-08, 2.229281e-07, -1.0000001, 7.642743e-15, 2.229281e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable8" type="Node3D" parent="Cables/FloorBunch10" unique_id=551466357]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable9" type="Node3D" parent="Cables/FloorBunch10" unique_id=660668170]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Marker3D" type="Marker3D" parent="Cables/FloorBunch10" unique_id=1203934395]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.19999981, 0, -0.7000003)
+
+[node name="Marker3D8" type="Marker3D" parent="Cables/FloorBunch10" unique_id=414954101]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 9.536743e-07, 0, -0.4000001)
+
+[node name="Marker3D2" type="Marker3D" parent="Cables/FloorBunch10" unique_id=1086483006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -1.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Cables/FloorBunch10" unique_id=1588752155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -2.3000002)
+
+[node name="Marker3D9" type="Marker3D" parent="Cables/FloorBunch10" unique_id=468442924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -1.8000002)
+
+[node name="Marker3D4" type="Marker3D" parent="Cables/FloorBunch10" unique_id=2140039005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -3.1000004)
+
+[node name="Marker3D5" type="Marker3D" parent="Cables/FloorBunch10" unique_id=1557788135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -4.0000005)
+
+[node name="Marker3D6" type="Marker3D" parent="Cables/FloorBunch10" unique_id=1138502054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.1000004)
+
+[node name="Marker3D7" type="Marker3D" parent="Cables/FloorBunch10" unique_id=1429870753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.9000006)
+
+[node name="FloorBunch11" type="Node3D" parent="Cables" unique_id=1211540973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7, 0, 23.8)
+
+[node name="Cable" type="Node3D" parent="Cables/FloorBunch11" unique_id=1750888268]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable2" type="Node3D" parent="Cables/FloorBunch11" unique_id=1070172825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable3" type="Node3D" parent="Cables/FloorBunch11" unique_id=2081339735]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable4" type="Node3D" parent="Cables/FloorBunch11" unique_id=1451102712]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable5" type="Node3D" parent="Cables/FloorBunch11" unique_id=396447711]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable6" type="Node3D" parent="Cables/FloorBunch11" unique_id=1602121533]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable7" type="Node3D" parent="Cables/FloorBunch11" unique_id=1083603034]
+transform = Transform3D(2.5500002, 8.7422784e-08, 8.7422784e-08, 2.229281e-07, -1.0000001, 7.642743e-15, 2.229281e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable8" type="Node3D" parent="Cables/FloorBunch11" unique_id=1624112067]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable9" type="Node3D" parent="Cables/FloorBunch11" unique_id=364334980]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Marker3D" type="Marker3D" parent="Cables/FloorBunch11" unique_id=476054568]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.19999981, 0, -0.7000003)
+
+[node name="Marker3D8" type="Marker3D" parent="Cables/FloorBunch11" unique_id=622713716]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 9.536743e-07, 0, -0.4000001)
+
+[node name="Marker3D2" type="Marker3D" parent="Cables/FloorBunch11" unique_id=1037906724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -1.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Cables/FloorBunch11" unique_id=1053054600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -2.3000002)
+
+[node name="Marker3D9" type="Marker3D" parent="Cables/FloorBunch11" unique_id=1326578657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -1.8000002)
+
+[node name="Marker3D4" type="Marker3D" parent="Cables/FloorBunch11" unique_id=1181895567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -3.1000004)
+
+[node name="Marker3D5" type="Marker3D" parent="Cables/FloorBunch11" unique_id=341314018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -4.0000005)
+
+[node name="Marker3D6" type="Marker3D" parent="Cables/FloorBunch11" unique_id=1641499962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.1000004)
+
+[node name="Marker3D7" type="Marker3D" parent="Cables/FloorBunch11" unique_id=909347013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.9000006)
+
+[node name="FloorBunch12" type="Node3D" parent="Cables" unique_id=1376458839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7, 0, 23.8)
+
+[node name="Cable" type="Node3D" parent="Cables/FloorBunch12" unique_id=1367373674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable2" type="Node3D" parent="Cables/FloorBunch12" unique_id=730308070]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable3" type="Node3D" parent="Cables/FloorBunch12" unique_id=19700506]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, 0.099999905)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable4" type="Node3D" parent="Cables/FloorBunch12" unique_id=1701824226]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable5" type="Node3D" parent="Cables/FloorBunch12" unique_id=20327442]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable6" type="Node3D" parent="Cables/FloorBunch12" unique_id=309775453]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -4.7)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable7" type="Node3D" parent="Cables/FloorBunch12" unique_id=1272270430]
+transform = Transform3D(2.5500002, 8.7422784e-08, 8.7422784e-08, 2.229281e-07, -1.0000001, 7.642743e-15, 2.229281e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable8" type="Node3D" parent="Cables/FloorBunch12" unique_id=220839583]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D2")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Cable9" type="Node3D" parent="Cables/FloorBunch12" unique_id=1946268999]
+transform = Transform3D(1.7, 8.7422784e-08, 8.7422784e-08, 1.4861872e-07, -1.0000001, 7.642743e-15, 1.4861872e-07, 0, -1.0000001, -0.19999981, 0, -6.1)
+script = ExtResource("19_obvoy")
+mode = 1
+waypoints = Array[NodePath]([NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D3")])
+metadata/_custom_type_script = "uid://cakdekcyfqs6c"
+
+[node name="Marker3D" type="Marker3D" parent="Cables/FloorBunch12" unique_id=206286297]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, -0.19999981, 0, -0.7000003)
+
+[node name="Marker3D8" type="Marker3D" parent="Cables/FloorBunch12" unique_id=1805858643]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 9.536743e-07, 0, -0.4000001)
+
+[node name="Marker3D2" type="Marker3D" parent="Cables/FloorBunch12" unique_id=456832808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -1.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Cables/FloorBunch12" unique_id=435201437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -2.3000002)
+
+[node name="Marker3D9" type="Marker3D" parent="Cables/FloorBunch12" unique_id=27530918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, -1.8000002)
+
+[node name="Marker3D4" type="Marker3D" parent="Cables/FloorBunch12" unique_id=1479104123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -3.1000004)
+
+[node name="Marker3D5" type="Marker3D" parent="Cables/FloorBunch12" unique_id=1641724379]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -4.0000005)
+
+[node name="Marker3D6" type="Marker3D" parent="Cables/FloorBunch12" unique_id=1048846371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.1000004)
+
+[node name="Marker3D7" type="Marker3D" parent="Cables/FloorBunch12" unique_id=688819352]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999981, 0, -5.9000006)

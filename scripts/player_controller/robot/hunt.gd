@@ -42,10 +42,7 @@ func physics_update(_delta: float) -> void:
 		if sensory.has_detection:
 			actor.navigate_to(AIDirector.player.global_position)
 		else:
-			if lost_sight_timer <= blind_chase_duration:
-				actor.navigate_to(AIDirector.player.global_position)
-			else:
-				actor.navigate_to(sensory.last_detected_position)
+			actor.navigate_to(sensory.last_detected_position)
 
 		_face_player(_delta)
 		_attack_cooldown = maxf(_attack_cooldown - _delta, 0.0)
