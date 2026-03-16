@@ -55,6 +55,7 @@ func _setup_state_label() -> void:
 	_state_label.modulate = Color.WHITE
 	_state_label.outline_modulate = Color.BLACK
 	_state_label.outline_size = 8
+	_state_label.visible = false
 	add_child(_state_label)
 
 # Animation ------------------------------------------------------------------

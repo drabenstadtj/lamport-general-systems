@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c3415gcf0v4nc" path="res://scripts/player_controller/robot/sensory_component.gd" id="7_0jwdc"]
 [ext_resource type="Material" uid="uid://dia73wexvaj6w" path="res://assets/materials/Material.001.tres" id="8_rfts2"]
 [ext_resource type="AnimationLibrary" uid="uid://jaa5hiqko5he" path="res://assets/animations/AnimationLibrary_Godot.glb" id="9_ke3jn"]
+[ext_resource type="Material" uid="uid://b1fn566ojadg0" path="res://assets/materials/pda_buttons_metallic_mat.tres" id="9_ncgw0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0jwdc"]
 radius = 0.25
@@ -492,6 +493,7 @@ bones/38/scale = Vector3(1, 1, 1)
 [node name="Cube" type="MeshInstance3D" parent="Armature/GeneralSkeleton" unique_id=1523607411]
 mesh = SubResource("ArrayMesh_nyps3")
 skin = SubResource("Skin_pbf54")
+surface_material_override/0 = ExtResource("9_ncgw0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2133988323]
 libraries/AnimationLibrary_Godot = ExtResource("9_ke3jn")

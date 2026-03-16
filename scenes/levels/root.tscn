@@ -25,6 +25,21 @@ _surfaces = [{
 points = PackedVector3Array(2, 0.5, 2, 2, -0.5, 2, -2, 0.5, 2, -2, -0.5, 2, 2, 0.5, -2, 2, -0.5, -2, -2, 0.5, -2, -2, -0.5, -2)
 
 [sub_resource type="Environment" id="Environment_q23bv"]
+background_mode = 1
+background_color = Color(0.04, 0.04, 0.05, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.9, 0.88, 0.82, 1)
+ambient_light_energy = 0.08
+tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 1.2
+ssao_intensity = 2.5
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.6
+glow_strength = 1.2
+glow_bloom = 0.08
+glow_blend_mode = 2
 
 [node name="Root" type="Node3D" unique_id=1638958329]
 
