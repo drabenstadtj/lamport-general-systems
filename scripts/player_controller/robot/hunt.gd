@@ -4,10 +4,12 @@ class_name HuntState
 enum AttackPhase { NONE, ENTERING, HITTING, EXITING }
 
 var lost_sight_timer: float = 0.0
-var lost_sight_timeout: float = 15.0
-@export var blind_chase_duration: float = 7.5
+@export var blind_chase_duration: float = 5.0
+@export var blind_target_spread: float = 4.0
 var _prev_move_speed: float = 0.0
 var _had_detection: bool = false
+var _blind_target: Vector3 = Vector3.ZERO
+var _has_blind_target: bool = false
 var _attack_phase := AttackPhase.NONE
 var _attack_cooldown: float = 0.0
 @export var attack_cooldown: float = 1.5
@@ -42,26 +44,30 @@ func physics_update(_delta: float) -> void:
 		if sensory.has_detection:
 			actor.navigate_to(AIDirector.player.global_position)
 		else:
-			actor.navigate_to(sensory.last_detected_position)
+			actor.navigate_to(_blind_target if _has_blind_target else sensory.last_detected_position)
 
 		_face_player(_delta)
 		_attack_cooldown = maxf(_attack_cooldown - _delta, 0.0)
 		if _attack_cooldown <= 0.0 and actor.target_in_attack_range():
 			_start_attack()
 		else:
-			actor.play_anim(actor.get_move_anim("Jog_Fwd"))
+			actor.play_anim(actor.get_move_anim("Sprint"))
 
 	# count down hunt timer when LOS is lost; reset when regained
-	if lost_sight_timer >= lost_sight_timeout:
+	if lost_sight_timer >= blind_chase_duration:
 		print("[HuntState] hunt timed out — transitioning to Investigate")
 		actor.state_machine.transition_to("Investigate")
 	elif sensory.has_detection:
 		if not _had_detection:
 			print("[HuntState] sight regained")
 		lost_sight_timer = 0.0
+		_has_blind_target = false
 	else:
 		if _had_detection:
-			print("[HuntState] sight lost — timer running (timeout: ", lost_sight_timeout, "s)")
+			print("[HuntState] sight lost — timer running (timeout: ", blind_chase_duration, "s)")
+			var offset := Vector3(randf_range(-blind_target_spread, blind_target_spread), 0.0, randf_range(-blind_target_spread, blind_target_spread))
+			_blind_target = sensory.last_detected_position + offset
+			_has_blind_target = true
 		lost_sight_timer += _delta
 
 	_had_detection = sensory.has_detection

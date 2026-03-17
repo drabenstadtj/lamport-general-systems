@@ -5,10 +5,14 @@ var server: Server = null
 
 func _ready():
 	server = _find_server(get_parent())
-	
+
+	if server and not server.is_active:
+		enabled = false
+		return
+
 	# Wait for all nodes to be ready
 	await NetworkManager.all_nodes_ready
-	
+
 	_update_prompt()
 
 func _find_server(node: Node) -> Server:

@@ -6,6 +6,10 @@ class_name Robot
 @onready var sensory_component: SensoryComponent = $SensoryComponent
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var footstep_audio: AudioStreamPlayer3D = $FootstepAudio
+
+@export_group("Footsteps")
+@export var footstep_sounds: Array[AudioStream] = []
 # Exports ---------------------------------------------------------------------
 @export var id: String
 
@@ -57,6 +61,14 @@ func _setup_state_label() -> void:
 	_state_label.outline_size = 8
 	_state_label.visible = false
 	add_child(_state_label)
+
+# Footsteps ------------------------------------------------------------------
+func play_footstep() -> void:
+	if footstep_sounds.is_empty() or not footstep_audio:
+		return
+	footstep_audio.stream = footstep_sounds[randi() % footstep_sounds.size()]
+	footstep_audio.pitch_scale = randf_range(0.9, 1.1)
+	footstep_audio.play()
 
 # Animation ------------------------------------------------------------------
 func play_anim(anim: String) -> void:
