@@ -44,6 +44,17 @@ func _process(delta: float) -> void:
 	if is_transitioning:
 		_update_pda_position(delta)
 
+func _physics_process(delta: float) -> void:
+	if not is_viewing or not player:
+		return
+	player.velocity.x = 0.0
+	player.velocity.z = 0.0
+	if not player.is_on_floor():
+		player.velocity.y -= 9.8 * delta
+	else:
+		player.velocity.y = 0.0
+	player.move_and_slide()
+
 func start_viewing() -> void:
 	if is_viewing or is_transitioning:
 		return
@@ -117,8 +128,8 @@ func handle_input(event: InputEvent) -> bool:
 	if is_transitioning:
 		return true
 	
-	# ESC to exit
-	if event.is_action_pressed("ui_cancel"):
+	# ESC or G to exit
+	if event.is_action_pressed("ui_cancel") or (event is InputEventKey and event.pressed and event.keycode == KEY_G):
 		exit_viewing()
 		return true
 	
