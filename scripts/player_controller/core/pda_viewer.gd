@@ -47,6 +47,8 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if not is_viewing or not player:
 		return
+	player.velocity.x = 0.0
+	player.velocity.z = 0.0
 	if not player.is_on_floor():
 		player.velocity.y -= 9.8 * delta
 	else:

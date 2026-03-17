@@ -22,6 +22,7 @@ extends CharacterBody3D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var interaction_detector = $CameraPivot/Camera3D/InteractionRaycast
 @onready var terminal_viewer: TerminalViewer = $TerminalViewer
+@onready var pda_viewer: PDAViewer = $PDAViewer
 @onready var item_viewer: ItemViewer = $ItemViewer
 @onready var collision_manager: CollisionManager = $CollisionManager
 @onready var camera_controller: CameraController = $CameraController
@@ -51,12 +52,14 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if pda_viewer and pda_viewer.handle_input(event):
+		return
 	# Let terminal viewer handle input first if active
 	if terminal_viewer and terminal_viewer.handle_input(event):
 		return
 	if item_viewer and item_viewer.handle_input(event):
 		return
-		
+
 	_handle_free_input(event)
 
 
@@ -71,6 +74,9 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if pda_viewer and pda_viewer.is_viewing:
+		velocity = Vector3.ZERO
+		return
 	# Skip movement if terminal viewing is active
 	#if (terminal_viewer and terminal_viewer.is_viewing) or (item_viewer and item_viewer.is_viewing):
 	if (terminal_viewer and terminal_viewer.is_viewing):
@@ -89,6 +95,9 @@ func _setup_animation() -> void:
 
 
 func _connect_signals() -> void:
+	if pda_viewer:
+		pda_viewer.viewing_started.connect(_on_pda_viewing_started)
+		pda_viewer.viewing_ended.connect(_on_pda_viewing_ended)
 	if terminal_viewer:
 		terminal_viewer.viewing_started.connect(_on_terminal_viewing_started)
 		terminal_viewer.viewing_ended.connect(_on_terminal_viewing_ended)
@@ -133,6 +142,16 @@ func start_viewing_terminal(terminal: Terminal) -> void:
 		terminal_viewer.start_viewing(terminal)
 
 
+func _on_pda_viewing_started() -> void:
+	velocity = Vector3.ZERO
+	set_sprinting(false)
+	if camera_controller:
+		camera_controller.lock_camera()
+
+func _on_pda_viewing_ended() -> void:
+	if camera_controller:
+		camera_controller.unlock_camera()
+
 func _on_terminal_viewing_started() -> void:
 	if camera_controller:
 		camera_controller.lock_camera()
@@ -172,8 +191,7 @@ func _update_movement_state() -> void:
 
 
 func get_input_direction() -> Vector2:
-	#if (terminal_viewer and terminal_viewer.is_viewing) or (item_viewer and item_viewer.is_viewing):
-	if (terminal_viewer and terminal_viewer.is_viewing):
+	if (pda_viewer and pda_viewer.is_viewing) or (terminal_viewer and terminal_viewer.is_viewing):
 		return Vector2.ZERO
 	return Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 

@@ -1,5 +1,7 @@
 extends Node
 
+signal message_received(message: Dictionary)
+
 const SAVE_PATH = "user://save.tres"
 var current: SaveData = SaveData.new()
 
@@ -21,6 +23,17 @@ func apply_to_player() -> void:
 	player.global_position = current.player_position
 	player.global_rotation = current.player_rotation
 	player.damage_component.restore(current.player_hits_remaining)
+
+func send_pda_message(sender: String, subject: String, body: String) -> void:
+	var msg := {
+		"sender": sender,
+		"subject": subject,
+		"body": body,
+		"timestamp": Time.get_unix_time_from_system(),
+		"read": false,
+	}
+	current.pda_messages.append(msg)
+	message_received.emit(msg)
 
 func set_flag(key: String, value: Variant = true) -> void:
 	current.flags[key] = value

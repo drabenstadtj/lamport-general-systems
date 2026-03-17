@@ -114,9 +114,11 @@ func _update_movement_fov(is_sprinting: bool, is_walking: bool) -> void:
 func _update_fov(delta: float) -> void:
 	if not camera:
 		return
-	
+
 	var target_fov: float
-	if is_zooming:
+	if is_locked:
+		target_fov = default_fov
+	elif is_zooming:
 		target_fov = zoom_fov
 	elif is_player_sprinting:
 		target_fov = sprint_fov
@@ -124,7 +126,7 @@ func _update_fov(delta: float) -> void:
 		target_fov = walk_fov
 	else:
 		target_fov = default_fov
-	
+
 	camera.fov = lerp(camera.fov, target_fov, fov_transition_speed * delta)
 
 func set_injury(hits_remaining: int, max_hits: int) -> void:
@@ -134,7 +136,7 @@ func _update_lean(delta: float) -> void:
 	if not camera_pivot:
 		return
 
-	var strafe_input = Input.get_axis("move_left", "move_right")
+	var strafe_input = 0.0 if is_locked else Input.get_axis("move_left", "move_right")
 	var target_lean = -strafe_input * strafe_lean_amount
 	current_lean = lerp(current_lean, target_lean, lean_speed * delta)
 
