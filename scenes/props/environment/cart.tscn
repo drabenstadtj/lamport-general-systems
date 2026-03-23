@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dkt0g8u12rjbl"]
+
+[ext_resource type="PackedScene" uid="uid://desl3o0o1bts8" path="res://assets/models/props/cart.glb" id="1_6ftn7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y248a"]
+size = Vector3(1.9894898, 0.38603514, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_makxv"]
+size = Vector3(0.24682617, 1.0864258, 1)
+
+[node name="Cart" type="Node3D" unique_id=1813603208]
+
+[node name="cart" parent="." unique_id=1819614037 instance=ExtResource("1_6ftn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21082139, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=315423877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21082139, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2064532208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0061095357, 0.006982416, 0)
+shape = SubResource("BoxShape3D_y248a")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=880051774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9046947, 0.37398538, 0)
+shape = SubResource("BoxShape3D_makxv")

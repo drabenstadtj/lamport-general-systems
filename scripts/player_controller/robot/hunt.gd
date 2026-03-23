@@ -63,10 +63,15 @@ func physics_update(_delta: float) -> void:
 		lost_sight_timer = 0.0
 		_has_blind_target = false
 	else:
-		if _had_detection:
-			print("[HuntState] sight lost — timer running (timeout: ", blind_chase_duration, "s)")
+		if _had_detection or (actor.nav_agent.is_navigation_finished() and _has_blind_target):
+			if _had_detection:
+				print("[HuntState] sight lost — timer running (timeout: ", blind_chase_duration, "s)")
+			else:
+				print("[HuntState] blind target reached — picking new one")
 			var offset := Vector3(randf_range(-blind_target_spread, blind_target_spread), 0.0, randf_range(-blind_target_spread, blind_target_spread))
-			_blind_target = sensory.last_detected_position + offset
+			var raw := sensory.last_detected_position + offset
+			var map: RID = actor.nav_agent.get_navigation_map()
+			_blind_target = NavigationServer3D.map_get_closest_point(map, raw)
 			_has_blind_target = true
 		lost_sight_timer += _delta
 

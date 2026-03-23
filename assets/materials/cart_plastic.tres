@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://065oe52lcvt1"]
+
+[resource]
+resource_name = "cart_plastic"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+metallic = 0.28865978
+roughness = 0.34536082

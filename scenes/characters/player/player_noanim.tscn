@@ -68,6 +68,7 @@ view_rotation = Vector3(80, -5, 5)
 
 [node name="CollisionManager" type="Node" parent="." unique_id=586099521]
 script = ExtResource("3_jnklg")
+crouching_height = 0.66
 
 [node name="CameraController" type="Node" parent="." unique_id=622796077]
 script = ExtResource("4_64ag5")
