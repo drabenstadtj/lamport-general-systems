@@ -1,0 +1,173 @@
+[gd_scene format=3 uid="uid://biyhao35xms2c"]
+
+[ext_resource type="PackedScene" uid="uid://desl3o0o1bts8" path="res://assets/models/props/cart.glb" id="1_lk3r6"]
+[ext_resource type="PackedScene" uid="uid://chuie6g4h2ufa" path="res://scenes/props/network/server.tscn" id="3_leqsh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y248a"]
+size = Vector3(1.9024415, 0.38603514, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_makxv"]
+size = Vector3(0.20158692, 1, 1)
+
+[node name="Cart" type="Node3D" unique_id=1813603208]
+
+[node name="cart" parent="." unique_id=1819614037 instance=ExtResource("1_lk3r6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2091644, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=315423877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2091644, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2064532208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.051220596, 0.006982416, 0)
+shape = SubResource("BoxShape3D_y248a")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=880051774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.93523055, 0.46299234, 0)
+shape = SubResource("BoxShape3D_makxv")
+
+[node name="Contents" type="Node3D" parent="." unique_id=1070281840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2091644, 0)
+
+[node name="Server" parent="Contents" unique_id=328683188 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.062546685, 0, -0.99804205, 0, 1, 0, 0.99804217, 0, -0.062546685, -0.5299321, 0.101594925, 0.2859583)
+is_powered_on = false
+
+[node name="Server2" parent="Contents" unique_id=187538365 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.21176833, 0, -0.9773198, 0, 1, 0, 0.9773199, 0, -0.21176831, -0.5299321, 0.24661517, 0.2859583)
+is_powered_on = false
+
+[node name="Server3" parent="Contents" unique_id=1045039601 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.0033335965, 0, -0.99999434, 0, 1, 0, 0.99999446, 0, -0.0033336002, -0.50383663, 0.38811722, 0.28531235)
+is_powered_on = false
+
+[node name="Server4" parent="Contents" unique_id=1620705877 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.21176833, 0, -0.9773198, 0, 1, 0, 0.9773199, 0, -0.21176831, -0.5447042, 0.53237814, 0.28632396)
+is_powered_on = false
+
+[node name="Server5" parent="Contents" unique_id=1035865374 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.0033335965, 0, -0.99999434, 0, 1, 0, 0.99999446, 0, -0.0033336002, -0.5186088, 0.6738802, 0.285678)
+is_powered_on = false
+
+[node name="Server11" parent="Contents" unique_id=337232232 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.1099945, 0, -0.9939321, 0, 1, 0, 0.99393225, 0, 0.10999448, -0.5186088, 0.81728286, 0.285678)
+is_powered_on = false
+
+[node name="Server12" parent="Contents" unique_id=465114835 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.021605462, 0, -0.9997664, 0, 1, 0, 0.9997665, 0, 0.021605458, -0.5186088, 0.96020335, 0.285678)
+is_powered_on = false
+
+[node name="Server21" parent="Contents" unique_id=868426161 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.049268126, 0, -0.99878556, 0, 1, 0, 0.9987857, 0, 0.04926811, -0.5298737, 0.101594925, -0.30972335)
+is_powered_on = false
+
+[node name="Server22" parent="Contents" unique_id=2021984913 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.10133413, 0, -0.9948523, 0, 1, 0, 0.9948524, 0, -0.10133413, -0.5298737, 0.24661517, -0.30972335)
+is_powered_on = false
+
+[node name="Server23" parent="Contents" unique_id=1668120924 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.108329, 0, -0.994115, 0, 1, 0, 0.9941151, 0, 0.10832898, -0.50401354, 0.38811722, -0.3132786)
+is_powered_on = false
+
+[node name="Server24" parent="Contents" unique_id=377710776 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.10133413, 0, -0.9948523, 0, 1, 0, 0.9948524, 0, -0.10133413, -0.5445127, 0.53237814, -0.30771077)
+is_powered_on = false
+
+[node name="Server25" parent="Contents" unique_id=4965412 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.108329, 0, -0.994115, 0, 1, 0, 0.9941151, 0, 0.10832898, -0.51865256, 0.6738802, -0.31126603)
+is_powered_on = false
+
+[node name="Server26" parent="Contents" unique_id=1850690803 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.22027183, 0, -0.9754384, 0, 1, 0, 0.97543854, 0, 0.2202718, -0.51865256, 0.81728286, -0.31126603)
+is_powered_on = false
+
+[node name="Server27" parent="Contents" unique_id=1913444385 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.13308671, 0, -0.9911042, 0, 1, 0, 0.9911043, 0, 0.13308668, -0.51865256, 0.96020335, -0.31126603)
+is_powered_on = false
+
+[node name="Server28" parent="Contents" unique_id=513360158 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.122977965, 0, -0.99240935, 0, 1, 0, 0.99240947, 0, -0.122977965, 0.025553364, 0.101594925, -0.31083754)
+is_powered_on = false
+
+[node name="Server29" parent="Contents" unique_id=312983818 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.27066767, 0, -0.9626727, 0, 1, 0, 0.9626728, 0, -0.27066764, 0.025553364, 0.24661517, -0.31083754)
+is_powered_on = false
+
+[node name="Server30" parent="Contents" unique_id=1559039143 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.063992396, 0, -0.9979503, 0, 1, 0, 0.99795043, 0, -0.06399238, 0.05163993, 0.38811722, -0.30989918)
+is_powered_on = false
+
+[node name="Server31" parent="Contents" unique_id=1882501640 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.10792999, 0, -0.9941585, 0, 1, 0, 0.9941586, 0, -0.107929975, 0.010786256, 0.53237814, -0.3113687)
+is_powered_on = false
+
+[node name="Server32" parent="Contents" unique_id=1027998656 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.063992396, 0, -0.9979503, 0, 1, 0, 0.99795043, 0, -0.06399238, 0.036872763, 0.6738802, -0.31043038)
+is_powered_on = false
+
+[node name="Server33" parent="Contents" unique_id=407477605 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.049494743, 0, -0.9987743, 0, 1, 0, 0.9987744, 0, 0.049494743, 0.036872763, 0.81728286, -0.31043038)
+is_powered_on = false
+
+[node name="Server34" parent="Contents" unique_id=958257753 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.039085418, 0, -0.9992358, 0, 1, 0, 0.9992359, 0, -0.039085433, 0.036872763, 0.96020335, -0.31043038)
+is_powered_on = false
+
+[node name="Server13" parent="Contents" unique_id=2072158468 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.9972452, 0, -0.0741781, 0, 1, 0, 0.07417807, 0, 0.9972451, 0.62633973, 0.81728286, 0.29543924)
+is_powered_on = false
+
+[node name="Server14" parent="Contents" unique_id=691538816 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.98676836, 0, -0.16213775, 0, 1, 0, 0.16213773, 0, 0.98676825, 0.62633973, 0.96020335, 0.29543924)
+is_powered_on = false
+
+[node name="Server6" parent="Contents" unique_id=1962372518 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.99988365, 0, -0.015253544, 0, 1, 0, 0.015253574, 0, 0.99988365, 0.6266419, 0.101594925, 0.2689642)
+is_powered_on = false
+
+[node name="Server7" parent="Contents" unique_id=136805945 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.96257347, 0, -0.27102032, 0, 1, 0, 0.27102032, 0, 0.9625734, 0.6266419, 0.24661517, 0.2689642)
+is_powered_on = false
+
+[node name="Server35" parent="Contents" unique_id=300261314 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.017766563, 0, -0.99984217, 0, 1, 0, 0.99984217, 0, -0.017766533, 0.023245037, 0.101594925, 0.2689642)
+is_powered_on = false
+
+[node name="Server36" parent="Contents" unique_id=158180095 instance=ExtResource("3_leqsh")]
+transform = Transform3D(-0.27343872, 0, -0.9618892, 0, 1, 0, 0.96188927, 0, -0.27343872, 0.023245037, 0.24661517, 0.2689642)
+is_powered_on = false
+
+[node name="Server8" parent="Contents" unique_id=1253532071 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.9995499, 0, -0.029997706, 0, 1, 0, 0.029997692, 0, 0.99954987, 0.6295929, 0.38811722, 0.24302812)
+is_powered_on = false
+
+[node name="Server9" parent="Contents" unique_id=277717211 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.97190773, 0, -0.23536263, 0, 1, 0, 0.23536262, 0, 0.9719077, 0.6249715, 0.53237814, 0.28364617)
+is_powered_on = false
+
+[node name="Server10" parent="Contents" unique_id=604578395 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.9900238, 0, -0.1409012, 0, 1, 0, 0.14090121, 0, 0.9900236, 0.6279224, 0.6738802, 0.25771007)
+is_powered_on = false
+
+[node name="Server15" parent="Contents" unique_id=1250628103 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.9926291, 0, 0.12119373, 0, 1, 0, -0.12119379, 0, 0.992629, 0.629664, 0.81728286, -0.24742465)
+is_powered_on = false
+
+[node name="Server16" parent="Contents" unique_id=1251779958 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.9994596, 0, 0.03287609, 0, 1, 0, -0.032876134, 0, 0.9994595, 0.629664, 0.96020335, -0.24742465)
+is_powered_on = false
+
+[node name="Server17" parent="Contents" unique_id=1178840330 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.98375684, 0, 0.17950626, 0, 1, 0, -0.17950623, 0, 0.98375684, 0.6248113, 0.101594925, -0.2734529)
+is_powered_on = false
+
+[node name="Server18" parent="Contents" unique_id=369749339 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.9969035, 0, -0.07863298, 0, 1, 0, 0.078632966, 0, 0.9969034, 0.6248113, 0.24661517, -0.2734529)
+is_powered_on = false
+
+[node name="Server19" parent="Contents" unique_id=256369348 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.9991244, 0, -0.041840762, 0, 1, 0, 0.041840747, 0, 0.99912435, 0.62602824, 0.53237814, -0.25872642)
+is_powered_on = false
+
+[node name="Server20" parent="Contents" unique_id=3029018 instance=ExtResource("3_leqsh")]
+transform = Transform3D(0.99852264, 0, 0.05434026, 0, 1, 0, -0.054340288, 0, 0.9985224, 0.6238785, 0.6738802, -0.28474116)
+is_powered_on = false

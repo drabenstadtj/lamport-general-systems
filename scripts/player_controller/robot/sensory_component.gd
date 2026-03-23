@@ -85,6 +85,9 @@ func _physics_process(_delta: float) -> void:
 
 # Vision --------------------------------------------------------------------
 func vision_check() -> bool:
+	if not is_instance_valid(player):
+		player = AIDirector.player
+		return false
 	var player_center := player.global_position + Vector3(0, 0.9, 0)
 	var to_player: Vector3 = player_center - global_position
 
