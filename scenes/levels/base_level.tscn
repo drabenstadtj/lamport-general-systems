@@ -853,7 +853,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, -0.5, 0)
 dock_name = "DockB"
 door1_scene_path = "uid://3mtbxfhulw7m"
 door1_dock = "DockB"
-door2_scene_path = "uid://esir2tt1ujs7"
 door2_dock = "DockA"
 
 [editable path="DoubleDoor"]
