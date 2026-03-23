@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://fewocnssgvr8" path="res://assets/models/props/car.glb" id="1_fekg2"]
 [ext_resource type="Script" uid="uid://mj7n1dpfkvad" path="res://scripts/levels/arrival_cutscene_manager.gd" id="1_l0hne"]
-[ext_resource type="PackedScene" uid="uid://vqtlme6jjkyk" path="res://scenes/characters/player/player_noanim.tscn" id="3_l0hne"]
+[ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/transfer_portal.tscn" id="4_ila73"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l0hne"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -127,14 +127,14 @@ size = Vector3(3, 1, 7)
 
 [sub_resource type="Animation" id="Animation_fekg2"]
 resource_name = "ArrivalCutscene"
-length = 30.0
+length = 13.0
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Car")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 22, 1.9, -489, 18.566668, 1, 22, 1.9, 60.377625, 22.133333, 1, 22, 1.9, 102.100006, 22.966667, 1, 21.350002, 1.9, 105.74284, 23.833334, 1, 15, 1.9, 108.099976, 29.933332, 1, -70, 1.9, 108.099976)
+tracks/0/keys = PackedFloat32Array(0, 1, 22, 1.9, -30, 2.5666666, 1, 22, 1.9, 60.377625, 4.999998, 1, 22, 1.9, 102.100006, 5.833332, 1, 21.350002, 1.9, 105.74284, 6.699999, 1, 15, 1.9, 108.099976, 12.799997, 1, -70, 1.9, 108.099976)
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
@@ -142,7 +142,7 @@ tracks/1/path = NodePath("Cameras/Camera3D:current")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 12.833333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -154,7 +154,7 @@ tracks/2/path = NodePath("Car:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(22.3, 23.805477),
+"times": PackedFloat32Array(5.166664, 6.672142),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, -1.5707964, 0)]
@@ -1040,12 +1040,21 @@ transform = Transform3D(-3.6717562e-08, 0, -0.8399999, 0, 0.8399999, 0, 0.839999
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2758495, -0.00012207031)
 shape = SubResource("BoxShape3D_l0hne")
 
-[node name="Player" parent="Car" unique_id=1819242889 instance=ExtResource("3_l0hne")]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1225593923]
 libraries/ = SubResource("AnimationLibrary_ila73")
 
 [node name="Cameras" type="Node3D" parent="." unique_id=1967863484]
 
 [node name="Camera3D" type="Camera3D" parent="Cameras" unique_id=218595557]
-transform = Transform3D(-0.83147246, -0.24611758, 0.498076, 0, 0.89651996, 0.44300336, -0.55556595, 0.36834508, -0.7454317, 59.72229, 33.403748, -469.89478)
+transform = Transform3D(-0.83147246, -0.24611758, 0.49807596, 0, 0.89651996, 0.4430033, -0.55556595, 0.36834508, -0.74543166, 59.72229, 33.403748, 10.105225)
+
+[node name="TransferPortal" parent="." unique_id=62288274 instance=ExtResource("4_ila73")]
+transform = Transform3D(-4.3711395e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711395e-08, -77.80187, 0.125, 91.20768)
+dock_name = "DockA"
+door1_scene_path = "uid://dovm16uxv36vy"
+door1_dock = "DockA"
+door2_scene_path = "uid://mju0rlw4o1oy"
+door2_dock = "DockA"
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=131357786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 1.9, 108.099976)
