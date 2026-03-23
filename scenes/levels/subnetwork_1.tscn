@@ -18,10 +18,11 @@
 [ext_resource type="Script" uid="uid://b5dbyeybyr3m6" path="res://scripts/network/server_slot_config.gd" id="14_1l6jw"]
 [ext_resource type="Script" uid="uid://dop28qc6cc8m5" path="res://scripts/network/network_config.gd" id="15_0rep5"]
 [ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/props/environment/desk.tscn" id="16_at37b"]
-[ext_resource type="PackedScene" uid="uid://dkt0g8u12rjbl" path="res://scenes/props/environment/cart.tscn" id="16_vmftc"]
+[ext_resource type="PackedScene" path="res://scenes/props/environment/cart.tscn" id="16_vmftc"]
 [ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="17_yaqu0"]
 [ext_resource type="Script" uid="uid://cakdekcyfqs6c" path="res://scripts/environment/cable.gd" id="19_obvoy"]
-[ext_resource type="PackedScene" uid="uid://biyhao35xms2c" path="res://scenes/props/environment/cart_full.tscn" id="21_l8hr7"]
+[ext_resource type="PackedScene" path="res://scenes/props/environment/cart_full.tscn" id="21_l8hr7"]
+[ext_resource type="Script" uid="uid://kw6afw1wvxlm" path="res://scripts/levels/test_spawn_point.gd" id="23_8hc85"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0eri4"]
 vertices = PackedVector3Array(-1.75, 4.75, 10, 1.75, 4.75, 10, 2, 4.75, 7.75, 2, 4.75, 4.25, 1.75, 4.75, -1.75, -1.75, 4.75, -1.75, 9.75, 4.75, 7.75, 9.75, 4.75, 4.25, 8.75, 0.5, 6.5, 9.75, 0.5, 6.5, 9.75, 0.5, 5.75, 8.75, 0.5, 5.75, 3, 0.5, 4.75, 2.5, 0.5, 5.75, 2.75, 0.5, 6.5, 1.5, 0.5, 8.25, 1.5, 0.5, 7.75, 0.25, 0.5, 7.5, -0.25, 0.5, 8.5, 0.25, 0.5, 4.5, 1.5, 0.5, 4.25, 1.5, 0.5, -1.25, -1.25, 0.5, 9.75, -0.75, 0.5, 9.75, 8.5, 0.5, 7.5, 0.5, 0.5, 6.5, 0.5, 0.5, 5.75, 8.5, 0.5, 4.75, 3, 0.5, 7.5, -0.75, 0.5, -1.5, -1.25, 0.5, -1.25, 11, 7, -1.5, 11, 7, 29.75, 26.25, 7, 29.75, 26.25, 7, -1.5, 15.25, 0.5, 3, 16, 0.5, 3, 16, 0.5, 1.25, 15, 0.5, 1, 13.25, 0.5, 1, 17.25, 0.5, 0.75, 11.25, 0.5, -1.25, 21, 0.5, 1, 21.25, 0.5, 3, 22, 0.5, 3, 22.25, 0.5, 1, 24, 0.5, 1, 26, 0.5, -1.25, 24.25, 0.5, 3, 26, 0.5, 2.75, 11.25, 0.5, 1, 11.25, 0.5, 6.75, 11.25, 0.5, 5.25, 11.25, 0.5, 24.5, 13.25, 0.5, 24.5, 13.25, 0.5, 17, 13.25, 0.5, 8.5, 13.25, 0.5, 16.5, 13.25, 0.5, 9, 25, 0.5, 25, 24.5, 0.5, 25.25, 26, 0.5, 25.5, 25, 0.5, 24, 24, 0.5, 8.5, 24, 0.5, 9, 24, 0.5, 16.5, 24, 0.5, 17, 24.25, 0.5, 23.25, 21.25, 0.5, 24.25, 21.5, 0.5, 24.5, 22, 0.5, 24, 21.5, 0.5, 22.25, 19, 0.5, 16.25, 19, 0.5, 9.25, 18.25, 0.5, 9.25, 18.25, 0.5, 16.25, 15.25, 0.5, 16.25, 15.25, 0.5, 17.25, 16.25, 0.5, 17, 22, 0.5, 16.25, 22, 0.5, 9.25, 21.25, 0.5, 9.25, 21.25, 0.5, 16.25, 22, 0.5, 17.25, 15.25, 0.5, 8.25, 16.25, 0.5, 8.5, 22, 0.5, 8.25, 21.25, 0.5, 8.25, 18.25, 0.5, 17.25, 18.25, 0.5, 22.5, 19, 0.5, 22.5, 19, 0.5, 17.25, 15.25, 0.5, 9.25, 16, 0.5, 9.25, 16, 0.5, 16.25, 22, 0.5, 22, 19, 0.5, 8.25, 19, 0.5, 3.25, 18.25, 0.5, 3.25, 18.25, 0.5, 8.25, 21, 0.5, 17, 15.25, 0.5, 22.5, 16, 0.5, 22.5, -0.25, 0.5, 11, -1.25, 0.5, 12.5, -0.25, 0.5, 12.75, -1.25, 0.5, 17.5, -1.25, 0.5, 29.75, 0, 0.5, 18.5, -0.25, 0.5, 17.25, -0.5, 0.5, 17.25, 1.5, 0.5, 29.75, 1.5, 0.5, 18.75, 1.5, 0.5, 10.75, 0, 0.5, 15.5, 1.5, 0.5, 15.25, -1.75, 4.75, 24, 1.75, 4.75, 24, 13.5, 0.5, 29.75, 14.5, 0.5, 29.5, 14.25, 0.5, 28.5, 12.75, 0.5, 29.75, 16, 0.5, 24.25, 15, 0.5, 24.5, 15.75, 0.5, 26.5, 17.5, 0.5, 27.25, 17.75, 0.5, 26.25, 17.5, 0.5, 24.5, 14.75, 0.5, 33.75, 14.75, 0.5, 31.75, 13.5, 0.5, 31.75, 12.75, 0.5, 31.75, 11.25, 0.5, 31.75, 11.25, 0.5, 33.75, 11.25, 0.5, 29.5, 22, 0.5, 26, 19.25, 0.5, 24.5, 19, 0.5, 26, 20.5, 0.5, 26.5, 18.25, 0.5, 24.25, 22.75, 0.75, 28.25, 22.75, 0.75, 29.5, 26, 0.5, 29.5, 20.75, 0.5, 28.25, 21.5, 0.5, 28, 21.25, 0.5, 29.5, 20.25, 0.5, 28.75, 17.25, 0.5, 28.5, 16.75, 0.5, 29.5, 2, 4.75, 26.25, -1.75, 4.75, 30, 9.75, 4.75, 29.75, 9.75, 4.75, 26.25, 3, 0.5, 26.75, 3, 0.5, 29.5, 9.75, 0.5, 29.5, 9.75, 0.5, 26.75, 10.75, 4.75, 31, 10.75, 4.75, 34, 26.25, 4.75, 34, 26.25, 4.75, 31, 26, 0.5, 31, 14.75, 0.5, 31, 26, 0.5, 33.75)
@@ -1101,19 +1102,19 @@ transform = Transform3D(-0.96535885, 0, -0.26092574, 0, 1, 0, 0.26092574, 0, -0.
 [node name="Cart" parent="NavigationRegion3D/Cover" unique_id=1813603208 instance=ExtResource("21_l8hr7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3652959, -0.20546421, -1.3515024)
 
-[node name="Cart2" parent="NavigationRegion3D/Cover" unique_id=902514661 instance=ExtResource("21_l8hr7")]
+[node name="Cart2" parent="NavigationRegion3D/Cover" unique_id=745726537 instance=ExtResource("21_l8hr7")]
 transform = Transform3D(0.36260033, 0, 0.93194467, 0, 1, 0, -0.93194467, 0, 0.36260033, 2.0466683, -0.2089039, -8.60648)
 
-[node name="Cart3" parent="NavigationRegion3D/Cover" unique_id=1066097369 instance=ExtResource("21_l8hr7")]
+[node name="Cart3" parent="NavigationRegion3D/Cover" unique_id=1961973662 instance=ExtResource("21_l8hr7")]
 transform = Transform3D(-0.9118336, 0, 0.4105597, 0, 1, 0, -0.4105597, 0, -0.9118336, -18.747972, -0.0015260577, 1.3551149)
 
-[node name="Cart4" parent="NavigationRegion3D/Cover" unique_id=1961560603 instance=ExtResource("21_l8hr7")]
+[node name="Cart4" parent="NavigationRegion3D/Cover" unique_id=775257420 instance=ExtResource("21_l8hr7")]
 transform = Transform3D(-0.76475275, 0, -0.6443237, 0, 1, 0, 0.6443237, 0, -0.76475275, -9.37734, -0.20349567, -23.315321)
 
-[node name="Cart6" parent="NavigationRegion3D/Cover" unique_id=1629729509 instance=ExtResource("21_l8hr7")]
+[node name="Cart6" parent="NavigationRegion3D/Cover" unique_id=1536004151 instance=ExtResource("21_l8hr7")]
 transform = Transform3D(-0.907154, 0, 0.42079833, 0, 1, 0, -0.42079833, 0, -0.907154, -12.578688, -0.20349567, -23.351902)
 
-[node name="Cart5" parent="NavigationRegion3D/Cover" unique_id=585292288 instance=ExtResource("16_vmftc")]
+[node name="Cart5" parent="NavigationRegion3D/Cover" unique_id=540953929 instance=ExtResource("16_vmftc")]
 transform = Transform3D(-0.9960022, 0, 0.089328855, 0, 1, 0, -0.089328855, 0, -0.9960022, -15.845449, -0.2051462, -25.829239)
 
 [node name="ServerRack" parent="NavigationRegion3D/Cover" unique_id=154244306 instance=ExtResource("13_7walx")]
@@ -2683,3 +2684,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6.5,
 
 [node name="entity_51_ceiling_light" parent="Lights" unique_id=144888949 instance=ExtResource("7_yug01")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9.5, 4, 27.5)
+
+[node name="Spawnpoint" type="Node3D" parent="." unique_id=1550147435]
+script = ExtResource("23_8hc85")
