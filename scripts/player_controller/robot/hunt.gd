@@ -42,7 +42,10 @@ func physics_update(_delta: float) -> void:
 		_update_attack()
 	else:
 		if sensory.has_detection:
-			actor.navigate_to(AIDirector.player.global_position)
+			if actor.target_in_attack_range():
+				actor.navigate_to(actor.global_position)
+			else:
+				actor.navigate_to(AIDirector.player.global_position)
 		else:
 			actor.navigate_to(_blind_target if _has_blind_target else sensory.last_detected_position)
 
