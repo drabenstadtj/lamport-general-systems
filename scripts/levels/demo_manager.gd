@@ -102,7 +102,7 @@ func complete_tutorial():
 	if HUD:
 		await HUD.show_final_tutorial_hint("Demo Complete!", final_message_duration)
 
-	show_step_hint("Head through the door to continue")
+	HUD.hide_tutorial_hint()
 
 func show_step_hint(text: String):
 	if HUD:

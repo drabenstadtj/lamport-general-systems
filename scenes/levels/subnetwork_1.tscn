@@ -22,9 +22,11 @@
 [ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="17_yaqu0"]
 [ext_resource type="PackedScene" uid="uid://b75l7u4k8q63n" path="res://scenes/props/interactables/pickupable_note.tscn" id="17_yd6ob"]
 [ext_resource type="Texture2D" uid="uid://d2ll4lask2k1m" path="res://assets/textures/notes/note-ls.png" id="18_eor33"]
+[ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://assets/shaders/sticky_note.gdshader" id="19_eor33"]
 [ext_resource type="Script" uid="uid://cakdekcyfqs6c" path="res://scripts/environment/cable.gd" id="19_obvoy"]
 [ext_resource type="PackedScene" uid="uid://biyhao35xms2c" path="res://scenes/props/environment/cart_full.tscn" id="21_l8hr7"]
 [ext_resource type="Script" uid="uid://kw6afw1wvxlm" path="res://scripts/levels/test_spawn_point.gd" id="23_8hc85"]
+[ext_resource type="Script" uid="uid://b2icwcy2jsv4v" path="res://scripts/levels/playtest_end.gd" id="27_cifx8"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0eri4"]
 vertices = PackedVector3Array(-2, 4.75, 10.25, 2, 4.75, 10.25, 2.25, 4.75, 8, 2.25, 4.75, 4, 2, 4.75, -2, -2, 4.75, -2, 10, 4.75, 8, 10, 4.75, 4, 1.75, 0.5, 8.5, 1.75, 0.5, 7.5, 0.75, 0.5, 7.5, 0, 0.5, 8.75, 0.5, 0.5, 4.75, 1.75, 0.5, 4.5, 1.75, 0.5, -1.5, 1.75, 0.5, 6.75, 1.5, 0.5, 5.5, 0.75, 0.5, 5.5, 0.5, 0.5, 7, -1, 0.5, -1.75, -1.5, 0.5, -1.5, -1.5, 0.5, 9.75, -0.5, 0.5, 9.75, 10.75, 7, -1.75, 10.75, 7, 30, 26.5, 7, 30, 26.5, 7, -1.75, 15, 0.5, 3.5, 16.5, 0.5, 3.5, 16.5, 0.5, 1.5, 14.75, 0.5, 1.25, 13.5, 0.5, 1.5, 11, 0.5, -1.5, 11, 0.5, 3.25, 13.5, 0.5, 3.25, 18.5, 0.5, 1, 18.5, 0.5, -1.5, 23.75, 0.5, 1.25, 26.25, 0.5, 1, 26.25, 0.5, -1.5, 21, 0.5, 1.5, 22.5, 0.5, 1.5, 21, 0.5, 6, 22.5, 0.5, 6, 24, 0.5, 8, 23.25, 0.5, 8.25, 23.25, 0.5, 9.25, 24, 0.5, 9.5, 24, 0.5, 16, 23.25, 0.5, 16.25, 23.25, 0.5, 17.25, 24, 0.5, 17.5, 26.25, 0.5, 24.5, 23.75, 0.5, 23, 24.75, 0.5, 24.5, 18, 1.75, 1.5, 18, 1.75, 2.5, 18.5, 1.75, 2, 19.5, 1.75, 2.5, 19.5, 1.75, 1.75, 17, 2.25, 1.75, 17, 2.25, 7.75, 17.5, 2.25, 2.5, 17.5, 2.25, 1.75, 17.25, 0.5, 8.25, 17.25, 0.5, 9.25, 18, 0.5, 9.5, 19.75, 0.5, 9.25, 18, 0.5, 8, 22.5, 0.5, 9.5, 22.5, 0.5, 8, 21, 0.5, 8, 19.75, 0.5, 8.25, 21, 0.5, 9.5, 18, 0.5, 14, 19.5, 0.5, 14, 21, 0.5, 14, 22.5, 0.5, 14, 19.5, 0.5, 3, 18, 0.5, 3, 2.25, 0.5, 5.5, 2.5, 0.5, 6.75, 9, 0.5, 6.75, 10.75, 0.5, 6.75, 10.5, 0.5, 5.5, 9, 0.5, 5.5, 2.75, 0.5, 4.5, 11, 0.5, 7.25, 13.5, 0.5, 7.25, 11, 0.5, 5, 9, 0.5, 4.5, 2.75, 0.5, 7.75, 8.75, 0.5, 7.25, 10, 0.5, 7.75, 14.25, 0.5, 8.25, 14.25, 0.5, 9.25, 15, 0.5, 9.5, 15, 0.5, 16, 14.25, 0.5, 16.25, 14.25, 0.5, 17.25, 16.5, 0.5, 17.5, 17.25, 0.5, 17.25, 17.25, 0.5, 16.25, 16.5, 0.5, 9.5, 16.5, 0.5, 16, 15, 0.5, 17.5, 16.5, 0.5, 8, 15, 0.5, 8, 15, 0.5, 22, 16.5, 0.5, 22, 13.5, 0.5, 17.5, 13.5, 0.5, 16, 13.5, 0.5, 9.5, 13.5, 0.5, 8, 11, 0.5, 23.75, 13.5, 0.5, 23.75, 1, 1.5, 9.75, 0, 1.5, 9.25, 0.25, 1.5, 10.25, 1.75, 1.5, 10, 1.75, 1.5, 9, 1, 1.5, 9, 0, 0.5, 10.75, -1.5, 0.5, 11.5, 0.25, 0.5, 17.5, -0.25, 0.5, 15.75, -1.5, 0.5, 17, 0, 0.5, 19.25, 0.75, 0.5, 13.25, 1.75, 0.5, 10.5, 1.75, 0.5, 30, 1.75, 0.75, 20, 0.25, 0.5, 20, 1.75, 0.5, 17.25, -1.5, 0.5, 30, -2, 4.75, 23.75, 2, 4.75, 23.75, -1.5, 1.5, 12.75, -0.25, 2, 13.5, -0.5, 1.5, 12.5, -1.5, 1.25, 12, -1.5, 0.5, 13.25, -1.5, 0.5, 14.25, -1, 0.5, 14, 18, 0.5, 16, 18, 0.5, 17.5, 19.5, 0.5, 17.5, 19.75, 0.5, 16.25, 22.5, 0.5, 17.5, 22.5, 0.5, 16, 20.75, 0.5, 17.25, 21, 0.5, 16, 18, 0.5, 19.5, 19.5, 0.5, 19.5, 21, 0.5, 23, 22.25, 0.5, 23.25, -1, 1.25, 14.25, -1, 1.75, 14.75, -0.25, 1.25, 14.5, -0.5, 1.25, 14, -1.5, 1.75, 15.5, -1.5, 1.25, 16.5, -0.75, 1.75, 15.75, -0.75, 1.75, 15, 1.25, 1.5, 19, 0.5, 1.5, 19.25, 1.5, 1.5, 19.5, 1.75, 1.5, 18.75, 1.5, 1.5, 17.75, 0.75, 1.5, 17.75, 21.75, 0.5, 24.5, 22.75, 0.5, 23.75, 20.75, 0.5, 24.25, 18.5, 0.5, 28.5, 17.5, 0.5, 27.75, 17.25, 0.5, 27.75, 16, 0.5, 29.75, 20, 0.5, 28.5, 21.5, 0.5, 29.75, 21.75, 0.5, 28.25, 20.5, 0.5, 28, 20.5, 0.5, 27, 22.25, 0.5, 25.75, 17.5, 0.5, 24.25, 17.75, 0.5, 26.75, 18.25, 0.5, 26.25, 18, 0.5, 24, 19.75, 0.5, 26.5, 19.5, 0.5, 24, 23.5, 0.5, 25.5, 22.5, 0.75, 28.5, 22.5, 0.75, 29.75, 26.25, 0.5, 29.75, 14, 0.5, 29.75, 15.5, 0.5, 29.75, 14.5, 0.5, 28.75, 16, 0.5, 26.75, 10, 0.5, 27.5, 10.75, 0.5, 27.25, 10.5, 0.5, 27, 12.25, 0.5, 29.75, 12.5, 0.5, 30.75, 13.75, 0.5, 30.75, 10, 0.5, 26.5, 2.75, 0.5, 26.5, 16.5, 0.5, 24, 15, 0.5, 24, 2.75, 0.5, 29.75, 10, 0.5, 29.75, 13.75, 0.5, 24.25, 11, 0.5, 26.5, 11, 0.5, 29.75, 23, 1.75, 23.75, 23.75, 2, 24, 23.5, 1.5, 23, 22.5, 1.25, 22.5, 2.25, 4.75, 26, -2, 4.75, 30.25, 10, 4.75, 30, 10, 4.75, 26, 22.5, 1, 25.25, 23.5, 1, 25, 23.25, 1, 24.5, 22.25, 1, 24.5, 19.5, 1.5, 28, 20, 1.5, 28, 20, 1.5, 27.25, 19.25, 1.5, 27.25, 18.75, 1.5, 26.75, 18.25, 1.5, 26.75, 18, 1.5, 27.5, 18.75, 1.5, 28, 16, 1.5, 29.25, 16.25, 1.5, 28.75, 15.75, 1.5, 28.25, 15, 1.5, 28.75, 16.75, 1.5, 28.25, 16.75, 1.5, 27.5, 16, 1.5, 27.25, 10.5, 4.75, 30.75, 10.5, 4.75, 34.25, 26.5, 4.75, 34.25, 26.5, 4.75, 30.75, 11.75, 0.5, 31.75, 11.5, 0.5, 30.75, 11, 0.5, 30.75, 11, 0.5, 34, 12.5, 0.5, 31.5, 14, 0.5, 31.75, 14.5, 0.5, 31.5, 26.25, 0.5, 34, 26.25, 0.5, 30.75, 14.5, 0.5, 30.75)
@@ -381,6 +383,17 @@ metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
 script = ExtResource("14_1l6jw")
 metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cifx8"]
+render_priority = 0
+shader = ExtResource("19_eor33")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/text_decal = ExtResource("18_eor33")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cifx8"]
+size = Vector2(0.09, 0.09)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obvoy"]
 albedo_color = Color(0.27265528, 0.2726553, 0.2726553, 1)
 
@@ -388,6 +401,25 @@ albedo_color = Color(0.27265528, 0.2726553, 0.2726553, 1)
 material = SubResource("StandardMaterial3D_obvoy")
 top_radius = 0.25
 bottom_radius = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bfm8q"]
+render_priority = 0
+shader = ExtResource("19_eor33")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1raw3"]
+size = Vector2(0.216, 0.279)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f2ubt"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wcgsh"]
+points = PackedVector3Array(1.0158731, 0.061086252, 1.0158731, -1.0158731, -0.06584816, -1.0158731, -1.0158731, -0.06584816, 1.0158731, -1.0158731, 0.061086252, -1.0158731, 1.0158731, -0.06584816, -1.0158731, -1.0158731, 0.061086252, 1.0158731, 1.0158731, -0.06584816, 1.0158731, 1.0158731, 0.061086252, -1.0158731)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xcjom"]
+size = Vector3(2.6000001, 2.8, 1)
 
 [node name="Subnetwork1" type="Node3D" unique_id=1514744162 node_paths=PackedStringArray("exit_door")]
 script = ExtResource("1_clovb")
@@ -1148,6 +1180,20 @@ note_size = Vector2(0.09, 0.09)
 lock_aspect_ratio = true
 note_text = ""
 font_size = 8
+
+[node name="NoteMesh" type="MeshInstance3D" parent="NavigationRegion3D/Cover/PickupableNote" unique_id=76079538]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_cifx8")
+mesh = SubResource("PlaneMesh_cifx8")
+
+[node name="NoteLabel" type="Label3D" parent="NavigationRegion3D/Cover/PickupableNote" unique_id=716893716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
+visible = false
+pixel_size = 0.0005
+modulate = Color(0, 0, 0, 1)
+font_size = 8
+autowrap_mode = 3
+width = 180.0
 
 [node name="Robot1Patrol" type="Node3D" parent="." unique_id=1580395860]
 
@@ -2721,3 +2767,41 @@ note_size = Vector2(0.216, 0.279)
 lock_aspect_ratio = true
 note_text = "Door's on network lock and won't open until the subnet comes back online. Talk to whoever's on terminal duty."
 font_size = 36
+
+[node name="NoteMesh" type="MeshInstance3D" parent="PickupableNote" unique_id=2085827380]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_bfm8q")
+mesh = SubResource("PlaneMesh_1raw3")
+
+[node name="NoteLabel" type="Label3D" parent="PickupableNote" unique_id=911105131]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
+pixel_size = 0.0005
+modulate = Color(0, 0, 0, 1)
+text = "Door's on network lock and won't open until the subnet comes back online. Talk to whoever's on terminal duty."
+font_size = 36
+autowrap_mode = 3
+width = 432.0
+
+[node name="PlaytestEnd" type="Node" parent="." unique_id=2034155970 node_paths=PackedStringArray("trigger_area")]
+script = ExtResource("27_cifx8")
+trigger_area = NodePath("../EndArea/Area3D")
+
+[node name="EndArea" type="Node3D" parent="." unique_id=1265781978]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 31.199999)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EndArea" unique_id=1221442710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("BoxMesh_f2ubt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EndArea" unique_id=469785478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EndArea/StaticBody3D" unique_id=1970947975]
+shape = SubResource("ConvexPolygonShape3D_wcgsh")
+
+[node name="Area3D" type="Area3D" parent="EndArea" unique_id=778008027]
+collision_mask = 2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="EndArea/Area3D" unique_id=1772265517]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9802322e-08, 0.84999996, 0)
+shape = SubResource("BoxShape3D_xcjom")
