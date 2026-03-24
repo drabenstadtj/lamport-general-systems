@@ -831,7 +831,7 @@ note_size = Vector2(10.45, 3.345)
 [node name="Interactables" type="Node3D" parent="DemoRoom" unique_id=1276696740]
 
 [node name="DeskMesh" parent="DemoRoom/Interactables" unique_id=1912176476 instance=ExtResource("21_8ohfs")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.87667936, 0.27172422, 14.642221)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.877, -0.485, 14.642)
 
 [node name="Terminal" parent="DemoRoom/Interactables" unique_id=1133609830 instance=ExtResource("22_r6qow")]
 transform = Transform3D(-0.9978612, 0, 0.065368414, 0, 1, 0, -0.065368414, 0, -0.9978612, 0.841362, 0.41220218, 14.853604)
