@@ -116,3 +116,5 @@ func _apply() -> void:
 		_label.position = Vector3(0, 0, 0.0002)
 		_label.rotation_degrees = label_rotation
 		_label.pixel_size = 0.0005
+		_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		_label.width = note_size.x / _label.pixel_size

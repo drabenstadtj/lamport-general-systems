@@ -5,12 +5,16 @@ class_name ServerRack
 @export var server_configs: Array[ServerSlotConfig] = []
 @export var server_scene: PackedScene
 
+@export_group("Debug")
+@export var show_debug_labels: bool = false
+
 func _ready():
 	if not Engine.is_editor_hint():
 		spawn_servers()
 
 func _process(_delta: float) -> void:
 	if not Engine.is_editor_hint():
+		_update_debug_labels()
 		return
 	var has_active := false
 	for c in server_configs:
@@ -97,6 +101,36 @@ func get_available_slot_indices() -> Array[int]:
 				indices.append(num_str.to_int())
 
 	return indices
+
+func _update_debug_labels() -> void:
+	for server in find_children("*", "Server", true, false):
+		var s := server as Server
+		if not s or not s.is_active:
+			continue
+		var label := s.get_node_or_null("DebugLabel") as Label3D
+		if show_debug_labels:
+			if not label:
+				label = Label3D.new()
+				label.name = "DebugLabel"
+				label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+				label.no_depth_test = true
+				label.pixel_size = 0.003
+				label.position = Vector3(0, 0.15, 0)
+				s.add_child(label)
+			var node := NetworkManager.get_network_node(s.node_id) if NetworkManager else null
+			var state_str: String = Enums.NodeState.keys()[node.state] if node else "?"
+			label.text = "ID:%d\n%s" % [s.node_id, state_str]
+			label.modulate = _state_color(node.state if node else -1)
+		elif label:
+			label.queue_free()
+
+func _state_color(state: int) -> Color:
+	match state:
+		Enums.NodeState.HEALTHY: return Color.GREEN
+		Enums.NodeState.CRASHED: return Color.RED
+		Enums.NodeState.BYZANTINE: return Color.YELLOW
+		Enums.NodeState.POWERED_DOWN: return Color.GRAY
+	return Color.WHITE
 
 func get_slot_node(slot_index: int) -> Node3D:
 	var slots = get_node_or_null("Slots")

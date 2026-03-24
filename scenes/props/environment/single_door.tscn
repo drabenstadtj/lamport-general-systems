@@ -119,7 +119,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.032, 0, 0.5)
 script = ExtResource("3_wcodl")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="DoorPivot" unique_id=600529033]
-collision_layer = 5
+collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DoorPivot/StaticBody3D" unique_id=305310454]
@@ -142,9 +142,6 @@ script = ExtResource("5_p16py")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
 mesh = SubResource("ArrayMesh_lin6f")
 skeleton = NodePath("")
-
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="DoorPivot" unique_id=1829942773]
-avoidance_enabled = false
 
 [connection signal="interacted" from="DoorPivot/StaticBody3D/Interactable" to="DoorPivot" method="_on_interactable_interacted"]
 [connection signal="interacted" from="DoorPivot/StaticBody3D/Interactable" to="DoorPivot/DoorHandlePivot" method="_on_interactable_interacted"]
