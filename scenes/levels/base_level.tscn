@@ -22,7 +22,6 @@
 [ext_resource type="PackedScene" uid="uid://c6skd4yrxw10d" path="res://assets/models/props/appliances/coffee pot.glb" id="19_mwefk"]
 [ext_resource type="PackedScene" uid="uid://c2xm0bar6so53" path="res://assets/models/props/furniture/demo_display.glb" id="20_jua6e"]
 [ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/props/environment/desk.tscn" id="21_8ohfs"]
-[ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="22_r6qow"]
 [ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/props/network/server_rack.tscn" id="23_1hcxj"]
 [ext_resource type="PackedScene" uid="uid://j35gjs44jema" path="res://scenes/props/demo_display.tscn" id="25_1d07b"]
 [ext_resource type="PackedScene" uid="uid://ck1yppmi46sda" path="res://assets/models/props/furniture/stanchionpair.glb" id="25_1hcxj"]
@@ -37,7 +36,10 @@
 [ext_resource type="PackedScene" uid="uid://ctuk5fd0rndil" path="res://scenes/characters/demo_robot.tscn" id="35_0hr52"]
 [ext_resource type="Texture2D" uid="uid://0usddfgyqqv5" path="res://assets/textures/screens/demo_slides/slide_08.png" id="35_pseyb"]
 [ext_resource type="PackedScene" uid="uid://c1hpba1iw4trw" path="res://scenes/props/interactables/demo_event_trigger.tscn" id="37_0hr52"]
+[ext_resource type="PackedScene" uid="uid://clslu3agwth0l" path="res://assets/models/props/monitor.glb" id="38_ktxvk"]
 [ext_resource type="AudioStream" uid="uid://dx70r8bw2qm5k" path="res://assets/audio/demo_room/welcome.wav" id="38_u2nyb"]
+[ext_resource type="PackedScene" uid="uid://cwqhal5qghml4" path="res://assets/models/props/electronics/keyboard.glb" id="39_p5hfi"]
+[ext_resource type="PackedScene" uid="uid://h4i6kar4ktf0" path="res://assets/models/props/mouse.glb" id="40_wsjnl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u2nyb"]
 albedo_texture = ExtResource("4_o1chu")
@@ -736,22 +738,8 @@ transform = Transform3D(0.93615776, 0.3513288, 0.0132940635, 0, -0.03781232, 0.9
 [node name="demo_display5" parent="DemoRoom/TemporaryDisplays" unique_id=1081442521 instance=ExtResource("20_jua6e")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.8454337, -0.5194684, 13.174971)
 
-[node name="Label3D" type="Label3D" parent="DemoRoom/TemporaryDisplays/demo_display5" unique_id=196033899]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2930014, 0.07244682)
-text = "Basic Terminal Commands:
-- ls - list files
-- cd [folder] - navigate folders  
-- status - check server status
-- request [data] - retrieve information or somethin"
-font_size = 21
-autowrap_mode = 2
-
 [node name="demo_display7" parent="DemoRoom/TemporaryDisplays" unique_id=1186358684 instance=ExtResource("20_jua6e")]
 transform = Transform3D(-0.023472581, 0, 0.9997245, 0, 1, 0, -0.9997245, 0, -0.023472581, -13.199962, -0.39111105, 7.5028896)
-
-[node name="Label3D" type="Label3D" parent="DemoRoom/TemporaryDisplays/demo_display7" unique_id=815392084]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002436161, 1.415308, 0.10372734)
-text = "how it works"
 
 [node name="demo_display8" parent="DemoRoom/TemporaryDisplays" unique_id=2045103095 instance=ExtResource("20_jua6e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.84788, -0.39111105, 11.768376)
@@ -833,9 +821,6 @@ note_size = Vector2(10.45, 3.345)
 [node name="DeskMesh" parent="DemoRoom/Interactables" unique_id=1912176476 instance=ExtResource("21_8ohfs")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.877, -0.485, 14.642)
 
-[node name="Terminal" parent="DemoRoom/Interactables" unique_id=1133609830 instance=ExtResource("22_r6qow")]
-transform = Transform3D(-0.9978612, 0, 0.065368414, 0, 1, 0, -0.065368414, 0, -0.9978612, 0.841362, 0.41220218, 14.853604)
-
 [node name="ServerRack" parent="DemoRoom/Interactables" unique_id=951366003 instance=ExtResource("23_1hcxj")]
 transform = Transform3D(-0.7337061, 0, 0.6794669, 0, 1, 0, -0.6794669, 0, -0.7337061, 2.63604, -0.4543898, 15.376928)
 
@@ -855,5 +840,14 @@ door1_scene_path = "uid://3mtbxfhulw7m"
 door1_dock = "DockB"
 door2_scene_path = "uid://cphkb1kbgfgue"
 door2_dock = "DockA"
+
+[node name="monitor" parent="." unique_id=325077577 instance=ExtResource("38_ktxvk")]
+transform = Transform3D(-0.010400294, -0.85008633, 0.5265408, 0.99991614, -0.0047703236, 0.0120489, -0.007730767, 0.526622, 0.8500646, 0.7, -0.38858202, 15.900001)
+
+[node name="keyboard" parent="." unique_id=1010841083 instance=ExtResource("39_p5hfi")]
+transform = Transform3D(0.53151685, 0, 0.84704775, 0, 1, 0, -0.84704775, 0, 0.53151685, 1.4, 0.33579177, 14.699999)
+
+[node name="mouse" parent="." unique_id=1425077845 instance=ExtResource("40_wsjnl")]
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 0.5, 0.3268711, 14.5)
 
 [editable path="DoubleDoor"]

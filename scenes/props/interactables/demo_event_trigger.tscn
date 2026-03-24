@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dfrqu3kescuk" path="res://scripts/environment/demo_event_trigger.gd" id="1_yxgcf"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yxgcf"]
-radius = 3.0
+radius = 2.0
 
 [node name="DemoEventTrigger" type="Area3D" unique_id=855858244]
 collision_mask = 2
