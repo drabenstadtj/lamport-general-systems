@@ -32,10 +32,18 @@ func physics_update(_delta: float) -> void:
 		_search_origin = sensory.last_detected_position
 		actor.navigate_to(_search_origin)
 	elif actor.nav_agent.is_navigation_finished():
-		# wander nearby while searching
-		var offset := Vector3(randf_range(-search_radius, search_radius), 0.0, randf_range(-search_radius, search_radius))
+		# wander nearby — retry up to 5 times to avoid snapping to wall-edge nav points
 		var map: RID = actor.nav_agent.get_navigation_map()
-		actor.navigate_to(NavigationServer3D.map_get_closest_point(map, _search_origin + offset))
+		var wander_point := actor.global_position
+		for _i in range(5):
+			var raw := actor.global_position + Vector3(randf_range(-search_radius, search_radius), 0.0, randf_range(-search_radius, search_radius))
+			var nav_point := NavigationServer3D.map_get_closest_point(map, raw)
+			# reject if the snap pulled it far from the raw point (navmesh boundary) or it's too close
+			var snap_drift := Vector2(raw.x - nav_point.x, raw.z - nav_point.z).length()
+			if snap_drift < 0.75 and nav_point.distance_to(actor.global_position) > 1.0:
+				wander_point = nav_point
+				break
+		actor.navigate_to(wander_point)
 
 	if sensory.is_threat_confirmed:
 		actor.state_machine.transition_to("Hunt")

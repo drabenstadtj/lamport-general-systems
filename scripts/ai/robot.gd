@@ -100,12 +100,15 @@ func advance_patrol_index() -> void:
 
 # Navigation ------------------------------------------------------------------
 func navigate_to(target: Vector3) -> void:
-	nav_target = target
-	nav_agent.target_position = target
 	# _nav_is_stop = true when told to hold position (target == self), false when moving somewhere
 	var flat_diff := target - global_position
 	flat_diff.y = 0.0
 	_nav_is_stop = flat_diff.length_squared() < 0.01
+	# only reassign if target moved meaningfully — avoids resetting path every frame
+	if target.distance_squared_to(nav_target) < 0.25:
+		return
+	nav_target = target
+	nav_agent.target_position = target
 
 # Combat ----------------------------------------------------------------------
 func target_in_attack_range() -> bool:

@@ -70,17 +70,8 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_h3oph"]
-size = Vector3(0.1, 2, 0.16450195)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_peprk"]
-size = Vector3(0.1, 2, 0.16450195)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_dug41"]
-size = Vector3(0.1, 2, 0.16450195)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_hqp1r"]
-size = Vector3(0.1, 2, 0.16450195)
+size = Vector3(0.6, 2, 0.7583252)
 
 [node name="ServerRack" type="Node3D" unique_id=827977851]
 script = ExtResource("1_peprk")
@@ -97,20 +88,8 @@ mesh = SubResource("ArrayMesh_b4nif")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1102351340]
 
-[node name="CollisionShape3D1" type="CollisionShape3D" parent="StaticBody3D" unique_id=1910602514]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, 0.29999998)
-shape = SubResource("BoxShape3D_h3oph")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=1679573854]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.9, 0.29999998)
-shape = SubResource("BoxShape3D_peprk")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=1829727899]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.89999986, -0.2924561)
-shape = SubResource("BoxShape3D_dug41")
-
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=1206108983]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.9, -0.2924561)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19999999, 0.9, 0.0044555664)
 shape = SubResource("BoxShape3D_hqp1r")
 
 [node name="Slots" type="Node3D" parent="." unique_id=1890170310]

@@ -734,7 +734,7 @@ shape = SubResource("BoxShape3D_575cj")
 transform = Transform3D(0.93615776, 0.3513288, 0.0132940635, 0, -0.03781232, 0.99928486, 0.35158023, -0.9354883, -0.035398297, -19.84788, -0.3794275, 5.5305705)
 
 [node name="demo_display5" parent="DemoRoom/TemporaryDisplays" unique_id=1081442521 instance=ExtResource("20_jua6e")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.8454337, -0.3794275, 13.174971)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.8454337, -0.5194684, 13.174971)
 
 [node name="Label3D" type="Label3D" parent="DemoRoom/TemporaryDisplays/demo_display5" unique_id=196033899]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2930014, 0.07244682)
@@ -747,49 +747,49 @@ font_size = 21
 autowrap_mode = 2
 
 [node name="demo_display7" parent="DemoRoom/TemporaryDisplays" unique_id=1186358684 instance=ExtResource("20_jua6e")]
-transform = Transform3D(-0.023472581, 0, 0.9997245, 0, 1, 0, -0.9997245, 0, -0.023472581, -13.199962, -0.3794275, 7.5028896)
+transform = Transform3D(-0.023472581, 0, 0.9997245, 0, 1, 0, -0.9997245, 0, -0.023472581, -13.199962, -0.39111105, 7.5028896)
 
 [node name="Label3D" type="Label3D" parent="DemoRoom/TemporaryDisplays/demo_display7" unique_id=815392084]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.002436161, 1.415308, 0.10372734)
 text = "how it works"
 
 [node name="demo_display8" parent="DemoRoom/TemporaryDisplays" unique_id=2045103095 instance=ExtResource("20_jua6e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.84788, -0.3794275, 11.768376)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.84788, -0.39111105, 11.768376)
 
 [node name="demo_display11" parent="DemoRoom/TemporaryDisplays" unique_id=348990084 instance=ExtResource("20_jua6e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.087142, -0.3794275, 16.276314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.087142, -0.5194684, 16.276314)
 
 [node name="demo_display12" parent="DemoRoom/TemporaryDisplays" unique_id=756560507 instance=ExtResource("20_jua6e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.84788, -0.3794275, 16.276314)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.84788, -0.3, 16.276314)
 
 [node name="DemoDisplays" type="Node3D" parent="DemoRoom" unique_id=1521430449]
 
 [node name="DemoDisplay5" parent="DemoRoom/DemoDisplays" unique_id=1980715566 instance=ExtResource("25_1d07b")]
-transform = Transform3D(0.03695762, 0, 0.9993168, 0, 1, 0, -0.9993168, 0, 0.03695762, -8.610854, -0.3794275, 11.27355)
+transform = Transform3D(0.03695762, 0, 0.9993168, 0, 1, 0, -0.9993168, 0, 0.03695762, -8.610854, -0.5194684, 11.27355)
 front_image = ExtResource("31_gkgjl")
 
 [node name="DemoDisplay4" parent="DemoRoom/DemoDisplays" unique_id=1530730599 instance=ExtResource("25_1d07b")]
-transform = Transform3D(-0.6287098, 0, 0.77764004, 0, 1, 0, -0.77764004, 0, -0.6287098, -7.582432, -0.3794275, 14.531217)
+transform = Transform3D(-0.6287098, 0, 0.77764004, 0, 1, 0, -0.77764004, 0, -0.6287098, -7.582432, -0.5194684, 14.531217)
 front_image = ExtResource("30_vcyb2")
 
 [node name="DemoDisplay3" parent="DemoRoom/DemoDisplays" unique_id=1190612473 instance=ExtResource("25_1d07b")]
-transform = Transform3D(-0.99999696, 0, -0.0024608667, 0, 1, 0, 0.0024608667, 0, -0.99999696, 0.7347903, -0.3794275, 16.579336)
+transform = Transform3D(-0.99999696, 0, -0.0024608667, 0, 1, 0, 0.0024608667, 0, -0.99999696, 0.7347903, -0.5194684, 16.579336)
 front_image = ExtResource("28_64olr")
 
 [node name="DemoDisplay2" parent="DemoRoom/DemoDisplays" unique_id=1966520563 instance=ExtResource("25_1d07b")]
-transform = Transform3D(-0.22461097, 0, 0.97444856, 0, 1, 0, -0.97444856, 0, -0.22461097, -1.1662003, -0.3794275, 7.882578)
+transform = Transform3D(-0.22461097, 0, 0.97444856, 0, 1, 0, -0.97444856, 0, -0.22461097, -1.1662003, -0.5194684, 7.882578)
 front_image = ExtResource("27_nq73e")
 
 [node name="DemoDisplay" parent="DemoRoom/DemoDisplays" unique_id=1733878099 instance=ExtResource("25_1d07b")]
-transform = Transform3D(0.3853425, 0, 0.9227736, 0, 1, 0, -0.9227736, 0, 0.3853425, -0.9498986, -0.3794275, 4.7196007)
+transform = Transform3D(0.3853425, 0, 0.9227736, 0, 1, 0, -0.9227736, 0, 0.3853425, -0.9498986, -0.5194684, 4.7196007)
 front_image = ExtResource("26_nq73e")
 
 [node name="DemoDisplay6" parent="DemoRoom/DemoDisplays" unique_id=1542755690 instance=ExtResource("25_1d07b")]
-transform = Transform3D(-0.99360937, 0, 0.11287368, 0, 1, 0, -0.11287368, 0, -0.99360937, -4.1455817, -0.37942737, 16.121445)
+transform = Transform3D(-0.99360937, 0, 0.11287368, 0, 1, 0, -0.11287368, 0, -0.99360937, -4.1455817, -0.5194684, 16.121445)
 front_image = ExtResource("10_yo52i")
 
 [node name="DemoDisplay7" parent="DemoRoom/DemoDisplays" unique_id=94628336 instance=ExtResource("25_1d07b")]
-transform = Transform3D(0.6565594, 0, -0.75427425, 0, 1, 0, 0.75427425, 0, 0.6565594, -5.3916206, -0.3794276, 6.2946877)
+transform = Transform3D(0.6565594, 0, -0.75427425, 0, 1, 0, 0.75427425, 0, 0.6565594, -5.3916206, -0.5194684, 6.2946877)
 front_image = ExtResource("35_pseyb")
 
 [node name="Props" type="Node3D" parent="DemoRoom" unique_id=366286610]

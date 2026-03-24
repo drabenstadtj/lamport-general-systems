@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://j35gjs44jema"]
 
 [ext_resource type="Script" uid="uid://d0bs0vjqs5w56" path="res://scripts/environment/demo_display.gd" id="1_v65aa"]
-[ext_resource type="Texture2D" path="res://assets/textures/props/demo_display_Metal_02-128x128.png" id="2_prgh3"]
+[ext_resource type="Texture2D" uid="uid://b60lig4gpnjrl" path="res://assets/textures/props/demo_display_Metal_02-128x128.png" id="2_prgh3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4y6uw"]
 resource_name = "Material"
@@ -84,17 +84,29 @@ shadow_mesh = SubResource("ArrayMesh_v4r1f")
 [sub_resource type="QuadMesh" id="QuadMesh_u8oyx"]
 size = Vector2(2.562, 1.445)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_estld"]
+size = Vector3(2.8, 2.3, 0.4)
+
 [node name="DemoDisplay" type="Node3D" unique_id=1542755690]
 script = ExtResource("1_v65aa")
 
 [node name="Board" type="MeshInstance3D" parent="." unique_id=1952392406]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12691745, 0)
 mesh = SubResource("ArrayMesh_2bryv")
 skeleton = NodePath("")
 
 [node name="Frame" type="MeshInstance3D" parent="." unique_id=2110818579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12691745, 0)
 mesh = SubResource("ArrayMesh_7r626")
 skeleton = NodePath("")
 
 [node name="ImageDisplay" type="MeshInstance3D" parent="." unique_id=1046048990]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2833225, 0.01663518)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4102399, 0.01663518)
 mesh = SubResource("QuadMesh_u8oyx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1399956726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12691745, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1739544405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, 1.05, 1.4901161e-08)
+shape = SubResource("BoxShape3D_estld")
