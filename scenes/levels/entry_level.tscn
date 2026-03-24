@@ -213,7 +213,7 @@ shader_parameter/decal_scale = Vector2(0, 0)
 [sub_resource type="PlaneMesh" id="PlaneMesh_1arwa"]
 size = Vector2(0.076, 0.076)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ks3n"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a41qq"]
 render_priority = 0
 shader = ExtResource("18_xgk1q")
 shader_parameter/base_color = Color(1, 1, 0.7, 1)
@@ -223,7 +223,7 @@ shader_parameter/decal_scale = Vector2(0, 0)
 [sub_resource type="PlaneMesh" id="PlaneMesh_5ks3n"]
 size = Vector2(0.076, 0.076)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5tot"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_exdnr"]
 render_priority = 0
 shader = ExtResource("18_xgk1q")
 shader_parameter/base_color = Color(1, 1, 0.7, 1)
@@ -233,7 +233,7 @@ shader_parameter/decal_scale = Vector2(0, 0)
 [sub_resource type="PlaneMesh" id="PlaneMesh_rvg1l"]
 size = Vector2(0.076, 0.076)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s4qem"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gcs5a"]
 render_priority = 0
 shader = ExtResource("18_xgk1q")
 shader_parameter/base_color = Color(1, 1, 0.7, 1)
@@ -496,7 +496,7 @@ font_size = 48
 
 [node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote4" unique_id=546957950]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_5ks3n")
+material_override = SubResource("ShaderMaterial_a41qq")
 mesh = SubResource("PlaneMesh_5ks3n")
 
 [node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote4" unique_id=225945174]
@@ -515,7 +515,7 @@ font_size = 48
 
 [node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote5" unique_id=1056032994]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_h5tot")
+material_override = SubResource("ShaderMaterial_exdnr")
 mesh = SubResource("PlaneMesh_rvg1l")
 
 [node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote5" unique_id=1261101774]
@@ -534,7 +534,7 @@ font_size = 48
 
 [node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote6" unique_id=1748624351]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_s4qem")
+material_override = SubResource("ShaderMaterial_gcs5a")
 mesh = SubResource("PlaneMesh_h5tot")
 
 [node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote6" unique_id=687412679]
