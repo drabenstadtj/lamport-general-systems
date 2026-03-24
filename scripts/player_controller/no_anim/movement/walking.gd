@@ -47,6 +47,7 @@ func physics_update(delta: float) -> void:
 	_footstep_timer += delta
 	if _footstep_timer >= 0.5:
 		AIDirector.emit_sound(actor.global_position, 0.5)
+		actor.play_footstep()
 		_footstep_timer = 0.0
 	
 	actor.move_and_slide()

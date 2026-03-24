@@ -20,6 +20,10 @@ extends CharacterBody3D
 @onready var collision_manager: CollisionManager = $CollisionManager
 @onready var camera_controller: CameraController = $CameraController
 @onready var damage_component: DamageComponent = $DamageComponent
+@onready var footstep_audio: AudioStreamPlayer3D = $FootstepAudio
+
+@export_group("Footsteps")
+@export var footstep_sounds: Array[AudioStream] = []
 
 # Movement State
 var is_crouched: bool = false
@@ -172,6 +176,14 @@ func stand_up() -> void:
 	if collision_manager:
 		collision_manager.stand()
 		is_crouched = collision_manager.is_crouched
+
+func play_footstep(volume_db: float = 0.0) -> void:
+	if footstep_sounds.is_empty() or not footstep_audio:
+		return
+	footstep_audio.stream = footstep_sounds[randi() % footstep_sounds.size()]
+	footstep_audio.pitch_scale = randf_range(0.9, 1.1)
+	footstep_audio.volume_db = volume_db
+	footstep_audio.play()
 
 func check_ceiling() -> bool:
 	return collision_manager.check_ceiling() if collision_manager else false

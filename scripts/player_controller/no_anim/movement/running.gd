@@ -1,6 +1,6 @@
 extends State
 
-var _footstep_timer: float = 0.5
+var _footstep_timer: float = 0.0
 
 func enter() -> void:
 	actor.set_sprinting(true)
@@ -48,8 +48,9 @@ func physics_update(delta: float) -> void:
 	
 	# emit sound to AI's
 	_footstep_timer += delta
-	if _footstep_timer >= 0.5:
+	if _footstep_timer >= 0.32:
 		AIDirector.emit_sound(actor.global_position, 0.9)
+		actor.play_footstep(3.0)
 		_footstep_timer = 0.0
 		
 	actor.move_and_slide()
