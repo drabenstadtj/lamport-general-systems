@@ -692,7 +692,6 @@ server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), 
 [node name="ServerRack6" parent="NavigationRegion3D/ServerGroup" unique_id=143298999 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_obvoy")])
-show_debug_labels = true
 
 [node name="ServerRack7" parent="NavigationRegion3D/ServerGroup" unique_id=9406590 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4.8)
@@ -755,7 +754,6 @@ server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), 
 [node name="ServerRack4" parent="NavigationRegion3D/ServerGroup3" unique_id=252456132 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 2.4)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_tf11d")])
-show_debug_labels = true
 
 [node name="ServerRack5" parent="NavigationRegion3D/ServerGroup3" unique_id=11007571 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 3.1999998)
@@ -869,7 +867,6 @@ server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), 
 [node name="ServerRack6" parent="NavigationRegion3D/ServerGroup6" unique_id=275434915 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_l8hr7")])
-show_debug_labels = true
 
 [node name="ServerRack7" parent="NavigationRegion3D/ServerGroup6" unique_id=1720926595 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4.8)
@@ -1002,7 +999,6 @@ server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), 
 [node name="ServerRack4" parent="NavigationRegion3D/ServerGroup10" unique_id=347736924 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 2.3999996)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_8hc85")])
-show_debug_labels = true
 
 [node name="ServerRack5" parent="NavigationRegion3D/ServerGroup10" unique_id=1499201678 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 3.1999998)
@@ -1061,7 +1057,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 18)
 [node name="ServerRack" parent="NavigationRegion3D/ServerGroup12" unique_id=614064128 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_vmftc")])
-show_debug_labels = true
 
 [node name="ServerRack2" parent="NavigationRegion3D/ServerGroup12" unique_id=603827740 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0.79999995)

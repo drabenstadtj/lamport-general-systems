@@ -108,8 +108,8 @@ func update_status_light():
 				status_light.light_color = Color.RED
 				status_light.light_energy = 5.0
 			Enums.NodeState.POWERED_DOWN:
-				status_light.light_color = Color.BLACK
-				status_light.light_energy = 0.0
+				status_light.light_color = Color(1.0, 0.4, 0.0)
+				status_light.light_energy = 0.5
 			Enums.NodeState.BYZANTINE:
 				status_light.light_color = Color.YELLOW
 				status_light.light_energy = 5.0
