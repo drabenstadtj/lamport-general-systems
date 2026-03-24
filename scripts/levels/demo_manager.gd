@@ -6,46 +6,40 @@ signal tutorial_completed
 enum TutorialStep {
 	NONE,
 	MOVE_AROUND,
+	CROUCH,
 	ZOOM,
 	INTERACT_WITH_TERMINAL,
-	POWER_ON_SERVERS,
+	RESTORE_NETWORK,
 	COMPLETE
 }
 
 var current_step: TutorialStep = TutorialStep.NONE
 var completed_steps: Array[TutorialStep] = []
 
-@export var step_delay: float = 0.5  # Delay between steps
-@export var final_message_duration: float = 2.0  # How long to show "Demo Complete!"
-
-# Track server states
-var servers_healthy: Dictionary = {
-	0: false,
-	1: false
-}
+@export var step_delay: float = 0.5
+@export var final_message_duration: float = 2.0
+@export var exit_door: DoubleDoors
+@export var physical_server_id: int = 0
+@export var terminal_server_id: int = 1
 
 func _ready():
 	add_to_group("tutorial_manager")
-	
-	# Connect to NetworkManager signals
+
+	if SaveManager.get_flag("tutorial_complete"):
+		current_step = TutorialStep.COMPLETE
+		return
+
 	if NetworkManager:
-		NetworkManager.security_level_changed.connect(_on_security_level_changed)
-	
+		NetworkManager.node_state_changed.connect(_on_node_state_changed)
+		NetworkManager.network_initialized.connect(_on_network_initialized, CONNECT_ONE_SHOT)
+
 	start_tutorial()
-
-func _input(event: InputEvent):
-	# Reset demo with Ctrl+R
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_R and event.ctrl_pressed:
-			reset_demo()
-
-func reset_demo():
-	print("Resetting demo...")
-	get_tree().reload_current_scene()
 
 func start_tutorial():
 	current_step = TutorialStep.MOVE_AROUND
-	show_step_hint("Use WASD to move around")
+	if AIDirector.player:
+		_last_pos = AIDirector.player.global_position
+	show_step_hint("Use %s%s%s%s to move around" % [key("move_forward"), key("move_left"), key("move_backward"), key("move_right")])
 
 func complete_step(step: TutorialStep):
 	if step == current_step and step not in completed_steps:
@@ -61,41 +55,75 @@ func complete_step(step: TutorialStep):
 		await get_tree().create_timer(step_delay).timeout
 		advance_to_next_step()
 
+var _move_distance: float = 0.0
+var _last_pos: Vector3
+@export var move_required_distance: float = 3.0
+
+func _process(_delta: float) -> void:
+	if current_step == TutorialStep.MOVE_AROUND:
+		var player := AIDirector.player
+		if player:
+			_move_distance += player.global_position.distance_to(_last_pos)
+			_last_pos = player.global_position
+			if _move_distance >= move_required_distance:
+				complete_step(TutorialStep.MOVE_AROUND)
+
+func _input(event: InputEvent) -> void:
+	if current_step == TutorialStep.CROUCH and event.is_action_pressed("crouch"):
+		complete_step(TutorialStep.CROUCH)
+	elif current_step == TutorialStep.ZOOM and event.is_action_pressed("zoom"):
+		complete_step(TutorialStep.ZOOM)
+
 func advance_to_next_step():
 	match current_step:
 		TutorialStep.MOVE_AROUND:
-			current_step = TutorialStep.ZOOM  
-			show_step_hint("Press F to zoom") 
+			current_step = TutorialStep.CROUCH
+			show_step_hint("Hold %s to crouch and move quietly" % key("crouch"))
+		TutorialStep.CROUCH:
+			current_step = TutorialStep.ZOOM
+			show_step_hint("Press %s to zoom" % key("zoom"))
 		TutorialStep.ZOOM:
 			current_step = TutorialStep.INTERACT_WITH_TERMINAL
-			show_step_hint("Press E to interact with terminals")
+			show_step_hint("Press %s to interact with terminals" % key("interact"))
 		TutorialStep.INTERACT_WITH_TERMINAL:
-			current_step = TutorialStep.POWER_ON_SERVERS
-			show_step_hint("Power on both Server 1 and Server 2")
-		TutorialStep.POWER_ON_SERVERS:
+			current_step = TutorialStep.RESTORE_NETWORK
+			show_step_hint("The servers are offline. Get the network back up.")
+		TutorialStep.RESTORE_NETWORK:
 			current_step = TutorialStep.COMPLETE
 			complete_tutorial()
 
 func complete_tutorial():
 	tutorial_completed.emit()
-	
+	SaveManager.set_flag("tutorial_complete", true)
+	SaveManager.save()
+	if exit_door:
+		exit_door.unlock()
+
 	if HUD:
-		# Show final message, wait for fade in + display + fade out
 		await HUD.show_final_tutorial_hint("Demo Complete!", final_message_duration)
-	
-	get_tree().change_scene_to_file("res://scenes/levels/base_level.tscn")
+
+	show_step_hint("Head through the door to continue")
 
 func show_step_hint(text: String):
 	if HUD:
 		HUD.show_tutorial_hint(text)
 
-func _on_security_level_changed(old_level: Enums.SecurityLevel, new_level: Enums.SecurityLevel):
-	if current_step != TutorialStep.POWER_ON_SERVERS:
+func key(action: String) -> String:
+	for event in InputMap.action_get_events(action):
+		if event is InputEventKey:
+			return event.as_text_physical_keycode()
+	return action
+
+func _on_network_initialized() -> void:
+	NetworkManager.power_off_node(physical_server_id)
+	NetworkManager.power_off_node(terminal_server_id)
+
+var _restored_servers: Array[int] = []
+
+func _on_node_state_changed(node_id: int, _old: Enums.NodeState, new_state: Enums.NodeState) -> void:
+	if current_step != TutorialStep.RESTORE_NETWORK or new_state != Enums.NodeState.HEALTHY:
 		return
-	
-	print("[Tutorial] Security level changed: %s -> %s" % [Enums.SecurityLevel.keys()[old_level], Enums.SecurityLevel.keys()[new_level]])
-	
-	# Complete tutorial when reaching MAINTENANCE level (level 1)
-	if new_level == Enums.SecurityLevel.MAINTENANCE:
-		print("[Tutorial] Reached MAINTENANCE level! Completing tutorial...")
-		complete_step(TutorialStep.POWER_ON_SERVERS)
+	if node_id in [physical_server_id, terminal_server_id] and node_id not in _restored_servers:
+		_restored_servers.append(node_id)
+	if _restored_servers.has(physical_server_id) and _restored_servers.has(terminal_server_id):
+		complete_step(TutorialStep.RESTORE_NETWORK)

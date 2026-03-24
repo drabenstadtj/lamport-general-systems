@@ -119,6 +119,9 @@ size = Vector3(0.063, 2.25, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_xgdb5"]
 size = Vector3(0.2, 2.2, 1.8000001)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vayen"]
+size = Vector3(0.4, 0.12011719, 2.2)
+
 [node name="TransferRoom" type="Node3D" unique_id=1228649981]
 script = ExtResource("1_hirqe")
 
@@ -254,5 +257,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5000001, 3, -0.099999994)
 
 [node name="Light5" parent="." unique_id=935335932 instance=ExtResource("9_vayen")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5000001, 3, 0.5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=979519137]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=459322808]
+transform = Transform3D(0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0, 0, 0, 1, 3.2911513, -0.071520865, 2.9802322e-08)
+shape = SubResource("BoxShape3D_vayen")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=1914208533]
+transform = Transform3D(-0.98480767, -0.17364816, -8.742278e-08, -0.17364816, 0.98480767, 0, 8.6094616e-08, 1.5180804e-08, -1, -3.301373, -0.071520865, 2.9802322e-08)
+shape = SubResource("BoxShape3D_vayen")
 
 [connection signal="interacted" from="Button/StaticBody3D/Interactable" to="." method="_on_interactable_interacted"]

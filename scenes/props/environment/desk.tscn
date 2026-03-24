@@ -51,11 +51,14 @@ blend_shape_mode = 0
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hkn3f"]
 points = PackedVector3Array(-0.39909902, -0.77169997, -0.81174135, 0.4429306, 0.014099999, 0.90037537, -0.4572, 0.0138857225, 0.8998856, 0.4429306, 0.014099999, -0.90037537, 0.4112, -0.7704354, 0.8091219, -0.4572, 0.0138857225, -0.8998856, -0.39909902, -0.77169997, 0.81174135, 0.4112, -0.7704354, -0.8091219, -0.47171432, -0.03149414, 0.92891425, 0.45720005, -0.03149414, -0.92891425, -0.47171432, -0.03149414, -0.92891425, 0.45720005, -0.03149414, 0.92891425)
 
-[node name="DeskMesh" type="MeshInstance3D" unique_id=92536419]
+[node name="Desk" type="Node3D" unique_id=1318652809]
+
+[node name="DeskMesh" type="MeshInstance3D" parent="." unique_id=92536419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77692777, 0)
 mesh = SubResource("ArrayMesh_vmht0")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=62105214]
+[node name="StaticBody3D" type="StaticBody3D" parent="DeskMesh" unique_id=62105214]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1507057894]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeskMesh/StaticBody3D" unique_id=1507057894]
 shape = SubResource("ConvexPolygonShape3D_hkn3f")

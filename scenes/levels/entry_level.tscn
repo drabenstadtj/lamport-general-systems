@@ -8,7 +8,18 @@
 [ext_resource type="Material" uid="uid://cfk32c516r4hf" path="res://trenchbroom/textures/molding.tres" id="6_0vuvt"]
 [ext_resource type="PackedScene" uid="uid://d0ugpb8wvak62" path="res://scenes/props/environment/dropceiling_light.tscn" id="7_8wegd"]
 [ext_resource type="PackedScene" uid="uid://bbyv7qs0epj28" path="res://scenes/props/environment/double_doors.tscn" id="8_km5w5"]
+[ext_resource type="Script" uid="uid://dw2txcbbbtijv" path="res://scripts/levels/demo_manager.gd" id="10_rvs8q"]
 [ext_resource type="PackedScene" uid="uid://dgdxp6fmdaygo" path="res://scenes/props/environment/transfer_portal.tscn" id="10_wdyd2"]
+[ext_resource type="PackedScene" uid="uid://hdxokx00t3dj" path="res://scenes/props/network/network_config.tscn" id="11_0vuvt"]
+[ext_resource type="PackedScene" uid="uid://djmhrpo53lrks" path="res://scenes/props/network/server_rack.tscn" id="12_8wegd"]
+[ext_resource type="Script" uid="uid://b5dbyeybyr3m6" path="res://scripts/network/server_slot_config.gd" id="13_8wegd"]
+[ext_resource type="PackedScene" uid="uid://b7ffly58ushqn" path="res://scenes/props/environment/desk.tscn" id="14_dg7ij"]
+[ext_resource type="PackedScene" uid="uid://nb348stosqva" path="res://scenes/props/network/terminal.tscn" id="15_j0iqj"]
+[ext_resource type="PackedScene" uid="uid://b75l7u4k8q63n" path="res://scenes/props/interactables/pickupable_note.tscn" id="16_j0iqj"]
+[ext_resource type="Texture2D" uid="uid://bvtvw22vp0fwb" path="res://assets/textures/notes/note-unit3.png" id="17_mfrcq"]
+[ext_resource type="Texture2D" uid="uid://dw74n0h3x8bmt" path="res://assets/textures/notes/note-status.png" id="17_nan0c"]
+[ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://assets/shaders/sticky_note.gdshader" id="18_xgk1q"]
+[ext_resource type="Script" uid="uid://kw6afw1wvxlm" path="res://scripts/levels/test_spawn_point.gd" id="20_l4c0k"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_f5j66"]
 _surfaces = [{
@@ -142,6 +153,96 @@ points = PackedVector3Array(-2, 0.25, 3.5, -2, -0.5625, 3.5, -6.75, 0.25, 3.5, -
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cjypa"]
 points = PackedVector3Array(0.09375, 0, 3.5, 0.09375, -0.5625, 3.5, -2.53125, 0, 3.5, -2.53125, -0.5625, 3.5, 0.09375, 0, 3, 0.09375, -0.5625, 3, -2.53125, 0, 3, -2.53125, -0.5625, 3)
 
+[sub_resource type="Resource" id="Resource_xkvkf"]
+script = ExtResource("13_8wegd")
+slot_index = 8
+is_active_node = true
+node_id = 0
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_dg7ij"]
+script = ExtResource("13_8wegd")
+slot_index = 6
+is_active_node = true
+node_id = 1
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_j0iqj"]
+script = ExtResource("13_8wegd")
+slot_index = 3
+is_active_node = true
+node_id = 2
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_mfrcq"]
+script = ExtResource("13_8wegd")
+slot_index = 2
+is_active_node = true
+node_id = 3
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l4c0k"]
+render_priority = 0
+shader = ExtResource("18_xgk1q")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/text_decal = ExtResource("17_nan0c")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(0.99810606, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l4c0k"]
+size = Vector2(0.216, 0.279)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1arwa"]
+render_priority = 0
+shader = ExtResource("18_xgk1q")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/text_decal = ExtResource("17_mfrcq")
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gatmj"]
+size = Vector2(0.115, 0.115)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvg1l"]
+render_priority = 0
+shader = ExtResource("18_xgk1q")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1arwa"]
+size = Vector2(0.076, 0.076)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ks3n"]
+render_priority = 0
+shader = ExtResource("18_xgk1q")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5ks3n"]
+size = Vector2(0.076, 0.076)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5tot"]
+render_priority = 0
+shader = ExtResource("18_xgk1q")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rvg1l"]
+size = Vector2(0.076, 0.076)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s4qem"]
+render_priority = 0
+shader = ExtResource("18_xgk1q")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h5tot"]
+size = Vector2(0.076, 0.076)
+
 [node name="EntryLevel" type="Node3D" unique_id=310957279]
 
 [node name="FuncGodotMap" type="Node3D" parent="." unique_id=1608889811]
@@ -149,6 +250,7 @@ script = ExtResource("1_d5rah")
 local_map_file = "uid://ba1mcokugqkel"
 map_settings = ExtResource("2_km5w5")
 metadata/_custom_type_script = "uid://cwu5cf7a0awcd"
+metadata/_edit_lock_ = true
 
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=1794142711]
 collision_mask = 0
@@ -281,6 +383,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 1.1, 0)
 
 [node name="DoubleDoors2" parent="." unique_id=1970329567 instance=ExtResource("8_km5w5")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 1.1301085, 3.0922222)
+locked = true
 
 [node name="DoubleDoor" parent="." unique_id=62288274 instance=ExtResource("10_wdyd2")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 0, 3.5)
@@ -297,3 +400,146 @@ door1_scene_path = "uid://mju0rlw4o1oy"
 door1_dock = "DockA"
 door2_scene_path = "uid://dovm16uxv36vy"
 door2_dock = "DockA"
+
+[node name="DemoManager" type="Node" parent="." unique_id=578720244 node_paths=PackedStringArray("exit_door")]
+script = ExtResource("10_rvs8q")
+exit_door = NodePath("../DoubleDoors2")
+physical_server_id = 1
+terminal_server_id = 3
+
+[node name="NetworkConfig" parent="." unique_id=1407505920 instance=ExtResource("11_0vuvt")]
+network_id = "demo_network"
+initially_crashed_nodes = Array[int]([1])
+initially_powered_off_nodes = Array[int]([3])
+
+[node name="ServerRack" parent="." unique_id=827977851 instance=ExtResource("12_8wegd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.9, 0, 2.1999998)
+server_configs = Array[ExtResource("13_8wegd")]([SubResource("Resource_xkvkf"), SubResource("Resource_dg7ij"), SubResource("Resource_j0iqj"), SubResource("Resource_mfrcq")])
+
+[node name="DeskMesh" parent="." unique_id=92536419 instance=ExtResource("14_dg7ij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
+
+[node name="Terminal2" parent="." unique_id=1133609830 instance=ExtResource("15_j0iqj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9, 0.88971525, 1)
+
+[node name="TestSpawnpoint" type="Node3D" parent="." unique_id=550708228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 0, 0)
+script = ExtResource("20_l4c0k")
+
+[node name="NoteProps" type="Node3D" parent="." unique_id=367660702]
+
+[node name="PickupableNote2" parent="NoteProps" unique_id=1405896770 instance=ExtResource("16_j0iqj")]
+transform = Transform3D(1.9106855e-15, -1, -4.371139e-08, -4.371139e-08, -4.371139e-08, 1, -1, 0, -4.371139e-08, 3.2, 0.8216482, 0.4)
+texture = ExtResource("17_nan0c")
+note_size = Vector2(0.216, 0.279)
+lock_aspect_ratio = true
+note_text = ""
+font_size = 16
+
+[node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote2" unique_id=250477356]
+transform = Transform3D(0.9999999, 0, 0, 0, -4.3711385e-08, -1, 0, 0.9999999, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_l4c0k")
+mesh = SubResource("PlaneMesh_l4c0k")
+
+[node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote2" unique_id=841832969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
+visible = false
+pixel_size = 0.0005
+modulate = Color(0, 0, 0, 1)
+font_size = 16
+
+[node name="PickupableNote" parent="NoteProps" unique_id=980705279 instance=ExtResource("16_j0iqj")]
+transform = Transform3D(-4.26371e-08, -0.22033994, 0.97542316, -9.631365e-09, 0.97542316, 0.22033994, -1, 0, -4.371139e-08, 2.9666336, 0.87755686, 1)
+texture = ExtResource("17_mfrcq")
+note_size = Vector2(0.115, 0.115)
+lock_aspect_ratio = true
+note_text = ""
+font_size = 16
+
+[node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote" unique_id=1615365477]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_1arwa")
+mesh = SubResource("PlaneMesh_gatmj")
+
+[node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote" unique_id=1905756408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
+visible = false
+pixel_size = 0.0005
+modulate = Color(0, 0, 0, 1)
+font_size = 16
+
+[node name="PickupableNote3" parent="NoteProps" unique_id=1746476296 instance=ExtResource("16_j0iqj")]
+transform = Transform3D(-0.99999994, 0, -1.1920929e-07, 0, 1, 0, 1.1920929e-07, 0, -0.99999994, 5.5701184, 1.7, 1.9090796)
+note_size = Vector2(0.076, 0.076)
+lock_aspect_ratio = false
+note_text = "0"
+font_size = 48
+
+[node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote3" unique_id=1547571757]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_rvg1l")
+mesh = SubResource("PlaneMesh_1arwa")
+
+[node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote3" unique_id=1597303560]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
+pixel_size = 0.0005
+modulate = Color(0, 0, 0, 1)
+text = "0"
+font_size = 48
+
+[node name="PickupableNote4" parent="NoteProps" unique_id=325412885 instance=ExtResource("16_j0iqj")]
+transform = Transform3D(-0.99999994, 0, -1.1920929e-07, 0, 1, 0, 1.1920929e-07, 0, -0.99999994, 5.5701184, 1.3, 1.9090796)
+note_size = Vector2(0.076, 0.076)
+lock_aspect_ratio = false
+note_text = "1"
+font_size = 48
+
+[node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote4" unique_id=546957950]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_5ks3n")
+mesh = SubResource("PlaneMesh_5ks3n")
+
+[node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote4" unique_id=225945174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
+pixel_size = 0.0005
+modulate = Color(0, 0, 0, 1)
+text = "1"
+font_size = 48
+
+[node name="PickupableNote5" parent="NoteProps" unique_id=1478805955 instance=ExtResource("16_j0iqj")]
+transform = Transform3D(-0.99999994, 0, -1.1920929e-07, 0, 1, 0, 1.1920929e-07, 0, -0.99999994, 5.5701184, 0.7, 1.9090796)
+note_size = Vector2(0.076, 0.076)
+lock_aspect_ratio = false
+note_text = "2"
+font_size = 48
+
+[node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote5" unique_id=1056032994]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_h5tot")
+mesh = SubResource("PlaneMesh_rvg1l")
+
+[node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote5" unique_id=1261101774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
+pixel_size = 0.0005
+modulate = Color(0, 0, 0, 1)
+text = "2"
+font_size = 48
+
+[node name="PickupableNote6" parent="NoteProps" unique_id=773773271 instance=ExtResource("16_j0iqj")]
+transform = Transform3D(-0.99999994, 0, -1.1920929e-07, 0, 1, 0, 1.1920929e-07, 0, -0.99999994, 5.5701184, 0.5, 1.9090796)
+note_size = Vector2(0.076, 0.076)
+lock_aspect_ratio = false
+note_text = "3"
+font_size = 48
+
+[node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote6" unique_id=1748624351]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_s4qem")
+mesh = SubResource("PlaneMesh_h5tot")
+
+[node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote6" unique_id=687412679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
+pixel_size = 0.0005
+modulate = Color(0, 0, 0, 1)
+text = "3"
+font_size = 48

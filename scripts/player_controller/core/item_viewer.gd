@@ -7,11 +7,11 @@ signal viewing_ended
 #region Parameters
 @export var rotation_sensitivity: float = 0.005
 @export var return_speed: float = 10.0
-@export var min_distance: float = 0.5
+@export var min_distance: float = 0.25
 @export var max_distance: float = 2.0
 @export var scroll_speed: float = 0.1
-@export var position_follow_speed: float = 8.0  # Lower = slower
-@export var rotation_follow_speed: float = 5.0  # Lower = slower
+@export var position_follow_speed: float = 8.0 # Lower = slower
+@export var rotation_follow_speed: float = 5.0 # Lower = slower
 #endregion
 
 # References
@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 		var space_state = player.get_world_3d().direct_space_state
 		var query = PhysicsRayQueryParameters3D.create(camera.global_position, target_pos)
 		query.exclude = [player, current_item_root]
-		query.collision_mask = 1  # Only check world geometry on layer 1
+		query.collision_mask = 1 # Only check world geometry on layer 1
 		
 		var result = space_state.intersect_ray(query)
 		if result:
@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 		
 		# Also enforce minimum distance from player
 		var to_item = target_pos - player.global_position
-		if to_item.length() < 0.3:  # Min distance of 0.3 units
+		if to_item.length() < 0.3: # Min distance of 0.3 units
 			target_pos = player.global_position + to_item.normalized() * 0.3
 		
 		# Smoothly move toward target (creates the inertia effect)
@@ -104,7 +104,7 @@ func start_viewing(item_root: Node3D, restore_on_exit: bool = true) -> void:
 	
 	# Calculate initial distance
 	var to_item = item_root.global_position - camera.global_position
-	var camera_forward = -camera.global_transform.basis.z
+	var camera_forward = - camera.global_transform.basis.z
 	current_distance = to_item.dot(camera_forward)
 	current_distance = clamp(current_distance, min_distance, max_distance)
 	
