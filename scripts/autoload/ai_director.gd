@@ -12,6 +12,25 @@ var threat_threshold: float = 20.0
 var hint_cooldown: float = 0.0
 var _threat_print_timer: float = 0.0
 
+func _ready() -> void:
+	SecurityCameraManager.alert_raised.connect(_on_camera_alert)
+
+func _on_camera_alert(camera_id: String, target: Node) -> void:
+	if not target is Node3D:
+		return
+	var alert_position: Vector3 = (target as Node3D).global_position
+	print("[AIDirector] camera alert from ", camera_id, " — investigating ", alert_position)
+	for robot in robot_refs:
+		var current_state = robot.state_machine.current_state
+		if current_state == null:
+			continue
+		robot.sensory_component.last_detected_position = alert_position
+		match current_state.name:
+			"Patrol":
+				robot.state_machine.transition_to("Investigate")
+			"Investigate":
+				robot.navigate_to(alert_position)
+
 func _process(delta: float) -> void:
 	update_threat(delta)
 

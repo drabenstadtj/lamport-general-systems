@@ -137,7 +137,7 @@ func _handle_free_input(event: InputEvent) -> void:
 
 # TERMINAL VIEWING
 
-func start_viewing_terminal(terminal: Terminal) -> void:
+func start_viewing_terminal(terminal: Node) -> void:
 	if terminal_viewer:
 		terminal_viewer.start_viewing(terminal)
 

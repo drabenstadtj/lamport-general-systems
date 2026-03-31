@@ -265,6 +265,8 @@ func process_command(command: String):
 			cmd_alerts()
 		"suspicion":
 			cmd_suspicion()
+		"cameras":
+			cmd_cameras()
 		_:
 			print_to_terminal("Command not found: " + cmd)
 			print_to_terminal("Type 'help' for available commands")
@@ -307,6 +309,9 @@ func cmd_help():
 	print_to_terminal("[color=cyan]Detection System:[/color]")
 	print_to_terminal("  alerts                - show network alert status")
 	print_to_terminal("  suspicion             - show node suspicion levels")
+	print_to_terminal("")
+	print_to_terminal("[color=cyan]Security:[/color]")
+	print_to_terminal("  cameras               - open security camera view")
 
 func cmd_ls(args: Array = []):
 	if not require_connection():
@@ -761,6 +766,14 @@ func cmd_suspicion():
 
 	if not has_suspicion:
 		print_to_terminal("No suspicious activity detected")
+
+func cmd_cameras() -> void:
+	var count: int = SecurityCameraManager.get_all_cameras().size()
+	if count == 0:
+		print_to_terminal("[color=red]No cameras available.[/color]")
+		return
+	print_to_terminal("[color=cyan]Opening camera view (%d camera(s))...[/color]" % count)
+	SecurityCameraManager.open_camera_view()
 
 func _get_alert_color(level: int) -> String:
 	match level:

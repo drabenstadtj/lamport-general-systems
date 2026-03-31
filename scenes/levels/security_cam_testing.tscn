@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://sq8orwc5xwce"]
+
+[ext_resource type="Material" uid="uid://12uta5da55h4" path="res://assets/materials/carpet_gray.tres" id="1_otcvv"]
+[ext_resource type="Script" uid="uid://kw6afw1wvxlm" path="res://scripts/levels/test_spawn_point.gd" id="2_u031u"]
+[ext_resource type="PackedScene" uid="uid://cb2ufhbrpvbsp" path="res://scenes/props/security_system/security_camera.tscn" id="3_3dl41"]
+[ext_resource type="PackedScene" uid="uid://bxo5psdux07pb" path="res://scenes/props/security_system/security_monitor.tscn" id="4_acohl"]
+[ext_resource type="Script" uid="uid://lfsil63pt0v5" path="res://scripts/tools/test_cube.gd" id="5_hbbma"]
+[ext_resource type="PackedScene" uid="uid://baleqdg4ot3k2" path="res://scenes/characters/robot.tscn" id="6_wra6r"]
+[ext_resource type="PackedScene" uid="uid://bgk6qb1man6bw" path="res://scenes/props/patrol_point.tscn" id="7_bwrek"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bwrek"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ogyki"]
+sky_material = SubResource("ProceduralSkyMaterial_bwrek")
+
+[sub_resource type="Environment" id="Environment_o0qq3"]
+background_mode = 2
+sky = SubResource("Sky_ogyki")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_bwrek"]
+vertices = PackedVector3Array(-49.5, 0.5, -49.5, -49.5, 0.5, 49.5, 49.5, 0.5, 49.5, 49.5, 0.5, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2o20l"]
+material = ExtResource("1_otcvv")
+size = Vector2(100, 100)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_otcvv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_acohl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_acohl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bwrek"]
+size = Vector3(3, 0.1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bwrek"]
+size = Vector3(3, 0.1, 3)
+
+[node name="SecurityCamTesting" type="Node3D" unique_id=272758557]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1265647797]
+environment = SubResource("Environment_o0qq3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2136261949]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=866666997]
+navigation_mesh = SubResource("NavigationMesh_bwrek")
+
+[node name="Geometry" type="Node3D" parent="NavigationRegion3D" unique_id=1077482468]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Geometry" unique_id=1446478275]
+mesh = SubResource("PlaneMesh_2o20l")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Geometry" unique_id=1968633720]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Geometry/StaticBody3D" unique_id=1144085753]
+shape = SubResource("WorldBoundaryShape3D_otcvv")
+
+[node name="Robot" parent="NavigationRegion3D" unique_id=1579965753 node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_wra6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
+patrol_points = [NodePath("../../PatrolPoint1"), NodePath("../../PatrolPoint2")]
+
+[node name="Robot2" parent="NavigationRegion3D" unique_id=630948683 node_paths=PackedStringArray("patrol_points") instance=ExtResource("6_wra6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9220133, 0, 10.8)
+patrol_points = [NodePath("../../PatrolPoint3"), NodePath("../../PatrolPoint4")]
+
+[node name="Spawnpoint" type="Node3D" parent="." unique_id=434928378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7000003, 4.5, 0)
+script = ExtResource("2_u031u")
+
+[node name="SecurityCamera" parent="." unique_id=791668609 instance=ExtResource("3_3dl41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+camera_id = "cam1"
+
+[node name="SecurityCamera2" parent="." unique_id=331461012 instance=ExtResource("3_3dl41")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.4, 0)
+camera_id = "cam2"
+
+[node name="SecurityMonitor" parent="." unique_id=2128416422 instance=ExtResource("4_acohl")]
+transform = Transform3D(-0.25881904, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881904, -6.3000007, 5.3, 0.79999995)
+linked_camera_ids = Array[String](["cam1", "cam2"])
+
+[node name="TestCube" type="Node3D" parent="." unique_id=693354040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9999995, 1.2, -2.5000005)
+script = ExtResource("5_hbbma")
+amplitude = 20.0
+frequency = 0.02
+delay = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestCube" unique_id=2037641111]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_acohl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TestCube" unique_id=1740046513 groups=["detectable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestCube/StaticBody3D" unique_id=533940834]
+shape = SubResource("BoxShape3D_acohl")
+
+[node name="PatrolPoint1" parent="." unique_id=1637037449 instance=ExtResource("7_bwrek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="PatrolPoint2" parent="." unique_id=657864481 instance=ExtResource("7_bwrek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.7)
+
+[node name="PatrolPoint3" parent="." unique_id=677909529 instance=ExtResource("7_bwrek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="PatrolPoint4" parent="." unique_id=1557680658 instance=ExtResource("7_bwrek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.7)
+
+[node name="Geometry2" type="Node3D" parent="." unique_id=1403492948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8, 4.4, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry2" unique_id=533490626]
+mesh = SubResource("BoxMesh_bwrek")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geometry2" unique_id=657897180]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry2/StaticBody3D" unique_id=1768963682]
+shape = SubResource("BoxShape3D_bwrek")

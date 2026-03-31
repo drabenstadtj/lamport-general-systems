@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cb2ufhbrpvbsp"]
+
+[ext_resource type="Script" uid="uid://c438cysnykd4w" path="res://scripts/security_system/security_camera.gd" id="1_sodmw"]
+
+[node name="SecurityCamera" type="Node3D" unique_id=791668609]
+script = ExtResource("1_sodmw")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1040545475]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
