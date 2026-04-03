@@ -30,6 +30,8 @@ func _on_interact(_player):
 	pass
 
 func get_prompt() -> String:
+	if not "%s" in prompt_text:
+		return prompt_text
 	var interact_key = _get_interact_key_name()
 	return prompt_text % interact_key
 

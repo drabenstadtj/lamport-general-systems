@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blwt4o4gdkmxh"]
 
-[ext_resource type="PackedScene" uid="uid://dovm16uxv36vy" path="res://scenes/levels/arrival.tscn" id="2_edpnl"]
+[ext_resource type="Script" uid="uid://cd47vdrp7a8y" path="res://scenes/levels/root.gd" id="1_h3mcq"]
 [ext_resource type="PackedScene" uid="uid://vqtlme6jjkyk" path="res://scenes/characters/player/player_noanim.tscn" id="2_h3mcq"]
 
 [sub_resource type="Environment" id="Environment_q23bv"]
@@ -21,21 +21,16 @@ glow_bloom = 0.08
 glow_blend_mode = 2
 
 [node name="Root" type="Node3D" unique_id=1638958329]
+script = ExtResource("1_h3mcq")
+starting_level = "uid://mju0rlw4o1oy"
 
 [node name="Player" parent="." unique_id=1819242889 instance=ExtResource("2_h3mcq")]
-transform = Transform3D(-0.23293713, 0, 0.8693332, 0, 0.9, 0, -0.8693332, 0, -0.23293713, -71.60001, 0.2999997, 102.29997)
+transform = Transform3D(-0.23293713, 0, 0.8693332, 0, 0.9, 0, -0.8693332, 0, -0.23293713, 0, 0, 0)
 
 [node name="CurrentLevel" type="Node3D" parent="." unique_id=454405047]
-
-[node name="Arrival" parent="CurrentLevel" unique_id=764117903 instance=ExtResource("2_edpnl")]
-
-[node name="TransferPortal" parent="CurrentLevel/Arrival" index="4" unique_id=62288274]
-transform = Transform3D(-4.3711395e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711395e-08, -77.80187, 0.10580385, 91.25492)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="CurrentLevel" unique_id=338651907]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=785090982]
 environment = SubResource("Environment_q23bv")
-
-[editable path="CurrentLevel/Arrival"]

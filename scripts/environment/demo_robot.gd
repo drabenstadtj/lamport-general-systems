@@ -2,8 +2,8 @@ extends Node3D
 
 @onready var animation_player = $AnimationPlayer
 @onready var audio_player = $AudioStreamPlayer3D
-
-var is_talking = false
+@export var enabled: bool = false
+var is_talking = true
 
 func _ready():
 	audio_player.finished.connect(_on_audio_finished)

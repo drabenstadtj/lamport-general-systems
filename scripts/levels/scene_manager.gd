@@ -82,6 +82,41 @@ func change_scene(dest_scene_path: String, side: DoorSide, dock_name: String, tr
 	SaveManager.save()
 	print("[SceneManager] checkpoint saved — level: ", AIDirector.level_name)
 
+func load_initial(level_path: String) -> void:
+	if level_path.begins_with("uid://"):
+		level_path = ResourceUID.get_id_path(ResourceUID.text_to_id(level_path))
+	var level_container := get_tree().root.get_node("Root/CurrentLevel")
+
+	AIDirector.clear_level()
+	NetworkManager.reset()
+	DoorRegistry.clear()
+
+	for child in level_container.get_children():
+		child.queue_free()
+	await get_tree().process_frame
+
+	var scene := ResourceLoader.load(level_path) as PackedScene
+	var new_level := scene.instantiate()
+
+	AIDirector.level_name = level_path.get_file().get_basename()
+	AIDirector.level_path = level_path
+	level_container.add_child(new_level)
+	await get_tree().process_frame
+
+	AIDirector.nav_region = new_level.get_node_or_null("NavigationRegion3D")
+	AIDirector.start_robots()
+
+	var spawn := new_level.find_child("TestSpawnPoint", true, false) as Node3D
+	if spawn:
+		var player := get_tree().root.get_node_or_null("Root/Player")
+		if player:
+			player.global_position = spawn.global_position
+			player.global_rotation = spawn.global_rotation
+	else:
+		push_warning("[SceneManager] no TestSpawnPoint found in initial level")
+
+	print("[SceneManager] loaded initial level: ", AIDirector.level_name)
+
 func reload_current() -> void:
 	var level_path := SaveManager.current.current_level
 	if level_path.is_empty():
