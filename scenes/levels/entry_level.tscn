@@ -424,7 +424,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.9, 0.88971525, 1)
 
 [node name="TestSpawnPoint" type="Node3D" parent="." unique_id=550708228]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.8, 0, 0)
 script = ExtResource("20_l4c0k")
 
 [node name="NoteProps" type="Node3D" parent="." unique_id=367660702]
