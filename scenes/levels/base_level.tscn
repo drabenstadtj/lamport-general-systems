@@ -262,7 +262,7 @@ points = PackedVector3Array(-28, 0.25, 2, -28, -0.5, 2, -28.125, 0.25, 2, -28.12
 [sub_resource type="BoxShape3D" id="BoxShape3D_575cj"]
 size = Vector3(1, 3.3128662, 4.446289)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u2nyb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktxvk"]
 render_priority = 0
 shader = ExtResource("31_pseyb")
 shader_parameter/base_color = Color(1, 1, 1, 0)
@@ -270,7 +270,7 @@ shader_parameter/text_decal = ExtResource("34_bqltn")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(0.97880507, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_cnqkx"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_p5hfi"]
 size = Vector2(10.45, 3.345)
 
 [node name="BaseLevel" type="Node3D" unique_id=66007950]
@@ -809,8 +809,8 @@ texture = ExtResource("14_1vfnp")
 
 [node name="StickyNote0" parent="DemoRoom/Props" unique_id=2090067259 instance=ExtResource("32_ii06k")]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, -9.802498, 3.3671613, 18.499784)
-material_override = SubResource("ShaderMaterial_u2nyb")
-mesh = SubResource("PlaneMesh_cnqkx")
+material_override = SubResource("ShaderMaterial_ktxvk")
+mesh = SubResource("PlaneMesh_p5hfi")
 skeleton = NodePath("../../..")
 base_color = Color(1, 1, 1, 0)
 text_texture = ExtResource("34_bqltn")

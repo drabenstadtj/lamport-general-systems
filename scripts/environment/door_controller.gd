@@ -1,14 +1,30 @@
 extends Node3D
 var is_open: bool = false
 
+@export var rotation_deg: float = 90
+@export var open_time: float = 0.5
+@export var locked: bool = false:
+	set(value):
+		locked = value
+		_update_prompt()
+
+var _interactable: Interactable = null
+
 func _ready() -> void:
 	if not get_parent() is DoubleDoors:
 		add_to_group("door")
 	for body in find_children("*", "StaticBody3D", true, false):
 		body.add_to_group("door_body")
-@export var rotation_deg: float = 90
-@export var open_time: float = 0.5
-@export var locked: bool = false
+	_interactable = find_child("Interactable", true, false) as Interactable
+	_update_prompt()
+
+func _update_prompt() -> void:
+	if _interactable == null:
+		return
+	if locked:
+		_interactable.prompt_text = "Locked"
+	else:
+		_interactable.prompt_text = "Press %s to open"
 
 func unlock() -> void:
 	locked = false

@@ -5,6 +5,7 @@ signal tutorial_completed
 
 enum TutorialStep {
 	NONE,
+	OPEN_PDA,
 	MOVE_AROUND,
 	CROUCH,
 	ZOOM,
@@ -23,6 +24,27 @@ var completed_steps: Array[TutorialStep] = []
 @export var terminal_server_id: int = 1
 
 func _ready():
+	await get_tree().process_frame
+	SaveManager.send_pda_message(
+		"gpaulson@lgs.org",
+		"Ripley Site Briefing",
+"""Hello,
+
+You should be reading this on your LGS FocusLink, which you will learn to use over the course of your work here.
+
+Ripley Site has been closed for over 15 years following its emergency shutdown. The site runs on a legacy network architecture called Byzantine Fault Tolerance — BFT for short. In plain terms, every subsystem on site (doors, lighting, security) requires the servers controlling it to reach an agreement before anything happens. No consensus, no access.
+
+As a legacy systems technician contracted through LGS, your job is to bring the site's subnetworks back online and restore operations.
+
+From what we know, the main entrance was left unlocked during the last visit, so getting in shouldn't be a problem. Beyond that, you'll need to assess the situation on the ground.
+
+Your contract is attached for reference.
+
+Greg Paulson
+Chief of Operations
+Lamport General Systems"""
+	)
+
 	add_to_group("tutorial_manager")
 
 	if SaveManager.get_flag("tutorial_complete"):
@@ -36,10 +58,8 @@ func _ready():
 	start_tutorial()
 
 func start_tutorial():
-	current_step = TutorialStep.MOVE_AROUND
-	if AIDirector.player:
-		_last_pos = AIDirector.player.global_position
-	show_step_hint("Use %s%s%s%s to move around" % [key("move_forward"), key("move_left"), key("move_backward"), key("move_right")])
+	current_step = TutorialStep.OPEN_PDA
+	show_step_hint("Press %s to open your PDA" % key("open_pda"))
 
 func complete_step(step: TutorialStep):
 	if step == current_step and step not in completed_steps:
@@ -69,13 +89,20 @@ func _process(_delta: float) -> void:
 				complete_step(TutorialStep.MOVE_AROUND)
 
 func _input(event: InputEvent) -> void:
-	if current_step == TutorialStep.CROUCH and event.is_action_pressed("crouch"):
+	if current_step == TutorialStep.OPEN_PDA and event.is_action_pressed("open_pda"):
+		complete_step(TutorialStep.OPEN_PDA)
+	elif current_step == TutorialStep.CROUCH and event.is_action_pressed("crouch"):
 		complete_step(TutorialStep.CROUCH)
 	elif current_step == TutorialStep.ZOOM and event.is_action_pressed("zoom"):
 		complete_step(TutorialStep.ZOOM)
 
 func advance_to_next_step():
 	match current_step:
+		TutorialStep.OPEN_PDA:
+			current_step = TutorialStep.MOVE_AROUND
+			if AIDirector.player:
+				_last_pos = AIDirector.player.global_position
+			show_step_hint("Use %s%s%s%s to move around" % [key("move_forward"), key("move_left"), key("move_backward"), key("move_right")])
 		TutorialStep.MOVE_AROUND:
 			current_step = TutorialStep.CROUCH
 			show_step_hint("Hold %s to crouch and move quietly" % key("crouch"))
