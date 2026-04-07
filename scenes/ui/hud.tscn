@@ -12,7 +12,7 @@ shader_parameter/desaturate = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pixelart"]
 shader = ExtResource("5_pixelart")
-shader_parameter/pixel_scale = 3
+shader_parameter/pixel_scale = 2
 shader_parameter/color_count = 32
 shader_parameter/dither_spread = 0.2000000095
 

@@ -112,11 +112,11 @@ func navigate_to(target: Vector3) -> void:
 
 # Combat ----------------------------------------------------------------------
 func target_in_attack_range() -> bool:
-	var to_player_flat := AIDirector.player.global_position - global_position
+	var to_player_flat :Vector3 = AIDirector.player.global_position - global_position
 	to_player_flat.y = 0.0
 	if to_player_flat.length() > attack_range:
 		return false
-	var player_center := AIDirector.player.global_position + Vector3(0, 0.9, 0)
+	var player_center :Vector3 = AIDirector.player.global_position + Vector3(0, 0.9, 0)
 	var to_center := player_center - sensory_component.sightline.global_position
 	var sightline := sensory_component.sightline
 	sightline.target_position = sightline.to_local(sightline.global_position + to_center.normalized() * attack_range)
