@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cxlvltempl1a"]
+
+[ext_resource type="PackedScene" uid="uid://hdxokx00t3dj" path="res://scenes/props/network/network_config.tscn" id="1_tmpl"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_tmpl"]
+
+[node name="LevelTemplate" type="Node3D" unique_id=1433228798]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1553778381]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="TestSpawnPoint" type="Node3D" parent="." unique_id=511344461]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=999008425]
+navigation_mesh = SubResource("NavigationMesh_tmpl")
+
+[node name="Environment" type="Node3D" parent="NavigationRegion3D" unique_id=805652147]
+
+[node name="NetworkConfig" parent="." unique_id=504148960 instance=ExtResource("1_tmpl")]
+
+[node name="Robots" type="Node3D" parent="." unique_id=282040165]
+
+[node name="Props" type="Node3D" parent="." unique_id=419295003]
+
+[node name="Doors" type="Node3D" parent="." unique_id=26004668]
