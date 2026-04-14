@@ -326,36 +326,6 @@ metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
 script = ExtResource("14_1l6jw")
 metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
 
-[sub_resource type="Resource" id="Resource_obvoy"]
-script = ExtResource("14_1l6jw")
-is_active_node = true
-node_id = 0
-metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
-
-[sub_resource type="Resource" id="Resource_tf11d"]
-script = ExtResource("14_1l6jw")
-is_active_node = true
-node_id = 1
-metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
-
-[sub_resource type="Resource" id="Resource_l8hr7"]
-script = ExtResource("14_1l6jw")
-is_active_node = true
-node_id = 2
-metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
-
-[sub_resource type="Resource" id="Resource_8hc85"]
-script = ExtResource("14_1l6jw")
-is_active_node = true
-node_id = 4
-metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
-
-[sub_resource type="Resource" id="Resource_vmftc"]
-script = ExtResource("14_1l6jw")
-is_active_node = true
-node_id = 3
-metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
-
 [sub_resource type="Resource" id="Resource_4x07n"]
 script = ExtResource("14_1l6jw")
 metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
@@ -394,6 +364,36 @@ shader_parameter/decal_scale = Vector2(1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cifx8"]
 size = Vector2(0.09, 0.09)
+
+[sub_resource type="Resource" id="Resource_obvoy"]
+script = ExtResource("14_1l6jw")
+is_active_node = true
+node_id = 0
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_tf11d"]
+script = ExtResource("14_1l6jw")
+is_active_node = true
+node_id = 1
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_l8hr7"]
+script = ExtResource("14_1l6jw")
+is_active_node = true
+node_id = 2
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_8hc85"]
+script = ExtResource("14_1l6jw")
+is_active_node = true
+node_id = 4
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
+
+[sub_resource type="Resource" id="Resource_vmftc"]
+script = ExtResource("14_1l6jw")
+is_active_node = true
+node_id = 3
+metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obvoy"]
 albedo_color = Color(0.27265528, 0.2726553, 0.2726553, 1)
@@ -722,10 +722,6 @@ server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), 
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 3.1999998)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb")])
 
-[node name="ServerRack6" parent="NavigationRegion3D/ServerGroup" unique_id=143298999 instance=ExtResource("13_7walx")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4)
-server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_obvoy")])
-
 [node name="ServerRack7" parent="NavigationRegion3D/ServerGroup" unique_id=9406590 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4.8)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb")])
@@ -783,10 +779,6 @@ server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), 
 [node name="ServerRack3" parent="NavigationRegion3D/ServerGroup3" unique_id=1064986391 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 1.5999999)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb")])
-
-[node name="ServerRack4" parent="NavigationRegion3D/ServerGroup3" unique_id=252456132 instance=ExtResource("13_7walx")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 2.4)
-server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_tf11d")])
 
 [node name="ServerRack5" parent="NavigationRegion3D/ServerGroup3" unique_id=11007571 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 3.1999998)
@@ -896,10 +888,6 @@ server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), 
 [node name="ServerRack5" parent="NavigationRegion3D/ServerGroup6" unique_id=1208712669 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 3.1999998)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb")])
-
-[node name="ServerRack6" parent="NavigationRegion3D/ServerGroup6" unique_id=275434915 instance=ExtResource("13_7walx")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4)
-server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_l8hr7")])
 
 [node name="ServerRack7" parent="NavigationRegion3D/ServerGroup6" unique_id=1720926595 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4.8)
@@ -1029,10 +1017,6 @@ server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), 
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 1.5999999)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb")])
 
-[node name="ServerRack4" parent="NavigationRegion3D/ServerGroup10" unique_id=347736924 instance=ExtResource("13_7walx")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 2.3999996)
-server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_8hc85")])
-
 [node name="ServerRack5" parent="NavigationRegion3D/ServerGroup10" unique_id=1499201678 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 3.1999998)
 server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb")])
@@ -1086,10 +1070,6 @@ server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), 
 
 [node name="ServerGroup12" type="Node3D" parent="NavigationRegion3D" unique_id=1650439278]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 0, 18)
-
-[node name="ServerRack" parent="NavigationRegion3D/ServerGroup12" unique_id=614064128 instance=ExtResource("13_7walx")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_vmftc")])
 
 [node name="ServerRack2" parent="NavigationRegion3D/ServerGroup12" unique_id=603827740 instance=ExtResource("13_7walx")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0.79999995)
@@ -1200,6 +1180,28 @@ width = 180.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8, 3.5, -3.1000004)
 height = 5.22
 vertices = PackedVector3Array(0, 0, 41.1, 31, 0, 39, 31, 0, 0, 0, 0, 0)
+
+[node name="ActiveNodes" type="Node3D" parent="NavigationRegion3D" unique_id=145652614]
+
+[node name="ServerRack6" parent="NavigationRegion3D/ActiveNodes" unique_id=143298999 instance=ExtResource("13_7walx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 14, 0, 6)
+server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_obvoy")])
+
+[node name="ServerRack4" parent="NavigationRegion3D/ActiveNodes" unique_id=252456132 instance=ExtResource("13_7walx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20, 0, 4.4)
+server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_tf11d")])
+
+[node name="ServerRack7" parent="NavigationRegion3D/ActiveNodes" unique_id=275434915 instance=ExtResource("13_7walx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 17, 0, 14)
+server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_l8hr7")])
+
+[node name="ServerRack5" parent="NavigationRegion3D/ActiveNodes" unique_id=347736924 instance=ExtResource("13_7walx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 17, 0, 20.4)
+server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_8hc85")])
+
+[node name="ServerRack" parent="NavigationRegion3D/ActiveNodes" unique_id=614064128 instance=ExtResource("13_7walx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 23, 0, 18)
+server_configs = Array[ExtResource("14_1l6jw")]([SubResource("Resource_at37b"), SubResource("Resource_yaqu0"), SubResource("Resource_clovb"), SubResource("Resource_vmftc")])
 
 [node name="Robot1Patrol" type="Node3D" parent="." unique_id=1580395860]
 
