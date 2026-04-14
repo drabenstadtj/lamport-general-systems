@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://dji5ee5pfuvra" path="res://scripts/interaction/interactable.gd" id="2_dptw2"]
 [ext_resource type="Material" uid="uid://tcsl4wg6t722" path="res://assets/materials/door_metal_mat.tres" id="2_ha1df"]
 [ext_resource type="Script" uid="uid://bakv6le4yu0wu" path="res://scripts/environment/door_controller.gd" id="3_dek0g"]
+[ext_resource type="AudioStream" uid="uid://db4qthulgwane" path="res://assets/audio/doors/opening.wav" id="6_duyg1"]
+[ext_resource type="AudioStream" uid="uid://bekuaxfsibn1t" path="res://assets/audio/doors/closing.wav" id="7_3r1ax"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1n2e7"]
 size = Vector3(0.2, 2.1729736, 0.8996582)
@@ -165,6 +167,8 @@ script = ExtResource("1_ha1df")
 [node name="DoorPivot2" type="Node3D" parent="." unique_id=2081757351]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 script = ExtResource("3_dek0g")
+open_sound = ExtResource("6_duyg1")
+close_sound = ExtResource("7_3r1ax")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="DoorPivot2" unique_id=951010051]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
@@ -201,6 +205,8 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 script = ExtResource("3_dek0g")
 rotation_deg = -90.0
+open_sound = ExtResource("6_duyg1")
+close_sound = ExtResource("7_3r1ax")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="DoorPivot" unique_id=1714649291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
