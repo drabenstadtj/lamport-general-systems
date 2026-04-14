@@ -24,7 +24,7 @@
 radius = 0.41
 height = 1.7
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_48p0o"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_lv4gv"]
 resource_local_to_scene = true
 resource_name = "pda_cool_pdascreen"
 _surfaces = [{
@@ -41,15 +41,15 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ov2wq"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_u1p2l"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eo341"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjl35"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_ov2wq")
+albedo_texture = SubResource("ViewportTexture_u1p2l")
 texture_filter = 0
 
-[node name="Player" type="CharacterBody3D" unique_id=1819242889 groups=["player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1819242889 groups=["detectable", "player"]]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 collision_layer = 2
 collision_mask = 5
@@ -109,8 +109,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 [node name="PDA" parent="CameraPivot/Camera3D" unique_id=1152373490 instance=ExtResource("8_p8hx0")]
 
 [node name="Screen" parent="CameraPivot/Camera3D/PDA" index="4" unique_id=582516628]
-mesh = SubResource("ArrayMesh_48p0o")
-surface_material_override/0 = SubResource("StandardMaterial3D_eo341")
+mesh = SubResource("ArrayMesh_lv4gv")
+surface_material_override/0 = SubResource("StandardMaterial3D_jjl35")
 
 [node name="Node3D" type="Node3D" parent="CameraPivot/Camera3D" unique_id=595376350]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, -0.025920033, -0.28629625)

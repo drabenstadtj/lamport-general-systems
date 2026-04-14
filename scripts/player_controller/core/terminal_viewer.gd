@@ -24,7 +24,7 @@ var state_machine: StateMachine
 
 # State
 var is_viewing: bool = false
-var viewing_terminal: Terminal = null
+var viewing_terminal: Node = null
 var target_camera_position: Vector3
 var target_camera_look_at: Vector3
 var peek_rotation: Vector2 = Vector2.ZERO
@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 		_update_camera(delta)
 
 
-func start_viewing(terminal: Terminal) -> void:
+func start_viewing(terminal: Node) -> void:
 	is_viewing = true
 	viewing_terminal = terminal
 	
