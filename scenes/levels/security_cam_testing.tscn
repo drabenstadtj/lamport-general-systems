@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://sq8orwc5xwce"]
+[gd_scene format=3 uid="uid://caj10tx3biuq0"]
 
 [ext_resource type="Material" uid="uid://12uta5da55h4" path="res://assets/materials/carpet_gray.tres" id="1_otcvv"]
 [ext_resource type="Script" uid="uid://kw6afw1wvxlm" path="res://scripts/levels/test_spawn_point.gd" id="2_u031u"]
