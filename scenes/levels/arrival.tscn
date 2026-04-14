@@ -1049,7 +1049,7 @@ libraries/ = SubResource("AnimationLibrary_ila73")
 transform = Transform3D(-0.83147246, -0.24611758, 0.49807596, 0, 0.89651996, 0.4430033, -0.55556595, 0.36834508, -0.74543166, 59.72229, 33.403748, 10.105225)
 
 [node name="TransferPortal" parent="." unique_id=62288274 instance=ExtResource("4_ila73")]
-transform = Transform3D(-4.3711395e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711395e-08, -77.80187, 1.767708, 91.20768)
+transform = Transform3D(-4.3711395e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711395e-08, -77.80187, 0.16770792, 91.20768)
 dock_name = "DockA"
 door1_scene_path = "uid://dovm16uxv36vy"
 door1_dock = "DockA"

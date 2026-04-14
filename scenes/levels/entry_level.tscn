@@ -21,6 +21,7 @@
 [ext_resource type="Shader" uid="uid://dnosh8bdo63et" path="res://assets/shaders/sticky_note.gdshader" id="18_xgk1q"]
 [ext_resource type="Script" uid="uid://kw6afw1wvxlm" path="res://scripts/levels/test_spawn_point.gd" id="20_l4c0k"]
 [ext_resource type="PackedScene" uid="uid://cmgorjy628to8" path="res://scenes/props/environment/single_door.tscn" id="21_gatmj"]
+[ext_resource type="Script" uid="uid://glt8cwexkvfs" path="res://scenes/levels/entry_level_lock_in.gd" id="22_1arwa"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_f5j66"]
 _surfaces = [{
@@ -182,7 +183,7 @@ is_active_node = true
 node_id = 3
 metadata/_custom_type_script = "uid://b5dbyeybyr3m6"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gatmj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1arwa"]
 render_priority = 0
 shader = ExtResource("18_xgk1q")
 shader_parameter/base_color = Color(1, 1, 0.7, 1)
@@ -193,7 +194,7 @@ shader_parameter/decal_scale = Vector2(0.99810606, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_1arwa"]
 size = Vector2(0.216, 0.279)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ks3n"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rvg1l"]
 render_priority = 0
 shader = ExtResource("18_xgk1q")
 shader_parameter/base_color = Color(1, 1, 0.7, 1)
@@ -201,10 +202,30 @@ shader_parameter/text_decal = ExtResource("17_mfrcq")
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(1, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_rvg1l"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_5ks3n"]
 size = Vector2(0.115, 0.115)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5tot"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a41qq"]
+render_priority = 0
+shader = ExtResource("18_xgk1q")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rvg1l"]
+size = Vector2(0.076, 0.076)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_exdnr"]
+render_priority = 0
+shader = ExtResource("18_xgk1q")
+shader_parameter/base_color = Color(1, 1, 0.7, 1)
+shader_parameter/roughness_value = 0.8
+shader_parameter/decal_scale = Vector2(0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h5tot"]
+size = Vector2(0.076, 0.076)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gcs5a"]
 render_priority = 0
 shader = ExtResource("18_xgk1q")
 shader_parameter/base_color = Color(1, 1, 0.7, 1)
@@ -214,35 +235,18 @@ shader_parameter/decal_scale = Vector2(0, 0)
 [sub_resource type="PlaneMesh" id="PlaneMesh_a41qq"]
 size = Vector2(0.076, 0.076)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s4qem"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qyinm"]
 render_priority = 0
 shader = ExtResource("18_xgk1q")
 shader_parameter/base_color = Color(1, 1, 0.7, 1)
 shader_parameter/roughness_value = 0.8
 shader_parameter/decal_scale = Vector2(0, 0)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_exdnr"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_s4qem"]
 size = Vector2(0.076, 0.076)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6qm3f"]
-render_priority = 0
-shader = ExtResource("18_xgk1q")
-shader_parameter/base_color = Color(1, 1, 0.7, 1)
-shader_parameter/roughness_value = 0.8
-shader_parameter/decal_scale = Vector2(0, 0)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_gcs5a"]
-size = Vector2(0.076, 0.076)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uorx6"]
-render_priority = 0
-shader = ExtResource("18_xgk1q")
-shader_parameter/base_color = Color(1, 1, 0.7, 1)
-shader_parameter/roughness_value = 0.8
-shader_parameter/decal_scale = Vector2(0, 0)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_qyinm"]
-size = Vector2(0.076, 0.076)
+[sub_resource type="BoxShape3D" id="BoxShape3D_s4qem"]
+size = Vector3(1, 2.4, 6)
 
 [node name="EntryLevel" type="Node3D" unique_id=310957279]
 
@@ -381,7 +385,6 @@ transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -6.7
 
 [node name="DoubleDoors" parent="." unique_id=781733162 instance=ExtResource("8_km5w5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 1.1, 0)
-locked = true
 
 [node name="DoubleDoors2" parent="." unique_id=1970329567 instance=ExtResource("8_km5w5")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 1.1301085, 3.0922222)
@@ -405,9 +408,9 @@ door2_dock = "DockA"
 
 [node name="DemoManager" type="Node" parent="." unique_id=578720244 node_paths=PackedStringArray("exit_door")]
 script = ExtResource("10_rvs8q")
+exit_door = NodePath("../DoubleDoors2")
 physical_server_id = 1
 terminal_server_id = 3
-exit_door = NodePath("../DoubleDoors2")
 
 [node name="NetworkConfig" parent="." unique_id=1407505920 instance=ExtResource("11_0vuvt")]
 network_id = "demo_network"
@@ -440,7 +443,7 @@ font_size = 16
 
 [node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote2" unique_id=250477356]
 transform = Transform3D(0.9999999, 0, 0, 0, -4.3711385e-08, -1, 0, 0.9999999, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_gatmj")
+material_override = SubResource("ShaderMaterial_1arwa")
 mesh = SubResource("PlaneMesh_1arwa")
 
 [node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote2" unique_id=841832969]
@@ -462,8 +465,8 @@ font_size = 16
 
 [node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote" unique_id=1615365477]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_5ks3n")
-mesh = SubResource("PlaneMesh_rvg1l")
+material_override = SubResource("ShaderMaterial_rvg1l")
+mesh = SubResource("PlaneMesh_5ks3n")
 
 [node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote" unique_id=1905756408]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
@@ -483,8 +486,8 @@ font_size = 48
 
 [node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote3" unique_id=1547571757]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_h5tot")
-mesh = SubResource("PlaneMesh_a41qq")
+material_override = SubResource("ShaderMaterial_a41qq")
+mesh = SubResource("PlaneMesh_rvg1l")
 
 [node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote3" unique_id=1597303560]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
@@ -504,8 +507,8 @@ font_size = 48
 
 [node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote4" unique_id=546957950]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_s4qem")
-mesh = SubResource("PlaneMesh_exdnr")
+material_override = SubResource("ShaderMaterial_exdnr")
+mesh = SubResource("PlaneMesh_h5tot")
 
 [node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote4" unique_id=225945174]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
@@ -525,8 +528,8 @@ font_size = 48
 
 [node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote5" unique_id=1056032994]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_6qm3f")
-mesh = SubResource("PlaneMesh_gcs5a")
+material_override = SubResource("ShaderMaterial_gcs5a")
+mesh = SubResource("PlaneMesh_a41qq")
 
 [node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote5" unique_id=1261101774]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
@@ -546,8 +549,8 @@ font_size = 48
 
 [node name="NoteMesh" type="MeshInstance3D" parent="NoteProps/PickupableNote6" unique_id=1748624351]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_uorx6")
-mesh = SubResource("PlaneMesh_qyinm")
+material_override = SubResource("ShaderMaterial_qyinm")
+mesh = SubResource("PlaneMesh_s4qem")
 
 [node name="NoteLabel" type="Label3D" parent="NoteProps/PickupableNote6" unique_id=687412679]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0002)
@@ -560,3 +563,12 @@ width = 151.99998
 
 [node name="SingleDoor" parent="." unique_id=905830587 instance=ExtResource("21_gatmj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.934988, -1.8737757)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1018334977 node_paths=PackedStringArray("doors")]
+collision_mask = 2
+script = ExtResource("22_1arwa")
+doors = NodePath("../DoubleDoors")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=110072008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, 1.2, 2.9802322e-07)
+shape = SubResource("BoxShape3D_s4qem")

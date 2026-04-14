@@ -8,6 +8,9 @@ var is_open: bool = false
 		locked = value
 		_update_prompt()
 
+@export var open_sound: AudioStream
+@export var close_sound: AudioStream
+
 var _interactable: Interactable = null
 
 func _ready() -> void:
@@ -45,19 +48,24 @@ func _open() -> void:
 	is_open = true
 	if _nav_obstacle:
 		_nav_obstacle.avoidance_enabled = true
+	AudioManager.play_sound_3d(open_sound, global_position)
+
+func close() -> void:
+	if not is_open:
+		return
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "rotation", Vector3.ZERO, open_time)
+	is_open = false
+	if _nav_obstacle:
+		_nav_obstacle.avoidance_enabled = false
+	AudioManager.play_sound_3d(close_sound, global_position)
 
 func _on_interactable_interacted(_player: Variant) -> void:
 	if locked:
 		return
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_BACK)
 	if is_open:
-		tween.tween_property(self, "rotation", Vector3(0.0, 0.0, 0.0), open_time)
-		if _nav_obstacle:
-			_nav_obstacle.avoidance_enabled = false
+		close()
 	else:
-		tween.tween_property(self, "rotation", Vector3(0.0, deg_to_rad(rotation_deg), 0.0), open_time)
-		if _nav_obstacle:
-			_nav_obstacle.avoidance_enabled = true
-	is_open = !is_open
+		_open()

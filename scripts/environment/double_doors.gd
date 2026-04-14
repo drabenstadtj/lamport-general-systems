@@ -25,6 +25,10 @@ func _open() -> void:
 	_left._open()
 	_right._open()
 
+func close() -> void:
+	_left.close()
+	_right.close()
+
 func lock() -> void:
 	_left.locked = true
 	_right.locked = true
