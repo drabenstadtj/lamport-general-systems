@@ -64,3 +64,8 @@
 18. One thing you'd change?
 
 19. Would you keep playing? **Yes / Probably / No**
+
+# notes 4/7/26
+
+- stanley parable level design
+- https://book.leveldesignbook.com/
