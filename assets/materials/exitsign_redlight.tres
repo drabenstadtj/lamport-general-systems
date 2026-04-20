@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bwnlmhif4resm"]
+
+[resource]
+resource_name = "exitsign_redlight"
+cull_mode = 2
+albedo_color = Color(1, 0, 0.016326299, 1)
+roughness = 0.1
