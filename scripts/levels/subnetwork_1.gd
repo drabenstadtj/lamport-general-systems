@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var exit_door: Node3D
+@export var terminal: Terminal
 
 func _ready() -> void:
 	NetworkManager.game_won.connect(_on_game_won)
@@ -8,10 +9,9 @@ func _ready() -> void:
 	NetworkManager.network_initialized.connect(_inject_files, CONNECT_ONE_SHOT)
 
 func _inject_files() -> void:
-	var node = NetworkManager.get_network_node(0)
-	if not node:
+	if not terminal:
 		return
-	var user_dir = node.filesystem["children"]["home"]["children"]["user"]["children"]
+	var user_dir = terminal.terminal_ui.local_filesystem["children"]["home"]["children"]["user"]["children"]
 	user_dir["recovery.txt"] = {
 		"type": "file",
 		"read_only": true,

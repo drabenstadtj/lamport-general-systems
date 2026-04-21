@@ -12,6 +12,21 @@ var network_manager: NetworkManager = null
 var controlled_node_id: int = -1
 var connected_node: NetworkNode = null  # The node we're "SSH'd" into
 
+var local_filesystem: Dictionary = {
+	"type": "dir",
+	"children": {
+		"home": {
+			"type": "dir",
+			"children": {
+				"user": {
+					"type": "dir",
+					"children": {}
+				}
+			}
+		}
+	}
+}
+
 @onready var output_scroll: ScrollContainer = $MarginContainer/ScrollContainer
 @onready var output_label: RichTextLabel = $MarginContainer/ScrollContainer/VBoxContainer/OutputLabel
 @onready var input_field: LineEdit = $MarginContainer/ScrollContainer/VBoxContainer/InputContainer/InputField
@@ -31,10 +46,7 @@ func _ready():
 	update_prompt()
 
 func get_filesystem() -> Dictionary:
-	# Returns the filesystem of the connected node, or empty if not connected
-	if connected_node:
-		return connected_node.filesystem
-	return {}
+	return connected_node.filesystem if connected_node else local_filesystem
 
 func is_connected_to_node() -> bool:
 	return connected_node != null
@@ -314,9 +326,6 @@ func cmd_help():
 	print_to_terminal("  cameras               - open security camera view")
 
 func cmd_ls(args: Array = []):
-	if not require_connection():
-		return
-
 	var target_path = current_path if args.is_empty() else args[0]
 	var node = get_node_at_path(target_path)
 
@@ -351,9 +360,6 @@ func cmd_ls(args: Array = []):
 		print_to_terminal(file_name)
 
 func cmd_cd(args: Array):
-	if not require_connection():
-		return
-
 	if args.is_empty():
 		current_path = "/home/user"
 		return
@@ -374,14 +380,9 @@ func cmd_cd(args: Array):
 	update_prompt()
 
 func cmd_pwd():
-	if not require_connection():
-		return
 	print_to_terminal(current_path if current_path != "" else "/")
 
 func cmd_cat(args: Array):
-	if not require_connection():
-		return
-
 	if args.is_empty():
 		print_to_terminal("cat: missing file argument")
 		return
@@ -399,9 +400,6 @@ func cmd_cat(args: Array):
 	print_to_terminal(node["content"])
 
 func cmd_tail(args: Array):
-	if not require_connection():
-		return
-
 	if args.is_empty():
 		print_to_terminal("tail: missing file argument")
 		return
@@ -929,9 +927,6 @@ func _autoscroll_async() -> void:
 
 
 func append_to_file(path: String, line: String) -> bool:
-	if not is_connected_to_node():
-		return false
-
 	var resolved = resolve_path(path)
 	var node = resolved["node"]
 
