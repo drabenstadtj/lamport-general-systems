@@ -19,7 +19,7 @@ func _on_camera_alert(camera_id: String, target: Node) -> void:
 	if not target is Node3D:
 		return
 	var alert_position: Vector3 = (target as Node3D).global_position
-	print("[AIDirector] camera alert from ", camera_id, " — investigating ", alert_position)
+	print("[AIDirector] camera alert from ", camera_id, " - investigating ", alert_position)
 	for robot in robot_refs:
 		var current_state = robot.state_machine.current_state
 		if current_state == null:
@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 	update_threat(delta)
 
 	if threat_meter <= threat_threshold and hint_cooldown <= 0.0:
-		print("[AIDirector] threat threshold reached — hinting to robot")
+		print("[AIDirector] threat threshold reached - hinting to robot")
 		var robot_to_hint: Robot = get_most_dormant()
 		if robot_to_hint != null:
 			robot_to_hint.state_machine.transition_to("Patrol")
@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 	hint_cooldown = clampf(hint_cooldown - delta, 0.0, 10.0)
 
 func start_robots() -> void:
-	print("[AIDirector] start_robots — ", robot_refs.size(), " robot(s)")
+	print("[AIDirector] start_robots - ", robot_refs.size(), " robot(s)")
 	for robot in robot_refs:
 		print("[AIDirector]   starting: ", robot.id)
 		robot.state_machine.start()
@@ -65,15 +65,15 @@ func register_robot(robot: Robot) -> void:
 		var new_robot_data = RobotData.new()
 		new_robot_data.update_from_robot(robot)
 		robots[robot.id] = new_robot_data
-		print("[AIDirector]   no saved data — created new entry for: ", robot.id)
+		print("[AIDirector]   no saved data - created new entry for: ", robot.id)
 
 func clear_level_no_save() -> void:
 	robots.clear()
 	robot_refs.clear()
-	print("[AIDirector] clear_level_no_save — refs cleared without writing saves")
+	print("[AIDirector] clear_level_no_save - refs cleared without writing saves")
 
 func clear_level() -> void:
-	print("[AIDirector] clear_level — saving ", robot_refs.size(), " robot(s)")
+	print("[AIDirector] clear_level - saving ", robot_refs.size(), " robot(s)")
 	for robot in robot_refs:
 		robots[robot.id].update_from_robot(robot)
 	var dir_path := "user://robots/%s" % level_name
@@ -83,7 +83,7 @@ func clear_level() -> void:
 		print("[AIDirector]   saved: ", robot.id)
 	robots.clear()
 	robot_refs.clear()
-	print("[AIDirector] clear_level done — refs cleared")
+	print("[AIDirector] clear_level done - refs cleared")
 
 func emit_sound(sound_position: Vector3, volume: float) -> void:
 	for robot in robot_refs:
@@ -109,10 +109,10 @@ func update_threat(delta: float) -> void:
 				else:
 					threat_meter += 1.0 * delta
 		if should_print:
-			print("[AIDirector] update_threat — ", robot.id, " (", current.name, ")")
+			print("[AIDirector] update_threat - ", robot.id, " (", current.name, ")")
 	threat_meter = clampf(threat_meter, 0.0, 100.0)
 	if should_print:
-		print("[AIDirector] update_threat — threat_meter: ", "%.2f" % threat_meter)
+		print("[AIDirector] update_threat - threat_meter: ", "%.2f" % threat_meter)
 
 func get_most_dormant() -> Robot:
 	if robot_refs.is_empty():
@@ -121,11 +121,11 @@ func get_most_dormant() -> Robot:
 	for robot in robot_refs:
 		if robot.dormant_time > most_dormant.dormant_time:
 			most_dormant = robot
-	print("[AIDirector] get_most_dormant — selected: ", most_dormant.id, " (dormant_time: ", "%.2f" % most_dormant.dormant_time, "s)")
+	print("[AIDirector] get_most_dormant - selected: ", most_dormant.id, " (dormant_time: ", "%.2f" % most_dormant.dormant_time, "s)")
 	return most_dormant
 
 func get_player_area() -> Vector3:
 	var hint_radius: float = 5.0 # meters
 	var hint_position = player.global_position + Vector3(randf() * hint_radius, 0, randf() * hint_radius)
-	print("[AIDirector] get_player_area — hinting near: ", hint_position)
+	print("[AIDirector] get_player_area - hinting near: ", hint_position)
 	return hint_position
