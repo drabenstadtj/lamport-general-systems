@@ -1,10 +1,10 @@
 extends Node
 
 enum NodeState {
-	HEALTHY,
-	POWERED_DOWN,
-	CRASHED,
-	BYZANTINE
+	ONLINE,
+	OFFLINE,
+	ERROR,
+	COMPROMISED
 }
 
 enum SecurityLevel {

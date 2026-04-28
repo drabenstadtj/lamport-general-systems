@@ -36,9 +36,9 @@ func initialize_nodes(count: int):
 		var node = NetworkNode.new(i)
 		
 		if i >= min_required:
-			node.state = Enums.NodeState.CRASHED
+			node.state = Enums.NodeState.ERROR
 		else:
-			node.state = Enums.NodeState.HEALTHY
+			node.state = Enums.NodeState.ONLINE
 		
 		nodes.append(node)
 	
@@ -160,7 +160,7 @@ func report_spoofed_message(node_id: int, target_id: int, spoofed_value: String)
 	report_anomaly("SPOOFED_MSG", node_id, "Sent fake %s to Node %d" % [spoofed_value, target_id], 3)
 
 func report_byzantine_behavior(node_id: int, details: String):
-	report_anomaly("BYZANTINE", node_id, details, 3)
+	report_anomaly("COMPROMISED", node_id, details, 3)
 
 func _update_alert_level():
 	var max_suspicion = 0

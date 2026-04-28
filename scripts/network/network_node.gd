@@ -16,7 +16,7 @@ var filesystem: Dictionary = {}
 var spoofed_messages: Dictionary = {}  # {target_id: VoteValue} - override value sent to specific targets
 var intercept_mode: bool = false  # When true, log extra info about messages
 
-func _init(node_id: int, initial_state = Enums.NodeState.HEALTHY):
+func _init(node_id: int, initial_state = Enums.NodeState.ONLINE):
 	id = node_id
 	state = initial_state
 	_init_filesystem()
@@ -69,22 +69,22 @@ func append_to_log(log_name: String, line: String) -> bool:
 # State Queries
 
 func is_healthy() -> bool:
-	return state == Enums.NodeState.HEALTHY
+	return state == Enums.NodeState.ONLINE
 
 func is_crashed() -> bool:
-	return state == Enums.NodeState.CRASHED
+	return state == Enums.NodeState.ERROR
 
 func is_byzantine() -> bool:
-	return state == Enums.NodeState.BYZANTINE
+	return state == Enums.NodeState.COMPROMISED
 
 func is_powered_down() -> bool:
-	return state == Enums.NodeState.POWERED_DOWN
+	return state == Enums.NodeState.OFFLINE
 
 func is_operational() -> bool:
-	return state == Enums.NodeState.HEALTHY or state == Enums.NodeState.BYZANTINE
+	return state == Enums.NodeState.ONLINE or state == Enums.NodeState.COMPROMISED
 
 func is_offline() -> bool:
-	return state == Enums.NodeState.POWERED_DOWN or state == Enums.NodeState.CRASHED
+	return state == Enums.NodeState.OFFLINE or state == Enums.NodeState.ERROR
 
 # State Modification
 

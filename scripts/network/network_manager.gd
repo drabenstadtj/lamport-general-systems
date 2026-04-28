@@ -120,9 +120,9 @@ func crash_node(node_id: int) -> bool:
 		return false
 	
 	var old_state = node.state
-	node.set_state(Enums.NodeState.CRASHED)
+	node.set_state(Enums.NodeState.ERROR)
 	print("[NetworkManager] crash_node(%d) SUCCESS: %s -> CRASHED" % [node_id, Enums.NodeState.keys()[old_state]])
-	node_state_changed.emit(node_id, old_state, Enums.NodeState.CRASHED)
+	node_state_changed.emit(node_id, old_state, Enums.NodeState.ERROR)
 	_advance_turn()
 	return true
 
@@ -139,9 +139,9 @@ func reboot_node(node_id: int) -> bool:
 		return false
 	
 	var old_state = node.state
-	node.set_state(Enums.NodeState.HEALTHY)
+	node.set_state(Enums.NodeState.ONLINE)
 	print("[NetworkManager] reboot_node(%d) SUCCESS: %s -> HEALTHY" % [node_id, Enums.NodeState.keys()[old_state]])
-	node_state_changed.emit(node_id, old_state, Enums.NodeState.HEALTHY)
+	node_state_changed.emit(node_id, old_state, Enums.NodeState.ONLINE)
 	_advance_turn()
 	return true
 
@@ -158,9 +158,9 @@ func corrupt_node(node_id: int) -> bool:
 		return false
 	
 	var old_state = node.state
-	node.set_state(Enums.NodeState.BYZANTINE)
+	node.set_state(Enums.NodeState.COMPROMISED)
 	print("[NetworkManager] corrupt_node(%d) SUCCESS: %s -> BYZANTINE" % [node_id, Enums.NodeState.keys()[old_state]])
-	node_state_changed.emit(node_id, old_state, Enums.NodeState.BYZANTINE)
+	node_state_changed.emit(node_id, old_state, Enums.NodeState.COMPROMISED)
 	_advance_turn()
 	return true
 
@@ -181,9 +181,9 @@ func power_off_node(node_id: int) -> bool:
 		return false
 	
 	var old_state = node.state
-	node.set_state(Enums.NodeState.POWERED_DOWN)
+	node.set_state(Enums.NodeState.OFFLINE)
 	print("[NetworkManager] power_off_node(%d) SUCCESS: %s -> POWERED_DOWN" % [node_id, Enums.NodeState.keys()[old_state]])
-	node_state_changed.emit(node_id, old_state, Enums.NodeState.POWERED_DOWN)
+	node_state_changed.emit(node_id, old_state, Enums.NodeState.OFFLINE)
 	_advance_turn()
 	return true
 
@@ -200,9 +200,9 @@ func power_on_node(node_id: int) -> bool:
 		return false
 	
 	var old_state = node.state
-	node.set_state(Enums.NodeState.HEALTHY)
+	node.set_state(Enums.NodeState.ONLINE)
 	print("[NetworkManager] power_on_node(%d) SUCCESS: %s -> HEALTHY" % [node_id, Enums.NodeState.keys()[old_state]])
-	node_state_changed.emit(node_id, old_state, Enums.NodeState.HEALTHY)
+	node_state_changed.emit(node_id, old_state, Enums.NodeState.ONLINE)
 	_advance_turn()
 	return true
 
@@ -314,9 +314,9 @@ func get_network_health() -> Dictionary:
 	
 	for node in network_state.nodes:
 		match node.state:
-			Enums.NodeState.HEALTHY: healthy += 1
-			Enums.NodeState.CRASHED: crashed += 1
-			Enums.NodeState.BYZANTINE: byzantine += 1
+			Enums.NodeState.ONLINE: healthy += 1
+			Enums.NodeState.ERROR: crashed += 1
+			Enums.NodeState.COMPROMISED: byzantine += 1
 	
 	return {
 		"healthy": healthy,

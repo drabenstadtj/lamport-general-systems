@@ -126,10 +126,10 @@ func _update_debug_labels() -> void:
 
 func _state_color(state: int) -> Color:
 	match state:
-		Enums.NodeState.HEALTHY: return Color.GREEN
-		Enums.NodeState.CRASHED: return Color.RED
-		Enums.NodeState.BYZANTINE: return Color.YELLOW
-		Enums.NodeState.POWERED_DOWN: return Color.GRAY
+		Enums.NodeState.ONLINE: return Color.GREEN
+		Enums.NodeState.ERROR: return Color.RED
+		Enums.NodeState.COMPROMISED: return Color.YELLOW
+		Enums.NodeState.OFFLINE: return Color.GRAY
 	return Color.WHITE
 
 func get_slot_node(slot_index: int) -> Node3D:
