@@ -525,9 +525,9 @@ func cmd_network():
 
 	print_to_terminal("=== NETWORK STATUS ===")
 	print_to_terminal("Nodes: %d total" % health["total"])
-	print_to_terminal("  Healthy: %d" % health["healthy"])
-	print_to_terminal("  Crashed: %d" % health["crashed"])
-	print_to_terminal("  Byzantine: %d" % health["byzantine"])
+	print_to_terminal("  Online: %d" % health["healthy"])
+	print_to_terminal("  Error: %d" % health["crashed"])
+	print_to_terminal("  Compromised: %d" % health["byzantine"])
 	print_to_terminal("")
 
 	for i in range(health["total"]):
@@ -816,20 +816,20 @@ func _scroll_output(direction: int) -> void:
 func _get_state_name(state: Enums.NodeState, colored: bool = true) -> String:
 	if colored:
 		match state:
-			Enums.NodeState.HEALTHY:
-				return "[color=green]HEALTHY[/color]"
-			Enums.NodeState.CRASHED:
-				return "[color=red]CRASHED[/color]"
-			Enums.NodeState.BYZANTINE:
-				return "[color=yellow]BYZANTINE[/color]"
+			Enums.NodeState.ONLINE:
+				return "[color=green]ONLINE[/color]"
+			Enums.NodeState.ERROR:
+				return "[color=red]ERROR[/color]"
+			Enums.NodeState.COMPROMISED:
+				return "[color=yellow]COMPROMISED[/color]"
 	else:
 		match state:
-			Enums.NodeState.HEALTHY:
-				return "HEALTHY"
-			Enums.NodeState.CRASHED:
-				return "CRASHED"
-			Enums.NodeState.BYZANTINE:
-				return "BYZANTINE"
+			Enums.NodeState.ONLINE:
+				return "ONLINE"
+			Enums.NodeState.ERROR:
+				return "ERROR"
+			Enums.NodeState.COMPROMISED:
+				return "COMPROMISED"
 	return "UNKNOWN"
 
 # TAB COMPLETION

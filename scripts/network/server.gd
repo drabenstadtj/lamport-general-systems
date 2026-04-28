@@ -43,13 +43,13 @@ func sync_with_network_state():
 	var node = NetworkManager.get_network_node(node_id)
 	if node:
 		match node.state:
-			Enums.NodeState.HEALTHY:
+			Enums.NodeState.ONLINE:
 				is_powered_on = true
-			Enums.NodeState.CRASHED:
+			Enums.NodeState.ERROR:
 				is_powered_on = true
-			Enums.NodeState.POWERED_DOWN:
+			Enums.NodeState.OFFLINE:
 				is_powered_on = false
-			Enums.NodeState.BYZANTINE:
+			Enums.NodeState.COMPROMISED:
 				is_powered_on = true
 		
 		# Sync audio state
@@ -69,13 +69,13 @@ func _on_node_state_changed(changed_node_id: int, old_state: Enums.NodeState, ne
 	var was_powered_on = is_powered_on
 	
 	match new_state:
-		Enums.NodeState.HEALTHY:
+		Enums.NodeState.ONLINE:
 			is_powered_on = true
-		Enums.NodeState.CRASHED:
+		Enums.NodeState.ERROR:
 			is_powered_on = true
-		Enums.NodeState.POWERED_DOWN:
+		Enums.NodeState.OFFLINE:
 			is_powered_on = false
-		Enums.NodeState.BYZANTINE:
+		Enums.NodeState.COMPROMISED:
 			is_powered_on = true
 	
 	# Handle audio transitions
@@ -101,16 +101,16 @@ func update_status_light():
 	var node = NetworkManager.get_network_node(node_id)
 	if node:
 		match node.state:
-			Enums.NodeState.HEALTHY:
+			Enums.NodeState.ONLINE:
 				status_light.light_color = Color.GREEN
 				status_light.light_energy = 5.0
-			Enums.NodeState.CRASHED:
+			Enums.NodeState.ERROR:
 				status_light.light_color = Color.RED
 				status_light.light_energy = 5.0
-			Enums.NodeState.POWERED_DOWN:
+			Enums.NodeState.OFFLINE:
 				status_light.light_color = Color(1.0, 0.4, 0.0)
 				status_light.light_energy = 0.5
-			Enums.NodeState.BYZANTINE:
+			Enums.NodeState.COMPROMISED:
 				status_light.light_color = Color.YELLOW
 				status_light.light_energy = 5.0
 	else:

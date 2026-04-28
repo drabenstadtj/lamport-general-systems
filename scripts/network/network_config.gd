@@ -23,20 +23,20 @@ func _ready():
 	for node_id in initially_crashed_nodes:
 		var node = NetworkManager.get_network_node(node_id)
 		if node:
-			node.set_state(Enums.NodeState.CRASHED)
-			NetworkManager.node_state_changed.emit(node_id, Enums.NodeState.HEALTHY, Enums.NodeState.CRASHED)
+			node.set_state(Enums.NodeState.ERROR)
+			NetworkManager.node_state_changed.emit(node_id, Enums.NodeState.ONLINE, Enums.NodeState.ERROR)
 
 	for node_id in initially_powered_off_nodes:
 		var node = NetworkManager.get_network_node(node_id)
 		if node:
-			node.set_state(Enums.NodeState.POWERED_DOWN)
-			NetworkManager.node_state_changed.emit(node_id, Enums.NodeState.HEALTHY, Enums.NodeState.POWERED_DOWN)
+			node.set_state(Enums.NodeState.OFFLINE)
+			NetworkManager.node_state_changed.emit(node_id, Enums.NodeState.ONLINE, Enums.NodeState.OFFLINE)
 
 	for node_id in initially_byzantine_nodes:
 		var node = NetworkManager.get_network_node(node_id)
 		if node:
-			node.set_state(Enums.NodeState.BYZANTINE)
-			NetworkManager.node_state_changed.emit(node_id, Enums.NodeState.HEALTHY, Enums.NodeState.BYZANTINE)
+			node.set_state(Enums.NodeState.COMPROMISED)
+			NetworkManager.node_state_changed.emit(node_id, Enums.NodeState.ONLINE, Enums.NodeState.COMPROMISED)
 	
 	# Signal that everything is ready
 	NetworkManager.all_nodes_ready.emit()

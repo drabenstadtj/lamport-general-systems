@@ -148,7 +148,7 @@ func _on_network_initialized() -> void:
 var _restored_servers: Array[int] = []
 
 func _on_node_state_changed(node_id: int, _old: Enums.NodeState, new_state: Enums.NodeState) -> void:
-	if current_step != TutorialStep.RESTORE_NETWORK or new_state != Enums.NodeState.HEALTHY:
+	if current_step != TutorialStep.RESTORE_NETWORK or new_state != Enums.NodeState.ONLINE:
 		return
 	if node_id in [physical_server_id, terminal_server_id] and node_id not in _restored_servers:
 		_restored_servers.append(node_id)
